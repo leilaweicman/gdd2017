@@ -62,6 +62,7 @@
             this.lblRegistrarUsuario.Size = new System.Drawing.Size(125, 23);
             this.lblRegistrarUsuario.TabIndex = 1;
             this.lblRegistrarUsuario.Text = "Registrarme";
+            this.lblRegistrarUsuario.Click += new System.EventHandler(this.lblRegistrarUsuario_Click);
             // 
             // Inicial
             // 

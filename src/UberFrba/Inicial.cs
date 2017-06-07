@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace UberFrba
 {
     public partial class Inicial : Form
@@ -27,7 +28,7 @@ namespace UberFrba
 
         private void Inicial_Load(object sender, EventArgs e)
         {
-            try
+           /* try
             {
                 SQLHelper.Inicializar();
             }
@@ -35,10 +36,14 @@ namespace UberFrba
             {
                 MessageBox.Show(ex.Message);
             }
-
+            */
         }
 
-
-
+        private void lblRegistrarUsuario_Click(object sender, EventArgs e)
+        {
+            Registro_usuario.RegistroUsuario registroUsuarioForm = new Registro_usuario.RegistroUsuario();
+            this.Hide();
+            registroUsuarioForm.Show();
+        }
     }
 }
