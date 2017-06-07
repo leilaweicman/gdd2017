@@ -39,9 +39,20 @@ CREATE TABLE [GIRLPOWER].[Usuario](
 	Piso numeric (2,0),
 	Depto varchar(10) ,
 	Localidad  varchar(255) 
-
 )
 go
+
+create table [GIRLPOWER].[Chofer](
+	IDChofer int primary key identity (1,1),
+	IDUsuario int foreign key (IDUsuario) references [GIRLPOWER].[Usuario](IDUsuario)
+)
+go
+
+create table [GIRLPOWER].[Cliente](
+	IDCliente int primary key identity (1,1),
+	IDUsuario int foreign key (IDUsuario) references [GIRLPOWER].[Usuario](IDUsuario)
+)
+GO
 
 create table [GIRLPOWER].[RolPorUsuario](
 	IDRol  int  not null foreign key (IDRol) references [GIRLPOWER].[Rol](IDRol),
@@ -53,10 +64,20 @@ GO
 
 create table [GIRLPOWER].[Marca](
 	IDMarca int primary key identity(1,1),
-	Nombre varchar(255)
+	Nombre varchar(255) not null
 )
 GO
-
+create table [GIRLPOWER].[Modelo](
+	IDModelo int primary key identity(1,1),
+	Nombre varchar(255) not null
+)
+go
+create table [GIRLPOWER].[MarcaModelo](
+	IDMarcaModelo int primary key identity(1,1),
+	IDMarca int foreign key(IDMarca)references [GIRLPOWER].Marca (IDMarca),
+	IDModelo int foreign key(IDModelo) references [GIRLPOWER].Modelo(IDModelo)
+)
+go
 create table [GIRLPOWER].[Turno](
 	IDTurno  int primary key identity(1,1),
 	HoraInicio [numeric](18, 0) not null,
@@ -70,9 +91,8 @@ go
 
 create table [GIRLPOWER].[Automovil](
 	IDAutomovil int primary key identity(1,1),
-	IDChofer int not null foreign key (IDChofer) references [GIRLPOWER].[Usuario](IDUsuario),
-	IDMarca int not null foreign key (IDMarca)references [GIRLPOWER].[Marca](IDMarca),
-	Modelo  varchar(255) not null,
+	IDChofer int not null foreign key (IDChofer) references [GIRLPOWER].[Chofer](IDChofer),
+	IDMarcaModelo int not null foreign key (IDMarcaModelo)references [GIRLPOWER].[MarcaModelo](IDMarcaModelo),
 	Patente   varchar(10)unique not null,
 	Licencia  varchar(26) not null,
 	Rodado varchar(10)
@@ -87,7 +107,7 @@ go
 create table [GIRLPOWER].[Rendicion](
 	IDRendicion int primary key identity(1,1),
 	IDTurno int not null foreign key (IDTurno) references [GIRLPOWER].[Turno](IDTurno),
-	IDChofer int not null foreign key (IDChofer) references [GIRLPOWER].[Usuario](IDUsuario),
+	IDChofer int not null foreign key (IDChofer) references [GIRLPOWER].[Chofer](IDChofer),
 	Fecha datetime not null,
 	ImporteTotal numeric(18,2) not null
 )
@@ -95,7 +115,7 @@ go
 
 create table [GIRLPOWER].[Factura](
 	IDFactura int primary key identity(1,1), 
-	IDCliente  int not null foreign key (IDCliente) references [GIRLPOWER].[Usuario](IDUsuario),
+	IDCliente  int not null foreign key (IDCliente) references [GIRLPOWER].[Cliente](IDCliente),
 	FechaInicio datetime not null,
 	FechaFin datetime not null,
 	ImporteTotal numeric(18,2) not null
@@ -103,11 +123,27 @@ create table [GIRLPOWER].[Factura](
 go 
 create table [GIRLPOWER].[Viaje](
 	IDViaje int primary key identity(1,1),
-	IDChofer int not null foreign key (IDChofer) references [GIRLPOWER].[Usuario](IDUsuario),
-	IDCliente int  not null foreign key (IDCliente) references [GIRLPOWER].[Usuario](IDUsuario),
+	IDChofer int not null foreign key (IDChofer) references [GIRLPOWER].[Chofer](IDChofer),
+	IDCliente int  not null foreign key (IDCliente) references [GIRLPOWER].[Cliente](IDCliente),
 	IDAutomovil int not null foreign key (IDAutomovil) references [GIRLPOWER].[Automovil](IDAutomovil),
+	IDTurno int not null foreign key(IDTurno) references [GIRLPOWER].Turno (IDTurno),
 	CantidadKilometros numeric (18,0) not null,
 	FechaInicio datetime not null,
-	FechaFin datetime not null,
-	IDFactura int foreign key (IDFactura) references [GIRLPOWER].[Factura](IDFactura)
+	FechaFin datetime not null
 	)
+go 
+create table [GIRLPOWER].[RendicionDetalle](
+	IDRendicion int not null foreign key (IDRendicion) REFERENCES [GIRLPOWER].Rendicion (IDRendicion),
+	IDViaje int not null  foreign key (IDViaje) REFERENCES [GIRLPOWER].Viaje (IDViaje),
+	Importe numeric (18,2) not null,
+	Porcentaje int
+	primary key(IDRendicion,IDViaje)
+)
+go
+create table [GIRLPOWER].[FacturaDetalle](
+	IDFactura int not null foreign key (IDFactura) REFERENCES [GIRLPOWER].Factura (IDFactura),
+	IDViaje int not null  foreign key (IDViaje) REFERENCES [GIRLPOWER].Viaje (IDViaje),
+	Importe numeric (18,2) not null
+	primary key(IDFactura,IDViaje)
+)
+go
