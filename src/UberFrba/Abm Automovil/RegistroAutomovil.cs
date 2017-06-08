@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UberFrba.Abm_Cliente
+namespace UberFrba.Abm_Automovil
 {
     public partial class RegistroAutomovil : Form
     {
@@ -22,6 +22,7 @@ namespace UberFrba.Abm_Cliente
             Inicial formInicial = new Inicial();
             this.Hide();
             formInicial.Show();
+        
         }
     }
 }

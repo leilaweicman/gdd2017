@@ -1,4 +1,4 @@
-﻿namespace UberFrba.Abm_Cliente
+﻿namespace UberFrba.Abm_Automovil
 {
     partial class RegistroAutomovil
     {
@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
+            this.cmbModelo = new System.Windows.Forms.ComboBox();
+            this.cmbMarca = new System.Windows.Forms.ComboBox();
+            this.cmbChofer = new System.Windows.Forms.ComboBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.txtRodado = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,9 +42,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbChofer = new System.Windows.Forms.ComboBox();
-            this.cmbMarca = new System.Windows.Forms.ComboBox();
-            this.cmbModelo = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg.SuspendLayout();
             this.SuspendLayout();
@@ -62,12 +62,36 @@
             this.groupBoxReg.Controls.Add(this.label6);
             this.groupBoxReg.Controls.Add(this.label1);
             this.groupBoxReg.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBoxReg.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxReg.Location = new System.Drawing.Point(47, 40);
             this.groupBoxReg.Name = "groupBoxReg";
             this.groupBoxReg.Size = new System.Drawing.Size(526, 374);
-            this.groupBoxReg.TabIndex = 1;
+            this.groupBoxReg.TabIndex = 2;
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
+            // 
+            // cmbModelo
+            // 
+            this.cmbModelo.FormattingEnabled = true;
+            this.cmbModelo.Location = new System.Drawing.Point(132, 131);
+            this.cmbModelo.Name = "cmbModelo";
+            this.cmbModelo.Size = new System.Drawing.Size(166, 26);
+            this.cmbModelo.TabIndex = 36;
+            // 
+            // cmbMarca
+            // 
+            this.cmbMarca.FormattingEnabled = true;
+            this.cmbMarca.Location = new System.Drawing.Point(132, 88);
+            this.cmbMarca.Name = "cmbMarca";
+            this.cmbMarca.Size = new System.Drawing.Size(166, 26);
+            this.cmbMarca.TabIndex = 35;
+            // 
+            // cmbChofer
+            // 
+            this.cmbChofer.FormattingEnabled = true;
+            this.cmbChofer.Location = new System.Drawing.Point(132, 44);
+            this.cmbChofer.Name = "cmbChofer";
+            this.cmbChofer.Size = new System.Drawing.Size(166, 26);
+            this.cmbChofer.TabIndex = 34;
             // 
             // btnRegistrar
             // 
@@ -165,37 +189,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Chofer";
             // 
-            // cmbChofer
-            // 
-            this.cmbChofer.FormattingEnabled = true;
-            this.cmbChofer.Location = new System.Drawing.Point(132, 44);
-            this.cmbChofer.Name = "cmbChofer";
-            this.cmbChofer.Size = new System.Drawing.Size(166, 26);
-            this.cmbChofer.TabIndex = 34;
-            // 
-            // cmbMarca
-            // 
-            this.cmbMarca.FormattingEnabled = true;
-            this.cmbMarca.Location = new System.Drawing.Point(132, 88);
-            this.cmbMarca.Name = "cmbMarca";
-            this.cmbMarca.Size = new System.Drawing.Size(166, 26);
-            this.cmbMarca.TabIndex = 35;
-            // 
-            // cmbModelo
-            // 
-            this.cmbModelo.FormattingEnabled = true;
-            this.cmbModelo.Location = new System.Drawing.Point(132, 131);
-            this.cmbModelo.Name = "cmbModelo";
-            this.cmbModelo.Size = new System.Drawing.Size(166, 26);
-            this.cmbModelo.TabIndex = 36;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(342, 405);
+            this.btnCancelar.Location = new System.Drawing.Point(389, 451);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(80, 35);
-            this.btnCancelar.TabIndex = 35;
+            this.btnCancelar.TabIndex = 36;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -204,7 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 452);
+            this.ClientSize = new System.Drawing.Size(619, 515);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBoxReg);
             this.Name = "RegistroAutomovil";
@@ -218,6 +218,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxReg;
+        private System.Windows.Forms.ComboBox cmbModelo;
+        private System.Windows.Forms.ComboBox cmbMarca;
+        private System.Windows.Forms.ComboBox cmbChofer;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.TextBox txtRodado;
         private System.Windows.Forms.Label label4;
@@ -228,9 +231,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbModelo;
-        private System.Windows.Forms.ComboBox cmbMarca;
-        private System.Windows.Forms.ComboBox cmbChofer;
         private System.Windows.Forms.Button btnCancelar;
     }
 }
