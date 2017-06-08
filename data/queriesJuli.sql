@@ -1,3 +1,8 @@
+
+IF OBJECT_ID ('GIRLPOWER.PR_altaAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_altaAutomovil]
+GO
+
 create procedure [GIRLPOWER].PR_altaAutomovil(
 @idChofer int, @idMarca int, @idModelo int,@patente varchar(10), @licencia varchar(26),
 @rodado varchar(10)
