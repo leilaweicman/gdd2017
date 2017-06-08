@@ -52,17 +52,17 @@ namespace UberFrba.Registro_usuario
 
             string nombre;
             string apellido;
-            int dni;
+            Decimal dni;
             string contra;
             string confContra;
             int diaNac;
             int mesNac;
             int anioNac;
-            int tel;
+            Decimal tel;
             string mail;
             string calle;
             string depto;
-            int piso;
+            Decimal piso;
             string localidad;
             int esChofer = 0;
             int esCliente = 0;
@@ -78,7 +78,7 @@ namespace UberFrba.Registro_usuario
             {
                 MessageBox.Show("Indique el tipo de usuario");
             }
-            else if(txtContrasenia.Text != txtContrasenia.Text)
+            else if(txtContrasenia.Text != txtConfContrasenia.Text)
             {
                 MessageBox.Show("Las constrasenias no coinciden");
             }//podria validar qeu los int sean numericos posta
@@ -86,18 +86,18 @@ namespace UberFrba.Registro_usuario
             {
                 nombre = txtNombre.Text;
                 apellido = txtApellido.Text;
-                dni = int.Parse(txtDni.Text);
+                dni = Decimal.Parse(txtDni.Text);
                 contra = txtContrasenia.Text;
                 confContra = txtConfContrasenia.Text;
                 diaNac = int.Parse(txtDiaNac.Text);
                 mesNac = int.Parse(txtMesNac.Text);
                 anioNac = int.Parse(txtAnioNac.Text);
                 fechaNac = new DateTime(anioNac, mesNac, diaNac);
-                tel = int.Parse(txtTel.Text);
+                tel = Decimal.Parse(txtTel.Text);
                 mail = txtMail.Text;
                 calle = txtCalle.Text;
                 depto = txtDepto.Text;
-                piso = int.Parse(txtPiso.Text);
+                piso = Decimal.Parse(txtPiso.Text);
                 localidad = txtLocalidad.Text;
                 
                 if (chkChofer.Checked) {
@@ -126,16 +126,13 @@ namespace UberFrba.Registro_usuario
                 parameterList.Add(new SqlParameter("@esChofer", esChofer));
                 parameterList.Add(new SqlParameter("@esCliente", esCliente));
 
-
-//    public static int ExecuteNonQuery(string nombreProcedure, CommandType Tipo, List<SqlParameter> ParameterList)
-
-
-                SQLHelper.Inicializar();
-
                 string nomProcedure ="PR_altaUsuario";
                 int result = SQLHelper.ExecuteNonQuery(nomProcedure, CommandType.StoredProcedure, parameterList);
-                SQLHelper.Cerrar();
-                MessageBox.Show("cant filas afectadas" + result);
+                //SQLHelper.Cerrar();
+                if (result > 1)
+                {
+                    MessageBox.Show("cant filas afectadas" + result);
+                }               
 
             }
 

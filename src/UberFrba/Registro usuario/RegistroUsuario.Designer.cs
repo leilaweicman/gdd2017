@@ -34,6 +34,8 @@
             this.chkChofer = new System.Windows.Forms.CheckBox();
             this.chkCliente = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtLocalidad = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtPiso = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDepto = new System.Windows.Forms.TextBox();
@@ -59,8 +61,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.groupBoxReg.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -159,6 +159,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dirección";
             // 
+            // txtLocalidad
+            // 
+            this.txtLocalidad.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtLocalidad.Location = new System.Drawing.Point(113, 124);
+            this.txtLocalidad.Name = "txtLocalidad";
+            this.txtLocalidad.Size = new System.Drawing.Size(198, 24);
+            this.txtLocalidad.TabIndex = 37;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Verdana", 10F);
+            this.label9.Location = new System.Drawing.Point(24, 124);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 17);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Localidad";
+            // 
             // txtPiso
             // 
             this.txtPiso.Font = new System.Drawing.Font("Verdana", 10F);
@@ -191,9 +209,9 @@
             this.label13.Font = new System.Drawing.Font("Verdana", 10F);
             this.label13.Location = new System.Drawing.Point(24, 79);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 17);
+            this.label13.Size = new System.Drawing.Size(51, 17);
             this.label13.TabIndex = 32;
-            this.label13.Text = "Altura";
+            this.label13.Text = "Depto";
             // 
             // txtCalle
             // 
@@ -391,24 +409,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label9.Location = new System.Drawing.Point(24, 124);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 17);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "Localidad";
-            // 
-            // txtLocalidad
-            // 
-            this.txtLocalidad.Font = new System.Drawing.Font("Verdana", 10F);
-            this.txtLocalidad.Location = new System.Drawing.Point(113, 124);
-            this.txtLocalidad.Name = "txtLocalidad";
-            this.txtLocalidad.Size = new System.Drawing.Size(198, 24);
-            this.txtLocalidad.TabIndex = 37;
             // 
             // RegistroUsuario
             // 
