@@ -65,7 +65,12 @@ namespace UberFrba.Registro_usuario
             int piso = int.Parse(txtPiso.Text);
 
 
-            //if(nombre=="" || apellido =="" || dni==null ||
+            if(txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || txtContrasenia.Text=="" || 
+                txtConfContrasenia.Text =="" || txtDiaNac.Text=="" || txtMesNac.Text=="" || txtAnioNac.Text=="" || 
+                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtDepto.Text=="" || txtPiso.Text==""){
+
+                    MessageBox.Show("Complete todos los campos por favor");
+            } //else if(!chkCliente.Checked() && chkChofer.
 
         }
     }
