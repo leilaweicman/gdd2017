@@ -28,7 +28,7 @@ namespace UberFrba
 
         private void Inicial_Load(object sender, EventArgs e)
         {
-           /* try
+            try
             {
                 SQLHelper.Inicializar();
             }
@@ -36,7 +36,7 @@ namespace UberFrba
             {
                 MessageBox.Show(ex.Message);
             }
-            */
+            
         }
 
         private void lblRegistrarUsuario_Click(object sender, EventArgs e)
