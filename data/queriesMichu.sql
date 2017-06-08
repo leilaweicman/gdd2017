@@ -32,12 +32,12 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 
 		IF (@esChofer=1)
 		BEGIN
-			INSERT INTO [GD1C2017].[GIRLPOWER].[Chofer] (IDChofer) VALUES (@idUsuario)
+			INSERT INTO [GD1C2017].[GIRLPOWER].[Chofer] (IDUsuario) VALUES (@idUsuario)
 		END
 
 		IF (@esCliente=1)
 		BEGIN
-			INSERT INTO [GD1C2017].[GIRLPOWER].[Cliente] (IDCliente) VALUES (@idUsuario)
+			INSERT INTO [GD1C2017].[GIRLPOWER].[Cliente] (IDUsuario) VALUES (@idUsuario)
 		END
 	--COMMIT TRANSACTION
 	RETURN @@rowCount

@@ -128,10 +128,13 @@ namespace UberFrba.Registro_usuario
 
 
 //    public static int ExecuteNonQuery(string nombreProcedure, CommandType Tipo, List<SqlParameter> ParameterList)
-                
+
+
+                SQLHelper.Inicializar();
+
                 string nomProcedure ="PR_altaUsuario";
                 int result = SQLHelper.ExecuteNonQuery(nomProcedure, CommandType.StoredProcedure, parameterList);
-
+                SQLHelper.Cerrar();
                 MessageBox.Show("cant filas afectadas" + result);
 
             }
