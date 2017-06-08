@@ -107,6 +107,7 @@ namespace Connection
         }
         #endregion
 
+
         #region ExecuteNonQuery
 
         public static int ExecuteNonQuery(string nombreProcedure)
@@ -130,7 +131,7 @@ namespace Connection
 
             if (Tipo == CommandType.StoredProcedure)
             {
-                nombreProcedure = "ATJ." + nombreProcedure;
+                nombreProcedure = "GIRLPOWER." + nombreProcedure;
             }
 
             cmdComand = new SqlCommand(nombreProcedure, _cnnConexion);
