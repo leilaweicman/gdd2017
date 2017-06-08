@@ -274,7 +274,6 @@
             this.txtAnioNac.Name = "txtAnioNac";
             this.txtAnioNac.Size = new System.Drawing.Size(48, 24);
             this.txtAnioNac.TabIndex = 25;
-            this.txtAnioNac.Text = "1995";
             this.txtAnioNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMesNac
@@ -284,7 +283,6 @@
             this.txtMesNac.Name = "txtMesNac";
             this.txtMesNac.Size = new System.Drawing.Size(38, 24);
             this.txtMesNac.TabIndex = 24;
-            this.txtMesNac.Text = "05";
             this.txtMesNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtDiaNac
@@ -294,7 +292,6 @@
             this.txtDiaNac.Name = "txtDiaNac";
             this.txtDiaNac.Size = new System.Drawing.Size(38, 24);
             this.txtDiaNac.TabIndex = 23;
-            this.txtDiaNac.Text = "05";
             this.txtDiaNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4

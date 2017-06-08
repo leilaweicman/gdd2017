@@ -68,20 +68,75 @@ namespace UberFrba.Registro_usuario
             int esCliente = 0;
             DateTime fechaNac;
 
-            if(txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || txtContrasenia.Text=="" || 
+            bool huboErrorDato = false;
+            
+            List<string> lstErroresCampos = new List<string>();
+            #region validacionCampos
+
+            if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || txtContrasenia.Text=="" || 
                 txtConfContrasenia.Text =="" || txtDiaNac.Text=="" || txtMesNac.Text=="" || txtAnioNac.Text=="" || 
                 txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtDepto.Text=="" || txtPiso.Text=="")
             {
-                MessageBox.Show("Complete todos los campos por favor");
+                lstErroresCampos.Add("Complete todos los campos por favor.\n");
+                huboErrorDato = true;
             }
-            else if (!chkCliente.Checked && !chkChofer.Checked)
+            else
             {
-                MessageBox.Show("Indique el tipo de usuario");
+                if (!chkCliente.Checked && !chkChofer.Checked)
+                {
+                    lstErroresCampos.Add("Indique el tipo de usuario.\n");
+                    huboErrorDato = true;
+                }
+                if (txtContrasenia.Text != txtConfContrasenia.Text)
+                {
+                    lstErroresCampos.Add("Las constrasenias no coinciden.\n");
+                    huboErrorDato = true;
+                }
+                if (!Validator.EsNumero(txtDni.Text))
+                {
+                    lstErroresCampos.Add("El dni debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                if (!Validator.EsNumero(txtTel.Text))
+                {
+                    lstErroresCampos.Add("El telefono debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                if (!Validator.EsNumero(txtDiaNac.Text))
+                {
+                    lstErroresCampos.Add("El dia de nacimiento debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                if (!Validator.EsNumero(txtMesNac.Text))
+                {
+                    lstErroresCampos.Add("El mes de nacimiento debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                if (!Validator.EsNumero(txtAnioNac.Text))
+                {
+                    lstErroresCampos.Add("El anio de nacimiento debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                if (!Validator.EsNumero(txtPiso.Text))
+                {
+                    lstErroresCampos.Add("El piso debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
             }
-            else if(txtContrasenia.Text != txtConfContrasenia.Text)
+
+           
+
+            #endregion
+
+            if (huboErrorDato)
             {
-                MessageBox.Show("Las constrasenias no coinciden");
-            }//podria validar qeu los int sean numericos posta
+                string textoError="";
+                foreach(string error in lstErroresCampos)
+                {
+                    textoError = textoError + error;   
+                }
+                MessageBox.Show(textoError);
+            }
             else 
             {
                 nombre = txtNombre.Text;
@@ -100,7 +155,8 @@ namespace UberFrba.Registro_usuario
                 piso = Decimal.Parse(txtPiso.Text);
                 localidad = txtLocalidad.Text;
                 
-                if (chkChofer.Checked) {
+                if (chkChofer.Checked)
+                {
                     esChofer = 1;
                 }
                 if (chkCliente.Checked)
