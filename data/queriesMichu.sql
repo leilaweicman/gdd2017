@@ -23,7 +23,8 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
  BEGIN
 	DECLARE @idUsuario int
 	
-	--BEGIN TRANSACTION
+	BEGIN TRANSACTION
+	BEGIN TRY
 		INSERT INTO [GD1C2017].[GIRLPOWER].[Usuario] (Nombre, Apellido, Direccion, Telefono, Dni, FechaNacimiento, ContraseniaEncriptada, 
 		Mail, Habilitado, Piso, Depto, Localidad) VALUES 
 		(@nombre, @apellido, @direccion, @telefono, @dni, @fechaNac, @contrasenia, @mail, 1, @piso, @depto, @localidad)
@@ -39,7 +40,15 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 		BEGIN
 			INSERT INTO [GD1C2017].[GIRLPOWER].[Cliente] (IDUsuario) VALUES (@idUsuario)
 		END
-	--COMMIT TRANSACTION
+
+		IF @@ERROR = 0
+			COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR('No se puede registrar el usuario', 16, 217)
+			WITH SETERROR
+	END CATCH
 	RETURN @@rowCount
  END
 
