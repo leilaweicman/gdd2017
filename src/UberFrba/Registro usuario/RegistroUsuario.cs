@@ -43,5 +43,30 @@ namespace UberFrba.Registro_usuario
             this.Hide();
             formInicial.Show();
         }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+
+            //tengo que verificar que sean no nulos antes de parsear
+            string nombre = txtNombre.Text;
+            string apellido = txtApellido.Text;
+            int dni = int.Parse(txtDni.Text);
+            
+            string contra = txtContrasenia.Text;
+            string confContra = txtConfContrasenia.Text;
+            int diaNac = int.Parse(txtDiaNac.Text);
+            int mesNac = int.Parse(txtMesNac.Text);
+            int anioNac = int.Parse(txtAnioNac.Text);
+            int tel = int.Parse(txtTel.Text);
+            string mail = txtMail.Text;
+            string calle = txtCalle.Text;
+            string depto = txtDepto.Text;
+            int piso = int.Parse(txtPiso.Text);
+
+
+            //if(nombre=="" || apellido =="" || dni==null ||
+
+        }
     }
 }

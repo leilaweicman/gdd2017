@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
+            this.btnRegistrar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkChofer = new System.Windows.Forms.CheckBox();
+            this.chkCliente = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPiso = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtAltura = new System.Windows.Forms.TextBox();
+            this.txtDepto = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCalle = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -55,10 +58,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.chkCliente = new System.Windows.Forms.CheckBox();
-            this.chkChofer = new System.Windows.Forms.CheckBox();
-            this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.groupBoxReg.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -95,30 +97,64 @@
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
             // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.Location = new System.Drawing.Point(572, 346);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(141, 35);
+            this.btnRegistrar.TabIndex = 33;
+            this.btnRegistrar.Text = "Registrarme";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.chkChofer);
             this.groupBox3.Controls.Add(this.chkCliente);
             this.groupBox3.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
-            this.groupBox3.Location = new System.Drawing.Point(383, 178);
+            this.groupBox3.Location = new System.Drawing.Point(383, 208);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(309, 114);
+            this.groupBox3.Size = new System.Drawing.Size(330, 114);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tipo de usuario";
             // 
+            // chkChofer
+            // 
+            this.chkChofer.AutoSize = true;
+            this.chkChofer.Font = new System.Drawing.Font("Verdana", 10F);
+            this.chkChofer.Location = new System.Drawing.Point(18, 72);
+            this.chkChofer.Name = "chkChofer";
+            this.chkChofer.Size = new System.Drawing.Size(71, 21);
+            this.chkChofer.TabIndex = 5;
+            this.chkChofer.Text = "chofer";
+            this.chkChofer.UseVisualStyleBackColor = true;
+            // 
+            // chkCliente
+            // 
+            this.chkCliente.AutoSize = true;
+            this.chkCliente.Font = new System.Drawing.Font("Verdana", 10F);
+            this.chkCliente.Location = new System.Drawing.Point(18, 37);
+            this.chkCliente.Name = "chkCliente";
+            this.chkCliente.Size = new System.Drawing.Size(71, 21);
+            this.chkCliente.TabIndex = 4;
+            this.chkCliente.Text = "cliente";
+            this.chkCliente.UseVisualStyleBackColor = true;
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtLocalidad);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtPiso);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtAltura);
+            this.groupBox1.Controls.Add(this.txtDepto);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.txtCalle);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(383, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(330, 119);
+            this.groupBox1.Size = new System.Drawing.Size(330, 168);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dirección";
@@ -141,13 +177,13 @@
             this.label5.TabIndex = 34;
             this.label5.Text = "Piso";
             // 
-            // txtAltura
+            // txtDepto
             // 
-            this.txtAltura.Font = new System.Drawing.Font("Verdana", 10F);
-            this.txtAltura.Location = new System.Drawing.Point(80, 74);
-            this.txtAltura.Name = "txtAltura";
-            this.txtAltura.Size = new System.Drawing.Size(62, 24);
-            this.txtAltura.TabIndex = 33;
+            this.txtDepto.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtDepto.Location = new System.Drawing.Point(80, 74);
+            this.txtDepto.Name = "txtDepto";
+            this.txtDepto.Size = new System.Drawing.Size(62, 24);
+            this.txtDepto.TabIndex = 33;
             // 
             // label13
             // 
@@ -345,47 +381,34 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
-            // chkCliente
-            // 
-            this.chkCliente.AutoSize = true;
-            this.chkCliente.Font = new System.Drawing.Font("Verdana", 10F);
-            this.chkCliente.Location = new System.Drawing.Point(18, 37);
-            this.chkCliente.Name = "chkCliente";
-            this.chkCliente.Size = new System.Drawing.Size(71, 21);
-            this.chkCliente.TabIndex = 4;
-            this.chkCliente.Text = "cliente";
-            this.chkCliente.UseVisualStyleBackColor = true;
-            // 
-            // chkChofer
-            // 
-            this.chkChofer.AutoSize = true;
-            this.chkChofer.Font = new System.Drawing.Font("Verdana", 10F);
-            this.chkChofer.Location = new System.Drawing.Point(18, 72);
-            this.chkChofer.Name = "chkChofer";
-            this.chkChofer.Size = new System.Drawing.Size(71, 21);
-            this.chkChofer.TabIndex = 5;
-            this.chkChofer.Text = "chofer";
-            this.chkChofer.UseVisualStyleBackColor = true;
-            // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.Location = new System.Drawing.Point(553, 338);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(141, 35);
-            this.btnRegistrar.TabIndex = 33;
-            this.btnRegistrar.Text = "Registrarme";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(636, 420);
+            this.btnCancelar.Location = new System.Drawing.Point(654, 420);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(80, 35);
             this.btnCancelar.TabIndex = 34;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Verdana", 10F);
+            this.label9.Location = new System.Drawing.Point(24, 124);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 17);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Localidad";
+            // 
+            // txtLocalidad
+            // 
+            this.txtLocalidad.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtLocalidad.Location = new System.Drawing.Point(113, 124);
+            this.txtLocalidad.Name = "txtLocalidad";
+            this.txtLocalidad.Size = new System.Drawing.Size(198, 24);
+            this.txtLocalidad.TabIndex = 37;
             // 
             // RegistroUsuario
             // 
@@ -430,7 +453,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtPiso;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtAltura;
+        private System.Windows.Forms.TextBox txtDepto;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.Label label14;
@@ -440,5 +463,7 @@
         private System.Windows.Forms.CheckBox chkChofer;
         private System.Windows.Forms.CheckBox chkCliente;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtLocalidad;
+        private System.Windows.Forms.Label label9;
     }
 }
