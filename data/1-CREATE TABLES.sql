@@ -2,8 +2,40 @@ USE [GD1C2017]
 GO
 
 /****** Object:  Schema [gd_esquema]    Script Date: 16/05/2017 21:05:43 ******/
+
+/*IF  (exists(select * FROM sys.schemas WHERE name = 'GIRLPOWER'))
+DROP SCHEMA [GIRLPOWER]
+GO*/
+
 CREATE SCHEMA [GIRLPOWER]
 GO
+
+--dropea todas las tablas
+IF OBJECT_ID ('GIRLPOWER.FuncionalidadPorRol', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[FuncionalidadPorRol]
+GO
+IF OBJECT_ID ('GIRLPOWER.Funcionalidad', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[Funcionalidad]
+GO
+IF OBJECT_ID ('GIRLPOWER.RolPorUsuario', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[RolPorUsuario]
+GO
+/*es un lio porque todo se conecta con todo y no se como dropear un schema
+IF OBJECT_ID ('GIRLPOWER.Rol', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[Rol]
+GO
+IF OBJECT_ID ('GIRLPOWER.Chofer', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[Chofer]
+GO
+IF OBJECT_ID ('GIRLPOWER.Cliente', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[Cliente]
+GO
+IF OBJECT_ID ('GIRLPOWER.Administrador', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[Administrador]
+GO
+IF OBJECT_ID ('GIRLPOWER.Usuario', 'U') IS NOT NULL
+DROP TABLE [GIRLPOWER].[Usuario]
+GO*/
 
 
 CREATE TABLE[GIRLPOWER].[Funcionalidad](
@@ -43,6 +75,12 @@ CREATE TABLE [GIRLPOWER].[Usuario](
 go
 
 create table [GIRLPOWER].[Chofer](
+	IDChofer int primary key identity (1,1),
+	IDUsuario int foreign key (IDUsuario) references [GIRLPOWER].[Usuario](IDUsuario)
+)
+go
+
+create table [GIRLPOWER].[Administrador](
 	IDChofer int primary key identity (1,1),
 	IDUsuario int foreign key (IDUsuario) references [GIRLPOWER].[Usuario](IDUsuario)
 )
