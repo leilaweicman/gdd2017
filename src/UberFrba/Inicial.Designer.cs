@@ -31,6 +31,7 @@
             this.lblIniciarSesion = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblRegistrarUsuario = new System.Windows.Forms.Label();
+            this.lblRegistrarAutomovil = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblIniciarSesion
@@ -64,12 +65,25 @@
             this.lblRegistrarUsuario.Text = "Registrarme";
             this.lblRegistrarUsuario.Click += new System.EventHandler(this.lblRegistrarUsuario_Click);
             // 
+            // lblRegistrarAutomovil
+            // 
+            this.lblRegistrarAutomovil.AutoSize = true;
+            this.lblRegistrarAutomovil.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrarAutomovil.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblRegistrarAutomovil.Location = new System.Drawing.Point(71, 195);
+            this.lblRegistrarAutomovil.Name = "lblRegistrarAutomovil";
+            this.lblRegistrarAutomovil.Size = new System.Drawing.Size(200, 23);
+            this.lblRegistrarAutomovil.TabIndex = 2;
+            this.lblRegistrarAutomovil.Text = "Registrar Automovil";
+            this.lblRegistrarAutomovil.Click += new System.EventHandler(this.lblRegistrarAutomovil_Click);
+            // 
             // Inicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.lblRegistrarAutomovil);
             this.Controls.Add(this.lblRegistrarUsuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblIniciarSesion);
@@ -86,5 +100,6 @@
         private System.Windows.Forms.Label lblIniciarSesion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblRegistrarUsuario;
+        private System.Windows.Forms.Label lblRegistrarAutomovil;
     }
 }

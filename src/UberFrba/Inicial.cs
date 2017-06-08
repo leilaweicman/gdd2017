@@ -45,5 +45,14 @@ namespace UberFrba
             this.Hide();
             registroUsuarioForm.Show();
         }
+
+        private void lblRegistrarAutomovil_Click(object sender, EventArgs e)
+        {
+            UberFrba.Abm_Cliente.RegistroAutomovil registroAutomovilForm = new Abm_Cliente.RegistroAutomovil();
+            this.Hide();
+            registroAutomovilForm.Show();
+        }
+
+        
     }
 }
