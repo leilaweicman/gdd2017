@@ -64,7 +64,11 @@ namespace Connection
         }
 
         #region Execute Reader
+        public static SqlDataReader ExecuteQuery(string query)
+        {
+            return ExecuteQuery(query,0);
 
+        }
         public static SqlDataReader ExecuteReader(string nombreProcedure)
         {
             return ExecuteReader(nombreProcedure, CommandType.StoredProcedure);
@@ -76,6 +80,28 @@ namespace Connection
         public static SqlDataReader ExecuteReader(string nombreProcedure, List<SqlParameter> ParameterList)
         {
             return ExecuteReader(nombreProcedure, CommandType.StoredProcedure, ParameterList);
+
+        }
+        public static SqlDataReader ExecuteQuery(string query, int a)
+        {
+            SqlConnection cnnConexion;
+            SqlCommand cmdComando;
+
+            SqlDataReader rdrReader;
+
+
+            cnnConexion = new SqlConnection(SQLHelper.getConnectionString);
+            cnnConexion.Open();
+
+            cmdComando = new SqlCommand(query, cnnConexion);
+
+            cmdComando.CommandType = CommandType.Text;
+
+            cmdComando.CommandText = query;
+
+            rdrReader = cmdComando.ExecuteReader();
+
+            return rdrReader;
 
         }
         public static SqlDataReader ExecuteReader(string nombreProcedure, CommandType Tipo, List<SqlParameter> ParameterList)

@@ -62,7 +62,7 @@
             this.groupBoxReg.Controls.Add(this.label6);
             this.groupBoxReg.Controls.Add(this.label1);
             this.groupBoxReg.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBoxReg.Location = new System.Drawing.Point(47, 40);
+            this.groupBoxReg.Location = new System.Drawing.Point(47, 34);
             this.groupBoxReg.Name = "groupBoxReg";
             this.groupBoxReg.Size = new System.Drawing.Size(526, 374);
             this.groupBoxReg.TabIndex = 2;
@@ -84,6 +84,7 @@
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(166, 26);
             this.cmbMarca.TabIndex = 35;
+            this.cmbMarca.SelectedIndexChanged += new System.EventHandler(this.cmbMarca_SelectedIndexChanged);
             // 
             // cmbChofer
             // 
@@ -101,6 +102,7 @@
             this.btnRegistrar.TabIndex = 33;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // txtRodado
             // 
@@ -126,7 +128,6 @@
             this.txtLicencia.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtLicencia.Location = new System.Drawing.Point(132, 213);
             this.txtLicencia.Name = "txtLicencia";
-            this.txtLicencia.PasswordChar = '*';
             this.txtLicencia.Size = new System.Drawing.Size(154, 24);
             this.txtLicencia.TabIndex = 18;
             // 
@@ -135,7 +136,6 @@
             this.txtPatente.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtPatente.Location = new System.Drawing.Point(132, 175);
             this.txtPatente.Name = "txtPatente";
-            this.txtPatente.PasswordChar = '*';
             this.txtPatente.Size = new System.Drawing.Size(154, 24);
             this.txtPatente.TabIndex = 17;
             // 
