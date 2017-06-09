@@ -36,7 +36,7 @@ namespace UberFrba
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void lblRegistrarUsuario_Click(object sender, EventArgs e)
@@ -52,7 +52,14 @@ namespace UberFrba
             this.Hide();
             registroAutomovilForm.Show();
         }
+    
 
-        
+        //abm cliente
+        private void label1_Click(object sender, EventArgs e) 
+        {
+            UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+            this.Hide();
+            abmCliente.Show();
+        }
     }
 }
