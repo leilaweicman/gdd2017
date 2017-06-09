@@ -21,7 +21,6 @@ namespace Classes
         private int _id_Usuario;
         private string _username;
         private string _contraseniaEncriptada;
-        private bool _claveAutoGenerada;
         private bool _habilitado;
         private Decimal _dni;
         private string _nombre;

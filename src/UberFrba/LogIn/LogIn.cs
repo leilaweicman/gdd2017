@@ -42,7 +42,7 @@ namespace UberFrba.LogIn
                 {
                     //existe usuario
 
-                    if (user.Clave.Trim() == claveIngresada.Trim())
+                    if (user.ContraseniaEncriptada.Trim() == claveIngresada.Trim())
                     {
                         RealizarAccionesLogInExitoso();
                     }
