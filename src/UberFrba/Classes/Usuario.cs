@@ -20,9 +20,19 @@ namespace Classes
 
         private int _id_Usuario;
         private string _username;
-        private string _clave;
+        private string _contraseniaEncriptada;
         private bool _claveAutoGenerada;
-        private bool _activo;
+        private bool _habilitado;
+        private Decimal _dni;
+        private string _nombre;
+        private string _apellido;
+        private Decimal tel;
+        private string _mail;
+        private string _calle;
+        private string _depto;
+        private Decimal _piso;
+        private string _localidad;
+        private DateTime _fechaNac;
         //private Rol _rol; AGREGAR DESPUES
 
         #endregion
@@ -49,23 +59,146 @@ namespace Classes
             set { _username = value; }
         }
 
-        public string Clave
+        public string ContraseniaEncriptada
         {
-            get { return _clave; }
-            set { _clave = value; }
+            get { return _contraseniaEncriptada; }
+            set { _contraseniaEncriptada = value; }
+        }
+        
+        public bool Habilitado
+        {
+            get { return _habilitado; }
+            set { _habilitado = value; }
         }
 
-
-        public bool ClaveAutoGenerada
+        public decimal Dni
         {
-            get { return _claveAutoGenerada; }
-            set { _claveAutoGenerada = value; }
+            get
+            {
+                return _dni;
+            }
+
+            set
+            {
+                _dni = value;
+            }
         }
 
-        public bool Activo
+        public string Nombre
         {
-            get { return _activo; }
-            set { _activo = value; }
+            get
+            {
+                return _nombre;
+            }
+
+            set
+            {
+                _nombre = value;
+            }
+        }
+
+        public string Apellido
+        {
+            get
+            {
+                return _apellido;
+            }
+
+            set
+            {
+                _apellido = value;
+            }
+        }
+
+        public decimal Tel
+        {
+            get
+            {
+                return tel;
+            }
+
+            set
+            {
+                tel = value;
+            }
+        }
+
+        public string Mail
+        {
+            get
+            {
+                return _mail;
+            }
+
+            set
+            {
+                _mail = value;
+            }
+        }
+
+        public string Calle
+        {
+            get
+            {
+                return _calle;
+            }
+
+            set
+            {
+                _calle = value;
+            }
+        }
+
+        public string Depto
+        {
+            get
+            {
+                return _depto;
+            }
+
+            set
+            {
+                _depto = value;
+            }
+        }
+
+        public decimal Piso
+        {
+            get
+            {
+                return _piso;
+            }
+
+            set
+            {
+                _piso = value;
+            }
+        }
+
+        public string Localidad
+        {
+            get
+            {
+                return _localidad;
+            }
+
+            set
+            {
+                _localidad = value;
+            }
+        }
+
+        public DateTime FechaNac
+        {
+            get
+            {
+                return _fechaNac;
+            }
+
+            set
+            {
+                _fechaNac = value;
+            }
         }
 
         //public Rol Rol
@@ -73,8 +206,8 @@ namespace Classes
         //    get { return _rol; }
         //    set { _rol = value; }
         //}
-        #endregion 
-        
+        #endregion
+
         #region methods
 
         public override string NombreTabla()
@@ -95,7 +228,7 @@ namespace Classes
             if (ds.Tables[0].Rows.Count == 1)
             {
                 DataRowToObject(ds.Tables[0].Rows[0]);
-                if (this.Activo)
+                if (this.Habilitado)
                     return true;
             }
 
@@ -105,11 +238,19 @@ namespace Classes
         public override void DataRowToObject(DataRow dr) //CAMBIAR CAMPOS!!!
         {
             // Esto es tal cual lo devuelve el stored de la DB
-            this.Id_Usuario = Convert.ToInt32(dr["id_Usuario"]);
-            this.Username = dr["Username"].ToString();
-            this.Clave = dr["Clave"].ToString();
-            this.ClaveAutoGenerada = Convert.ToBoolean(dr["ClaveAutoGenerada"]);
-            this.Activo = Convert.ToBoolean(dr["Activo"]);
+            this.Id_Usuario = Convert.ToInt32(dr["IDUsuario"]);
+            this.ContraseniaEncriptada = dr["ContraseniaEncriptada"].ToString();
+            this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
+            this.Nombre = dr["Nombre"].ToString();
+            this.Apellido = dr["Apellido"].ToString();
+            this.Tel = Convert.ToDecimal(dr["Telefono"]);
+            this.Calle = dr["Calle"].ToString();
+            this.Piso = Convert.ToDecimal(dr["Piso"]);
+            this.Depto = dr["Depto"].ToString();
+            this.Dni = Convert.ToDecimal(dr["DNI"]);
+            this.FechaNac = Convert.ToDateTime(dr["FechaNacimiento"]);
+            this.Mail = dr["Mail"].ToString();
+            this.Localidad = dr["Localidad"].ToString();
         }
 
         private void setearListaDeParametrosConUsuario()
