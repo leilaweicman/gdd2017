@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblRegistrarUsuario = new System.Windows.Forms.Label();
             this.lblRegistrarAutomovil = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblIniciarSesion
@@ -77,12 +78,25 @@
             this.lblRegistrarAutomovil.Text = "Registrar Automovil";
             this.lblRegistrarAutomovil.Click += new System.EventHandler(this.lblRegistrarAutomovil_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label1.Location = new System.Drawing.Point(27, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 23);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "ABM cli";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Inicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRegistrarAutomovil);
             this.Controls.Add(this.lblRegistrarUsuario);
             this.Controls.Add(this.label2);
@@ -101,5 +115,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblRegistrarUsuario;
         private System.Windows.Forms.Label lblRegistrarAutomovil;
+        private System.Windows.Forms.Label label1;
     }
 }

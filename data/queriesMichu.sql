@@ -29,7 +29,7 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 		Mail, Habilitado, Piso, Depto, Localidad) VALUES 
 		(@nombre, @apellido, @direccion, @telefono, @dni, @fechaNac, @contrasenia, @mail, 1, @piso, @depto, @localidad)
 
-		SELECT @idUsuario FROM [GD1C2017].[GIRLPOWER].[Usuario] WHERE DNI = @dni
+		SET @idUsuario = (SELECT IDUsuario FROM [GD1C2017].[GIRLPOWER].[Usuario] WHERE DNI = @dni)
 
 		IF (@esChofer=1)
 		BEGIN
@@ -51,6 +51,37 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 	END CATCH
 	RETURN @@rowCount
  END
+GO
 
+IF OBJECT_ID ('GIRLPOWER.PR_traerClientes', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_traerClientes]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_traerClientes] AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM [GIRLPOWER].[Usuario] u JOIN [GIRLPOWER].[Cliente] c ON u.IDUsuario = c.IDUsuario
+	END TRY
+	BEGIN CATCH
+		RAISERROR('Hubo un error cargando los clientes', 16, 217)
+			WITH SETERROR
+	END CATCH
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.PR_traerChoferes', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_traerChoferes]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_traerChoferes] AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM Usuario u JOIN Chofer c ON u.IDUsuario = c.IDUsuario	
+	END TRY
+	BEGIN CATCH
+		RAISERROR('Hubo un error cargando los choferes', 16, 217)
+			WITH SETERROR
+	END CATCH
+END
 GO
 

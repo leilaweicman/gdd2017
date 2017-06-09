@@ -20,21 +20,6 @@ namespace UberFrba.Registro_usuario
             InitializeComponent();
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
 
@@ -53,8 +38,8 @@ namespace UberFrba.Registro_usuario
             string nombre;
             string apellido;
             Decimal dni;
-            string contra;
-            string confContra;
+            string contraEncriptada;
+            //string confContra;
             int diaNac;
             int mesNac;
             int anioNac;
@@ -142,8 +127,8 @@ namespace UberFrba.Registro_usuario
                 nombre = txtNombre.Text;
                 apellido = txtApellido.Text;
                 dni = Decimal.Parse(txtDni.Text);
-                contra = txtContrasenia.Text;
-                confContra = txtConfContrasenia.Text;
+                contraEncriptada = Encryptor.GetSHA256(txtContrasenia.Text);
+                //confContra = txtConfContrasenia.Text;
                 diaNac = int.Parse(txtDiaNac.Text);
                 mesNac = int.Parse(txtMesNac.Text);
                 anioNac = int.Parse(txtAnioNac.Text);
@@ -163,10 +148,7 @@ namespace UberFrba.Registro_usuario
                 {
                     esCliente = 1;
                 }
-
-               //falta encriptar la contrasenia
-
-
+                
                 List<SqlParameter> parameterList = new List<SqlParameter>();
                 parameterList.Add(new SqlParameter("@nombre", nombre));
                 parameterList.Add(new SqlParameter("@apellido", apellido));
@@ -174,7 +156,7 @@ namespace UberFrba.Registro_usuario
                 parameterList.Add(new SqlParameter("@telefono", tel));
                 parameterList.Add(new SqlParameter("@dni", dni));
                 parameterList.Add(new SqlParameter("@fechaNac", fechaNac));
-                parameterList.Add(new SqlParameter("@contrasenia", contra)); 
+                parameterList.Add(new SqlParameter("@contrasenia", contraEncriptada)); 
                 parameterList.Add(new SqlParameter("@mail", mail));
                 parameterList.Add(new SqlParameter("@piso", piso));
                 parameterList.Add(new SqlParameter("@depto", depto));
