@@ -181,6 +181,7 @@
             // 
             this.txtPiso.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtPiso.Location = new System.Drawing.Point(249, 72);
+            this.txtPiso.MaxLength = 2;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(62, 24);
             this.txtPiso.TabIndex = 35;
@@ -271,6 +272,7 @@
             // 
             this.txtAnioNac.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtAnioNac.Location = new System.Drawing.Point(304, 261);
+            this.txtAnioNac.MaxLength = 4;
             this.txtAnioNac.Name = "txtAnioNac";
             this.txtAnioNac.Size = new System.Drawing.Size(48, 24);
             this.txtAnioNac.TabIndex = 25;
@@ -280,6 +282,7 @@
             // 
             this.txtMesNac.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtMesNac.Location = new System.Drawing.Point(251, 261);
+            this.txtMesNac.MaxLength = 2;
             this.txtMesNac.Name = "txtMesNac";
             this.txtMesNac.Size = new System.Drawing.Size(38, 24);
             this.txtMesNac.TabIndex = 24;
@@ -289,6 +292,7 @@
             // 
             this.txtDiaNac.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtDiaNac.Location = new System.Drawing.Point(198, 261);
+            this.txtDiaNac.MaxLength = 2;
             this.txtDiaNac.Name = "txtDiaNac";
             this.txtDiaNac.Size = new System.Drawing.Size(38, 24);
             this.txtDiaNac.TabIndex = 23;
@@ -326,6 +330,7 @@
             // 
             this.txtDni.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtDni.Location = new System.Drawing.Point(198, 131);
+            this.txtDni.MaxLength = 10;
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(154, 24);
             this.txtDni.TabIndex = 16;

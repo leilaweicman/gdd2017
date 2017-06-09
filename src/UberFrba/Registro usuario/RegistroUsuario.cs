@@ -182,13 +182,21 @@ namespace UberFrba.Registro_usuario
                 parameterList.Add(new SqlParameter("@esChofer", esChofer));
                 parameterList.Add(new SqlParameter("@esCliente", esCliente));
 
-                string nomProcedure ="PR_altaUsuario";
-                int result = SQLHelper.ExecuteNonQuery(nomProcedure, CommandType.StoredProcedure, parameterList);
-                //SQLHelper.Cerrar();
-                if (result > 1)
+                //string nomProcedure ="PR_altaUsuario";
+                try
                 {
-                    MessageBox.Show("cant filas afectadas" + result);
-                }               
+                    int result = SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
+
+                    if (result > 1)
+                    {
+                        MessageBox.Show("cant filas afectadas" + result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Hubo un error registrando el usuario. Revise los datos ingresados e intente de nuevo");
+                }              
 
             }
 
