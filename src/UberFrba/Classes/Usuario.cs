@@ -211,7 +211,7 @@ namespace Classes
 
         public override string NombreTabla()
         {
-            return "Usuarios";
+            return "Usuario";
         }
 
         public override string NombreEntidad()
@@ -222,7 +222,7 @@ namespace Classes
         public bool obtenerUsuarioPorUsername()
         {
             setearListaDeParametrosConUsuario();
-            DataSet ds = SQLHelper.ExecuteDataSet("traerUsuarioPorUsername", CommandType.StoredProcedure, parameterList);
+            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerUsuarioPorUsername", CommandType.StoredProcedure, parameterList);
             parameterList.Clear();
             if (ds.Tables[0].Rows.Count == 1)
             {
@@ -243,13 +243,14 @@ namespace Classes
             this.Nombre = dr["Nombre"].ToString();
             this.Apellido = dr["Apellido"].ToString();
             this.Tel = Convert.ToDecimal(dr["Telefono"]);
-            this.Calle = dr["Calle"].ToString();
-            this.Piso = Convert.ToDecimal(dr["Piso"]);
-            this.Depto = dr["Depto"].ToString();
             this.Dni = Convert.ToDecimal(dr["DNI"]);
             this.FechaNac = Convert.ToDateTime(dr["FechaNacimiento"]);
             this.Mail = dr["Mail"].ToString();
-            this.Localidad = dr["Localidad"].ToString();
+            // LOS COMENTO PORQUE ESTAN EN NULL Y TIRA ERROR
+            // this.Localidad = dr["Localidad"].ToString();
+            // this.Calle = dr["Calle"].ToString();
+            // this.Piso = Convert.ToDecimal(dr["Piso"]);
+            // this.Depto = dr["Depto"].ToString();
         }
 
         private void setearListaDeParametrosConUsuario()
@@ -262,14 +263,14 @@ namespace Classes
         public void Deshabilitar()
         {
             setearListaDeParametrosConUsuario();
-            DataSet ds = SQLHelper.ExecuteDataSet("traerUsuarioPorUsername", CommandType.StoredProcedure, parameterList);
+            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerUsuarioPorUsername", CommandType.StoredProcedure, parameterList);
             parameterList.Clear();
             if (ds.Tables[0].Rows.Count == 0)
             {
                 throw new NoEntidadException();
             }
 
-            this.Id_Usuario = Convert.ToInt32(ds.Tables[0].Rows[0]["id_Usuario"]);
+            this.Id_Usuario = Convert.ToInt32(ds.Tables[0].Rows[0]["IDUsuario"]);
 
             setearListaDeParametrosSoloConIdUsuario();
             base.Deshabilitar(parameterList);
@@ -278,7 +279,7 @@ namespace Classes
 
         private void setearListaDeParametrosSoloConIdUsuario()
         {
-            parameterList.Add(new SqlParameter("@id_Usuario", this.Id_Usuario));
+            parameterList.Add(new SqlParameter("@IdUsuario", this.Id_Usuario));
         }
     }
 }

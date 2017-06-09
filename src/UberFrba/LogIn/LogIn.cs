@@ -37,11 +37,10 @@ namespace UberFrba.LogIn
                 //voy a la BD a buscar el usuario con los datos ingresados. si lo encuentra, realiza las acciones
                 //correspondientes a un logueo exitoso, sino, suma un intento fallido, avisa, y verifica si ya alcanzo
                 //la maxima cantidad de intentos fallidos
-
+                
                 if (user.obtenerUsuarioPorUsername())
                 {
                     //existe usuario
-
                     if (user.ContraseniaEncriptada.Trim() == claveIngresada.Trim())
                     {
                         RealizarAccionesLogInExitoso();
@@ -58,6 +57,7 @@ namespace UberFrba.LogIn
 
                         VerificarSiSeAlcanzoLaCantidadMaxima();
                     }
+
                 }
                 else
                 {
