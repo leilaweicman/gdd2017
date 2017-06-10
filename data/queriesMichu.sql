@@ -1,6 +1,3 @@
---SET IDENTITY_INSERT [GIRLPOWER].[Cliente] ON
-
-
 
 /****** Object:  StoredProcedure [dbo].[PR_altaUsuario]    Script Date: 8/6/2017 12:19:18 a. m. ******/
 IF OBJECT_ID ('GIRLPOWER.PR_altaUsuario', 'P') IS NOT NULL
