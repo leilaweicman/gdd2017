@@ -48,7 +48,8 @@ IF OBJECT_ID ('GIRLPOWER.PR_TraerAutomoviles', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].PR_TraerAutomoviles
 GO
 
-CREATE PROCEDURE [GIRLPOWER].PR_TraerAutomoviles AS
+CREATE PROCEDURE [GIRLPOWER].PR_TraerAutomoviles (@idChofer int,@idMarca int, @patente varchar (10))
+ AS
 BEGIN
 	BEGIN TRY
 		SELECT IDAutomovil,u.Nombre as Chofer, ma.Nombre as Marca,mo.Nombre as Modelo,Licencia,Patente,Rodado,a.Habilitado
@@ -67,6 +68,10 @@ JOIN [GIRLPOWER].[Chofer] c
 
 		 JOIN [GIRLPOWER].Usuario u
 		 on u.IDUsuario=c.IDUsuario
+
+		 where (@idChofer=0 OR C.IDChofer=@idChofer)AND
+		 (@idMarca=0 OR ma.IDMarca=@idMarca)and
+		 (@patente='' OR Patente=@patente)
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error cargando los automoviles', 16, 217)

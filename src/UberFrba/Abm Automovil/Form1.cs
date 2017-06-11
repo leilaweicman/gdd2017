@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,13 +27,72 @@ namespace UberFrba.Abm_Automovil
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            CargarCombos();
             CargarAuomoviles();
+        }
+        private void CargarCombos()
+        {
+            SQLHelper.Inicializar();
+            string query = "select IDMarca,Nombre from [GIRLPOWER].Marca";
+            var resultMarcas = SQLHelper.ExecuteQuery(query);
+
+            string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
+            var resultChoferes = SQLHelper.ExecuteQuery(query2);
+
+            SQLHelper.Cerrar();
+            List<ComboPrueba> marcas = new List<ComboPrueba>();
+            ComboPrueba todas = new ComboPrueba("TODAS", 0);
+            marcas.Add(todas);
+            while (resultMarcas.Read())
+            {
+                ComboPrueba aux;
+                int idMarca = 0;
+                string Nombre = "";
+                if (!object.Equals(resultMarcas["IDMarca"], DBNull.Value))
+                    idMarca = int.Parse(resultMarcas["IDMarca"].ToString());
+
+                if (!object.Equals(resultMarcas["Nombre"], DBNull.Value))
+                    Nombre = resultMarcas["Nombre"].ToString();
+                aux = new ComboPrueba(Nombre, idMarca);
+                marcas.Add(aux);
+            }
+
+            cmbMarca.DataSource = marcas;
+            cmbMarca.DisplayMember = "Name";
+            cmbMarca.ValueMember = "Value";
+            cmbMarca.SelectedIndex = 0;
+            List<ComboPrueba> choferes = new List<ComboPrueba>();
+            ComboPrueba todos = new ComboPrueba("TODOS", 0);
+            choferes.Add(todos);
+            while (resultChoferes.Read())
+            {
+                ComboPrueba aux;
+                int idchofer = 0;
+                string Nombre = "";
+                if (!object.Equals(resultChoferes["IDChofer"], DBNull.Value))
+                    idchofer = int.Parse(resultChoferes["IDChofer"].ToString());
+
+                if (!object.Equals(resultChoferes["Nombre"], DBNull.Value))
+                    Nombre = resultChoferes["Nombre"].ToString();
+                aux = new ComboPrueba(Nombre, idchofer);
+                choferes.Add(aux);
+            }
+
+
+            cmbChofer.DataSource = choferes;
+            cmbChofer.DisplayMember = "Name";
+            cmbChofer.ValueMember = "Value";
+            cmbChofer.SelectedIndex = 0;
         }
           private void CargarAuomoviles(){
               dgvAutomoviles.Rows.Clear();
               List<Automovil> clientes = new List<Automovil>();
-              DataSet ds = SQLHelper.ExecuteDataSet("PR_TraerAutomoviles");
+               List<SqlParameter> parameterList = new List<SqlParameter>();
+               parameterList.Add(new SqlParameter("@idChofer", int.Parse(cmbChofer.SelectedValue.ToString())));
+               parameterList.Add(new SqlParameter("@idMarca",int.Parse(cmbMarca.SelectedValue.ToString())));
+               parameterList.Add(new SqlParameter("@patente", txtPatente.Text));
+
+              DataSet ds = SQLHelper.ExecuteDataSet("PR_TraerAutomoviles",CommandType.StoredProcedure,parameterList);
 
               foreach (DataRow row in ds.Tables[0].Rows)
               {
@@ -76,6 +136,27 @@ namespace UberFrba.Abm_Automovil
                 auto.Deshabilitar(int.Parse(id));
                 CargarAuomoviles();
             }
+        }
+
+        private void btnFiltrarTristes_Click(object sender, EventArgs e)
+        {
+            cmbChofer.SelectedValue = 0;
+            cmbMarca.SelectedValue = 0;
+            txtPatente.Text = "";
+            CargarAuomoviles();
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            CargarAuomoviles();
+
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Inicial formInicial = new Inicial();
+            this.Hide();
+            formInicial.Show();
         }
     }
 }
