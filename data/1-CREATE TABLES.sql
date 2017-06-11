@@ -56,6 +56,7 @@ create table [GIRLPOWER].[FuncionalidadPorRol](
 	primary key(IDFuncionalidad,IDRol)
 )
 GO
+
 CREATE TABLE [GIRLPOWER].[Usuario](
 	IDUsuario int primary key identity(1,1),
 	Nombre varchar(255) not null,
@@ -66,7 +67,7 @@ CREATE TABLE [GIRLPOWER].[Usuario](
 	FechaNacimiento datetime not null,
 	ContraseniaEncriptada  varchar(255) not null,
 	Mail varchar(50) not null,
-	Habilitado bit not null,
+	Habilitado bit not null default 1,
 	Calle varchar(255) ,
 	Piso numeric (2,0),
 	Depto varchar(10) ,
@@ -185,3 +186,28 @@ create table [GIRLPOWER].[FacturaDetalle](
 	primary key(IDFactura,IDViaje)
 )
 go
+
+
+
+---ALTERS 
+alter table GIRLPOWER.Usuario
+add Username varchar(50);
+go
+
+alter table GIRLPOWER.Cliente
+add CodPostal int;
+go
+
+/*
+alter table GIRLPOWER.Cliente
+add Habilitado bit not null default 1;
+go
+
+alter table GIRLPOWER.Chofer
+add Habilitado bit not null default 1;
+go
+
+alter table GIRLPOWER.Usuario
+add constraint default 1 for Habilitado;
+go
+*/

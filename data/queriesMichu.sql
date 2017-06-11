@@ -15,7 +15,7 @@ GO
 CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 (@nombre varchar(255), @apellido varchar(255), @direccion varchar(255), @telefono numeric(18,0), @dni numeric (18,0),
  @fechaNac datetime, @contrasenia varchar(255), @mail varchar(50), @piso numeric(2,0), @depto varchar(10), @localidad varchar(255),
- @esChofer bit, @esCliente bit)
+ @esChofer bit, @esCliente bit, @codPost int, @username varchar(50))
  AS
  BEGIN
 	DECLARE @idUsuario int
@@ -23,8 +23,8 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 	BEGIN TRANSACTION
 	BEGIN TRY
 		INSERT INTO [GD1C2017].[GIRLPOWER].[Usuario] (Nombre, Apellido, Direccion, Telefono, Dni, FechaNacimiento, ContraseniaEncriptada, 
-		Mail, Habilitado, Piso, Depto, Localidad) VALUES 
-		(@nombre, @apellido, @direccion, @telefono, @dni, @fechaNac, @contrasenia, @mail, 1, @piso, @depto, @localidad)
+		Mail, Habilitado, Piso, Depto, Localidad, Username) VALUES 
+		(@nombre, @apellido, @direccion, @telefono, @dni, @fechaNac, @contrasenia, @mail, 1, @piso, @depto, @localidad, @username)
 
 		SET @idUsuario = (SELECT IDUsuario FROM [GD1C2017].[GIRLPOWER].[Usuario] WHERE DNI = @dni)
 
@@ -35,7 +35,7 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 
 		IF (@esCliente=1)
 		BEGIN
-			INSERT INTO [GD1C2017].[GIRLPOWER].[Cliente] (IDUsuario) VALUES (@idUsuario)
+			INSERT INTO [GD1C2017].[GIRLPOWER].[Cliente] (IDUsuario, CodPostal) VALUES (@idUsuario, @codPost)
 		END
 
 		IF @@ERROR = 0
@@ -49,6 +49,9 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 	RETURN @@rowCount
  END
 GO
+
+
+
 
 IF OBJECT_ID ('GIRLPOWER.PR_traerClientes', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[PR_traerClientes]
@@ -82,3 +85,15 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID ('GIRLPOWER.PR_verifExisteUsuario', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_verifExisteUsuario]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_verifExisteUsuario] 
+(@username varchar(50)) AS
+BEGIN
+	
+	IF (EXISTS (SELECT 1 FROM [GIRLPOWER].[Usuario] WHERE Username = @username))
+		RETURN 1
+END
+GO

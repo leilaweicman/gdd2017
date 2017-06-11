@@ -18,9 +18,9 @@ inner join [GIRLPOWER].Modelo mo on gdm.Auto_Modelo=mo.Nombre)
 -- Choferes
 insert into [GIRLPOWER].Usuario
 (Nombre,Apellido,Direccion,Telefono,DNI,FechaNacimiento,ContraseniaEncriptada
-,Mail,Habilitado)
+,Mail,Username)
  (select distinct   Chofer_Nombre,Chofer_Apellido,
- Chofer_Direccion,Chofer_Telefono,Chofer_Dni,Chofer_Fecha_Nac,'',Chofer_Mail,1
+ Chofer_Direccion,Chofer_Telefono,Chofer_Dni,Chofer_Fecha_Nac,'E79E418E48623569D75E2A7B09AE88ED9B77B126A445B9FF9DC6989A08EFA079',Chofer_Mail,Chofer_Dni
  from [gd_esquema].Maestra 
  )
  go
@@ -30,13 +30,13 @@ insert into [GIRLPOWER].Usuario
 -- Inserto Clientes
 insert into [GIRLPOWER].Usuario
 (Nombre,Apellido,Direccion,Telefono,DNI,FechaNacimiento,ContraseniaEncriptada
-,Mail,Habilitado)
+,Mail,Username)
 (select  distinct Cliente_Nombre,Cliente_Apellido,
- Cliente_Direccion,Cliente_Telefono,Cliente_Dni,Cliente_Fecha_Nac,'',Cliente_Mail,1
+ Cliente_Direccion,Cliente_Telefono,Cliente_Dni,Cliente_Fecha_Nac,'E79E418E48623569D75E2A7B09AE88ED9B77B126A445B9FF9DC6989A08EFA079',Cliente_Mail,Cliente_Dni
  from [gd_esquema].Maestra 
  )
  go
- insert into [GIRLPOWER].Cliente (IDUsuario)  
+ insert into [GIRLPOWER].Cliente (IDUsuario) -- codigo postal se setea en null de esta forma  
  (select   IDUsuario from [GIRLPOWER].Usuario 
  where IDUsuario not in (select IDUsuario
  FROM [GIRLPOWER].Chofer))
