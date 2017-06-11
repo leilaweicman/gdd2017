@@ -10,34 +10,6 @@ GO*/
 CREATE SCHEMA [GIRLPOWER]
 GO
 
---dropea todas las tablas
-IF OBJECT_ID ('GIRLPOWER.FuncionalidadPorRol', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[FuncionalidadPorRol]
-GO
-IF OBJECT_ID ('GIRLPOWER.Funcionalidad', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[Funcionalidad]
-GO
-IF OBJECT_ID ('GIRLPOWER.RolPorUsuario', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[RolPorUsuario]
-GO
-/*es un lio porque todo se conecta con todo y no se como dropear un schema
-IF OBJECT_ID ('GIRLPOWER.Rol', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[Rol]
-GO
-IF OBJECT_ID ('GIRLPOWER.Chofer', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[Chofer]
-GO
-IF OBJECT_ID ('GIRLPOWER.Cliente', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[Cliente]
-GO
-IF OBJECT_ID ('GIRLPOWER.Administrador', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[Administrador]
-GO
-IF OBJECT_ID ('GIRLPOWER.Usuario', 'U') IS NOT NULL
-DROP TABLE [GIRLPOWER].[Usuario]
-GO*/
-
-
 CREATE TABLE[GIRLPOWER].[Funcionalidad](
 	IDFuncionalidad int identity(1,1) primary key, 
 	Nombre varchar(255) not null
@@ -198,7 +170,6 @@ alter table GIRLPOWER.Cliente
 add CodPostal int;
 go
 
-/*
 alter table GIRLPOWER.Cliente
 add Habilitado bit not null default 1;
 go
@@ -207,7 +178,18 @@ alter table GIRLPOWER.Chofer
 add Habilitado bit not null default 1;
 go
 
-alter table GIRLPOWER.Usuario
-add constraint default 1 for Habilitado;
+alter table GIRLPOWER.Factura
+add NroFactura numeric(18,0)
 go
-*/
+
+alter table GIRLPOWER.Chofer
+drop column Habilitado
+go
+
+alter table GIRLPOWER.Cliente
+drop column Habilitado
+go
+
+alter table GIRLPOWER.RolPorUsuario
+add Habilitado bit not null default 1;
+go
