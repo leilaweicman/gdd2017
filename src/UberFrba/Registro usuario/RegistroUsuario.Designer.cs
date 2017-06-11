@@ -59,7 +59,7 @@
             this.txtCP = new System.Windows.Forms.TextBox();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.maskedTxtFechaNac = new System.Windows.Forms.MaskedTextBox();
             this.gpbDatosPersonales = new System.Windows.Forms.GroupBox();
@@ -87,7 +87,7 @@
             this.btnRegistrar.Location = new System.Drawing.Point(459, 475);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(125, 35);
-            this.btnRegistrar.TabIndex = 33;
+            this.btnRegistrar.TabIndex = 17;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -100,7 +100,7 @@
             this.groupBox3.Location = new System.Drawing.Point(18, 26);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(333, 50);
-            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tipo de usuario";
             // 
@@ -339,7 +339,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(616, 475);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(96, 35);
-            this.btnCancelar.TabIndex = 34;
+            this.btnCancelar.TabIndex = 18;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -385,15 +385,15 @@
             this.label11.TabIndex = 31;
             this.label11.Text = "Nombre de usuario";
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Font = new System.Drawing.Font("Verdana", 10F);
-            this.textBox1.Location = new System.Drawing.Point(522, 75);
-            this.textBox1.MaxLength = 10;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(169, 24);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Text = "a";
+            this.txtUsername.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtUsername.Location = new System.Drawing.Point(522, 75);
+            this.txtUsername.MaxLength = 10;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(169, 24);
+            this.txtUsername.TabIndex = 6;
+            this.txtUsername.Text = "a";
             // 
             // txtTel
             // 
@@ -410,7 +410,7 @@
             this.maskedTxtFechaNac.Name = "maskedTxtFechaNac";
             this.maskedTxtFechaNac.PromptChar = ' ';
             this.maskedTxtFechaNac.Size = new System.Drawing.Size(154, 27);
-            this.maskedTxtFechaNac.TabIndex = 42;
+            this.maskedTxtFechaNac.TabIndex = 9;
             this.maskedTxtFechaNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gpbDatosPersonales
@@ -429,7 +429,7 @@
             this.gpbDatosPersonales.Controls.Add(this.txtPiso);
             this.gpbDatosPersonales.Controls.Add(this.label12);
             this.gpbDatosPersonales.Controls.Add(this.label5);
-            this.gpbDatosPersonales.Controls.Add(this.textBox1);
+            this.gpbDatosPersonales.Controls.Add(this.txtUsername);
             this.gpbDatosPersonales.Controls.Add(this.txtDepto);
             this.gpbDatosPersonales.Controls.Add(this.label13);
             this.gpbDatosPersonales.Controls.Add(this.txtDni);
@@ -498,7 +498,7 @@
         private System.Windows.Forms.CheckBox chkCliente;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.TextBox txtCP;

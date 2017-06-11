@@ -52,6 +52,8 @@ namespace UberFrba.Registro_usuario
             int esChofer = 0;
             int esCliente = 0;
             DateTime fechaNac;
+            int codPost;
+            string username;
 
             bool huboErrorDato = false;
             bool fechaOk = true;
@@ -62,7 +64,7 @@ namespace UberFrba.Registro_usuario
             #region validacionCampos
 
             if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || txtContrasenia.Text=="" || 
-                txtConfContrasenia.Text =="" || /*txtDiaNac.Text=="" || txtMesNac.Text=="" || txtAnioNac.Text=="" || */
+                txtConfContrasenia.Text =="" || txtUsername.Text =="" ||
                 maskedTxtFechaNac.Text == "  /  /    " ||
                 txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtDepto.Text=="" || txtPiso.Text=="")
             {
@@ -107,7 +109,7 @@ namespace UberFrba.Registro_usuario
                 {
                     
                     fechaNac = Convert.ToDateTime(maskedTxtFechaNac.Text);
-                    if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)//(fechaNac.Year < 1753 || fechaNac.Year > 9999){//fechaNac.CompareTo(fechaMinSql) < 0 && fechaNac.CompareTo(fechaMaxSql) > 0)
+                    if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)
                     {
                         lstErroresCampos.Add("La fecha debe estar entre 1/1/1753 y 12/12/9999.\n");
                         huboErrorDato = true;
@@ -141,6 +143,7 @@ namespace UberFrba.Registro_usuario
                 depto = txtDepto.Text;
                 piso = Decimal.Parse(txtPiso.Text);
                 localidad = txtLocalidad.Text;
+                username = txtUsername.Text;
                 
                 if (chkChofer.Checked)
                 {
@@ -150,36 +153,58 @@ namespace UberFrba.Registro_usuario
                 {
                     esCliente = 1;
                 }
-                
-                List<SqlParameter> parameterList = new List<SqlParameter>();
-                parameterList.Add(new SqlParameter("@nombre", nombre));
-                parameterList.Add(new SqlParameter("@apellido", apellido));
-                parameterList.Add(new SqlParameter("@direccion", calle));
-                parameterList.Add(new SqlParameter("@telefono", tel));
-                parameterList.Add(new SqlParameter("@dni", dni));
-                parameterList.Add(new SqlParameter("@fechaNac", fechaNac));
-                parameterList.Add(new SqlParameter("@contrasenia", contraEncriptada)); 
-                parameterList.Add(new SqlParameter("@mail", mail));
-                parameterList.Add(new SqlParameter("@piso", piso));
-                parameterList.Add(new SqlParameter("@depto", depto));
-                parameterList.Add(new SqlParameter("@localidad", localidad));
-                parameterList.Add(new SqlParameter("@esChofer", esChofer));
-                parameterList.Add(new SqlParameter("@esCliente", esCliente));
 
-                try
+                if (txtCP.Enabled)
                 {
-                    int result = SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
+                    codPost = int.Parse(txtCP.Text);
+                }
+                else
+                {
+                    codPost = 0;
+                }
 
-                    if (result > 1)
+
+                List<SqlParameter> parameterList = new List<SqlParameter>();
+                parameterList.Add(new SqlParameter("@username", username));
+
+                if (SQLHelper.ExecuteNonQuery("PR_verifExisteUsuario", CommandType.StoredProcedure, parameterList) == 1)
+                {
+                    MessageBox.Show("El usuario ya existe");
+                }
+                else
+                {
+                    
+                    parameterList.Add(new SqlParameter("@nombre", nombre));
+                    parameterList.Add(new SqlParameter("@apellido", apellido));
+                    parameterList.Add(new SqlParameter("@direccion", calle));
+                    parameterList.Add(new SqlParameter("@telefono", tel));
+                    parameterList.Add(new SqlParameter("@dni", dni));
+                    parameterList.Add(new SqlParameter("@fechaNac", fechaNac));
+                    parameterList.Add(new SqlParameter("@contrasenia", contraEncriptada));
+                    parameterList.Add(new SqlParameter("@mail", mail));
+                    parameterList.Add(new SqlParameter("@piso", piso));
+                    parameterList.Add(new SqlParameter("@depto", depto));
+                    parameterList.Add(new SqlParameter("@localidad", localidad));
+                    parameterList.Add(new SqlParameter("@esChofer", esChofer));
+                    parameterList.Add(new SqlParameter("@esCliente", esCliente));
+                    parameterList.Add(new SqlParameter("@codPost", codPost));
+
+
+                    try
                     {
-                        MessageBox.Show("cant filas afectadas" + result);
+                        int result = SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
+
+                        if (result > 1)
+                        {
+                            MessageBox.Show("cant filas afectadas" + result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show("Hubo un error registrando el usuario. Revise los datos ingresados e intente de nuevo");
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    MessageBox.Show("Hubo un error registrando el usuario. Revise los datos ingresados e intente de nuevo");
-                }              
 
             }
 
