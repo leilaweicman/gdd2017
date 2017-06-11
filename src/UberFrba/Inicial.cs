@@ -48,7 +48,7 @@ namespace UberFrba
 
         private void lblRegistrarAutomovil_Click(object sender, EventArgs e)
         {
-            UberFrba.Abm_Automovil.RegistroAutomovil registroAutomovilForm = new Abm_Automovil.RegistroAutomovil();
+            UberFrba.Abm_Automovil.RegistroAutomovil registroAutomovilForm = new Abm_Automovil.RegistroAutomovil(3);
             this.Hide();
             registroAutomovilForm.Show();
         }
@@ -60,6 +60,13 @@ namespace UberFrba
             UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
             this.Hide();
             abmCliente.Show();
+        }
+
+        private void lblListadoAutomoviles_Click(object sender, EventArgs e)
+        {
+            UberFrba.Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
+            this.Hide();
+            listado.Show();
         }
     }
 }

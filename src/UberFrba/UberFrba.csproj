@@ -120,6 +120,9 @@
     <Compile Include="Rendicion Viajes\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Abm Automovil\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Automovil\RegistroAutomovil.resx">
       <DependentUpon>RegistroAutomovil.cs</DependentUpon>
     </EmbeddedResource>
