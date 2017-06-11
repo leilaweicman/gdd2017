@@ -97,3 +97,12 @@ BEGIN
 		RETURN 1
 END
 GO
+
+SELECT * FROM [GIRLPOWER].Factura
+
+SELECT Cliente_Telefono, Factura_Nro , Factura_Fecha_Inicio, Factura_Fecha_Fin, Factura_Fecha FROM gd_esquema.Maestra order by 1
+
+sELECT * FROM gd_esquema.Maestra order by Cliente_Telefono
+
+SELECT distinct(Chofer_Dni) FROM gd_esquema.Maestra order by 1
+

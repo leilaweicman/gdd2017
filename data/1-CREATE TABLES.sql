@@ -198,7 +198,6 @@ alter table GIRLPOWER.Cliente
 add CodPostal int;
 go
 
-/*
 alter table GIRLPOWER.Cliente
 add Habilitado bit not null default 1;
 go
@@ -207,7 +206,6 @@ alter table GIRLPOWER.Chofer
 add Habilitado bit not null default 1;
 go
 
-alter table GIRLPOWER.Usuario
-add constraint default 1 for Habilitado;
+alter table GIRLPOWER.Factura
+add NroFactura numeric(18,0)
 go
-*/
