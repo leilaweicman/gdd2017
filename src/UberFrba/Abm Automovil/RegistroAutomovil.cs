@@ -15,62 +15,110 @@ namespace UberFrba.Abm_Automovil
 {
     public partial class RegistroAutomovil : Form
     {
+        int idAutomovil;
         public RegistroAutomovil()
+        {
+          InitializeComponent();
+          CargarCombos();
+          CargarModelos();
+          this.idAutomovil = 0;
+        }
+        public RegistroAutomovil(int ID)
         {
             InitializeComponent();
             CargarCombos();
-           
+            CargarModelos();
+            this.idAutomovil = ID;
+
+            CargarDatos();
+       
+        }
+        private void CargarDatos()
+        {
+            SQLHelper.Inicializar();
+
+            string query = "select IDChofer,IDMarca,IDModelo,Patente,Licencia,Rodado from [GIRLPOWER].Automovil a inner join [GIRLPOWER].MarcaModelo m on m.IDMarcaModelo=a.IDMarcaModelo where IDAutomovil=" + this.idAutomovil;
+
+            var result = SQLHelper.ExecuteQuery(query);
+            SQLHelper.Cerrar();
+            while (result.Read())
+            {
+                
+                if (!object.Equals(result["IDChofer"], DBNull.Value))
+                    cmbChofer.SelectedValue = int.Parse(result["IDChofer"].ToString());
+
+                if (!object.Equals(result["IDMarca"], DBNull.Value))
+                    cmbMarca.SelectedValue =int.Parse(result["IDMarca"].ToString());
+
+                if (!object.Equals(result["IDModelo"], DBNull.Value))
+                    cmbModelo.SelectedValue =int.Parse( result["IDModelo"].ToString());
+                
+                string f;
+                if (!object.Equals(result["IDChofer"], DBNull.Value))
+                    f = result["IDChofer"].ToString();
+
+                if (!object.Equals(result["Patente"], DBNull.Value))
+                    txtPatente.Text = result["Patente"].ToString();
+
+                if (!object.Equals(result["Licencia"], DBNull.Value))
+                    txtLicencia.Text = result["Licencia"].ToString();
+
+                if (!object.Equals(result["Rodado"], DBNull.Value))
+                    txtRodado.Text = result["Rodado"].ToString();
+
+            }
+
+
         }
         private void CargarCombos()
         {
-
-            //Con esto cargo los combos por bd falta hacerlo
-
             SQLHelper.Inicializar();
             string query = "select IDMarca,Nombre from [GIRLPOWER].Marca";
-            var result = SQLHelper.ExecuteQuery(query);
+            var resultMarcas = SQLHelper.ExecuteQuery(query);
+
+            string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
+            var resultChoferes = SQLHelper.ExecuteQuery(query2);
+            
             SQLHelper.Cerrar();
-            List<ComboPrueba>list=new List<ComboPrueba>();
-            while (result.Read())
+            List<ComboPrueba>marcas=new List<ComboPrueba>();
+            while (resultMarcas.Read())
             {
-                //ComboPrueba aux = Activator.CreateInstance<ComboPrueba>();
-                //foreach (PropertyInfo prop in result.GetType().GetProperties())
-                //{
-                    if (!object.Equals(result["IDMarca"], DBNull.Value))
-                    {
-                        var a = result["IDMarca"].ToString();
-                        if (!object.Equals(result["Nombre"], DBNull.Value))
-                        {
-                            var g = result["Nombre"].ToString();
+                ComboPrueba aux;
+                int idMarca=0 ;
+                string Nombre="";
+                if (!object.Equals(resultMarcas["IDMarca"], DBNull.Value))
+                    idMarca = int.Parse(resultMarcas["IDMarca"].ToString());
 
-                        }
-                //    }
-                }
+                if (!object.Equals(resultMarcas["Nombre"], DBNull.Value))
+                    Nombre = resultMarcas["Nombre"].ToString();
+                aux = new ComboPrueba(Nombre, idMarca);
+                marcas.Add(aux);
             }
-//list.Add(aux);
-    
-
-            //CAMBIAR PARA QUE SALGA DE LA BD
-            //choferes
-            IList<ComboPrueba> choferes = new List<ComboPrueba>();
-            choferes.Add(new ComboPrueba("chofer 1", 1));
-            choferes.Add(new ComboPrueba("chofer 2", 2));
-
-            cmbChofer.DataSource = choferes;
-            cmbChofer.DisplayMember = "Name";
-            cmbChofer.ValueMember = "Value";
-        
-        
-
-
-            //cargo combo de marcas
-            IList<ComboPrueba> marcas = new List<ComboPrueba>();
-            marcas.Add(new ComboPrueba("marca 1", 1));
-            marcas.Add(new ComboPrueba("marca 2", 2));
 
             cmbMarca.DataSource = marcas;
             cmbMarca.DisplayMember = "Name";
             cmbMarca.ValueMember = "Value";
+            cmbMarca.SelectedIndex = 0;
+            List<ComboPrueba> choferes = new List<ComboPrueba>();
+            while (resultChoferes.Read())
+            {
+                ComboPrueba aux;
+                int idchofer = 0;
+                string Nombre = "";
+                if (!object.Equals(resultChoferes["IDChofer"], DBNull.Value))
+                    idchofer = int.Parse(resultChoferes["IDChofer"].ToString());
+
+                if (!object.Equals(resultChoferes["Nombre"], DBNull.Value))
+                    Nombre = resultChoferes["Nombre"].ToString();
+                aux = new ComboPrueba(Nombre, idchofer);
+                choferes.Add(aux);
+            }
+
+      
+            cmbChofer.DataSource = choferes;
+            cmbChofer.DisplayMember = "Name";
+            cmbChofer.ValueMember = "Value";
+            cmbChofer.SelectedIndex = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -83,22 +131,52 @@ namespace UberFrba.Abm_Automovil
 
         private void cmbMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //CAMBIAR PARA QUE SALGA DE LA BD SEGUN MARCA
-            //cargo modelos segun valor
-            //cargo combo de marcas
-            IList<ComboPrueba> modelos = new List<ComboPrueba>();
-            modelos.Add(new ComboPrueba("modelo 1", 29));
-            modelos.Add(new ComboPrueba("modelo 2", 30));
+            int idmarca = 0;
+            bool marca = Int32.TryParse(cmbMarca.SelectedValue.ToString(),out idmarca);
+            if (marca)
+            {
+                CargarModelos();
+            }
+        }
+        private bool patenteYaRegistrada(string patente,int id)
+        {
+            /*
+            SQLHelper.Inicializar();
+            string nomProcedure = "select  [GIRLPOWER].FUNC_PatenteYaRegistrada ("+id+",'"+patente+"') ";
 
+            var result = SQLHelper.ExecuteQuery(nomProcedure);
+            
+            SQLHelper.Cerrar();
+           if (1==1)
+                return true;
+             * */
+           return false;
+        }
+        private void CargarModelos()
+        {
+            SQLHelper.Inicializar();
+            string query = "select mo.IDModelo,Nombre from [GIRLPOWER].Modelo mo inner join [GIRLPOWER].MarcaModelo ma on mo.IDModelo=ma.IDModelo where IDMarca=" + int.Parse(cmbMarca.SelectedValue.ToString());
+            int i = 0;
+            var resultModelos = SQLHelper.ExecuteQuery(query);
+
+            SQLHelper.Cerrar();
+            List<ComboPrueba> modelos = new List<ComboPrueba>();
+            while (resultModelos.Read())
+            {
+                ComboPrueba aux;
+                int idMarca = 0;
+                string Nombre = "";
+                if (!object.Equals(resultModelos["IDModelo"], DBNull.Value))
+                    idMarca = int.Parse(resultModelos["IDModelo"].ToString());
+
+                if (!object.Equals(resultModelos["Nombre"], DBNull.Value))
+                    Nombre = resultModelos["Nombre"].ToString();
+                aux = new ComboPrueba(Nombre, idMarca);
+                modelos.Add(aux);
+            }
             cmbModelo.DataSource = modelos;
             cmbModelo.DisplayMember = "Name";
             cmbModelo.ValueMember = "Value";
-    
-        }
-        private bool patenteYaRegistrada(string patente)
-        {
-            
-            return false;
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
@@ -114,7 +192,7 @@ namespace UberFrba.Abm_Automovil
             {
                 MessageBox.Show("Complete todos los campos por favor");
             }
-            else if (patenteYaRegistrada(txtPatente.ToString()))
+            else if (patenteYaRegistrada(txtPatente.Text,this.idAutomovil))
             {
                 MessageBox.Show("La patente ya se encuentra registrada, por favor ingrese una diferente");
 
@@ -137,7 +215,13 @@ namespace UberFrba.Abm_Automovil
 
 
                 SQLHelper.Inicializar();
-                string nomProcedure ="PR_altaAutomovil";
+                string nomProcedure="";
+                if(this.idAutomovil==0)
+                     nomProcedure ="PR_altaAutomovil";
+                else{
+                                    parameterList.Add(new SqlParameter("@idAutomovil", this.idAutomovil));
+                    nomProcedure="PR_modificarAutomovil";
+                }
                 int result =SQLHelper.ExecuteNonQuery(nomProcedure, CommandType.StoredProcedure, parameterList);
                 SQLHelper.Cerrar();
                 MessageBox.Show("cant filas afectadas" + result);

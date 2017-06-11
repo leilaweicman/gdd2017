@@ -33,6 +33,7 @@
             this.lblRegistrarUsuario = new System.Windows.Forms.Label();
             this.lblRegistrarAutomovil = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblListadoAutomoviles = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblIniciarSesion
@@ -90,12 +91,25 @@
             this.label1.Text = "ABM cli";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // lblListadoAutomoviles
+            // 
+            this.lblListadoAutomoviles.AutoSize = true;
+            this.lblListadoAutomoviles.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListadoAutomoviles.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblListadoAutomoviles.Location = new System.Drawing.Point(56, 227);
+            this.lblListadoAutomoviles.Name = "lblListadoAutomoviles";
+            this.lblListadoAutomoviles.Size = new System.Drawing.Size(167, 23);
+            this.lblListadoAutomoviles.TabIndex = 4;
+            this.lblListadoAutomoviles.Text = "Ver Automoviles";
+            this.lblListadoAutomoviles.Click += new System.EventHandler(this.lblListadoAutomoviles_Click);
+            // 
             // Inicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(312, 304);
+            this.Controls.Add(this.lblListadoAutomoviles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRegistrarAutomovil);
             this.Controls.Add(this.lblRegistrarUsuario);
@@ -116,5 +130,6 @@
         private System.Windows.Forms.Label lblRegistrarUsuario;
         private System.Windows.Forms.Label lblRegistrarAutomovil;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblListadoAutomoviles;
     }
 }
