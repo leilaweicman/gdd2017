@@ -135,6 +135,7 @@
             // 
             this.txtPatente.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtPatente.Location = new System.Drawing.Point(132, 175);
+            this.txtPatente.MaxLength = 10;
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(154, 24);
             this.txtPatente.TabIndex = 17;
