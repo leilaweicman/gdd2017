@@ -47,9 +47,9 @@ insert into [GIRLPOWER].Usuario
  ,Turno_Precio_Base,1 from [gd_esquema].Maestra)
  go
  --  Inserto Automoviles
-	 insert into [GIRLPOWER].Automovil(IDChofer,IDMarcaModelo,Patente,Licencia,Rodado)
+	 insert into [GIRLPOWER].Automovil(IDChofer,IDMarcaModelo,Patente,Licencia,Rodado,Habilitado)
  (select distinct c.IDChofer,mamo.IDMarcaModelo,
-	 gdm.Auto_Patente,gdm.Auto_Licencia,gdm.Auto_Rodado 
+	 gdm.Auto_Patente,gdm.Auto_Licencia,gdm.Auto_Rodado,1 
 	 from [gd_esquema].Maestra gdm inner join [GIRLPOWER].Usuario u
 	 on u.DNI=gdm.Chofer_Dni
 	 inner join [GIRLPOWER].Chofer c on c.IDUsuario =u.IDUsuario
