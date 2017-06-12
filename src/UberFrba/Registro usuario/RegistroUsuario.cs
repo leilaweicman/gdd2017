@@ -35,7 +35,7 @@ namespace UberFrba.Registro_usuario
 
     
         private void RegistroUsuario_Load(object sender, EventArgs e)
-        {
+        {            
             if (editing)
             {
                 gpbTipoUsuario.Enabled = false;

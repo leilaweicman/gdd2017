@@ -147,6 +147,8 @@ insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
 	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
 	WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
 
-
-
+--insert usuario admin 
+insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, '1976-04-13 00:00:00.000', 
+	HASHBYTES('SHA2_256', 'w32e'), 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
+insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
 	
