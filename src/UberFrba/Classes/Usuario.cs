@@ -27,11 +27,12 @@ namespace Classes
         private string _apellido;
         private Decimal tel;
         private string _mail;
-        private string _calle;
+        private string _direccion;
         private string _depto;
         private Decimal _piso;
         private string _localidad;
         private DateTime _fechaNac;
+        private int _codPost;
         //private Rol _rol; AGREGAR DESPUES
 
         #endregion
@@ -135,16 +136,16 @@ namespace Classes
             }
         }
 
-        public string Calle
+        public string Direccion
         {
             get
             {
-                return _calle;
+                return _direccion;
             }
 
             set
             {
-                _calle = value;
+                _direccion = value;
             }
         }
 
@@ -200,6 +201,21 @@ namespace Classes
             }
         }
 
+        public int CodPost
+        {
+            get
+            {
+                return _codPost;
+            }
+
+            set
+            {
+                _codPost = value;
+            }
+        }
+
+        
+        
         //public Rol Rol
         //{
         //    get { return _rol; }
@@ -246,11 +262,12 @@ namespace Classes
             this.Dni = Convert.ToDecimal(dr["DNI"]);
             this.FechaNac = Convert.ToDateTime(dr["FechaNacimiento"]);
             this.Mail = dr["Mail"].ToString();
-            // LOS COMENTO PORQUE ESTAN EN NULL Y TIRA ERROR
-            // this.Localidad = dr["Localidad"].ToString();
-            // this.Calle = dr["Calle"].ToString();
-            // this.Piso = Convert.ToDecimal(dr["Piso"]);
-            // this.Depto = dr["Depto"].ToString();
+            this.Localidad = dr["Localidad"].ToString();
+            this.Direccion = dr["Direccion"].ToString();
+            this.Piso = Convert.ToDecimal(dr["Piso"]);
+            this.Depto = dr["Depto"].ToString();
+            this.Username = dr["Username"].ToString();
+            this.CodPost = Convert.ToInt32(dr["CodPostal"]);
         }
 
         private void setearListaDeParametrosConUsuario()

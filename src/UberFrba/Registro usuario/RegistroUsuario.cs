@@ -10,39 +10,97 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utilities;
+using Classes;
 
 namespace UberFrba.Registro_usuario
 {
     public partial class RegistroUsuario : Form
     {
+        Usuario user;
+        bool editing= false;
+        int tipoUsuario=0;
+
         public RegistroUsuario()
         {
             InitializeComponent();
         }
 
+        public RegistroUsuario(Usuario usuario, int tipoUser)
+        {
+            user = usuario;
+            editing = true;
+            tipoUsuario = tipoUser;
+            InitializeComponent();
+        }
+
+    
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
-            
+            if (editing)
+            {
+                gpbTipoUsuario.Enabled = false;
+                if (tipoUsuario == 1)//es cliente
+                {
+                    chkCliente.Checked=true;
+                    chkChofer.Checked = false;
+                }
+                else if (tipoUsuario == 2)//es chofer. no deberia haber mas tipos pero porlas de que se agreguen mas
+                {
+                    chkChofer.Checked = true;
+                    chkCliente.Checked = false;
+                }              
+                gpbDatosPersonales.Enabled = true;
+                txtNombre.Text = user.Nombre;
+                txtApellido.Text = user.Apellido;
+                txtDni.Text = user.Dni.ToString();
+                txtUsername.Text = user.Username;
+                maskedTxtFechaNac.Text = user.FechaNac.ToString();
+                txtCalle.Text = user.Direccion;
+                txtDepto.Text = user.Depto;
+                if (user.Piso == -1)
+                {
+                    txtPiso.Text = "";
+                }
+                else
+                {
+                    txtPiso.Text = user.Piso.ToString();
+                }
+                if (user.CodPost == -1)
+                {
+                    txtCP.Text = "";
+                }
+                else
+                {
+                    txtCP.Text = user.CodPost.ToString();
+                }
+                txtLocalidad.Text = user.Localidad;
+                txtMail.Text = user.Mail;
+                txtTel.Text = user.Tel.ToString();
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Inicial formInicial = new Inicial();
-            this.Hide();
-            formInicial.Show();
+            if (editing)
+            {
+                UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                this.Hide();
+                abmCliente.Show();
+            }
+            else
+            {
+                Inicial formInicial = new Inicial();
+                this.Hide();
+                formInicial.Show();
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-
             string nombre;
             string apellido;
             Decimal dni;
             string contraEncriptada;
-            //string confContra;
-            int diaNac;
-            int mesNac;
-            int anioNac;
             Decimal tel;
             string mail;
             string calle;
@@ -56,15 +114,14 @@ namespace UberFrba.Registro_usuario
             string username;
 
             bool huboErrorDato = false;
-            bool fechaOk = true;
             DateTime fechaMinSql = new DateTime(1753, 01, 01);
             DateTime fechaMaxSql = new DateTime(9999, 12, 12);
 
             List<string> lstErroresCampos = new List<string>();
             #region validacionCampos
 
-            if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || txtContrasenia.Text=="" || 
-                txtConfContrasenia.Text =="" || txtUsername.Text =="" ||
+            if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || (txtContrasenia.Text=="" || 
+                txtConfContrasenia.Text =="" && !editing)|| txtUsername.Text =="" ||
                 maskedTxtFechaNac.Text == "  /  /    " ||
                 txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtDepto.Text=="" || txtPiso.Text=="")
             {
@@ -101,13 +158,11 @@ namespace UberFrba.Registro_usuario
                 }
                 if (!DateTime.TryParse(maskedTxtFechaNac.Text, out fechaNac))
                 {
-
                     lstErroresCampos.Add("La fecha ingresada es incorrecta. El formato debe ser mm/dd/aaaa.\n");
                     huboErrorDato = true;
                 }
                 else
-                {
-                    
+                {                    
                     fechaNac = Convert.ToDateTime(maskedTxtFechaNac.Text);
                     if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)
                     {
@@ -116,8 +171,6 @@ namespace UberFrba.Registro_usuario
                     }
                 }
             }
-
-           
 
             #endregion
 
@@ -185,24 +238,45 @@ namespace UberFrba.Registro_usuario
                     parameterList.Add(new SqlParameter("@piso", piso));
                     parameterList.Add(new SqlParameter("@depto", depto));
                     parameterList.Add(new SqlParameter("@localidad", localidad));
-                    parameterList.Add(new SqlParameter("@esChofer", esChofer));
-                    parameterList.Add(new SqlParameter("@esCliente", esCliente));
-                    parameterList.Add(new SqlParameter("@codPost", codPost));
+                    
 
 
                     try
                     {
-                        int result = SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
-
-                        if (result > 1)
+                        if (editing)
                         {
-                            MessageBox.Show("cant filas afectadas" + result);
+                            parameterList.Add(new SqlParameter("@idUsuario", user.Id_Usuario));
+                            if (tipoUsuario == 1)
+                            {
+                                parameterList.Add(new SqlParameter("@codPost", user.CodPost));
+                                SQLHelper.ExecuteNonQuery("PR_editarCliente", CommandType.StoredProcedure, parameterList);
+                            }
+                            else if (tipoUsuario == 2)
+                            {
+                                SQLHelper.ExecuteNonQuery("PR_editarChofer", CommandType.StoredProcedure, parameterList);
+                            }
+                            MessageBox.Show("El usuario se ha modificado");
+
+                            UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                            this.Hide();
+                            abmCliente.Show();
                         }
+                        else
+                        {
+                            parameterList.Add(new SqlParameter("@esChofer", esChofer));
+                            parameterList.Add(new SqlParameter("@esCliente", esCliente));
+                   
+                            SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
+                            MessageBox.Show("El usuario se ha registrado correctamente");
+                        }
+
+                        
+                        
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString());
-                        MessageBox.Show("Hubo un error registrando el usuario. Revise los datos ingresados e intente de nuevo");
+                        //MessageBox.Show("Hubo un error registrando el usuario. Revise los datos ingresados e intente de nuevo");
                     }
                 }
 

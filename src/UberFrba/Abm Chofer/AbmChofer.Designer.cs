@@ -1,6 +1,6 @@
-﻿namespace UberFrba.Abm_Cliente
+﻿namespace UberFrba.Abm_Chofer
 {
-    partial class AbmCliente
+    partial class AbmChofer
     {
         /// <summary>
         /// Required designer variable.
@@ -72,12 +72,12 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.dgvClientes);
             this.groupBox1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 14);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1266, 555);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Clientes";
+            this.groupBox1.Text = "Choferes";
             // 
             // btnEliminar
             // 
@@ -88,7 +88,6 @@
             this.btnEliminar.TabIndex = 45;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnInicio
             // 
@@ -99,7 +98,6 @@
             this.btnInicio.TabIndex = 1;
             this.btnInicio.Text = "Ir a inicio";
             this.btnInicio.UseVisualStyleBackColor = true;
-            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // btnEditar
             // 
@@ -110,7 +108,6 @@
             this.btnEditar.TabIndex = 10;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // groupBox2
             // 
@@ -138,7 +135,6 @@
             this.btnLimpiarFiltro.TabIndex = 14;
             this.btnLimpiarFiltro.Text = "Limpiar filtros";
             this.btnLimpiarFiltro.UseVisualStyleBackColor = true;
-            this.btnLimpiarFiltro.Click += new System.EventHandler(this.btnLimpiarFiltro_Click);
             // 
             // txtFiltApellido
             // 
@@ -170,7 +166,6 @@
             this.btnFiltrar.TabIndex = 9;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // label3
             // 
@@ -210,7 +205,7 @@
             this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -326,15 +321,14 @@
             this.Localidad.ReadOnly = true;
             this.Localidad.Width = 102;
             // 
-            // AbmCliente
+            // AbmChofer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 582);
+            this.ClientSize = new System.Drawing.Size(1252, 576);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AbmCliente";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.AbmCliente_Load);
+            this.Name = "AbmChofer";
+            this.Text = "AbmChofer";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -346,10 +340,11 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnLimpiarFiltro;
         private System.Windows.Forms.TextBox txtFiltApellido;
         private System.Windows.Forms.TextBox txtFiltNombre;
         private System.Windows.Forms.TextBox txtFiltDni;
@@ -357,7 +352,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
@@ -371,6 +366,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Depto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodPost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Localidad;
-        private System.Windows.Forms.Button btnLimpiarFiltro;
+
     }
 }
