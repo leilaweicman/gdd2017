@@ -222,9 +222,23 @@ namespace UberFrba.Abm_Automovil
                                     parameterList.Add(new SqlParameter("@idAutomovil", this.idAutomovil));
                     nomProcedure="PR_modificarAutomovil";
                 }
-                int result =SQLHelper.ExecuteNonQuery(nomProcedure, CommandType.StoredProcedure, parameterList);
-                SQLHelper.Cerrar();
-                MessageBox.Show("cant filas afectadas" + result);
+                try
+                {
+
+                    int result = SQLHelper.ExecuteNonQuery(nomProcedure, CommandType.StoredProcedure, parameterList);
+
+                    SQLHelper.Cerrar();
+
+                    UberFrba.Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
+                    this.Hide();
+                    listado.Show();
+                }
+                catch (Exception ex)
+                {
+                    SQLHelper.Cerrar();
+                    MessageBox.Show(ex.ToString());
+
+                }
 
                 //deberia ir al listado de automoviles
 
