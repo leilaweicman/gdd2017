@@ -29,6 +29,7 @@ namespace UberFrba.LogIn
         private void btnLogIn_Click(object sender, EventArgs e)
         {
             string claveIngresada = Encryptor.GetSHA256(txtContrasena.Text);
+            MessageBox.Show(claveIngresada);
             try
             {
                 ValidarCampos();
@@ -82,14 +83,14 @@ namespace UberFrba.LogIn
             {
                 try
                 {
-                    //Si alcanzo la cantidad maxima de fallidos, deshabilito el usuario y le aviso de esto
+                    //Si alcanzo la cantidad maxima de fallidos, deshabilito el usuario y le aviso
                     user.Deshabilitar();
                     intentosFallidos = 0;
                     MessageBox.Show("El usuario ha quedado deshabilitado por los reiterados fallos en el inicio de sesion", "Deshabilitacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (NoEntidadException ex)
                 {
-                    //Significa que el username que esta ingresando no existe, no que se equivoca con la password. 
+                    //el username ingresado no existe
                     //No lo deshabilito
                     intentosFallidos = 0;
                 }
@@ -98,9 +99,54 @@ namespace UberFrba.LogIn
 
         private void RealizarAccionesLogInExitoso()
         {
-            //limpio los intentos y voy a la seleccion de rol del usuario
+            //limpio los intentos y voy a seleccionar el rol del usuario
             intentosFallidos = 0;
-            //SeleccionDeRol();
+            SeleccionarRol();
+        }
+
+        public void SeleccionarRol()
+        {
+            try
+            {
+                //Obtengo roles del usuario. Si no tiene, muestro mensaje de error. 
+                DataSet ds = Rol.ObtenerRolesPorUsuario(user.Id_Usuario);
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("El usuario no tiene roles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //Verifico la cantidad de roles del usuario. 
+                    //Si tiene mas de 1, se lo asigno y lo dejo entrar al sistema
+
+                    if (ds.Tables[0].Rows.Count == 1)
+                    {
+                        user.AsignarRol(ds);
+                        Ingresar();
+                    }
+                    else
+                    {
+                        //Si tiene mas de 1 rol, le pido que seleccione con cual ingresar
+                        //MostrarListadoDeRolesASeleccionar(ds);
+                    }
+                }
+
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Ingresar()
+        {
+            Home homeForm = new Home();
+            this.Hide();
+            homeForm.Show();
         }
 
         private void ValidarCampos()

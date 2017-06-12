@@ -32,7 +32,7 @@ namespace Classes
         private Decimal _piso;
         private string _localidad;
         private DateTime _fechaNac;
-        //private Rol _rol; AGREGAR DESPUES
+        private Rol _rol; 
 
         #endregion
 
@@ -200,11 +200,11 @@ namespace Classes
             }
         }
 
-        //public Rol Rol
-        //{
-        //    get { return _rol; }
-        //    set { _rol = value; }
-        //}
+        public Rol Rol
+        {
+            get { return _rol; }
+            set { _rol = value; }
+        }
         #endregion
 
         #region methods
@@ -275,6 +275,12 @@ namespace Classes
             setearListaDeParametrosSoloConIdUsuario();
             base.Deshabilitar(parameterList);
             parameterList.Clear();
+        }
+
+        public void AsignarRol(DataSet ds)
+        {
+            this.Rol = new Rol();
+            this.Rol.DataRowToObject(ds.Tables[0].Rows[0]);
         }
 
         private void setearListaDeParametrosSoloConIdUsuario()
