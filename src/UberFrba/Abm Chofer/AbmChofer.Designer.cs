@@ -45,7 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.dgvChoferes = new System.Windows.Forms.DataGridView();
             this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,11 +57,10 @@
             this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Depto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodPost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChoferes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -70,7 +69,7 @@
             this.groupBox1.Controls.Add(this.btnInicio);
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.dgvClientes);
+            this.groupBox1.Controls.Add(this.dgvChoferes);
             this.groupBox1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -88,6 +87,7 @@
             this.btnEliminar.TabIndex = 45;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnInicio
             // 
@@ -98,6 +98,7 @@
             this.btnInicio.TabIndex = 1;
             this.btnInicio.Text = "Ir a inicio";
             this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // btnEditar
             // 
@@ -108,6 +109,7 @@
             this.btnEditar.TabIndex = 10;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // groupBox2
             // 
@@ -135,6 +137,7 @@
             this.btnLimpiarFiltro.TabIndex = 14;
             this.btnLimpiarFiltro.Text = "Limpiar filtros";
             this.btnLimpiarFiltro.UseVisualStyleBackColor = true;
+            this.btnLimpiarFiltro.Click += new System.EventHandler(this.btnLimpiarFiltro_Click);
             // 
             // txtFiltApellido
             // 
@@ -166,6 +169,7 @@
             this.btnFiltrar.TabIndex = 9;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // label3
             // 
@@ -197,22 +201,22 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "DNI";
             // 
-            // dgvClientes
+            // dgvChoferes
             // 
-            this.dgvClientes.AllowUserToAddRows = false;
-            this.dgvClientes.AllowUserToDeleteRows = false;
+            this.dgvChoferes.AllowUserToAddRows = false;
+            this.dgvChoferes.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvChoferes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvChoferes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvChoferes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvChoferes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Dni,
             this.Nombre,
             this.Apellido,
@@ -224,16 +228,15 @@
             this.Direccion,
             this.Piso,
             this.Depto,
-            this.CodPost,
             this.Localidad});
-            this.dgvClientes.Location = new System.Drawing.Point(17, 222);
-            this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.ReadOnly = true;
+            this.dgvChoferes.Location = new System.Drawing.Point(17, 222);
+            this.dgvChoferes.Name = "dgvChoferes";
+            this.dgvChoferes.ReadOnly = true;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvClientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(1231, 313);
-            this.dgvClientes.TabIndex = 0;
+            this.dgvChoferes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvChoferes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvChoferes.Size = new System.Drawing.Size(1163, 313);
+            this.dgvChoferes.TabIndex = 0;
             // 
             // Dni
             // 
@@ -307,13 +310,6 @@
             this.Depto.ReadOnly = true;
             this.Depto.Width = 76;
             // 
-            // CodPost
-            // 
-            this.CodPost.HeaderText = "C. P.";
-            this.CodPost.Name = "CodPost";
-            this.CodPost.ReadOnly = true;
-            this.CodPost.Width = 70;
-            // 
             // Localidad
             // 
             this.Localidad.HeaderText = "Localidad";
@@ -325,14 +321,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1252, 576);
+            this.ClientSize = new System.Drawing.Size(1215, 576);
             this.Controls.Add(this.groupBox1);
             this.Name = "AbmChofer";
             this.Text = "AbmChofer";
+            this.Load += new System.EventHandler(this.AbmChofer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChoferes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -352,7 +349,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.DataGridView dgvChoferes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
@@ -364,7 +361,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Piso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Depto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodPost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Localidad;
 
     }

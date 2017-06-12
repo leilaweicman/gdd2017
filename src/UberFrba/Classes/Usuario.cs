@@ -267,7 +267,12 @@ namespace Classes
             this.Piso = Convert.ToDecimal(dr["Piso"]);
             this.Depto = dr["Depto"].ToString();
             this.Username = dr["Username"].ToString();
-            this.CodPost = Convert.ToInt32(dr["CodPostal"]);
+            try
+            {
+                this.CodPost = Convert.ToInt32(dr["CodPostal"]);
+            } catch{
+                this.CodPost = -1;
+            }
         }
 
         private void setearListaDeParametrosConUsuario()

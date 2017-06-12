@@ -45,7 +45,7 @@ namespace UberFrba.Abm_Cliente
                 Usuario userSeleccionado = clientes[dni];
 
                 //UberFrba.Abm_Cliente.Editar editarClienteForm = new Abm_Cliente.Editar(userSeleccionado);
-                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, 1);
+                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, 1);//1 es cliente
 
                 this.Hide();
                 //editarClienteForm.Show();
