@@ -149,6 +149,6 @@ insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
 
 --insert usuario admin 
 insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, '1976-04-13 00:00:00.000', 
-	HASHBYTES('SHA2_256', 'w32e'), 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
+	'52D77462B24987175C8D7DAB901A5967E927FFC8D0B6E4A234E07A4AEC5E3724', 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
 insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
 	

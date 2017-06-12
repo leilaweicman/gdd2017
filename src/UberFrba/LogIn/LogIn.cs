@@ -29,7 +29,6 @@ namespace UberFrba.LogIn
         private void btnLogIn_Click(object sender, EventArgs e)
         {
             string claveIngresada = Encryptor.GetSHA256(txtContrasena.Text);
-            MessageBox.Show(claveIngresada);
             try
             {
                 ValidarCampos();

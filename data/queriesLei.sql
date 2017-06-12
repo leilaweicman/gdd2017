@@ -17,7 +17,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [GIRLPOWER].[deshabilitarUsuario] (@IdUsuario VARCHAR(30)) AS
+CREATE PROCEDURE [GIRLPOWER].[deshabilitarUsuario] (@IdUsuario int) AS
 BEGIN
 	UPDATE girlpower.usuario SET Habilitado=0 WHERE IDUsuario=@IdUsuario
 END

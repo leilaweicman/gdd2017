@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.grpLogIn = new System.Windows.Forms.GroupBox();
-            this.lblUsuario = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.lblContrasena = new System.Windows.Forms.Label();
-            this.txtContrasena = new System.Windows.Forms.TextBox();
             this.btnLogIn = new System.Windows.Forms.Button();
+            this.txtContrasena = new System.Windows.Forms.TextBox();
+            this.lblContrasena = new System.Windows.Forms.Label();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.grpLogIn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,21 +52,22 @@
             this.grpLogIn.TabStop = false;
             this.grpLogIn.Text = "Log In";
             // 
-            // lblUsuario
+            // btnLogIn
             // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(21, 46);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(75, 18);
-            this.lblUsuario.TabIndex = 0;
-            this.lblUsuario.Text = "Usuario";
+            this.btnLogIn.Location = new System.Drawing.Point(24, 154);
+            this.btnLogIn.Name = "btnLogIn";
+            this.btnLogIn.Size = new System.Drawing.Size(342, 40);
+            this.btnLogIn.TabIndex = 4;
+            this.btnLogIn.Text = "Iniciar Sesión";
+            this.btnLogIn.UseVisualStyleBackColor = true;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
-            // txtUsuario
+            // txtContrasena
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(137, 43);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(229, 27);
-            this.txtUsuario.TabIndex = 1;
+            this.txtContrasena.Location = new System.Drawing.Point(137, 104);
+            this.txtContrasena.Name = "txtContrasena";
+            this.txtContrasena.Size = new System.Drawing.Size(229, 27);
+            this.txtContrasena.TabIndex = 3;
             // 
             // lblContrasena
             // 
@@ -77,22 +78,21 @@
             this.lblContrasena.TabIndex = 2;
             this.lblContrasena.Text = "Contraseña";
             // 
-            // txtContrasena
+            // txtUsuario
             // 
-            this.txtContrasena.Location = new System.Drawing.Point(137, 104);
-            this.txtContrasena.Name = "txtContrasena";
-            this.txtContrasena.Size = new System.Drawing.Size(229, 27);
-            this.txtContrasena.TabIndex = 3;
+            this.txtUsuario.Location = new System.Drawing.Point(137, 43);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(229, 27);
+            this.txtUsuario.TabIndex = 1;
             // 
-            // btnLogIn
+            // lblUsuario
             // 
-            this.btnLogIn.Location = new System.Drawing.Point(24, 154);
-            this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(342, 40);
-            this.btnLogIn.TabIndex = 4;
-            this.btnLogIn.Text = "Iniciar Sesión";
-            this.btnLogIn.UseVisualStyleBackColor = true;
-            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Location = new System.Drawing.Point(21, 46);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(75, 18);
+            this.lblUsuario.TabIndex = 0;
+            this.lblUsuario.Text = "Usuario";
             // 
             // LogIn
             // 
