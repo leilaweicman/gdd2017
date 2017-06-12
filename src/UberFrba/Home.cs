@@ -16,14 +16,7 @@ namespace UberFrba
         {
             InitializeComponent();
         }
-
-        private void lblRegistrarUsuario_Click(object sender, EventArgs e)
-        {
-            Registro_usuario.RegistroUsuario registroUsuarioForm = new Registro_usuario.RegistroUsuario();
-            this.Hide();
-            registroUsuarioForm.Show();
-        }
-
+        
         private void lblRegistrarAutomovil_Click(object sender, EventArgs e)
         {
             UberFrba.Abm_Automovil.RegistroAutomovil registroAutomovilForm = new Abm_Automovil.RegistroAutomovil(3);
@@ -50,6 +43,13 @@ namespace UberFrba
             UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
             this.Hide();
             abmChofer.Show();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Inicial inicialForm = new Inicial();
+            this.Hide();
+            inicialForm.Show();
         }
     }
 }

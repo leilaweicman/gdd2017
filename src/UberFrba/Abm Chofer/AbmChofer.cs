@@ -127,9 +127,9 @@ namespace UberFrba.Abm_Chofer
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            UberFrba.Inicial inicio = new Inicial();
+            Home formHome = new Home();
             this.Hide();
-            inicio.Show();
+            formHome.Show();
         }
 
 

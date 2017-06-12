@@ -33,6 +33,7 @@
             this.lblRegistrarAutomovil = new System.Windows.Forms.Label();
             this.lblAbmChofer = new System.Windows.Forms.Label();
             this.lblAbmCliente = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.grpAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +73,7 @@
             this.lblRegistrarAutomovil.Size = new System.Drawing.Size(200, 23);
             this.lblRegistrarAutomovil.TabIndex = 8;
             this.lblRegistrarAutomovil.Text = "Registrar Automovil";
+            this.lblRegistrarAutomovil.Click += new System.EventHandler(this.lblRegistrarAutomovil_Click);
             // 
             // lblAbmChofer
             // 
@@ -97,11 +99,23 @@
             this.lblAbmCliente.Text = "ABM cliente";
             this.lblAbmCliente.Click += new System.EventHandler(this.lblAbmCliente_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(40, 271);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(91, 43);
+            this.btnSalir.TabIndex = 2;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 276);
+            this.ClientSize = new System.Drawing.Size(536, 326);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.grpAdmin);
             this.Name = "Home";
             this.Text = "Home";
@@ -118,6 +132,7 @@
         private System.Windows.Forms.Label lblAbmCliente;
         private System.Windows.Forms.Label lblRegistrarAutomovil;
         private System.Windows.Forms.Label lblListadoAutomoviles;
+        private System.Windows.Forms.Button btnSalir;
 
 
     }

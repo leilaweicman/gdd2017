@@ -154,9 +154,9 @@ namespace UberFrba.Abm_Automovil
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Inicial formInicial = new Inicial();
+            Home formHome = new Home();
             this.Hide();
-            formInicial.Show();
+            formHome.Show();
         }
     }
 }

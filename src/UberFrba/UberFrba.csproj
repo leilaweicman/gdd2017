@@ -64,12 +64,6 @@
     <Compile Include="Abm Chofer\AbmChofer.Designer.cs">
       <DependentUpon>AbmChofer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Chofer\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Chofer\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Cliente\AbmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
