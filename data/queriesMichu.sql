@@ -192,7 +192,7 @@ BEGIN
 		WHERE IDUsuario = @idUsuario
 	END TRY
 	BEGIN CATCH
-		RAISERROR('Hubo un error modificando el cliente', 16, 217)
+		RAISERROR('Hubo un error modificando el chofer', 16, 217)
 			WITH SETERROR
 	END CATCH
 END
