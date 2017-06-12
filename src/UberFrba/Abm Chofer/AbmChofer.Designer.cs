@@ -1,6 +1,6 @@
-﻿namespace UberFrba.Abm_Cliente
+﻿namespace UberFrba.Abm_Chofer
 {
-    partial class AbmCliente
+    partial class AbmChofer
     {
         /// <summary>
         /// Required designer variable.
@@ -45,7 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.dgvChoferes = new System.Windows.Forms.DataGridView();
             this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,11 +57,10 @@
             this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Depto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodPost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChoferes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -70,14 +69,14 @@
             this.groupBox1.Controls.Add(this.btnInicio);
             this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.dgvClientes);
+            this.groupBox1.Controls.Add(this.dgvChoferes);
             this.groupBox1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 14);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1266, 555);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Clientes";
+            this.groupBox1.Text = "Choferes";
             // 
             // btnEliminar
             // 
@@ -202,12 +201,12 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "DNI";
             // 
-            // dgvClientes
+            // dgvChoferes
             // 
-            this.dgvClientes.AllowUserToAddRows = false;
-            this.dgvClientes.AllowUserToDeleteRows = false;
+            this.dgvChoferes.AllowUserToAddRows = false;
+            this.dgvChoferes.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvChoferes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -215,9 +214,9 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvChoferes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvChoferes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvChoferes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Dni,
             this.Nombre,
             this.Apellido,
@@ -229,16 +228,15 @@
             this.Direccion,
             this.Piso,
             this.Depto,
-            this.CodPost,
             this.Localidad});
-            this.dgvClientes.Location = new System.Drawing.Point(17, 222);
-            this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.ReadOnly = true;
+            this.dgvChoferes.Location = new System.Drawing.Point(17, 222);
+            this.dgvChoferes.Name = "dgvChoferes";
+            this.dgvChoferes.ReadOnly = true;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvClientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(1231, 313);
-            this.dgvClientes.TabIndex = 0;
+            this.dgvChoferes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvChoferes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvChoferes.Size = new System.Drawing.Size(1163, 313);
+            this.dgvChoferes.TabIndex = 0;
             // 
             // Dni
             // 
@@ -312,13 +310,6 @@
             this.Depto.ReadOnly = true;
             this.Depto.Width = 76;
             // 
-            // CodPost
-            // 
-            this.CodPost.HeaderText = "C. P.";
-            this.CodPost.Name = "CodPost";
-            this.CodPost.ReadOnly = true;
-            this.CodPost.Width = 70;
-            // 
             // Localidad
             // 
             this.Localidad.HeaderText = "Localidad";
@@ -326,19 +317,19 @@
             this.Localidad.ReadOnly = true;
             this.Localidad.Width = 102;
             // 
-            // AbmCliente
+            // AbmChofer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 582);
+            this.ClientSize = new System.Drawing.Size(1215, 576);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AbmCliente";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.AbmCliente_Load);
+            this.Name = "AbmChofer";
+            this.Text = "AbmChofer";
+            this.Load += new System.EventHandler(this.AbmChofer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChoferes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -346,10 +337,11 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnLimpiarFiltro;
         private System.Windows.Forms.TextBox txtFiltApellido;
         private System.Windows.Forms.TextBox txtFiltNombre;
         private System.Windows.Forms.TextBox txtFiltDni;
@@ -357,7 +349,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridView dgvChoferes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
@@ -369,8 +361,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Piso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Depto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodPost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Localidad;
-        private System.Windows.Forms.Button btnLimpiarFiltro;
+
     }
 }

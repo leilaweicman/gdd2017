@@ -27,13 +27,14 @@ namespace Classes
         private string _apellido;
         private Decimal tel;
         private string _mail;
-        private string _calle;
+        private string _direccion;
         private string _depto;
         private Decimal _piso;
         private string _localidad;
         private DateTime _fechaNac;
+        private int _codPost;
         private Rol _rol; 
-
+        
         #endregion
 
         #region constructor
@@ -135,16 +136,16 @@ namespace Classes
             }
         }
 
-        public string Calle
+        public string Direccion
         {
             get
             {
-                return _calle;
+                return _direccion;
             }
 
             set
             {
-                _calle = value;
+                _direccion = value;
             }
         }
 
@@ -205,6 +206,21 @@ namespace Classes
             get { return _rol; }
             set { _rol = value; }
         }
+
+        public int CodPost
+        {
+            get
+            {
+                return _codPost;
+            }
+
+            set
+            {
+                _codPost = value;
+            }
+        }
+
+        
         #endregion
 
         #region methods
@@ -234,7 +250,7 @@ namespace Classes
             return false;
         }
 
-        public override void DataRowToObject(DataRow dr) //CAMBIAR CAMPOS!!!
+        public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB
             this.Id_Usuario = Convert.ToInt32(dr["IDUsuario"]);
@@ -246,11 +262,17 @@ namespace Classes
             this.Dni = Convert.ToDecimal(dr["DNI"]);
             this.FechaNac = Convert.ToDateTime(dr["FechaNacimiento"]);
             this.Mail = dr["Mail"].ToString();
-            // LOS COMENTO PORQUE ESTAN EN NULL Y TIRA ERROR
-            // this.Localidad = dr["Localidad"].ToString();
-            // this.Calle = dr["Calle"].ToString();
-            // this.Piso = Convert.ToDecimal(dr["Piso"]);
-            // this.Depto = dr["Depto"].ToString();
+            this.Localidad = dr["Localidad"].ToString();
+            this.Direccion = dr["Direccion"].ToString();
+            this.Piso = Convert.ToDecimal(dr["Piso"]);
+            this.Depto = dr["Depto"].ToString();
+            this.Username = dr["Username"].ToString();
+            try
+            {
+                this.CodPost = Convert.ToInt32(dr["CodPostal"]);
+            } catch{
+                this.CodPost = -1;
+            }
         }
 
         private void setearListaDeParametrosConUsuario()

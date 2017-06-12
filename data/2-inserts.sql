@@ -76,3 +76,79 @@ Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha FROM [gd_esquema].Maestra gdm
  inner join [GIRLPOWER].Turno t on t.Descripcion =gdm.Turno_Descripcion
  )
  go
+
+ --- inserto cabecera factura
+insert into [GIRLPOWER].Factura 
+(IDCliente,FechaInicio,FechaFin,ImporteTotal,NroFactura,Fecha)
+(select distinct c.IDCliente,Factura_Fecha_Inicio,Factura_Fecha_Fin,0,Factura_Nro,Factura_Fecha
+ from [gd_esquema].Maestra m
+ inner join [GIRLPOWER].Usuario u on  u.DNI=m.Cliente_Dni
+  inner join [GIRLPOWER].Cliente c on  c.IDUsuario=u.idusuario
+ where Factura_Nro is not null)
+
+
+ ---inserto factura detalle
+ insert into [GIRLPOWER].FacturaDetalle(IDFactura,IDViaje,Importe)
+ (
+  select distinct  f.IDFactura, v.IDViaje,
+  (T.PrecioBase+ (t.ValorKilometro*v.CantidadKilometros)) AS importe
+ from [gd_esquema].Maestra m
+ inner join [GIRLPOWER].Factura F ON f.NroFactura=m.Factura_Nro 
+ inner join [GIRLPOWER].Viaje v on v.FechaInicio=m.Viaje_Fecha 
+  inner join [GIRLPOWER].Turno t on t.IDTurno=V.IDTurno 
+ where Factura_Nro is not null)
+
+
+ --- actualizo importe factura
+ update [GIRLPOWER].Factura set ImporteTotal=
+ (select sum (Importe) from  [GIRLPOWER].FacturaDetalle fd where fd.IDFactura=f.IDFactura
+ group by fd.IDFactura)
+ from [GIRLPOWER].Factura f 
+
+--insert into rendicion
+insert  into [GIRLPOWER].Rendicion (IDTurno,IDChofer,Fecha,ImporteTotal,NroRendicion)
+(select distinct t.IDTurno,c.IDChofer,m.Rendicion_Fecha,0,m.Rendicion_Nro from gd_esquema.Maestra m
+inner join [GIRLPOWER].Turno t on t.Descripcion=m.Turno_Descripcion
+inner join [GIRLPOWER].Usuario u on  u.DNI=m.Chofer_Dni
+  inner join [GIRLPOWER].Chofer c on  c.IDUsuario=u.idusuario
+  where Rendicion_Nro is not null
+)
+-- rendicion detalle
+insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
+(SELECT distinct  r.idRendicion, v.IDViaje,m.Rendicion_Importe
+ from [gd_esquema].Maestra m
+ inner join [GIRLPOWER].Rendicion r ON r.nroRendicion =m.Rendicion_Nro 
+ inner join [GIRLPOWER].Viaje v on v.FechaInicio=m.Viaje_Fecha and
+  v.CantidadKilometros=m.Viaje_Cant_Kilometros
+ where Rendicion_Nro is not null )
+ 
+  --- actualizo importe rendicion
+ update [GIRLPOWER].Rendicion set ImporteTotal=
+ (select sum (Importe) from  [GIRLPOWER].RendicionDetalle rd where 
+ rd.IDRendicion=r.IDRendicion
+ group by rd.IDRendicion)
+ from [GIRLPOWER].Rendicion r
+
+ --insert into rol
+ insert into GIRLPOWER.Rol (Nombre) Values ('Administrador')
+ insert into GIRLPOWER.Rol (Nombre) Values ('Chofer')
+ insert into GIRLPOWER.Rol (Nombre) Values ('Cliente')
+
+ --insert into rol por usuario 
+ --insert clientes into rol por usuario
+ insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	WHERE r.Nombre = 'Cliente' group by u.IDUsuario, r.IDRol)
+
+--insert chofer into rol por usuario
+ insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
+
+--insert usuario admin 
+insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, '1976-04-13 00:00:00.000', 
+	HASHBYTES('SHA2_256', 'w32e'), 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
+insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
+	

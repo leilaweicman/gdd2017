@@ -68,5 +68,12 @@ namespace UberFrba
             this.Hide();
             listado.Show();
         }
+
+        private void lblAbmChofer_Click(object sender, EventArgs e)
+        {
+            UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+            this.Hide();
+            abmChofer.Show();
+        }
     }
 }

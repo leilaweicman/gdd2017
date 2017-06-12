@@ -34,6 +34,7 @@
             this.lblRegistrarAutomovil = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblListadoAutomoviles = new System.Windows.Forms.Label();
+            this.lblAbmChofer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblIniciarSesion
@@ -98,10 +99,22 @@
             this.lblListadoAutomoviles.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblListadoAutomoviles.Location = new System.Drawing.Point(56, 227);
             this.lblListadoAutomoviles.Name = "lblListadoAutomoviles";
-            this.lblListadoAutomoviles.Size = new System.Drawing.Size(167, 23);
+            this.lblListadoAutomoviles.Size = new System.Drawing.Size(166, 23);
             this.lblListadoAutomoviles.TabIndex = 4;
             this.lblListadoAutomoviles.Text = "Ver Automoviles";
             this.lblListadoAutomoviles.Click += new System.EventHandler(this.lblListadoAutomoviles_Click);
+            // 
+            // lblAbmChofer
+            // 
+            this.lblAbmChofer.AutoSize = true;
+            this.lblAbmChofer.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbmChofer.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblAbmChofer.Location = new System.Drawing.Point(166, 23);
+            this.lblAbmChofer.Name = "lblAbmChofer";
+            this.lblAbmChofer.Size = new System.Drawing.Size(119, 23);
+            this.lblAbmChofer.TabIndex = 5;
+            this.lblAbmChofer.Text = "ABM chofer";
+            this.lblAbmChofer.Click += new System.EventHandler(this.lblAbmChofer_Click);
             // 
             // Inicial
             // 
@@ -109,6 +122,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(312, 304);
+            this.Controls.Add(this.lblAbmChofer);
             this.Controls.Add(this.lblListadoAutomoviles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRegistrarAutomovil);
@@ -131,5 +145,6 @@
         private System.Windows.Forms.Label lblRegistrarAutomovil;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblListadoAutomoviles;
+        private System.Windows.Forms.Label lblAbmChofer;
     }
 }
