@@ -122,10 +122,31 @@ insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
   v.CantidadKilometros=m.Viaje_Cant_Kilometros
  where Rendicion_Nro is not null )
  
- 
- --- actualizo importe rendicion
+  --- actualizo importe rendicion
  update [GIRLPOWER].Rendicion set ImporteTotal=
  (select sum (Importe) from  [GIRLPOWER].RendicionDetalle rd where 
  rd.IDRendicion=r.IDRendicion
  group by rd.IDRendicion)
  from [GIRLPOWER].Rendicion r
+
+ --insert into rol
+ insert into GIRLPOWER.Rol (Nombre) Values ('Administrador')
+ insert into GIRLPOWER.Rol (Nombre) Values ('Chofer')
+ insert into GIRLPOWER.Rol (Nombre) Values ('Cliente')
+
+ --insert into rol por usuario 
+ --insert clientes into rol por usuario
+ insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	WHERE r.Nombre = 'Cliente' group by u.IDUsuario, r.IDRol)
+
+--insert chofer into rol por usuario
+ insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
+
+
+
+	
