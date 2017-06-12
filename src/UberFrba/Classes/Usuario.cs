@@ -262,17 +262,17 @@ namespace Classes
             this.Dni = Convert.ToDecimal(dr["DNI"]);
             this.FechaNac = Convert.ToDateTime(dr["FechaNacimiento"]);
             this.Mail = dr["Mail"].ToString();
-            this.Localidad = dr["Localidad"].ToString();
-            this.Direccion = dr["Direccion"].ToString();
-            this.Piso = Convert.ToDecimal(dr["Piso"]);
-            this.Depto = dr["Depto"].ToString();
-            this.Username = dr["Username"].ToString();
-            try
-            {
-                this.CodPost = Convert.ToInt32(dr["CodPostal"]);
-            } catch{
-                this.CodPost = -1;
-            }
+            //this.Localidad = dr["Localidad"].ToString();
+            //this.Direccion = dr["Direccion"].ToString();
+            //this.Piso = Convert.ToDecimal(dr["Piso"]);
+            //this.Depto = dr["Depto"].ToString();
+            //this.Username = dr["Username"].ToString();
+            //try
+            //{
+            //    this.CodPost = Convert.ToInt32(dr["CodPostal"]);
+            //} catch{
+            //    this.CodPost = -1;
+            //}
         }
 
         private void setearListaDeParametrosConUsuario()
