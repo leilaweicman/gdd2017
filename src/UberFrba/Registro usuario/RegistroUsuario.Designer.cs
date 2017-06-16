@@ -138,11 +138,12 @@
             // 
             // maskedTxtFechaNac
             // 
+            this.maskedTxtFechaNac.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maskedTxtFechaNac.Location = new System.Drawing.Point(176, 171);
             this.maskedTxtFechaNac.Mask = "##/##/####";
             this.maskedTxtFechaNac.Name = "maskedTxtFechaNac";
             this.maskedTxtFechaNac.PromptChar = ' ';
-            this.maskedTxtFechaNac.Size = new System.Drawing.Size(154, 27);
+            this.maskedTxtFechaNac.Size = new System.Drawing.Size(154, 23);
             this.maskedTxtFechaNac.TabIndex = 9;
             this.maskedTxtFechaNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
