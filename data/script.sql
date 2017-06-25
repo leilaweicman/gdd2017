@@ -1,5 +1,9 @@
 USE [GD1C2017]
 GO
+
+CREATE SCHEMA [GIRLPOWER]
+GO
+
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[FK__Viaje__IDTurno__5D95E53A]') AND parent_object_id = OBJECT_ID(N'[GIRLPOWER].[Viaje]'))
 ALTER TABLE [GIRLPOWER].[Viaje] DROP CONSTRAINT [FK__Viaje__IDTurno__5D95E53A]
 GO
@@ -1258,7 +1262,7 @@ insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
 	WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
 
 --insert usuario admin 
-insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, '1976-04-13 00:00:00.000', 
+insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, convert(datetime,'1976-04-13 00:00:00.000',120), 
 	'52D77462B24987175C8D7DAB901A5967E927FFC8D0B6E4A234E07A4AEC5E3724', 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
 insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
 	
