@@ -26,9 +26,16 @@ namespace UberFrba.LogIn
             InitializeComponent();
         }
 
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+            grpRol.Visible = false;
+            grpLogIn.Visible = true;
+        }
+
         private void btnLogIn_Click(object sender, EventArgs e)
         {
             string claveIngresada = Encryptor.GetSHA256(txtContrasena.Text);
+          
             try
             {
                 ValidarCampos();
@@ -41,6 +48,9 @@ namespace UberFrba.LogIn
                 if (user.obtenerUsuarioPorUsername())
                 {
                     //existe usuario
+                    //MessageBox.Show(user.ContraseniaEncriptada.Trim() + "\n" + claveIngresada);
+                    //textBox1.Text = claveIngresada.Trim();
+                    
                     if (user.ContraseniaEncriptada.Trim() == claveIngresada.Trim())
                     {
                         RealizarAccionesLogInExitoso();
@@ -126,7 +136,7 @@ namespace UberFrba.LogIn
                     else
                     {
                         //Si tiene mas de 1 rol, le pido que seleccione con cual ingresar
-                        //MostrarListadoDeRolesASeleccionar(ds);
+                        MostrarListadoRoles(ds);                        
                     }
                 }
 
@@ -141,11 +151,20 @@ namespace UberFrba.LogIn
             }
         }
 
+        private void MostrarListadoRoles(DataSet ds)
+        {
+            grpLogIn.Visible = false;
+            grpRol.Visible = true;
+            //Usamos el manager de dropdowns para cargar el comboBox con los roles. y seleccionar uno
+            DropDownListManager.CargarCombo(cmbRol, ds.Tables[0], "idRol", "Nombre", false, "");
+        }
+
         private void Ingresar()
         {
             Home homeForm = new Home();
             this.Hide();
-            homeForm.Show();
+           // homeForm.Show();
+            homeForm.abrirConUsuario(user);
         }
 
         private void ValidarCampos()
@@ -158,6 +177,18 @@ namespace UberFrba.LogIn
                 throw new Exception(strErrores);
             }
         }
+
+        private void btnRol_Click(object sender, EventArgs e)
+        {
+            Rol rolAAsignar = new Rol();
+            rolAAsignar.Id_Rol = Convert.ToInt32(cmbRol.SelectedValue);
+            rolAAsignar.Nombre = cmbRol.SelectedText.ToString();
+            user.Rol = rolAAsignar;
+            Ingresar();
+            
+        }
+
+        
 
 
     }

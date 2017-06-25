@@ -34,7 +34,11 @@
             this.lblContrasena = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.grpRol = new System.Windows.Forms.GroupBox();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
+            this.btnRol = new System.Windows.Forms.Button();
             this.grpLogIn.SuspendLayout();
+            this.grpRol.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpLogIn
@@ -95,16 +99,50 @@
             this.lblUsuario.TabIndex = 0;
             this.lblUsuario.Text = "Usuario";
             // 
+            // grpRol
+            // 
+            this.grpRol.Controls.Add(this.btnRol);
+            this.grpRol.Controls.Add(this.cmbRol);
+            this.grpRol.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpRol.Location = new System.Drawing.Point(12, 53);
+            this.grpRol.Name = "grpRol";
+            this.grpRol.Size = new System.Drawing.Size(430, 137);
+            this.grpRol.TabIndex = 5;
+            this.grpRol.TabStop = false;
+            this.grpRol.Text = "Seleccionar Rol";
+            // 
+            // cmbRol
+            // 
+            this.cmbRol.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRol.FormattingEnabled = true;
+            this.cmbRol.Location = new System.Drawing.Point(25, 40);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.Size = new System.Drawing.Size(331, 26);
+            this.cmbRol.TabIndex = 0;
+            // 
+            // btnRol
+            // 
+            this.btnRol.Location = new System.Drawing.Point(25, 87);
+            this.btnRol.Name = "btnRol";
+            this.btnRol.Size = new System.Drawing.Size(100, 32);
+            this.btnRol.TabIndex = 1;
+            this.btnRol.Text = "Aceptar";
+            this.btnRol.UseVisualStyleBackColor = true;
+            this.btnRol.Click += new System.EventHandler(this.btnRol_Click);
+            // 
             // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 260);
+            this.Controls.Add(this.grpRol);
             this.Controls.Add(this.grpLogIn);
             this.Name = "LogIn";
             this.Text = "LogIn";
+            this.Load += new System.EventHandler(this.LogIn_Load);
             this.grpLogIn.ResumeLayout(false);
             this.grpLogIn.PerformLayout();
+            this.grpRol.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -117,6 +155,9 @@
         private System.Windows.Forms.Label lblContrasena;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.GroupBox grpRol;
+        private System.Windows.Forms.Button btnRol;
+        private System.Windows.Forms.ComboBox cmbRol;
 
     }
 }

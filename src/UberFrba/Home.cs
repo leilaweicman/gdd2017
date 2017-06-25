@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,19 @@ namespace UberFrba
 {
     public partial class Home : Form
     {
+        public Usuario usuario = new Usuario();
+
         public Home()
         {
             InitializeComponent();
         }
-        
+
+        public void abrirConUsuario(Usuario user)
+        {
+            usuario = user;
+            this.Show();
+        }
+
         private void lblRegistrarAutomovil_Click(object sender, EventArgs e)
         {
             UberFrba.Abm_Automovil.RegistroAutomovil registroAutomovilForm = new Abm_Automovil.RegistroAutomovil(3);
