@@ -1,9 +1,11 @@
 USE [GD1C2017]
 GO
 
+--CREATE SCHEMA
 CREATE SCHEMA [GIRLPOWER]
 GO
 
+-- CREATE TABLES
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[FK__Viaje__IDTurno__5D95E53A]') AND parent_object_id = OBJECT_ID(N'[GIRLPOWER].[Viaje]'))
 ALTER TABLE [GIRLPOWER].[Viaje] DROP CONSTRAINT [FK__Viaje__IDTurno__5D95E53A]
 GO
@@ -196,6 +198,12 @@ ALTER TABLE [GIRLPOWER].[RolPorUsuario] DROP CONSTRAINT [DF_RolPorUsuario_Habili
 END
 
 GO
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[GIRLPOWER].[DF__Rol__Habilitado__7DEDA633]') AND type = 'D')
+BEGIN
+ALTER TABLE [GIRLPOWER].[Rol] DROP CONSTRAINT [DF__Rol__Habilitado__7DEDA633]
+END
+
+GO
 IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[GIRLPOWER].[DF_Cliente_CodPostal]') AND type = 'D')
 BEGIN
 ALTER TABLE [GIRLPOWER].[Cliente] DROP CONSTRAINT [DF_Cliente_CodPostal]
@@ -208,83 +216,83 @@ ALTER TABLE [GIRLPOWER].[Automovil] DROP CONSTRAINT [DF__Automovil__Habil__5FBE2
 END
 
 GO
-/****** Object:  Table [GIRLPOWER].[Viaje]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Viaje]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Viaje]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Viaje]
 GO
-/****** Object:  Table [GIRLPOWER].[Usuario]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Usuario]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Usuario]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Usuario]
 GO
-/****** Object:  Table [GIRLPOWER].[TurnoPorAutomovil]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[TurnoPorAutomovil]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[TurnoPorAutomovil]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[TurnoPorAutomovil]
 GO
-/****** Object:  Table [GIRLPOWER].[Turno]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Turno]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Turno]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Turno]
 GO
-/****** Object:  Table [GIRLPOWER].[RolPorUsuario]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[RolPorUsuario]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[RolPorUsuario]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[RolPorUsuario]
 GO
-/****** Object:  Table [GIRLPOWER].[Rol]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Rol]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Rol]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Rol]
 GO
-/****** Object:  Table [GIRLPOWER].[RendicionDetalle]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[RendicionDetalle]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[RendicionDetalle]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[RendicionDetalle]
 GO
-/****** Object:  Table [GIRLPOWER].[Rendicion]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Rendicion]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Rendicion]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Rendicion]
 GO
-/****** Object:  Table [GIRLPOWER].[Modelo]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Modelo]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Modelo]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Modelo]
 GO
-/****** Object:  Table [GIRLPOWER].[MarcaModelo]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[MarcaModelo]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[MarcaModelo]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[MarcaModelo]
 GO
-/****** Object:  Table [GIRLPOWER].[Marca]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Marca]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Marca]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Marca]
 GO
-/****** Object:  Table [GIRLPOWER].[FuncionalidadPorRol]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[FuncionalidadPorRol]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[FuncionalidadPorRol]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[FuncionalidadPorRol]
 GO
-/****** Object:  Table [GIRLPOWER].[Funcionalidad]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Funcionalidad]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Funcionalidad]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Funcionalidad]
 GO
-/****** Object:  Table [GIRLPOWER].[FacturaDetalle]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[FacturaDetalle]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[FacturaDetalle]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[FacturaDetalle]
 GO
-/****** Object:  Table [GIRLPOWER].[Factura]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Factura]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Factura]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Factura]
 GO
-/****** Object:  Table [GIRLPOWER].[Cliente]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Cliente]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Cliente]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Cliente]
 GO
-/****** Object:  Table [GIRLPOWER].[Chofer]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Chofer]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Chofer]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Chofer]
 GO
-/****** Object:  Table [GIRLPOWER].[Automovil]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Automovil]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Automovil]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Automovil]
 GO
-/****** Object:  Table [GIRLPOWER].[Administrador]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Administrador]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Administrador]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Administrador]
 GO
-/****** Object:  Table [GIRLPOWER].[Administrador]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Administrador]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -301,7 +309,7 @@ CREATE TABLE [GIRLPOWER].[Administrador](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Automovil]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Automovil]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -331,7 +339,7 @@ END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [GIRLPOWER].[Chofer]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Chofer]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +356,7 @@ CREATE TABLE [GIRLPOWER].[Chofer](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Cliente]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Cliente]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -366,7 +374,7 @@ CREATE TABLE [GIRLPOWER].[Cliente](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Factura]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Factura]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -388,7 +396,7 @@ CREATE TABLE [GIRLPOWER].[Factura](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[FacturaDetalle]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[FacturaDetalle]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -407,7 +415,7 @@ CREATE TABLE [GIRLPOWER].[FacturaDetalle](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Funcionalidad]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Funcionalidad]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -428,7 +436,7 @@ END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [GIRLPOWER].[FuncionalidadPorRol]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[FuncionalidadPorRol]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -446,7 +454,7 @@ CREATE TABLE [GIRLPOWER].[FuncionalidadPorRol](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Marca]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Marca]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -467,7 +475,7 @@ END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [GIRLPOWER].[MarcaModelo]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[MarcaModelo]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -485,7 +493,7 @@ CREATE TABLE [GIRLPOWER].[MarcaModelo](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Modelo]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Modelo]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -506,7 +514,7 @@ END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [GIRLPOWER].[Rendicion]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Rendicion]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -527,7 +535,7 @@ CREATE TABLE [GIRLPOWER].[Rendicion](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[RendicionDetalle]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[RendicionDetalle]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -547,7 +555,7 @@ CREATE TABLE [GIRLPOWER].[RendicionDetalle](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Rol]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Rol]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -558,17 +566,22 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWE
 BEGIN
 CREATE TABLE [GIRLPOWER].[Rol](
 	[IDRol] [int] IDENTITY(1,1) NOT NULL,
-	[Nombre] [varchar](255) NOT NULL UNIQUE,
+	[Nombre] [varchar](255) NOT NULL,
+	[Habilitado] [bit] NOT NULL,
  CONSTRAINT [PK__Rol__A681ACB6BBEFE9C5] PRIMARY KEY CLUSTERED 
 (
 	[IDRol] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [UQ__Rol__75E3EFCFA4B25FA0] UNIQUE NONCLUSTERED 
+(
+	[Nombre] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [GIRLPOWER].[RolPorUsuario]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[RolPorUsuario]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -587,7 +600,7 @@ CREATE TABLE [GIRLPOWER].[RolPorUsuario](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Turno]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Turno]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -613,7 +626,7 @@ END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [GIRLPOWER].[TurnoPorAutomovil]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[TurnoPorAutomovil]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -631,7 +644,7 @@ CREATE TABLE [GIRLPOWER].[TurnoPorAutomovil](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [GIRLPOWER].[Usuario]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Usuario]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -668,7 +681,7 @@ END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [GIRLPOWER].[Viaje]    Script Date: 12/6/2017 12:43:49 a. m. ******/
+/****** Object:  Table [GIRLPOWER].[Viaje]    Script Date: 25/06/2017 02:31:21 p.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -700,6 +713,12 @@ GO
 IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[GIRLPOWER].[DF_Cliente_CodPostal]') AND type = 'D')
 BEGIN
 ALTER TABLE [GIRLPOWER].[Cliente] ADD  CONSTRAINT [DF_Cliente_CodPostal]  DEFAULT ((-1)) FOR [CodPostal]
+END
+
+GO
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[GIRLPOWER].[DF__Rol__Habilitado__7DEDA633]') AND type = 'D')
+BEGIN
+ALTER TABLE [GIRLPOWER].[Rol] ADD  CONSTRAINT [DF__Rol__Habilitado__7DEDA633]  DEFAULT ((1)) FOR [Habilitado]
 END
 
 GO
@@ -1112,292 +1131,14 @@ IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[GIRLPO
 ALTER TABLE [GIRLPOWER].[Viaje] CHECK CONSTRAINT [FK__Viaje__IDTurno__5D95E53A]
 GO
 
---Inserto Marcas
-insert into [GIRLPOWER].Marca
-(Nombre)
-(select distinct(Auto_Marca) from [gd_esquema].Maestra)
-go
---Inserto Modelos
-insert into [GIRLPOWER].Modelo (Nombre)
-(select distinct (Auto_Modelo) from [gd_esquema].Maestra)
-go 
---Inserto marca modelos
-insert into [GIRLPOWER].MarcaModelo (IDMarca,IDModelo)
-(select distinct m.IDMarca, mo.idmodelo from gd_esquema.Maestra gdm
-inner join [GIRLPOWER].Marca m on gdm.Auto_Marca=m.Nombre
-inner join [GIRLPOWER].Modelo mo on gdm.Auto_Modelo=mo.Nombre)
 
+-- CREATE SP
 
--- Inserto Usuarios
--- Choferes
-insert into [GIRLPOWER].Usuario
-(Nombre,Apellido,Direccion,Telefono,DNI,FechaNacimiento,ContraseniaEncriptada
-,Mail,Username)
- (select distinct   Chofer_Nombre,Chofer_Apellido,
- Chofer_Direccion,Chofer_Telefono,Chofer_Dni,Chofer_Fecha_Nac,'E79E418E48623569D75E2A7B09AE88ED9B77B126A445B9FF9DC6989A08EFA079',Chofer_Mail,Chofer_Dni
- from [gd_esquema].Maestra 
- )
- go
- insert into [GIRLPOWER].Chofer (IDUsuario)
- (select IDUsuario from [GIRLPOWER].Usuario)
- go
--- Inserto Clientes
-insert into [GIRLPOWER].Usuario
-(Nombre,Apellido,Direccion,Telefono,DNI,FechaNacimiento,ContraseniaEncriptada
-,Mail,Username)
-(select  distinct Cliente_Nombre,Cliente_Apellido,
- Cliente_Direccion,Cliente_Telefono,Cliente_Dni,Cliente_Fecha_Nac,'E79E418E48623569D75E2A7B09AE88ED9B77B126A445B9FF9DC6989A08EFA079',Cliente_Mail,Cliente_Dni
- from [gd_esquema].Maestra 
- )
- go
- insert into [GIRLPOWER].Cliente (IDUsuario) -- codigo postal se setea en null de esta forma  
- (select   IDUsuario from [GIRLPOWER].Usuario 
- where IDUsuario not in (select IDUsuario
- FROM [GIRLPOWER].Chofer))
- go
- -- Turno
- insert into [GIRLPOWER].Turno (HoraInicio,HoraFin,Descripcion,ValorKilometro,PrecioBase,Habilitado)
- (select distinct Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro
- ,Turno_Precio_Base,1 from [gd_esquema].Maestra)
- go
- --  Inserto Automoviles
-	 insert into [GIRLPOWER].Automovil(IDChofer,IDMarcaModelo,Patente,Licencia,Rodado,Habilitado)
- (select distinct c.IDChofer,mamo.IDMarcaModelo,
-	 gdm.Auto_Patente,gdm.Auto_Licencia,gdm.Auto_Rodado,1 
-	 from [gd_esquema].Maestra gdm inner join [GIRLPOWER].Usuario u
-	 on u.DNI=gdm.Chofer_Dni
-	 inner join [GIRLPOWER].Chofer c on c.IDUsuario =u.IDUsuario
-	 inner join [GIRLPOWER].Marca m on m.Nombre=gdm.Auto_Marca
-	 inner join [GIRLPOWER].Modelo mo ON mo.Nombre=gdm.Auto_Modelo
-	 inner join [GIRLPOWER].MarcaModelo mamo on mamo.IDModelo =mo.IDModelo 
-	 and mamo.idmarca=m.idmarca)
-go
---  Inserto turnos por automoviles (por cada automovil hay 3 turnos que son los insertados)
-insert into [GIRLPOWER].TurnoPorAutomovil (IDTurno,IDAutomovil)
-(select IDTurno,IDAutomovil from [GIRLPOWER].Turno, [GIRLPOWER].Automovil)
-go
- -- Inserto Viajes
-
-
- insert into [GIRLPOWER].Viaje(IDChofer,IDCliente,IDAutomovil,IDTurno,CantidadKilometros,FechaInicio,FechaFin)
- (SELECT distinct chofer.IDChofer,cliente.IDCliente,a.IDAutomovil,t.IDTurno,
-Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha FROM [gd_esquema].Maestra gdm 
- inner join [GIRLPOWER].Usuario chof on chof.DNI=gdm.Chofer_Dni 
- inner join [GIRLPOWER].Chofer chofer on chofer.IDUsuario=chof.IDUsuario
- inner join [GIRLPOWER].Usuario cli on cli.DNI=gdm.Cliente_Dni
- INNER JOIN [GIRLPOWER].Cliente cliente on cliente.IDUsuario=cli.[IDUsuario]
- inner join [GIRLPOWER].Automovil a on a.Patente=gdm.Auto_Patente
- inner join [GIRLPOWER].Turno t on t.Descripcion =gdm.Turno_Descripcion
- )
- go
-
- --- inserto cabecera factura
-insert into [GIRLPOWER].Factura 
-(IDCliente,FechaInicio,FechaFin,ImporteTotal,NroFactura,Fecha)
-(select distinct c.IDCliente,Factura_Fecha_Inicio,Factura_Fecha_Fin,0,Factura_Nro,Factura_Fecha
- from [gd_esquema].Maestra m
- inner join [GIRLPOWER].Usuario u on  u.DNI=m.Cliente_Dni
-  inner join [GIRLPOWER].Cliente c on  c.IDUsuario=u.idusuario
- where Factura_Nro is not null)
-
-
- ---inserto factura detalle
- insert into [GIRLPOWER].FacturaDetalle(IDFactura,IDViaje,Importe)
- (
-  select distinct  f.IDFactura, v.IDViaje,
-  (T.PrecioBase+ (t.ValorKilometro*v.CantidadKilometros)) AS importe
- from [gd_esquema].Maestra m
- inner join [GIRLPOWER].Factura F ON f.NroFactura=m.Factura_Nro 
- inner join [GIRLPOWER].Viaje v on v.FechaInicio=m.Viaje_Fecha 
-  inner join [GIRLPOWER].Turno t on t.IDTurno=V.IDTurno 
- where Factura_Nro is not null)
-
-
- --- actualizo importe factura
- update [GIRLPOWER].Factura set ImporteTotal=
- (select sum (Importe) from  [GIRLPOWER].FacturaDetalle fd where fd.IDFactura=f.IDFactura
- group by fd.IDFactura)
- from [GIRLPOWER].Factura f 
-
---insert into rendicion
-insert  into [GIRLPOWER].Rendicion (IDTurno,IDChofer,Fecha,ImporteTotal,NroRendicion)
-(select distinct t.IDTurno,c.IDChofer,m.Rendicion_Fecha,0,m.Rendicion_Nro from gd_esquema.Maestra m
-inner join [GIRLPOWER].Turno t on t.Descripcion=m.Turno_Descripcion
-inner join [GIRLPOWER].Usuario u on  u.DNI=m.Chofer_Dni
-  inner join [GIRLPOWER].Chofer c on  c.IDUsuario=u.idusuario
-  where Rendicion_Nro is not null
-)
--- rendicion detalle
-insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
-(SELECT distinct  r.idRendicion, v.IDViaje,m.Rendicion_Importe
- from [gd_esquema].Maestra m
- inner join [GIRLPOWER].Rendicion r ON r.nroRendicion =m.Rendicion_Nro 
- inner join [GIRLPOWER].Viaje v on v.FechaInicio=m.Viaje_Fecha and
-  v.CantidadKilometros=m.Viaje_Cant_Kilometros
- where Rendicion_Nro is not null )
- 
-  --- actualizo importe rendicion
- update [GIRLPOWER].Rendicion set ImporteTotal=
- (select sum (Importe) from  [GIRLPOWER].RendicionDetalle rd where 
- rd.IDRendicion=r.IDRendicion
- group by rd.IDRendicion)
- from [GIRLPOWER].Rendicion r
-
- --insert into rol
- insert into GIRLPOWER.Rol (Nombre) Values ('Administrador')
- insert into GIRLPOWER.Rol (Nombre) Values ('Chofer')
- insert into GIRLPOWER.Rol (Nombre) Values ('Cliente')
-
- --insert into rol por usuario 
- --insert clientes into rol por usuario
- insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
-  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
-	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
-	WHERE r.Nombre = 'Cliente' group by u.IDUsuario, r.IDRol)
-
---insert chofer into rol por usuario
- insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
-  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
-	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
-	WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
-
---insert usuario admin 
-insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, convert(datetime,'1976-04-13 00:00:00.000',120), 
-	'52D77462B24987175C8D7DAB901A5967E927FFC8D0B6E4A234E07A4AEC5E3724', 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
-insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
-	
---procedures
-IF OBJECT_ID ('GIRLPOWER.PR_altaAutomovil', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].[PR_altaAutomovil]
-GO
-
-create procedure [GIRLPOWER].PR_altaAutomovil(
-@idChofer int, @idMarca int, @idModelo int,@patente varchar(10), @licencia varchar(26),
-@rodado varchar(10)
-)
-as 
-begin
-declare @idMarcaModelo int
-set @idMarcaModelo=(select IDMarcaModelo from [GIRLPOWER].MarcaModelo where 
-IDMarca=@idMarca and IDModelo=@idModelo)
-insert into [GIRLPOWER].Automovil (IDChofer,IDMarcaModelo,Patente,Licencia,Rodado,Habilitado)values
-(@idChofer,@idMarcaModelo,@patente,@licencia,@rodado,1)
-	RETURN @@rowCount
-end 
-go 
-
-
-IF OBJECT_ID ('GIRLPOWER.PR_modificarAutomovil', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].[PR_modificarAutomovil]
-GO
-
-create procedure [GIRLPOWER].PR_modificarAutomovil(
-@idAutomovil int,@idChofer int, @idMarca int, @idModelo int,@patente varchar(10), @licencia varchar(26),
-@rodado varchar(10)
-)
-as 
-begin
-declare @idMarcaModelo int
-set @idMarcaModelo=(select IDMarcaModelo from [GIRLPOWER].MarcaModelo where 
-IDMarca=@idMarca and IDModelo=@idModelo)
-update [GIRLPOWER].Automovil set 
-IDChofer=@idChofer,
-IDMarcaModelo=@idMarcaModelo,
-Patente=@patente,
-Licencia=@licencia,
-Rodado=@rodado
-where IDAutomovil=@idAutomovil
-	RETURN @@rowCount
-end 
-go
-
-
-IF OBJECT_ID ('GIRLPOWER.PR_TraerAutomoviles', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].PR_TraerAutomoviles
-GO
-
-CREATE PROCEDURE [GIRLPOWER].PR_TraerAutomoviles (@idChofer int,@idMarca int, @patente varchar (10))
- AS
-BEGIN
-	BEGIN TRY
-		SELECT IDAutomovil,u.Nombre as Chofer, ma.Nombre as Marca,mo.Nombre as Modelo,Licencia,Patente,Rodado,a.Habilitado
-		 FROM [GIRLPOWER].[Automovil] a 
-		JOIN [GIRLPOWER].[MarcaModelo] m
-		 ON a.IDMarcaModelo = m.IDMarcaModelo
-
-		 JOIN [GIRLPOWER].Marca ma
-		 ON ma.IDMarca = m.IDMarca
-
-JOIN [GIRLPOWER].[Modelo] mo
-		 ON m.IDModelo = mo.IDModelo
-
-JOIN [GIRLPOWER].[Chofer] c
-		 ON a.IDChofer = c.IDChofer
-
-		 JOIN [GIRLPOWER].Usuario u
-		 on u.IDUsuario=c.IDUsuario
-
-		 where (@idChofer=0 OR C.IDChofer=@idChofer)AND
-		 (@idMarca=0 OR ma.IDMarca=@idMarca)and
-		 (@patente='' OR Patente=@patente)
-	END TRY
-	BEGIN CATCH
-		RAISERROR('Hubo un error cargando los automoviles', 16, 217)
-			WITH SETERROR
-	END CATCH
-END
-GO
-IF OBJECT_ID ('GIRLPOWER.deshabilitarAutomovil', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].deshabilitarAutomovil
-GO
-
-CREATE PROCEDURE [GIRLPOWER].deshabilitarAutomovil (@id int) AS
-BEGIN
-	
-		update [GIRLPOWER].Automovil set Habilitado=0 where IDAutomovil=@id
-	
-END
-GO
-
-
-IF OBJECT_ID ('GIRLPOWER.PR_traerUsuarioPorUsername', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername]
-GO
-
-IF OBJECT_ID ('GIRLPOWER.deshabilitarUsuario', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].[deshabilitarUsuario]
-GO
-
-IF OBJECT_ID ('GIRLPOWER.traerListadoRolPorUsuario', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].[traerListadoRolPorUsuario]
-GO
-
-CREATE PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername] (@Username VARCHAR(30)) AS
-BEGIN
-	SELECT * FROM girlpower.usuario WHERE username=@Username
-END
-GO
-
-CREATE PROCEDURE [GIRLPOWER].[deshabilitarUsuario] (@IdUsuario int) AS
-BEGIN
-	UPDATE girlpower.usuario SET Habilitado=0 WHERE IDUsuario=@IdUsuario
-END
-GO
-
-CREATE PROCEDURE [GIRLPOWER].[traerListadoRolPorUsuario] (@IDUsuario int) AS
-BEGIN
-	SELECT * FROM girlpower.RolPorUsuario r1
-	join girlpower.Rol r2 on r1.IDRol = r2.IDRol
-	WHERE r1.IDUsuario=@IDUsuario
-END
-GO
-
-/****** Object:  StoredProcedure [dbo].[PR_altaUsuario]    Script Date: 8/6/2017 12:19:18 a. m. ******/
 IF OBJECT_ID ('GIRLPOWER.PR_altaUsuario', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 GO
 
-/****** Object:  StoredProcedure [dbo].[PR_altaUsuario]    Script Date: 8/6/2017 12:19:18 a. m. ******/
+
 SET ANSI_NULLS ON
 GO
 
@@ -1590,3 +1331,286 @@ BEGIN
 	END CATCH
 END
 GO
+
+
+IF OBJECT_ID ('GIRLPOWER.PR_traerUsuarioPorUsername', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.deshabilitarUsuario', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[deshabilitarUsuario]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoRolPorUsuario', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoRolPorUsuario]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername] (@Username VARCHAR(30)) AS
+BEGIN
+	SELECT * FROM girlpower.usuario WHERE username=@Username
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[deshabilitarUsuario] (@IdUsuario int) AS
+BEGIN
+	UPDATE girlpower.usuario SET Habilitado=0 WHERE IDUsuario=@IdUsuario
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoRolPorUsuario] (@IDUsuario int) AS
+BEGIN
+	SELECT * FROM girlpower.RolPorUsuario r1
+	join girlpower.Rol r2 on r1.IDRol = r2.IDRol
+	WHERE r1.IDUsuario=@IDUsuario
+END
+GO
+
+
+IF OBJECT_ID ('GIRLPOWER.PR_altaAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_altaAutomovil]
+GO
+
+create procedure [GIRLPOWER].PR_altaAutomovil(
+@idChofer int, @idMarca int, @idModelo int,@patente varchar(10), @licencia varchar(26),
+@rodado varchar(10)
+)
+as 
+begin
+declare @idMarcaModelo int
+set @idMarcaModelo=(select IDMarcaModelo from [GIRLPOWER].MarcaModelo where 
+IDMarca=@idMarca and IDModelo=@idModelo)
+insert into [GIRLPOWER].Automovil (IDChofer,IDMarcaModelo,Patente,Licencia,Rodado,Habilitado)values
+(@idChofer,@idMarcaModelo,@patente,@licencia,@rodado,1)
+	RETURN @@rowCount
+end 
+go 
+
+
+IF OBJECT_ID ('GIRLPOWER.PR_modificarAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_modificarAutomovil]
+GO
+
+create procedure [GIRLPOWER].PR_modificarAutomovil(
+@idAutomovil int,@idChofer int, @idMarca int, @idModelo int,@patente varchar(10), @licencia varchar(26),
+@rodado varchar(10)
+)
+as 
+begin
+declare @idMarcaModelo int
+set @idMarcaModelo=(select IDMarcaModelo from [GIRLPOWER].MarcaModelo where 
+IDMarca=@idMarca and IDModelo=@idModelo)
+update [GIRLPOWER].Automovil set 
+IDChofer=@idChofer,
+IDMarcaModelo=@idMarcaModelo,
+Patente=@patente,
+Licencia=@licencia,
+Rodado=@rodado
+where IDAutomovil=@idAutomovil
+	RETURN @@rowCount
+end 
+go
+
+
+IF OBJECT_ID ('GIRLPOWER.PR_TraerAutomoviles', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].PR_TraerAutomoviles
+GO
+
+CREATE PROCEDURE [GIRLPOWER].PR_TraerAutomoviles (@idChofer int,@idMarca int, @patente varchar (10))
+ AS
+BEGIN
+	BEGIN TRY
+		SELECT IDAutomovil,u.Nombre as Chofer, ma.Nombre as Marca,mo.Nombre as Modelo,Licencia,Patente,Rodado,a.Habilitado
+		 FROM [GIRLPOWER].[Automovil] a 
+		JOIN [GIRLPOWER].[MarcaModelo] m
+		 ON a.IDMarcaModelo = m.IDMarcaModelo
+
+		 JOIN [GIRLPOWER].Marca ma
+		 ON ma.IDMarca = m.IDMarca
+
+JOIN [GIRLPOWER].[Modelo] mo
+		 ON m.IDModelo = mo.IDModelo
+
+JOIN [GIRLPOWER].[Chofer] c
+		 ON a.IDChofer = c.IDChofer
+
+		 JOIN [GIRLPOWER].Usuario u
+		 on u.IDUsuario=c.IDUsuario
+
+		 where (@idChofer=0 OR C.IDChofer=@idChofer)AND
+		 (@idMarca=0 OR ma.IDMarca=@idMarca)and
+		 (@patente='' OR Patente=@patente)
+	END TRY
+	BEGIN CATCH
+		RAISERROR('Hubo un error cargando los automoviles', 16, 217)
+			WITH SETERROR
+	END CATCH
+END
+GO
+IF OBJECT_ID ('GIRLPOWER.deshabilitarAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].deshabilitarAutomovil
+GO
+
+CREATE PROCEDURE [GIRLPOWER].deshabilitarAutomovil (@id int) AS
+BEGIN
+	
+		update [GIRLPOWER].Automovil set Habilitado=0 where IDAutomovil=@id
+	
+END
+GO
+
+--INSERTS
+
+--Inserto Marcas
+insert into [GIRLPOWER].Marca
+(Nombre)
+(select distinct(Auto_Marca) from [gd_esquema].Maestra)
+go
+--Inserto Modelos
+insert into [GIRLPOWER].Modelo (Nombre)
+(select distinct (Auto_Modelo) from [gd_esquema].Maestra)
+go 
+--Inserto marca modelos
+insert into [GIRLPOWER].MarcaModelo (IDMarca,IDModelo)
+(select distinct m.IDMarca, mo.idmodelo from gd_esquema.Maestra gdm
+inner join [GIRLPOWER].Marca m on gdm.Auto_Marca=m.Nombre
+inner join [GIRLPOWER].Modelo mo on gdm.Auto_Modelo=mo.Nombre)
+
+
+-- Inserto Usuarios
+-- Choferes
+insert into [GIRLPOWER].Usuario
+(Nombre,Apellido,Direccion,Telefono,DNI,FechaNacimiento,ContraseniaEncriptada
+,Mail,Username)
+ (select distinct   Chofer_Nombre,Chofer_Apellido,
+ Chofer_Direccion,Chofer_Telefono,Chofer_Dni,Chofer_Fecha_Nac,'E79E418E48623569D75E2A7B09AE88ED9B77B126A445B9FF9DC6989A08EFA079',Chofer_Mail,Chofer_Dni
+ from [gd_esquema].Maestra 
+ )
+ go
+ insert into [GIRLPOWER].Chofer (IDUsuario)
+ (select IDUsuario from [GIRLPOWER].Usuario)
+ go
+-- Inserto Clientes
+insert into [GIRLPOWER].Usuario
+(Nombre,Apellido,Direccion,Telefono,DNI,FechaNacimiento,ContraseniaEncriptada
+,Mail,Username)
+(select  distinct Cliente_Nombre,Cliente_Apellido,
+ Cliente_Direccion,Cliente_Telefono,Cliente_Dni,Cliente_Fecha_Nac,'E79E418E48623569D75E2A7B09AE88ED9B77B126A445B9FF9DC6989A08EFA079',Cliente_Mail,Cliente_Dni
+ from [gd_esquema].Maestra 
+ )
+ go
+ insert into [GIRLPOWER].Cliente (IDUsuario) -- codigo postal se setea en null de esta forma  
+ (select   IDUsuario from [GIRLPOWER].Usuario 
+ where IDUsuario not in (select IDUsuario
+ FROM [GIRLPOWER].Chofer))
+ go
+ -- Turno
+ insert into [GIRLPOWER].Turno (HoraInicio,HoraFin,Descripcion,ValorKilometro,PrecioBase,Habilitado)
+ (select distinct Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro
+ ,Turno_Precio_Base,1 from [gd_esquema].Maestra)
+ go
+ --  Inserto Automoviles
+	 insert into [GIRLPOWER].Automovil(IDChofer,IDMarcaModelo,Patente,Licencia,Rodado,Habilitado)
+ (select distinct c.IDChofer,mamo.IDMarcaModelo,
+	 gdm.Auto_Patente,gdm.Auto_Licencia,gdm.Auto_Rodado,1 
+	 from [gd_esquema].Maestra gdm inner join [GIRLPOWER].Usuario u
+	 on u.DNI=gdm.Chofer_Dni
+	 inner join [GIRLPOWER].Chofer c on c.IDUsuario =u.IDUsuario
+	 inner join [GIRLPOWER].Marca m on m.Nombre=gdm.Auto_Marca
+	 inner join [GIRLPOWER].Modelo mo ON mo.Nombre=gdm.Auto_Modelo
+	 inner join [GIRLPOWER].MarcaModelo mamo on mamo.IDModelo =mo.IDModelo 
+	 and mamo.idmarca=m.idmarca)
+go
+--  Inserto turnos por automoviles (por cada automovil hay 3 turnos que son los insertados)
+insert into [GIRLPOWER].TurnoPorAutomovil (IDTurno,IDAutomovil)
+(select IDTurno,IDAutomovil from [GIRLPOWER].Turno, [GIRLPOWER].Automovil)
+go
+ -- Inserto Viajes
+
+
+ insert into [GIRLPOWER].Viaje(IDChofer,IDCliente,IDAutomovil,IDTurno,CantidadKilometros,FechaInicio,FechaFin)
+ (SELECT distinct chofer.IDChofer,cliente.IDCliente,a.IDAutomovil,t.IDTurno,
+Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha FROM [gd_esquema].Maestra gdm 
+ inner join [GIRLPOWER].Usuario chof on chof.DNI=gdm.Chofer_Dni 
+ inner join [GIRLPOWER].Chofer chofer on chofer.IDUsuario=chof.IDUsuario
+ inner join [GIRLPOWER].Usuario cli on cli.DNI=gdm.Cliente_Dni
+ INNER JOIN [GIRLPOWER].Cliente cliente on cliente.IDUsuario=cli.[IDUsuario]
+ inner join [GIRLPOWER].Automovil a on a.Patente=gdm.Auto_Patente
+ inner join [GIRLPOWER].Turno t on t.Descripcion =gdm.Turno_Descripcion
+ )
+ go
+
+ --- inserto cabecera factura
+insert into [GIRLPOWER].Factura 
+(IDCliente,FechaInicio,FechaFin,ImporteTotal,NroFactura,Fecha)
+(select distinct c.IDCliente,Factura_Fecha_Inicio,Factura_Fecha_Fin,0,Factura_Nro,Factura_Fecha
+ from [gd_esquema].Maestra m
+ inner join [GIRLPOWER].Usuario u on  u.DNI=m.Cliente_Dni
+  inner join [GIRLPOWER].Cliente c on  c.IDUsuario=u.idusuario
+ where Factura_Nro is not null)
+
+
+ ---inserto factura detalle
+ insert into [GIRLPOWER].FacturaDetalle(IDFactura,IDViaje,Importe)
+ (
+  select distinct  f.IDFactura, v.IDViaje,
+  (T.PrecioBase+ (t.ValorKilometro*v.CantidadKilometros)) AS importe
+ from [gd_esquema].Maestra m
+ inner join [GIRLPOWER].Factura F ON f.NroFactura=m.Factura_Nro 
+ inner join [GIRLPOWER].Viaje v on v.FechaInicio=m.Viaje_Fecha 
+  inner join [GIRLPOWER].Turno t on t.IDTurno=V.IDTurno 
+ where Factura_Nro is not null)
+
+
+ --- actualizo importe factura
+ update [GIRLPOWER].Factura set ImporteTotal=
+ (select sum (Importe) from  [GIRLPOWER].FacturaDetalle fd where fd.IDFactura=f.IDFactura
+ group by fd.IDFactura)
+ from [GIRLPOWER].Factura f 
+
+--insert into rendicion
+insert  into [GIRLPOWER].Rendicion (IDTurno,IDChofer,Fecha,ImporteTotal,NroRendicion)
+(select distinct t.IDTurno,c.IDChofer,m.Rendicion_Fecha,0,m.Rendicion_Nro from gd_esquema.Maestra m
+inner join [GIRLPOWER].Turno t on t.Descripcion=m.Turno_Descripcion
+inner join [GIRLPOWER].Usuario u on  u.DNI=m.Chofer_Dni
+  inner join [GIRLPOWER].Chofer c on  c.IDUsuario=u.idusuario
+  where Rendicion_Nro is not null
+)
+-- rendicion detalle
+insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
+(SELECT distinct  r.idRendicion, v.IDViaje,m.Rendicion_Importe
+ from [gd_esquema].Maestra m
+ inner join [GIRLPOWER].Rendicion r ON r.nroRendicion =m.Rendicion_Nro 
+ inner join [GIRLPOWER].Viaje v on v.FechaInicio=m.Viaje_Fecha and
+  v.CantidadKilometros=m.Viaje_Cant_Kilometros
+ where Rendicion_Nro is not null )
+ 
+  --- actualizo importe rendicion
+ update [GIRLPOWER].Rendicion set ImporteTotal=
+ (select sum (Importe) from  [GIRLPOWER].RendicionDetalle rd where 
+ rd.IDRendicion=r.IDRendicion
+ group by rd.IDRendicion)
+ from [GIRLPOWER].Rendicion r
+
+ --insert into rol
+ insert into GIRLPOWER.Rol (Nombre) Values ('Administrador')
+ insert into GIRLPOWER.Rol (Nombre) Values ('Chofer')
+ insert into GIRLPOWER.Rol (Nombre) Values ('Cliente')
+
+ --insert into rol por usuario 
+ --insert clientes into rol por usuario
+ insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	WHERE r.Nombre = 'Cliente' group by u.IDUsuario, r.IDRol)
+
+--insert chofer into rol por usuario
+ insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
+
+--insert usuario admin 
+insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, convert(datetime,'1976-04-13 00:00:00.000',120), 
+	'52D77462B24987175C8D7DAB901A5967E927FFC8D0B6E4A234E07A4AEC5E3724', 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
+insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
+	
