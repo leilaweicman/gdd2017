@@ -28,8 +28,13 @@ namespace UberFrba
         
         private void Home_Load(object sender, EventArgs e)
         {
+            lblAbmCliente.Visible = false;
+            lblRegistrarAutomovil.Visible = false;
+            lblAbmChofer.Visible = false;
+            lblListadoAutomoviles.Visible = false;
+
+            usuario.Rol.setearFuncionalidadesAlRol();
            
-           /*usuario.Rol.setearFuncionalidadesAlRol();
             bool permisosAdmin = false;
             bool permisosPublicacion = false;
             bool permisosUsuario = false;
@@ -39,66 +44,57 @@ namespace UberFrba
             //vere mas o menos pestañas en el menu           
             foreach (Funcionalidad unaFunc in usuario.Rol.Funcionalidades)
             {
-                 switch (unaFunc.obtenerPorNombre())
+                switch (unaFunc.obtenerPorNombre())
                 {
                     case Funcionalidades.ABM_Cliente:
-                        aBMClientesToolStripMenuItem.Visible = true;
-                        permisosAdmin = true;
-                        break;                  
+                        //aBMClientesToolStripMenuItem.Visible = true;
+                        //permisosAdmin = true;
+                        lblAbmCliente.Visible = true;
+                        break;
                     case Funcionalidades.ABM_Rol:
-                        ABMRolesToolStripMenuItem.Visible = true;
-                        permisosAdmin = true;
+                        //ABMRolesToolStripMenuItem.Visible = true;
+                        //permisosAdmin = true;
                         break;
-                    case Funcionalidades.Administrar_Usuarios:
-                        administrarUsuariosToolStripMenuItem.Visible = true;
-                        permisosAdmin = true;
+                    case Funcionalidades.ABM_Automovil:
+                        //administrarUsuariosToolStripMenuItem.Visible = true;
+                        //permisosAdmin = true;
+                        lblRegistrarAutomovil.Visible = true;
                         break;
-                    case Funcionalidades.Cambiar_Clave:
-                        cambiarClaveToolStripMenuItem.Visible = true;
-                        permisosAdmin = true;
+                    case Funcionalidades.ABM_Chofer:
+                        //cambiarClaveToolStripMenuItem.Visible = true;
+                        //permisosAdmin = true;
+                        lblAbmChofer.Visible = true;
                         break;
-                    case Funcionalidades.ABM_Visibilidad:
-                        AbmVisiblidadToolStripMenuItem.Visible = true;
-                        permisosPublicacion = true;
+                    case Funcionalidades.Registro_Viajes:
+                        //AbmVisiblidadToolStripMenuItem.Visible = true;
+                        //permisosPublicacion = true;
                         break;
-                    case Funcionalidades.Calificar:
-                        calificarVendedoresToolStripMenuItem.Visible = true;
-                        permisosUsuario = true;
+                    case Funcionalidades.Rendicion_Cuenta:
+                        //calificarVendedoresToolStripMenuItem.Visible = true;
+                        //permisosUsuario = true;
                         break;
-                    case Funcionalidades.Comprar_Ofertar:
-                        comprarOfertarToolStripMenuItem.Visible = true;
-                        permisosPublicacion = true;
+                    case Funcionalidades.Facturacion:
+                        //comprarOfertarToolStripMenuItem.Visible = true;
+                        //permisosPublicacion = true;
                         break;
-                    case Funcionalidades.Estadisticas:
-                        listadoEstadísticoToolStripMenuItem.Visible = true;
-                        permisosUsuario = true;
+                    case Funcionalidades.Listado_Estadistico:
+                        //listadoEstadísticoToolStripMenuItem.Visible = true;
+                        //permisosUsuario = true;
                         break;
-                    case Funcionalidades.Facturar:
-                        facturarPublicacionesToolStripMenuItem.Visible = true;
-                        permisosPublicacion = true;
+                    case Funcionalidades.ABM_Turno:
+                        //facturarPublicacionesToolStripMenuItem.Visible = true;
+                        //permisosPublicacion = true;
                         break;
-                    case Funcionalidades.Generar_Publicaciones:
-                        generarPublicacionToolStripMenuItem.Visible = true;
-                        permisosPublicacion = true;
-                        break;
-                    case Funcionalidades.Historial_clientes:
-                        historialToolStripMenuItem1.Visible = true;
-                        permisosUsuario = true;
-                        break;
-                    case Funcionalidades.Mis_Publicaciones:
-                        misPublicacionesToolStripMenuItem.Visible = true;
-                        permisosPublicacion = true;
-                        break;
-                    
+
                 }
             }
 
-            if (!permisosAdmin)
-                menu.Items.Remove(pestanaAdmin);
-            if (!permisosPublicacion)
-                menu.Items.Remove(pestanaPublicacion);
-            if (!permisosUsuario)
-                menu.Items.Remove(pestanaUsuario);*/
+            //if (!permisosAdmin)
+            //    menu.Items.Remove(pestanaAdmin);
+            //if (!permisosPublicacion)
+            //    menu.Items.Remove(pestanaPublicacion);
+            //if (!permisosUsuario)
+            //    menu.Items.Remove(pestanaUsuario);
 
         }
         

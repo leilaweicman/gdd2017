@@ -67,15 +67,14 @@ namespace Classes
         public Funcionalidades? obtenerPorNombre()
         {
             if (Nombre == "ABM_Clientes") return Funcionalidades.ABM_Cliente;
-            //if (Nombre == "Administrar_Usuarios") return Funcionalidades.Administrar_Usuarios;
-            //if (Nombre == "Cambiar_Clave") return Funcionalidades.Cambiar_Clave;
             if (Nombre == "ABM_Rol") return Funcionalidades.ABM_Rol;
-            if (Nombre == "Mis_Publicaciones") return Funcionalidades.ABM_Automovil;
-            if (Nombre == "Comprar_Ofertar") return Funcionalidades.ABM_Chofer;
-            if (Nombre == "Calificar") return Funcionalidades.Rendicion_Cuenta;
-            if (Nombre == "Facturar") return Funcionalidades.Facturacion;
-            if (Nombre == "Historial_clientes") return Funcionalidades.Registro_Viajes;
-            if (Nombre == "Estadisticas") return Funcionalidades.Listado_Estadistico;
+            if (Nombre == "ABM_Automovil") return Funcionalidades.ABM_Automovil;
+            if (Nombre == "ABM_Chofer") return Funcionalidades.ABM_Chofer;
+            if (Nombre == "Rendicion_Cuenta") return Funcionalidades.Rendicion_Cuenta;
+            if (Nombre == "Facturacion") return Funcionalidades.Facturacion;
+            if (Nombre == "Registro_Viajes") return Funcionalidades.Registro_Viajes;
+            if (Nombre == "Listado_Estadistico") return Funcionalidades.Listado_Estadistico;
+            if (Nombre == "ABM_Turno") return Funcionalidades.ABM_Turno;
             return null;
         }
 
@@ -84,7 +83,7 @@ namespace Classes
         #region metodos privados
         private void setearListaDeParametrosConIdRol(int id_Rol)
         {
-            parameterList.Add(new SqlParameter("@id_Rol", id_Rol));
+            parameterList.Add(new SqlParameter("@IDRol", id_Rol));
         }
         #endregion
 
@@ -101,6 +100,7 @@ namespace Classes
         Registro_Viajes,
         Rendicion_Cuenta,
         Facturacion,
-        Listado_Estadistico
+        Listado_Estadistico,
+        ABM_Turno
     }
 }

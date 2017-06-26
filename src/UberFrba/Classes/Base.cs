@@ -62,7 +62,8 @@ namespace Classes
 
         public DataSet TraerListado(List<SqlParameter> parameterList, string Condiciones)
         {
-            return SQLHelper.ExecuteDataSet(_strTraerListado + NombreTabla() + Condiciones, CommandType.StoredProcedure, NombreTabla(), parameterList);
+            string sp = _strTraerListado + NombreTabla() + Condiciones;
+                return SQLHelper.ExecuteDataSet(_strTraerListado + NombreTabla() + Condiciones, CommandType.StoredProcedure, NombreTabla(), parameterList);
         }
 
         /// <summary>
