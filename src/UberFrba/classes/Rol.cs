@@ -17,7 +17,7 @@ namespace Classes
         private int _id_Rol;
         private string _nombre;
         private bool _habilitado;
-        //List<Funcionalidad> _funcionalidades = new List<Funcionalidad>();
+        List<Funcionalidad> _funcionalidades = new List<Funcionalidad>();
         #endregion
 
         #region properties
@@ -37,12 +37,13 @@ namespace Classes
             get { return _habilitado; }
             set { _habilitado = value; }
         }
-        
-        //public List<Funcionalidad> Funcionalidades
-        //{
-        //    get { return _funcionalidades; }
-        //    set { _funcionalidades = value; }
-        //}
+
+        public List<Funcionalidad> Funcionalidades
+        {
+            get { return _funcionalidades; }
+            set { _funcionalidades = value; }
+        }
+
         #endregion
 
         #region constructor
@@ -83,6 +84,17 @@ namespace Classes
             rol.parameterList.Clear();
 
             return ds;
+        }
+
+        public void setearFuncionalidadesAlRol()
+        {
+            DataSet dsFuncionalidades = Funcionalidad.ObtenerFuncionalidadesPorRol(this.Id_Rol);
+            foreach (DataRow dr in dsFuncionalidades.Tables[0].Rows)
+            {
+                Funcionalidad func = new Funcionalidad();
+                func.DataRowToObject(dr);
+                this.Funcionalidades.Add(func);
+            }
         }
         
         #endregion

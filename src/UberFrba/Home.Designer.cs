@@ -119,6 +119,7 @@
             this.Controls.Add(this.grpAdmin);
             this.Name = "Home";
             this.Text = "Home";
+            this.Load += new System.EventHandler(this.Home_Load);
             this.grpAdmin.ResumeLayout(false);
             this.grpAdmin.PerformLayout();
             this.ResumeLayout(false);

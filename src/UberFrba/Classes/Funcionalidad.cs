@@ -33,7 +33,7 @@ namespace Classes
         #region metodos publicos
         public override string NombreTabla()
         {
-            return "Funcionalidades";
+            return "Funcionalidad";
         }
 
         public override string NombreEntidad()
@@ -44,7 +44,7 @@ namespace Classes
         public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo que devuelve el sp de la DB
-            this.id_Funcionalidad = Convert.ToInt32(dr["id_Funcionalidad"]);
+            this.id_Funcionalidad = Convert.ToInt32(dr["IDFuncionalidad"]);
             this.Nombre = dr["Nombre"].ToString();
         }
 
@@ -52,7 +52,7 @@ namespace Classes
         {
             Funcionalidad func = new Funcionalidad();
             func.setearListaDeParametrosConIdRol(id_Rol);
-            DataSet ds = func.TraerListado(func.parameterList, "PorId_Rol");
+            DataSet ds = func.TraerListado(func.parameterList, "PorRol");
             func.parameterList.Clear();
             return ds;
         }
@@ -66,13 +66,10 @@ namespace Classes
 
         public Funcionalidades? obtenerPorNombre()
         {
-            if (Nombre == "ABM_Clientes") return Funcionalidades.ABM_Clientes;
-            if (Nombre == "ABM_Empresas") return Funcionalidades.ABM_Empresas;
-            if (Nombre == "Administrar_Usuarios") return Funcionalidades.Administrar_Usuarios;
-            if (Nombre == "Cambiar_Clave") return Funcionalidades.Cambiar_Clave;
+            if (Nombre == "ABM_Clientes") return Funcionalidades.ABM_Cliente;
+            //if (Nombre == "Administrar_Usuarios") return Funcionalidades.Administrar_Usuarios;
+            //if (Nombre == "Cambiar_Clave") return Funcionalidades.Cambiar_Clave;
             if (Nombre == "ABM_Rol") return Funcionalidades.ABM_Rol;
-            if (Nombre == "ABM_Visibilidad") return Funcionalidades.ABM_Visibilidad;
-            if (Nombre == "Generar_Publicaciones") return Funcionalidades.Generar_Publicaciones;
             if (Nombre == "Mis_Publicaciones") return Funcionalidades.ABM_Automovil;
             if (Nombre == "Comprar_Ofertar") return Funcionalidades.ABM_Chofer;
             if (Nombre == "Calificar") return Funcionalidades.Rendicion_Cuenta;

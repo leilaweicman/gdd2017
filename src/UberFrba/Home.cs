@@ -25,6 +25,83 @@ namespace UberFrba
             usuario = user;
             this.Show();
         }
+        
+        private void Home_Load(object sender, EventArgs e)
+        {
+           
+           /*usuario.Rol.setearFuncionalidadesAlRol();
+            bool permisosAdmin = false;
+            bool permisosPublicacion = false;
+            bool permisosUsuario = false;
+            //Segun el rol, voy a tener funcionalidades. Voy a comparar cada funcionalidad del rol
+            //contra el enum de la clase de funcionalidades que tiene definido todos los posibles tipos
+            //de funcionalidades permitidas para el usuario. Segun las funcionalidades que mi rol tenga
+            //vere mas o menos pestañas en el menu           
+            foreach (Funcionalidad unaFunc in usuario.Rol.Funcionalidades)
+            {
+                 switch (unaFunc.obtenerPorNombre())
+                {
+                    case Funcionalidades.ABM_Cliente:
+                        aBMClientesToolStripMenuItem.Visible = true;
+                        permisosAdmin = true;
+                        break;                  
+                    case Funcionalidades.ABM_Rol:
+                        ABMRolesToolStripMenuItem.Visible = true;
+                        permisosAdmin = true;
+                        break;
+                    case Funcionalidades.Administrar_Usuarios:
+                        administrarUsuariosToolStripMenuItem.Visible = true;
+                        permisosAdmin = true;
+                        break;
+                    case Funcionalidades.Cambiar_Clave:
+                        cambiarClaveToolStripMenuItem.Visible = true;
+                        permisosAdmin = true;
+                        break;
+                    case Funcionalidades.ABM_Visibilidad:
+                        AbmVisiblidadToolStripMenuItem.Visible = true;
+                        permisosPublicacion = true;
+                        break;
+                    case Funcionalidades.Calificar:
+                        calificarVendedoresToolStripMenuItem.Visible = true;
+                        permisosUsuario = true;
+                        break;
+                    case Funcionalidades.Comprar_Ofertar:
+                        comprarOfertarToolStripMenuItem.Visible = true;
+                        permisosPublicacion = true;
+                        break;
+                    case Funcionalidades.Estadisticas:
+                        listadoEstadísticoToolStripMenuItem.Visible = true;
+                        permisosUsuario = true;
+                        break;
+                    case Funcionalidades.Facturar:
+                        facturarPublicacionesToolStripMenuItem.Visible = true;
+                        permisosPublicacion = true;
+                        break;
+                    case Funcionalidades.Generar_Publicaciones:
+                        generarPublicacionToolStripMenuItem.Visible = true;
+                        permisosPublicacion = true;
+                        break;
+                    case Funcionalidades.Historial_clientes:
+                        historialToolStripMenuItem1.Visible = true;
+                        permisosUsuario = true;
+                        break;
+                    case Funcionalidades.Mis_Publicaciones:
+                        misPublicacionesToolStripMenuItem.Visible = true;
+                        permisosPublicacion = true;
+                        break;
+                    
+                }
+            }
+
+            if (!permisosAdmin)
+                menu.Items.Remove(pestanaAdmin);
+            if (!permisosPublicacion)
+                menu.Items.Remove(pestanaPublicacion);
+            if (!permisosUsuario)
+                menu.Items.Remove(pestanaUsuario);*/
+
+        }
+        
 
         private void lblRegistrarAutomovil_Click(object sender, EventArgs e)
         {
@@ -60,5 +137,7 @@ namespace UberFrba
             this.Hide();
             inicialForm.Show();
         }
+
+       
     }
 }
