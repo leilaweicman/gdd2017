@@ -32,6 +32,7 @@ namespace UberFrba
             lblRegistrarAutomovil.Visible = false;
             lblAbmChofer.Visible = false;
             lblListadoAutomoviles.Visible = false;
+            lblAbmRol.Visible = false;
 
             usuario.Rol.setearFuncionalidadesAlRol();
            
@@ -54,11 +55,13 @@ namespace UberFrba
                     case Funcionalidades.ABM_Rol:
                         //ABMRolesToolStripMenuItem.Visible = true;
                         //permisosAdmin = true;
+                        lblAbmRol.Visible = true;
                         break;
                     case Funcionalidades.ABM_Automovil:
                         //administrarUsuariosToolStripMenuItem.Visible = true;
                         //permisosAdmin = true;
                         lblRegistrarAutomovil.Visible = true;
+                        lblListadoAutomoviles.Visible = true;
                         break;
                     case Funcionalidades.ABM_Chofer:
                         //cambiarClaveToolStripMenuItem.Visible = true;
@@ -132,6 +135,13 @@ namespace UberFrba
             Inicial inicialForm = new Inicial();
             this.Hide();
             inicialForm.Show();
+        }
+
+        private void lblAbmRol_Click(object sender, EventArgs e)
+        {
+            UberFrba.Abm_Rol.AbmRol abmRol = new Abm_Rol.AbmRol();
+            this.Hide();
+            abmRol.Show();
         }
 
        

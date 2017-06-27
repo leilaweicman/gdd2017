@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace UberFrba.Abm_Rol
 {
-    public partial class Form1 : Form
+    public partial class Rol : Form
     {
-        public Form1()
+        public Rol()
         {
             InitializeComponent();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            UberFrba.Abm_Rol.AbmRol abmRol = new Abm_Rol.AbmRol();
+            this.Hide();
+            abmRol.Show();
         }
     }
 }

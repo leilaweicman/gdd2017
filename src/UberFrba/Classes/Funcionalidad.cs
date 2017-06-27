@@ -66,7 +66,7 @@ namespace Classes
 
         public Funcionalidades? obtenerPorNombre()
         {
-            if (Nombre == "ABM_Clientes") return Funcionalidades.ABM_Cliente;
+            if (Nombre == "ABM_Cliente") return Funcionalidades.ABM_Cliente;
             if (Nombre == "ABM_Rol") return Funcionalidades.ABM_Rol;
             if (Nombre == "ABM_Automovil") return Funcionalidades.ABM_Automovil;
             if (Nombre == "ABM_Chofer") return Funcionalidades.ABM_Chofer;

@@ -34,11 +34,13 @@
             this.lblAbmChofer = new System.Windows.Forms.Label();
             this.lblAbmCliente = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.lblAbmRol = new System.Windows.Forms.Label();
             this.grpAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpAdmin
             // 
+            this.grpAdmin.Controls.Add(this.lblAbmRol);
             this.grpAdmin.Controls.Add(this.lblListadoAutomoviles);
             this.grpAdmin.Controls.Add(this.lblRegistrarAutomovil);
             this.grpAdmin.Controls.Add(this.lblAbmChofer);
@@ -110,6 +112,18 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // lblAbmRol
+            // 
+            this.lblAbmRol.AutoSize = true;
+            this.lblAbmRol.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbmRol.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblAbmRol.Location = new System.Drawing.Point(243, 46);
+            this.lblAbmRol.Name = "lblAbmRol";
+            this.lblAbmRol.Size = new System.Drawing.Size(90, 23);
+            this.lblAbmRol.TabIndex = 10;
+            this.lblAbmRol.Text = "ABM Rol";
+            this.lblAbmRol.Click += new System.EventHandler(this.lblAbmRol_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -134,6 +148,7 @@
         private System.Windows.Forms.Label lblRegistrarAutomovil;
         private System.Windows.Forms.Label lblListadoAutomoviles;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label lblAbmRol;
 
 
     }
