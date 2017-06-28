@@ -144,6 +144,13 @@ namespace UberFrba
             abmRol.Show();
         }
 
+        private void lblRegistrarViajes_Click(object sender, EventArgs e)
+        {
+            UberFrba.Registro_Viajes.RegistroViaje registroViaje = new Registro_Viajes.RegistroViaje();
+            this.Hide();
+            registroViaje.Show();
+        }
+
        
     }
 }

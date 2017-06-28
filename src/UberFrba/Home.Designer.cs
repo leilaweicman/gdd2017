@@ -28,30 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.grpAdmin = new System.Windows.Forms.GroupBox();
+            this.grpFuncionalidades = new System.Windows.Forms.GroupBox();
+            this.lblAbmRol = new System.Windows.Forms.Label();
             this.lblListadoAutomoviles = new System.Windows.Forms.Label();
             this.lblRegistrarAutomovil = new System.Windows.Forms.Label();
             this.lblAbmChofer = new System.Windows.Forms.Label();
             this.lblAbmCliente = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.lblAbmRol = new System.Windows.Forms.Label();
-            this.grpAdmin.SuspendLayout();
+            this.lblRegistrarViajes = new System.Windows.Forms.Label();
+            this.grpFuncionalidades.SuspendLayout();
             this.SuspendLayout();
             // 
-            // grpAdmin
+            // grpFuncionalidades
             // 
-            this.grpAdmin.Controls.Add(this.lblAbmRol);
-            this.grpAdmin.Controls.Add(this.lblListadoAutomoviles);
-            this.grpAdmin.Controls.Add(this.lblRegistrarAutomovil);
-            this.grpAdmin.Controls.Add(this.lblAbmChofer);
-            this.grpAdmin.Controls.Add(this.lblAbmCliente);
-            this.grpAdmin.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAdmin.Location = new System.Drawing.Point(40, 24);
-            this.grpAdmin.Name = "grpAdmin";
-            this.grpAdmin.Size = new System.Drawing.Size(398, 240);
-            this.grpAdmin.TabIndex = 1;
-            this.grpAdmin.TabStop = false;
-            this.grpAdmin.Text = "Administrador";
+            this.grpFuncionalidades.Controls.Add(this.lblRegistrarViajes);
+            this.grpFuncionalidades.Controls.Add(this.lblAbmRol);
+            this.grpFuncionalidades.Controls.Add(this.lblListadoAutomoviles);
+            this.grpFuncionalidades.Controls.Add(this.lblRegistrarAutomovil);
+            this.grpFuncionalidades.Controls.Add(this.lblAbmChofer);
+            this.grpFuncionalidades.Controls.Add(this.lblAbmCliente);
+            this.grpFuncionalidades.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpFuncionalidades.Location = new System.Drawing.Point(40, 24);
+            this.grpFuncionalidades.Name = "grpFuncionalidades";
+            this.grpFuncionalidades.Size = new System.Drawing.Size(431, 241);
+            this.grpFuncionalidades.TabIndex = 1;
+            this.grpFuncionalidades.TabStop = false;
+            this.grpFuncionalidades.Text = "Funcionalidades";
+            // 
+            // lblAbmRol
+            // 
+            this.lblAbmRol.AutoSize = true;
+            this.lblAbmRol.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbmRol.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblAbmRol.Location = new System.Drawing.Point(243, 46);
+            this.lblAbmRol.Name = "lblAbmRol";
+            this.lblAbmRol.Size = new System.Drawing.Size(90, 23);
+            this.lblAbmRol.TabIndex = 10;
+            this.lblAbmRol.Text = "ABM Rol";
+            this.lblAbmRol.Click += new System.EventHandler(this.lblAbmRol_Click);
             // 
             // lblListadoAutomoviles
             // 
@@ -112,17 +126,17 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // lblAbmRol
+            // lblRegistrarViajes
             // 
-            this.lblAbmRol.AutoSize = true;
-            this.lblAbmRol.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAbmRol.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblAbmRol.Location = new System.Drawing.Point(243, 46);
-            this.lblAbmRol.Name = "lblAbmRol";
-            this.lblAbmRol.Size = new System.Drawing.Size(90, 23);
-            this.lblAbmRol.TabIndex = 10;
-            this.lblAbmRol.Text = "ABM Rol";
-            this.lblAbmRol.Click += new System.EventHandler(this.lblAbmRol_Click);
+            this.lblRegistrarViajes.AutoSize = true;
+            this.lblRegistrarViajes.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrarViajes.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblRegistrarViajes.Location = new System.Drawing.Point(243, 86);
+            this.lblRegistrarViajes.Name = "lblRegistrarViajes";
+            this.lblRegistrarViajes.Size = new System.Drawing.Size(161, 23);
+            this.lblRegistrarViajes.TabIndex = 11;
+            this.lblRegistrarViajes.Text = "Registrar Viajes";
+            this.lblRegistrarViajes.Click += new System.EventHandler(this.lblRegistrarViajes_Click);
             // 
             // Home
             // 
@@ -130,25 +144,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 326);
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.grpAdmin);
+            this.Controls.Add(this.grpFuncionalidades);
             this.Name = "Home";
             this.Text = "Home";
             this.Load += new System.EventHandler(this.Home_Load);
-            this.grpAdmin.ResumeLayout(false);
-            this.grpAdmin.PerformLayout();
+            this.grpFuncionalidades.ResumeLayout(false);
+            this.grpFuncionalidades.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox grpAdmin;
+        private System.Windows.Forms.GroupBox grpFuncionalidades;
         private System.Windows.Forms.Label lblAbmChofer;
         private System.Windows.Forms.Label lblAbmCliente;
         private System.Windows.Forms.Label lblRegistrarAutomovil;
         private System.Windows.Forms.Label lblListadoAutomoviles;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblAbmRol;
+        private System.Windows.Forms.Label lblRegistrarViajes;
 
 
     }

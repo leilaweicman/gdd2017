@@ -309,5 +309,17 @@ namespace Classes
         {
             parameterList.Add(new SqlParameter("@IdUsuario", this.Id_Usuario));
         }
+
+        public static DataSet ObtenerChoferes()
+        {
+            Usuario unUsuario = new Usuario();
+            return unUsuario.TraerListado(unUsuario.parameterList, "QueSonChoferes");
+        }
+
+        public static DataSet ObtenerClientes()
+        {
+            Usuario unUsuario = new Usuario();
+            return unUsuario.TraerListado(unUsuario.parameterList, "QueSonClientes");
+        }
     }
 }
