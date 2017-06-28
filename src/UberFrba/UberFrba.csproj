@@ -88,6 +88,12 @@
     <Compile Include="Abm Rol\frmRol.Designer.cs">
       <DependentUpon>frmRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Turno\AbmTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Turno\AbmTurno.Designer.cs">
+      <DependentUpon>AbmTurno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Facturacion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,11 +132,11 @@
     <Compile Include="Registro usuario\RegistroUsuario.Designer.cs">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro Viajes\Form1.cs">
+    <Compile Include="Registro Viajes\RegistroViaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro Viajes\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registro Viajes\RegistroViaje.Designer.cs">
+      <DependentUpon>RegistroViaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Rendicion Viajes\Form1.cs">
       <SubType>Form</SubType>
@@ -159,6 +165,9 @@
     <EmbeddedResource Include="Abm Rol\frmRol.resx">
       <DependentUpon>frmRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Turno\AbmTurno.resx">
+      <DependentUpon>AbmTurno.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +188,9 @@
     </Compile>
     <EmbeddedResource Include="Registro usuario\RegistroUsuario.resx">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro Viajes\RegistroViaje.resx">
+      <DependentUpon>RegistroViaje.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
