@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpRol = new System.Windows.Forms.GroupBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.lstFuncTot = new System.Windows.Forms.ListBox();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.grpRol.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,16 @@
             this.grpRol.TabStop = false;
             this.grpRol.Text = "Rol";
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(18, 337);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(85, 37);
+            this.btnGuardar.TabIndex = 15;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // chkHabilitado
             // 
             this.chkHabilitado.AutoSize = true;
@@ -82,7 +92,7 @@
             this.lstFuncTot.ItemHeight = 18;
             this.lstFuncTot.Location = new System.Drawing.Point(301, 140);
             this.lstFuncTot.Name = "lstFuncTot";
-            this.lstFuncTot.Size = new System.Drawing.Size(145, 148);
+            this.lstFuncTot.Size = new System.Drawing.Size(145, 166);
             this.lstFuncTot.TabIndex = 13;
             // 
             // btnAgregar
@@ -114,7 +124,7 @@
             this.lstFuncRol.ItemHeight = 18;
             this.lstFuncRol.Location = new System.Drawing.Point(18, 140);
             this.lstFuncRol.Name = "lstFuncRol";
-            this.lstFuncRol.Size = new System.Drawing.Size(145, 148);
+            this.lstFuncRol.Size = new System.Drawing.Size(145, 166);
             this.lstFuncRol.TabIndex = 10;
             // 
             // lblFuncionalidades
@@ -146,7 +156,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(127, 337);
+            this.btnCancelar.Location = new System.Drawing.Point(117, 337);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(94, 37);
             this.btnCancelar.TabIndex = 4;
@@ -163,16 +173,6 @@
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(18, 337);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(85, 37);
-            this.btnGuardar.TabIndex = 15;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // frmRol
             // 

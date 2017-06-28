@@ -41,13 +41,14 @@ namespace UberFrba.Abm_Rol
         public void Editar(Rol unRol)
         {
             //si entra por aca, está editando un rol
-            //muestro todas las funcionalidades del sistema y las funcionalidades del rol, el nombre y si está habilitado
-            this.Show();
-            rolDelForm = unRol;
-
+            //muestro todas las funcionalidades del sistema y las funcionalidades del rol, el nombre y si está deshabilitado, el campo para habilitarlo
             //en la modificacion de un rol solo se pueden alterar los campos: nombre y funcionalidades
             //y se debe poder habilitar un rol inhabilitado (entonces los habilitados no se podrían editar desde este abm)
             //si habilito el rol, no se recuperan asignaciones pasadas
+
+            this.Show();
+            rolDelForm = unRol;
+
             if (unRol.Habilitado == false)
             {
                 chkHabilitado.Visible = true; 
