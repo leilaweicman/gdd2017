@@ -27,25 +27,58 @@ namespace Classes
         {
             return "Automovil";
         }
-     //   private int IDAutomovil;
-   /*     private string Chofer;
-        private string Marca;
-        private string Modelo;
-        private string Rodado;
-        private string Patente;
-            private string Licencia;*/
-        public int IDAutomovil { get; set; }
+        private int _ID_Automovil;
+        private string _Chofer;
+        private string _Marca;
+        private string _Modelo;
+        private string _Rodado;
+        private string _Patente;
+        private string _Licencia;
+        private bool _Habilitado;
+            
+        public int IDAutomovil 
+        {
+            get { return _ID_Automovil; }
+            set { _ID_Automovil = value; }
+        }
 
-        public string Chofer { get; set; }
+        public string Chofer 
+        {
+            get { return _Chofer; }
+            set { _Chofer = value; }
+        }
 
-        public string Marca { get; set; }
+        public string Marca
+        {
+            get { return _Marca; }
+            set { _Marca = value; }
+        }
+        public string Modelo
+        {
+            get { return _Modelo; }
+            set { _Modelo = value; }
+        }
+        public string Patente
+        {
+            get { return _Patente; }
+            set { _Patente = value; }
+        }
+        public string Rodado
+        {
+            get { return _Rodado; }
+            set { _Rodado = value; }
+        }
+        public string Licencia
+        {
+            get { return _Licencia; }
+            set { _Licencia = value; }
+        }
 
-        public string Modelo { get; set; }
-        public string Patente { get; set; }
-        public string Rodado { get; set; }
-        public string Licencia { get; set; }
-
-        public bool Habilitado { get; set; }
+        public bool Habilitado
+        {
+            get { return _Habilitado; }
+            set { _Habilitado = value; }
+        }
 
         
         #region methods
