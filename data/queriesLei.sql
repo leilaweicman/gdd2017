@@ -63,7 +63,7 @@ CREATE PROCEDURE [GIRLPOWER].[traerListadoRolPorUsuario] (@IDUsuario int) AS
 BEGIN
 	SELECT * FROM girlpower.RolPorUsuario r1
 	join girlpower.Rol r2 on r1.IDRol = r2.IDRol
-	WHERE r1.IDUsuario=@IDUsuario
+	WHERE r1.IDUsuario=@IDUsuario AND r1.Habilitado=1 AND r2.Habilitado=1
 END
 GO
 
