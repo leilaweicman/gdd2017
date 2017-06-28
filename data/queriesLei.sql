@@ -43,6 +43,10 @@ IF OBJECT_ID ('GIRLPOWER.updateRol', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[updateRol]
 GO
 
+IF OBJECT_ID ('GIRLPOWER.deshabilitarRol', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[deshabilitarRol]
+GO
+
 CREATE PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername] (@Username VARCHAR(30)) AS
 BEGIN
 	SELECT * FROM girlpower.usuario WHERE username=@Username
@@ -112,5 +116,12 @@ GO
 CREATE PROCEDURE [GIRLPOWER].[updateRol] (@IDRol int, @Nombre VARCHAR(255), @Habilitado bit) AS
 BEGIN
 	UPDATE GIRLPOWER.Rol SET Nombre=@Nombre, Habilitado=@Habilitado WHERE IDRol=@IDRol
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[deshabilitarRol] (@IDRol int) AS
+BEGIN
+	UPDATE GIRLPOWER.Rol SET Habilitado=0 WHERE IDRol=@IDRol
+	UPDATE GIRLPOWER.RolPorUsuario SET Habilitado=0 WHERE IDRol=@IDRol
 END
 GO

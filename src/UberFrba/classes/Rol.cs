@@ -115,17 +115,6 @@ namespace Classes
                 this.Funcionalidades.Add(func);
             }
         }
-        
-        #endregion
-
-        #region metodos privados
-        private void setearListaDeParametrosConIdUsuario(int id_Usuario)
-        {
-            parameterList.Add(new SqlParameter("@IDUsuario", id_Usuario));
-        }
-
-        #endregion
-
 
         public void ModificarDatos()
         {
@@ -138,27 +127,6 @@ namespace Classes
             }
         }
 
-        private void modificarFuncionalidades()
-        {
-            //elimino todas las funcionalidades que tenia el rol y vuelvo a crearlas
-            //al volver a crearlas, si eran las mismas, vuelvo a obtener las mismas, sino las obtengo modificadas
-            setearListaDeParametrosConIdRol();
-            SQLHelper.ExecuteDataSet(_strEliminar + "FuncionalidadPorRol" + "_PorIdRol", CommandType.StoredProcedure, "FuncionalidadPorRol", parameterList);
-            parameterList.Clear();
-            guardarFuncionalidades();
-        }
-
-        private void setearListaDeParametrosConIdRol()
-        {
-            parameterList.Add(new SqlParameter("@IDRol", this.Id_Rol));
-        }
-
-        private void setearListaDeParametrosConIdRolNombreYHabilitado(string unNombre, bool unValorDeHabilitado)
-        {
-            parameterList.Add(new SqlParameter("@IDRol", this.Id_Rol));
-            parameterList.Add(new SqlParameter("@Nombre", unNombre));
-            parameterList.Add(new SqlParameter("@Habilitado", unValorDeHabilitado));
-        }
 
         public void guardarDatosDeRolNuevo()
         {
@@ -184,6 +152,32 @@ namespace Classes
             }
         }
 
+        public void Eliminar()
+        {
+            //verifico los usuarios que tengan el rol y lo inhabilito en RolPorUsuario
+            //inhabilito el rol
+
+            setearListaDeParametrosConIdRol();
+            Rol rol = new Rol();
+            rol.Deshabilitar(parameterList);
+            rol.parameterList.Clear();
+
+        }
+
+        #endregion
+
+        #region metodos privados
+        
+        private void modificarFuncionalidades()
+        {
+            //elimino todas las funcionalidades que tenia el rol y vuelvo a crearlas
+            //al volver a crearlas, si eran las mismas, vuelvo a obtener las mismas, sino las obtengo modificadas
+            setearListaDeParametrosConIdRol();
+            SQLHelper.ExecuteDataSet(_strEliminar + "FuncionalidadPorRol" + "_PorIdRol", CommandType.StoredProcedure, "FuncionalidadPorRol", parameterList);
+            parameterList.Clear();
+            guardarFuncionalidades();
+        }
+
         private void guardarFuncionalidades()
         {
             foreach (Funcionalidad unaFunc in this.Funcionalidades)
@@ -192,6 +186,15 @@ namespace Classes
                 SQLHelper.ExecuteDataSet(_strInsertar + "FuncionalidadPorRol", CommandType.StoredProcedure, "FuncionalidadPorRol", parameterList);
                 parameterList.Clear();
             }
+        }
+
+        private static DataSet obtenerRolPorNombre(string unNombre)
+        {
+            Rol unRol = new Rol(unNombre, true);
+            unRol.setearListaDeParametrosConNombre(unRol.Nombre);
+            DataSet ds = unRol.TraerListado(unRol.parameterList, "PorNombre");
+            unRol.parameterList.Clear();
+            return ds;
         }
 
         private void setearListaDeParametrosConIdFuncionalidadEIdRol(int id_func)
@@ -206,18 +209,29 @@ namespace Classes
             parameterList.Add(new SqlParameter("@Habilitado", unValorDeHabilitado));
         }
 
-        private static DataSet obtenerRolPorNombre(string unNombre)
-        {
-            Rol unRol = new Rol(unNombre, true);
-            unRol.setearListaDeParametrosConNombre(unRol.Nombre);
-            DataSet ds = unRol.TraerListado(unRol.parameterList, "PorNombre");
-            unRol.parameterList.Clear();
-            return ds;
-        }
-
         private void setearListaDeParametrosConNombre(string unNombre)
         {
             parameterList.Add(new SqlParameter("@Nombre", unNombre));
         }
+
+        private void setearListaDeParametrosConIdRol()
+        {
+            parameterList.Add(new SqlParameter("@IDRol", this.Id_Rol));
+        }
+
+        private void setearListaDeParametrosConIdRolNombreYHabilitado(string unNombre, bool unValorDeHabilitado)
+        {
+            parameterList.Add(new SqlParameter("@IDRol", this.Id_Rol));
+            parameterList.Add(new SqlParameter("@Nombre", unNombre));
+            parameterList.Add(new SqlParameter("@Habilitado", unValorDeHabilitado));
+        }
+
+        private void setearListaDeParametrosConIdUsuario(int id_Usuario)
+        {
+            parameterList.Add(new SqlParameter("@IDUsuario", id_Usuario));
+        }
+
+        #endregion
+
     }
 }

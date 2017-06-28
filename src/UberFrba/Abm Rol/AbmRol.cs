@@ -90,5 +90,44 @@ namespace UberFrba.Abm_Rol
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            //eliminar un rol (baja logica)
+            //genero un dialog donde le pregunto si esta seguro de eliminarlo
+            //si responde que si, elimino el rol
+
+            if (dgvRoles.SelectedRows.Count != 0)
+            {
+                DialogResult dr = MessageBox.Show("¿Está seguro que desea eliminar el rol?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    try
+                    {
+                        DataGridViewRow row = this.dgvRoles.SelectedRows[0];
+                        var id = Convert.ToInt32(row.Cells["IDRol"].Value);
+                        var nombre = row.Cells["Nombre"].Value.ToString();
+                        var habilitado = (bool)row.Cells["Activo"].Value;
+                        UberFrba.Abm_Rol.frmRol rol = new Abm_Rol.frmRol();
+                        Rol unRol = new Rol(id, nombre, habilitado);
+                        unRol.Eliminar();
+                        MessageBox.Show("El rol ha quedado eliminado", "Deshabilitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarListado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+               
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un Rol a eliminar.");
+            }
+
+            
+        }
+
     }
 }

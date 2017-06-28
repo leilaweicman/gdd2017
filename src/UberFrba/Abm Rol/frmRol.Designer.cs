@@ -87,6 +87,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(207, 152);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(57, 37);
@@ -97,6 +98,7 @@
             // 
             // btnSacar
             // 
+            this.btnSacar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSacar.Location = new System.Drawing.Point(207, 204);
             this.btnSacar.Name = "btnSacar";
             this.btnSacar.Size = new System.Drawing.Size(57, 37);
@@ -118,20 +120,20 @@
             // lblFuncionalidades
             // 
             this.lblFuncionalidades.AutoSize = true;
-            this.lblFuncionalidades.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFuncionalidades.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFuncionalidades.Location = new System.Drawing.Point(15, 103);
             this.lblFuncionalidades.Name = "lblFuncionalidades";
-            this.lblFuncionalidades.Size = new System.Drawing.Size(112, 16);
+            this.lblFuncionalidades.Size = new System.Drawing.Size(124, 18);
             this.lblFuncionalidades.TabIndex = 9;
             this.lblFuncionalidades.Text = "Funcionalidades";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(15, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 16);
+            this.label2.Size = new System.Drawing.Size(68, 18);
             this.label2.TabIndex = 8;
             this.label2.Text = "Nombre";
             // 
@@ -144,7 +146,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(231, 337);
+            this.btnCancelar.Location = new System.Drawing.Point(127, 337);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(94, 37);
             this.btnCancelar.TabIndex = 4;
@@ -164,7 +166,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(127, 337);
+            this.btnGuardar.Location = new System.Drawing.Point(18, 337);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(85, 37);
             this.btnGuardar.TabIndex = 15;
