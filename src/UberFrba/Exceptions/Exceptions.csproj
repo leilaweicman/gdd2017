@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BadInsertException.cs" />
+    <Compile Include="EntidadExistenteException.cs" />
     <Compile Include="ErrorConsultaException.cs" />
     <Compile Include="NoEntidadException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

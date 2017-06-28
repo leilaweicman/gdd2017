@@ -1,4 +1,5 @@
 ﻿using Connection;
+using Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -54,7 +55,12 @@ namespace Classes
             this.Habilitado = false;
 
         }
-        
+        public Rol(string unNombre, bool unValorDeHabilitado)
+        {
+            this.Id_Rol = -1;
+            this.Nombre = unNombre;
+            this.Habilitado = unValorDeHabilitado;
+        }
         #endregion
 
         #region metodos publicos
@@ -74,6 +80,12 @@ namespace Classes
             this.Id_Rol = Convert.ToInt32(dr["IDRol"]);
             this.Nombre = dr["Nombre"].ToString();
             this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
+        }
+
+        public static DataSet obtenerTodos()
+        {
+            Rol unRol = new Rol();
+            return unRol.TraerListado(unRol.parameterList, "");
         }
 
         public static DataSet ObtenerRolesPorUsuario(int id_Usuario)
@@ -107,5 +119,70 @@ namespace Classes
 
         #endregion
 
+
+        public void ModificarDatos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void guardarDatosDeRolNuevo()
+        {
+            //compruebo que no exista el rol creado
+            DataSet dsParaComprobarExistencia = Rol.obtenerRolPorNombre(this.Nombre);
+            if (dsParaComprobarExistencia.Tables[0].Rows.Count != 0)
+                throw new EntidadExistenteException("un rol");
+
+            //creo el rol nuevo y obtengo el id
+            setearListaDeParametrosConNombreYHabilitado(this.Nombre, this.Habilitado);
+            DataSet dsNuevoRol = this.GuardarYObtenerID(parameterList);
+            parameterList.Clear();
+
+            if (dsNuevoRol.Tables[0].Rows.Count > 0)
+            {
+                //seteo el id al rol y guardo las funcionalidades
+                this.Id_Rol = Convert.ToInt32(dsNuevoRol.Tables[0].Rows[0]["IDRol"]);
+                guardarFuncionalidades();
+            }
+            else
+            {
+                throw new BadInsertException();
+            }
+        }
+
+        private void guardarFuncionalidades()
+        {
+            foreach (Funcionalidad unaFunc in this.Funcionalidades)
+            {
+                setearListaDeParametrosConIdFuncionalidadEIdRol(unaFunc.id_Funcionalidad);
+                SQLHelper.ExecuteDataSet(_strInsertar + "FuncionalidadPorRol", CommandType.StoredProcedure, "FuncionalidadPorRol", parameterList);
+                parameterList.Clear();
+            }
+        }
+
+        private void setearListaDeParametrosConIdFuncionalidadEIdRol(int id_func)
+        {
+            parameterList.Add(new SqlParameter("@IDRol", this.Id_Rol));
+            parameterList.Add(new SqlParameter("@IDFuncionalidad", id_func));
+        }
+
+        private void setearListaDeParametrosConNombreYHabilitado(string unNombre, bool unValorDeHabilitado)
+        {
+            parameterList.Add(new SqlParameter("@Nombre", unNombre));
+            parameterList.Add(new SqlParameter("@Habilitado", unValorDeHabilitado));
+        }
+
+        private static DataSet obtenerRolPorNombre(string unNombre)
+        {
+            Rol unRol = new Rol(unNombre, true);
+            unRol.setearListaDeParametrosConNombre(unRol.Nombre);
+            DataSet ds = unRol.TraerListado(unRol.parameterList, "PorNombre");
+            unRol.parameterList.Clear();
+            return ds;
+        }
+
+        private void setearListaDeParametrosConNombre(string unNombre)
+        {
+            parameterList.Add(new SqlParameter("@Nombre", unNombre));
+        }
     }
 }

@@ -15,6 +15,26 @@ IF OBJECT_ID ('GIRLPOWER.traerListadoFuncionalidadPorRol', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[traerListadoFuncionalidadPorRol]
 GO
 
+IF OBJECT_ID ('GIRLPOWER.traerListadoRol', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoRol]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoFuncionalidad', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoFuncionalidad]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoRolPorNombre', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoRolPorNombre]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.insertFuncionalidadPorRol', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[insertFuncionalidadPorRol]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.insertRol_RetornarID', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[insertRol_RetornarID]
+GO
+
 CREATE PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername] (@Username VARCHAR(30)) AS
 BEGIN
 	SELECT * FROM girlpower.usuario WHERE username=@Username
@@ -42,3 +62,36 @@ BEGIN
 	WHERE f.IDRol=@IDRol
 END
 GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoRol] AS
+BEGIN
+	SELECT * FROM girlpower.Rol
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoFuncionalidad] AS
+BEGIN
+	SELECT * FROM girlpower.Funcionalidad
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoRolPorNombre] (@Nombre VARCHAR(255)) AS
+BEGIN
+	SELECT * FROM girlpower.Rol 
+	WHERE Nombre=@Nombre
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[insertFuncionalidadPorRol] (@IDRol int, @IDFuncionalidad int) AS
+BEGIN
+	INSERT INTO girlpower.FuncionalidadPorRol (IDRol, IDFuncionalidad) VALUES (@IDRol, @IDFuncionalidad)
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[insertRol_RetornarID] (@Nombre VARCHAR(255), @Habilitado bit) AS
+BEGIN
+	INSERT INTO girlpower.Rol (Nombre, Habilitado) VALUES (@Nombre, @Habilitado)
+	SELECT @@IDENTITY AS IDRol
+END
+GO
+
