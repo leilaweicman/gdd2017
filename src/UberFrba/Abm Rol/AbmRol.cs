@@ -110,7 +110,7 @@ namespace UberFrba.Abm_Rol
                         UberFrba.Abm_Rol.frmRol rol = new Abm_Rol.frmRol();
                         Rol unRol = new Rol(id, nombre, habilitado);
                         unRol.Eliminar();
-                        MessageBox.Show("El rol ha quedado eliminado", "Deshabilitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("El rol ha quedado inhabilitado", "Deshabilitado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarListado();
                     }
                     catch (Exception ex)

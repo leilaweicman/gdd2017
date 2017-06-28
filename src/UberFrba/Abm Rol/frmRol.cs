@@ -45,6 +45,15 @@ namespace UberFrba.Abm_Rol
             this.Show();
             rolDelForm = unRol;
 
+            //en la modificacion de un rol solo se pueden alterar los campos: nombre y funcionalidades
+            //y se debe poder habilitar un rol inhabilitado (entonces los habilitados no se podrían editar desde este abm)
+            //si habilito el rol, no se recuperan asignaciones pasadas
+            if (unRol.Habilitado == false)
+            {
+                chkHabilitado.Visible = true; 
+            } else {
+                chkHabilitado.Visible = false;
+            }
             chkHabilitado.Checked = unRol.Habilitado;
             txtNombre.Text = unRol.Nombre;
 
