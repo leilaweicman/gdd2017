@@ -181,6 +181,7 @@
             this.cmbChofer.Name = "cmbChofer";
             this.cmbChofer.Size = new System.Drawing.Size(173, 26);
             this.cmbChofer.TabIndex = 47;
+            this.cmbChofer.SelectedIndexChanged += new System.EventHandler(this.cmbChofer_SelectedIndexChanged);
             // 
             // btnRegistrar
             // 

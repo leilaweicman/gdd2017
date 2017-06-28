@@ -15,18 +15,14 @@ namespace Classes
     {
         List<SqlParameter> parameterList = new List<SqlParameter>();
 
+        #region constructor
         public Automovil()
         {
         }
-        public override string NombreTabla()
-        {
-            return "Automovil";
-        }
+        #endregion
 
-        public override string NombreEntidad()
-        {
-            return "Automovil";
-        }
+        #region atributos
+
         private int _ID_Automovil;
         private string _Chofer;
         private string _Marca;
@@ -35,7 +31,10 @@ namespace Classes
         private string _Patente;
         private string _Licencia;
         private bool _Habilitado;
-            
+
+        #endregion
+
+        #region properties
         public int IDAutomovil 
         {
             get { return _ID_Automovil; }
@@ -79,9 +78,20 @@ namespace Classes
             get { return _Habilitado; }
             set { _Habilitado = value; }
         }
+        #endregion
 
-        
         #region methods
+
+        public override string NombreTabla()
+        {
+            return "Automovil";
+        }
+
+        public override string NombreEntidad()
+        {
+            return "Automovil";
+        }
+
         public void Deshabilitar(int id)
         {
              /*
@@ -99,12 +109,7 @@ namespace Classes
             parameterList.Clear();
         }
 
-
-        private void setearListaDeParametrosSoloConIdAutomovil()
-        {
-            parameterList.Add(new SqlParameter("@id", IDAutomovil));
-        }
-        public override void DataRowToObject(DataRow dr) //CAMBIAR CAMPOS!!!
+        public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB
             this.IDAutomovil = Convert.ToInt32(dr["IDAutomovil"]);
@@ -115,17 +120,30 @@ namespace Classes
             this.Licencia = dr["Licencia"].ToString();
 
             this.Rodado = dr["Rodado"].ToString();
-            this.Habilitado =bool.Parse(dr["Habilitado"].ToString());
-            // LOS COMENTO PORQUE ESTAN EN NULL Y TIRA ERROR
-            // this.Localidad = dr["Localidad"].ToString();
-            // this.Calle = dr["Calle"].ToString();
-            // this.Piso = Convert.ToDecimal(dr["Piso"]);
-            // this.Depto = dr["Depto"].ToString();
+            this.Habilitado =bool.Parse(dr["Habilitado"].ToString());           
+        }
+        
+        public DataSet ObtenerAutomovilPorChofer(int IDChofer)
+        {
+            setearListaDeParametrosSoloConIdChofer(IDChofer);            
+            DataSet ds = SQLHelper.ExecuteDataSet("traerAutomovilDelChofer", CommandType.StoredProcedure, parameterList);
+            parameterList.Clear();          
+
+            return ds;
+
         }
 
+        private void setearListaDeParametrosSoloConIdAutomovil()
+        {
+            parameterList.Add(new SqlParameter("@id", IDAutomovil));
+        }
+
+        private void setearListaDeParametrosSoloConIdChofer(int IDChofer)
+        {
+            parameterList.Add(new SqlParameter("@IDChofer", IDChofer));
+        }
 
         #endregion
-
-      
+       
     }
 }

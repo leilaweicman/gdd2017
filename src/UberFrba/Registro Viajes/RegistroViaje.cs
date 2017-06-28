@@ -15,6 +15,8 @@ namespace UberFrba.Registro_Viajes
 {
     public partial class RegistroViaje : Form
     {
+        int IDAutomovil = 0;
+
         public RegistroViaje()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace UberFrba.Registro_Viajes
 
         private void RegistroViaje_Load(object sender, EventArgs e)
         {
+            txtAutomovil.Enabled = false;
             CargarChoferes();
             CargarClientes();
         }
@@ -58,6 +61,31 @@ namespace UberFrba.Registro_Viajes
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los choferes
                     DropDownListManager.CargarCombo(cmbChofer, ds.Tables[0], "IDChofer", "Nombre", false, "");
+                }
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbChofer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cuando selecciona un chofer tengo que cargar el automovil de ese chofer
+            try
+            {
+                //Obtengo el automovil y lo muestro en el txt.
+                Automovil auto = new Automovil();           
+                DataSet ds = auto.ObtenerAutomovilPorChofer(Convert.ToInt32(cmbChofer.SelectedValue));
+                auto.DataRowToObject(ds.Tables[0].Rows[0]);
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    txtAutomovil.Text = auto.Patente;
+                    IDAutomovil = auto.IDAutomovil;
                 }
             }
             catch (ErrorConsultaException ex)
