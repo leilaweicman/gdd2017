@@ -34,8 +34,9 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
+            this.IDRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Funcionalidades = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Activo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.grpRoles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.SuspendLayout();
@@ -81,6 +82,7 @@
             this.btnEditar.TabIndex = 2;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAgregar
             // 
@@ -98,13 +100,21 @@
             this.dgvRoles.AllowUserToDeleteRows = false;
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IDRol,
             this.Nombre,
-            this.Funcionalidades});
+            this.Activo});
             this.dgvRoles.Location = new System.Drawing.Point(18, 35);
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.ReadOnly = true;
             this.dgvRoles.Size = new System.Drawing.Size(343, 150);
             this.dgvRoles.TabIndex = 0;
+            // 
+            // IDRol
+            // 
+            this.IDRol.HeaderText = "IDRol";
+            this.IDRol.Name = "IDRol";
+            this.IDRol.ReadOnly = true;
+            this.IDRol.Visible = false;
             // 
             // Nombre
             // 
@@ -114,14 +124,14 @@
             this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Nombre.Width = 150;
             // 
-            // Funcionalidades
+            // Activo
             // 
-            this.Funcionalidades.HeaderText = "Activo";
-            this.Funcionalidades.Name = "Funcionalidades";
-            this.Funcionalidades.ReadOnly = true;
-            this.Funcionalidades.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Funcionalidades.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Funcionalidades.Width = 150;
+            this.Activo.HeaderText = "Activo";
+            this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
+            this.Activo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Activo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Activo.Width = 150;
             // 
             // AbmRol
             // 
@@ -146,7 +156,8 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView dgvRoles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDRol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Funcionalidades;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Activo;
     }
 }

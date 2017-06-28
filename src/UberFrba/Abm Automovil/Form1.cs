@@ -158,5 +158,10 @@ namespace UberFrba.Abm_Automovil
             this.Hide();
             formHome.Show();
         }
+
+        private void dgvAutomoviles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -39,17 +39,17 @@
             this.Rodado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnFiltrarTristes = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.txtPatente = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbMarca = new System.Windows.Forms.ComboBox();
+            this.cmbChofer = new System.Windows.Forms.ComboBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.cmbChofer = new System.Windows.Forms.ComboBox();
-            this.cmbMarca = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPatente = new System.Windows.Forms.TextBox();
-            this.btnFiltrar = new System.Windows.Forms.Button();
-            this.btnFiltrarTristes = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutomoviles)).BeginInit();
@@ -88,6 +88,7 @@
             this.dgvAutomoviles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAutomoviles.Size = new System.Drawing.Size(745, 229);
             this.dgvAutomoviles.TabIndex = 1;
+            this.dgvAutomoviles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutomoviles_CellContentClick);
             // 
             // IDAutomovil
             // 
@@ -155,6 +156,77 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtros";
             // 
+            // btnFiltrarTristes
+            // 
+            this.btnFiltrarTristes.Location = new System.Drawing.Point(365, 64);
+            this.btnFiltrarTristes.Name = "btnFiltrarTristes";
+            this.btnFiltrarTristes.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltrarTristes.TabIndex = 7;
+            this.btnFiltrarTristes.Text = "Limpiar filtros";
+            this.btnFiltrarTristes.UseVisualStyleBackColor = true;
+            this.btnFiltrarTristes.Click += new System.EventHandler(this.btnFiltrarTristes_Click);
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(268, 63);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltrar.TabIndex = 6;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // txtPatente
+            // 
+            this.txtPatente.Location = new System.Drawing.Point(326, 20);
+            this.txtPatente.MaxLength = 10;
+            this.txtPatente.Name = "txtPatente";
+            this.txtPatente.Size = new System.Drawing.Size(100, 20);
+            this.txtPatente.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(265, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Patente";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Marca";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Chofer";
+            // 
+            // cmbMarca
+            // 
+            this.cmbMarca.FormattingEnabled = true;
+            this.cmbMarca.Location = new System.Drawing.Point(84, 66);
+            this.cmbMarca.Name = "cmbMarca";
+            this.cmbMarca.Size = new System.Drawing.Size(121, 21);
+            this.cmbMarca.TabIndex = 1;
+            // 
+            // cmbChofer
+            // 
+            this.cmbChofer.FormattingEnabled = true;
+            this.cmbChofer.Location = new System.Drawing.Point(84, 19);
+            this.cmbChofer.Name = "cmbChofer";
+            this.cmbChofer.Size = new System.Drawing.Size(121, 21);
+            this.cmbChofer.TabIndex = 0;
+            // 
             // btnRegistrar
             // 
             this.btnRegistrar.Location = new System.Drawing.Point(327, 449);
@@ -184,77 +256,6 @@
             this.btnEliminar.Text = "Deshabilitar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // cmbChofer
-            // 
-            this.cmbChofer.FormattingEnabled = true;
-            this.cmbChofer.Location = new System.Drawing.Point(84, 19);
-            this.cmbChofer.Name = "cmbChofer";
-            this.cmbChofer.Size = new System.Drawing.Size(121, 21);
-            this.cmbChofer.TabIndex = 0;
-            // 
-            // cmbMarca
-            // 
-            this.cmbMarca.FormattingEnabled = true;
-            this.cmbMarca.Location = new System.Drawing.Point(84, 66);
-            this.cmbMarca.Name = "cmbMarca";
-            this.cmbMarca.Size = new System.Drawing.Size(121, 21);
-            this.cmbMarca.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Chofer";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Marca";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(265, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Patente";
-            // 
-            // txtPatente
-            // 
-            this.txtPatente.Location = new System.Drawing.Point(326, 20);
-            this.txtPatente.MaxLength = 10;
-            this.txtPatente.Name = "txtPatente";
-            this.txtPatente.Size = new System.Drawing.Size(100, 20);
-            this.txtPatente.TabIndex = 5;
-            // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.Location = new System.Drawing.Point(268, 63);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltrar.TabIndex = 6;
-            this.btnFiltrar.Text = "Filtrar";
-            this.btnFiltrar.UseVisualStyleBackColor = true;
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
-            // 
-            // btnFiltrarTristes
-            // 
-            this.btnFiltrarTristes.Location = new System.Drawing.Point(365, 64);
-            this.btnFiltrarTristes.Name = "btnFiltrarTristes";
-            this.btnFiltrarTristes.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltrarTristes.TabIndex = 7;
-            this.btnFiltrarTristes.Text = "Limpiar filtros";
-            this.btnFiltrarTristes.UseVisualStyleBackColor = true;
-            this.btnFiltrarTristes.Click += new System.EventHandler(this.btnFiltrarTristes_Click);
             // 
             // btnVolver
             // 

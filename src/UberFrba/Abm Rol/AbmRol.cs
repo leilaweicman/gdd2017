@@ -21,11 +21,36 @@ namespace UberFrba.Abm_Rol
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            //agregar un nuevo rol
+
             UberFrba.Abm_Rol.frmRol rol = new Abm_Rol.frmRol();
             this.Hide();
             rol.Agregar();
            
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            //modificar un rol
+            //instancio el rol con los datos de la fila seleccionada y abro el formulario para editarlo
+            //configurado con esos datos para editarlos
+
+            if (dgvRoles.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = this.dgvRoles.SelectedRows[0];
+                var id = Convert.ToInt32(row.Cells["IDRol"].Value);
+                var nombre = row.Cells["Nombre"].Value.ToString();
+                var habilitado = (bool)row.Cells["Activo"].Value;
+                UberFrba.Abm_Rol.frmRol rol = new Abm_Rol.frmRol();
+                this.Hide();
+                Rol unRol = new Rol(id, nombre, habilitado);
+                rol.Editar(unRol);
+            } else {
+                MessageBox.Show("Por favor, seleccione un Rol a editar.");
+            }
+           
+        }
+
 
         private void AbmRol_Load(object sender, EventArgs e)
         {
@@ -60,9 +85,10 @@ namespace UberFrba.Abm_Rol
                 rol.DataRowToObject(row);
                 roles.Add(rol);
 
-                dgvRoles.Rows.Add(rol.Nombre, rol.Habilitado);
+                dgvRoles.Rows.Add(rol.Id_Rol ,rol.Nombre, rol.Habilitado);
 
             }
         }
+
     }
 }

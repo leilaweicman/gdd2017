@@ -34,12 +34,43 @@ namespace UberFrba.Abm_Rol
             this.Show();
             lstFuncRol.Items.Clear();
             cargarListadoFuncionalidadesDelSistema();
+            btnGuardar.Visible = false;
+            btnAceptar.Visible = true;
+        }
+
+        public void Editar(Rol unRol)
+        {
+            //si entra por aca, está editando un rol
+            //muestro todas las funcionalidades del sistema y las funcionalidades del rol, el nombre y si está habilitado
+            this.Show();
+            rolDelForm = unRol;
+
+            chkHabilitado.Checked = unRol.Habilitado;
+            txtNombre.Text = unRol.Nombre;
+
+            cargarListadoFuncionalidadesDelRol();
+            cargarListadoFuncionalidadesDelSistema();
+            btnGuardar.Visible = true;
+            btnAceptar.Visible = false;
+
+        }
+
+        private void cargarListadoFuncionalidadesDelRol()
+        {
+            //cargo el listado de funcionalidades pertenecientes al rol 
+            //exijo que se muestre solo el nombre de las funcionalidades
+            lstFuncRol.Items.Clear();
+            foreach (Funcionalidad unaFunc in rolDelForm.Funcionalidades)
+            {
+                lstFuncRol.Items.Add(unaFunc);
+            }
+            lstFuncRol.DisplayMember = "Nombre";
         }
 
         private void cargarListadoFuncionalidadesDelSistema()
         {
             //cargo el listado de funcionalidades no pertenecientes al rol cargadas en el sistema
-            //y le exijo al listado que se muestre solo el nombre de las funciones
+            //exijo que se muestre solo el nombre de las funcionalidades
             lstFuncTot.Items.Clear();
             DataSet ds = Funcionalidad.obtenerTodas();
             foreach (DataRow dr in ds.Tables[0].Rows)

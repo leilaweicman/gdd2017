@@ -61,6 +61,13 @@ namespace Classes
             this.Nombre = unNombre;
             this.Habilitado = unValorDeHabilitado;
         }
+        public Rol(int unIdRol, string unNombre, bool unValorDeHabilitado)
+        {
+            this.Id_Rol = unIdRol;
+            this.Nombre = unNombre;
+            this.Habilitado = unValorDeHabilitado;
+            this.setearFuncionalidadesAlRol();
+        }
         #endregion
 
         #region metodos publicos
@@ -122,7 +129,35 @@ namespace Classes
 
         public void ModificarDatos()
         {
-            throw new NotImplementedException();
+            setearListaDeParametrosConIdRolNombreYHabilitado(this.Nombre, this.Habilitado);
+
+            if (this.Modificar(parameterList))
+            {
+                parameterList.Clear();
+                modificarFuncionalidades();
+            }
+        }
+
+        private void modificarFuncionalidades()
+        {
+            //elimino todas las funcionalidades que tenia el rol y vuelvo a crearlas
+            //al volver a crearlas, si eran las mismas, vuelvo a obtener las mismas, sino las obtengo modificadas
+            setearListaDeParametrosConIdRol();
+            SQLHelper.ExecuteDataSet(_strEliminar + "FuncionalidadPorRol" + "_PorIdRol", CommandType.StoredProcedure, "FuncionalidadPorRol", parameterList);
+            parameterList.Clear();
+            guardarFuncionalidades();
+        }
+
+        private void setearListaDeParametrosConIdRol()
+        {
+            parameterList.Add(new SqlParameter("@IDRol", this.Id_Rol));
+        }
+
+        private void setearListaDeParametrosConIdRolNombreYHabilitado(string unNombre, bool unValorDeHabilitado)
+        {
+            parameterList.Add(new SqlParameter("@IDRol", this.Id_Rol));
+            parameterList.Add(new SqlParameter("@Nombre", unNombre));
+            parameterList.Add(new SqlParameter("@Habilitado", unValorDeHabilitado));
         }
 
         public void guardarDatosDeRolNuevo()

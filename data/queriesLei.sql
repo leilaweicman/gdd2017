@@ -35,6 +35,14 @@ IF OBJECT_ID ('GIRLPOWER.insertRol_RetornarID', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[insertRol_RetornarID]
 GO
 
+IF OBJECT_ID ('GIRLPOWER.deleteFuncionalidadPorRol_PorIdRol', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[deleteFuncionalidadPorRol_PorIdRol]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.updateRol', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[updateRol]
+GO
+
 CREATE PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername] (@Username VARCHAR(30)) AS
 BEGIN
 	SELECT * FROM girlpower.usuario WHERE username=@Username
@@ -95,3 +103,14 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [GIRLPOWER].[deleteFuncionalidadPorRol_PorIdRol] (@IDRol int) AS
+BEGIN
+	DELETE FROM GIRLPOWER.FuncionalidadPorRol WHERE IDRol=@IDRol
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[updateRol] (@IDRol int, @Nombre VARCHAR(255), @Habilitado bit) AS
+BEGIN
+	UPDATE GIRLPOWER.Rol SET Nombre=@Nombre, Habilitado=@Habilitado WHERE IDRol=@IDRol
+END
+GO
