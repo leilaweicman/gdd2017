@@ -131,7 +131,7 @@ namespace UberFrba.Registro_Viajes
         {
             string strErrores = "";
             strErrores = Validator.SoloNumerosODecimales(txtKilometros.Text, "Kilometros");
-            //strErrores += Validator.ValidarNulo(txtContrasena.Text, "Contraseña");
+            strErrores += Validator.MayorACero(txtKilometros.Text, "Kilometros");
             if (strErrores.Length > 0)
             {
                 throw new Exception(strErrores);

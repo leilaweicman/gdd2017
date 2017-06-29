@@ -23,11 +23,11 @@ namespace Utilities
         public static string SoloNumerosODecimales(string textoAValidar, string nombreCampo)
         {
             string strError = "";
-
             if (strError.Length == 0 && !EsDecimal(textoAValidar))
             {
                 strError += "El campo " + nombreCampo + " tiene caracteres inválidos\n";
-            }
+            } 
+
             return strError;
         }
 
@@ -84,11 +84,11 @@ namespace Utilities
             return string.Empty;
         }
 
-        public static string ValidarCantidadMenor(string cant, int cantPublis, string nombreCampo)
+        public static string ValidarCantidadMenor(string cant, int otraCant, string nombreCampo)
         {
             int cantidad = Convert.ToInt32(cant);
-            if (cantidad > cantPublis)
-                return "No posee tantas publicaciones para rendir. Tiene que ingresar una cantidad válida, para el campo " + nombreCampo + "\n";
+            if (cantidad > otraCant)
+                return "Tiene que ingresar una cantidad válida, para el campo " + nombreCampo + "\n";
             return string.Empty;
         }
 
@@ -108,12 +108,40 @@ namespace Utilities
         public static string MayorACero(string textoAValidar, string nombreCampo)
         {
             string strError = "";
-            if (Convert.ToInt32(textoAValidar) == 0)
+            try
             {
-                strError += "El campo " + nombreCampo + " debe ser mayor que cero\n";
+                if (Convert.ToInt32(textoAValidar) <= 0)
+                {
+                    strError += "El campo " + nombreCampo + " debe ser mayor que cero\n";
+                }
+                return strError;
             }
-            return strError;
-
+            catch
+            {
+                try
+                {
+                    if (System.Convert.ToDecimal(textoAValidar) <= 0)
+                    {
+                        strError += "El campo " + nombreCampo + " debe ser mayor que cero\n";
+                    }
+                    return strError;
+                }
+                catch (System.OverflowException)
+                {
+                    return
+                       "Se produjo overflow por el campo " + nombreCampo + "\n";
+                }
+                catch (System.FormatException)
+                {
+                    return
+                        "El campo " + nombreCampo + " no es decimal\n";
+                }
+                catch (System.ArgumentNullException)
+                {
+                    return
+                        "El campo " + nombreCampo + " no puede ser vacio\n";
+                }
+            }
         }
 
         public static string validarNuloEnListaDeCheckbox(CheckedListBox lstRubros, string nombreListado)
