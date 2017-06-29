@@ -25,6 +25,10 @@ namespace UberFrba.Registro_Viajes
         private void RegistroViaje_Load(object sender, EventArgs e)
         {
             txtAutomovil.Enabled = false;
+            dtpFechaInicio.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            dtpFechaInicio.Format = DateTimePickerFormat.Custom;
+            dtpFechaFin.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            dtpFechaFin.Format = DateTimePickerFormat.Custom;
             CargarChoferes();
             CargarClientes();
             cargarTurnos();
@@ -124,18 +128,28 @@ namespace UberFrba.Registro_Viajes
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             //valido campos ingresados
-            ValidarCampos();
+            if (ValidarCampos())
+            {
+                //los campos son validos, registro el viaje
+            }
+
         }
 
-        private void ValidarCampos()
+        private bool ValidarCampos()
         {
             string strErrores = "";
             strErrores = Validator.SoloNumerosODecimales(txtKilometros.Text, "Kilometros");
             strErrores += Validator.MayorACero(txtKilometros.Text, "Kilometros");
+            strErrores += Validator.FechaMenor(dtpFechaInicio.Value, dtpFechaFin.Value);
+
             if (strErrores.Length > 0)
             {
-                throw new Exception(strErrores);
+                MessageBox.Show(strErrores, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // throw new Exception(strErrores);
+                return false;
             }
+
+            return true;
         }
     }
 }

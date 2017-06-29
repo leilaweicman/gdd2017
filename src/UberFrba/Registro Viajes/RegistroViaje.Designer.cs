@@ -31,9 +31,7 @@
             this.grpTurnos = new System.Windows.Forms.GroupBox();
             this.lblCliente = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
-            this.txtFechaFin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtFechaInicio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtKilometros = new System.Windows.Forms.TextBox();
             this.lblKilometros = new System.Windows.Forms.Label();
@@ -45,16 +43,18 @@
             this.txtAutomovil = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lbAutomovil = new System.Windows.Forms.Label();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.grpTurnos.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpTurnos
             // 
+            this.grpTurnos.Controls.Add(this.dtpFechaFin);
+            this.grpTurnos.Controls.Add(this.dtpFechaInicio);
             this.grpTurnos.Controls.Add(this.lblCliente);
             this.grpTurnos.Controls.Add(this.cmbCliente);
-            this.grpTurnos.Controls.Add(this.txtFechaFin);
             this.grpTurnos.Controls.Add(this.label2);
-            this.grpTurnos.Controls.Add(this.txtFechaInicio);
             this.grpTurnos.Controls.Add(this.label1);
             this.grpTurnos.Controls.Add(this.txtKilometros);
             this.grpTurnos.Controls.Add(this.lblKilometros);
@@ -93,13 +93,6 @@
             this.cmbCliente.Size = new System.Drawing.Size(173, 26);
             this.cmbCliente.TabIndex = 57;
             // 
-            // txtFechaFin
-            // 
-            this.txtFechaFin.Location = new System.Drawing.Point(19, 392);
-            this.txtFechaFin.Name = "txtFechaFin";
-            this.txtFechaFin.Size = new System.Drawing.Size(173, 27);
-            this.txtFechaFin.TabIndex = 56;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -109,13 +102,6 @@
             this.label2.Size = new System.Drawing.Size(73, 18);
             this.label2.TabIndex = 55;
             this.label2.Text = "FechaFin";
-            // 
-            // txtFechaInicio
-            // 
-            this.txtFechaInicio.Location = new System.Drawing.Point(19, 322);
-            this.txtFechaInicio.Name = "txtFechaInicio";
-            this.txtFechaInicio.Size = new System.Drawing.Size(173, 27);
-            this.txtFechaInicio.TabIndex = 54;
             // 
             // label1
             // 
@@ -221,6 +207,24 @@
             this.lbAutomovil.TabIndex = 7;
             this.lbAutomovil.Text = "Automovil";
             // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.Location = new System.Drawing.Point(19, 322);
+            this.dtpFechaInicio.MaxDate = new System.DateTime(9888, 12, 31, 0, 0, 0, 0);
+            this.dtpFechaInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(243, 27);
+            this.dtpFechaInicio.TabIndex = 59;
+            // 
+            // dtpFechaFin
+            // 
+            this.dtpFechaFin.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtpFechaFin.Location = new System.Drawing.Point(19, 392);
+            this.dtpFechaFin.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(243, 27);
+            this.dtpFechaFin.TabIndex = 60;
+            // 
             // RegistroViaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,13 +251,13 @@
         private System.Windows.Forms.Label lbAutomovil;
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.ComboBox cmbCliente;
-        private System.Windows.Forms.TextBox txtFechaFin;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtFechaInicio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtKilometros;
         private System.Windows.Forms.Label lblKilometros;
         private System.Windows.Forms.ComboBox cmbTurno;
         private System.Windows.Forms.Label lblTurno;
+        private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
     }
 }

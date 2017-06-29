@@ -76,13 +76,22 @@ namespace Utilities
 
         }
 
-        public static string ValidarFechaVencimiento(string fecha, string nombreCampo, DateTime fechaHoy)
+        public static string FechaMenor(DateTime fechaInicio, DateTime fechaFin)
         {
-            DateTime unaFecha = Convert.ToDateTime(fecha);
-            if (unaFecha < fechaHoy)
-                return "Tiene que ingresar una fecha válida, para el campo " + nombreCampo + "\n";
+            if (DateTime.Compare(fechaInicio, fechaFin) >= 0)
+                return "La fecha de inicio debe ser menor a la fecha de fin " + "\n";
+
             return string.Empty;
+
         }
+
+        //public static string ValidarFechaVencimiento(string fecha, string nombreCampo, DateTime fechaHoy)
+        //{
+        //    DateTime unaFecha = Convert.ToDateTime(fecha);
+        //    if (unaFecha < fechaHoy)
+        //        return "Tiene que ingresar una fecha válida, para el campo " + nombreCampo + "\n";
+        //    return string.Empty;
+        //}
 
         public static string ValidarCantidadMenor(string cant, int otraCant, string nombreCampo)
         {
