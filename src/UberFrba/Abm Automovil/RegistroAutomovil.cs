@@ -37,7 +37,9 @@ namespace UberFrba.Abm_Automovil
         {
             SQLHelper.Inicializar();
 
-            string query = "select IDChofer,IDMarca,IDModelo,Patente,Licencia,Rodado from [GIRLPOWER].Automovil a inner join [GIRLPOWER].MarcaModelo m on m.IDMarcaModelo=a.IDMarcaModelo where IDAutomovil=" + this.idAutomovil;
+            string query = "select IDChofer,IDMarca,IDModelo,Patente,Licencia,Rodado ,max(IDTurno) as IDTurno from [GIRLPOWER].Automovil a ";
+                query +="inner join [GIRLPOWER].MarcaModelo m on m.IDMarcaModelo=a.IDMarcaModelo INNER JOIN [GIRLPOWER].TurnoPorAutomovil t on t.IDAutomovil=a.IDAutomovil";
+                query += " where a.IDAutomovil=" + this.idAutomovil + " group by IDChofer,IDMarca,IDModelo,Patente,Licencia,Rodado ";
 
             var result = SQLHelper.ExecuteQuery(query);
             SQLHelper.Cerrar();
@@ -52,7 +54,8 @@ namespace UberFrba.Abm_Automovil
 
                 if (!object.Equals(result["IDModelo"], DBNull.Value))
                     cmbModelo.SelectedValue =int.Parse( result["IDModelo"].ToString());
-                
+                if (!object.Equals(result["IDTurno"], DBNull.Value))
+                    cmbTurno.SelectedValue = int.Parse(result["IDTurno"].ToString());
                 string f;
                 if (!object.Equals(result["IDChofer"], DBNull.Value))
                     f = result["IDChofer"].ToString();
@@ -78,7 +81,9 @@ namespace UberFrba.Abm_Automovil
 
             string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
             var resultChoferes = SQLHelper.ExecuteQuery(query2);
-            
+
+            string query3 = "select IDTurno,Descripcion from [GIRLPOWER].Turno";
+            var resultsTurnos = SQLHelper.ExecuteQuery(query3);
             SQLHelper.Cerrar();
             List<ComboPrueba>marcas=new List<ComboPrueba>();
             while (resultMarcas.Read())
@@ -119,6 +124,29 @@ namespace UberFrba.Abm_Automovil
             cmbChofer.DisplayMember = "Name";
             cmbChofer.ValueMember = "Value";
             cmbChofer.SelectedIndex = 0;
+
+
+
+            List<ComboPrueba> turnos = new List<ComboPrueba>();
+            while (resultsTurnos.Read())
+            {
+                ComboPrueba aux;
+                int idturno = 0;
+                string Nombre = "";
+                if (!object.Equals(resultsTurnos["IDTurno"], DBNull.Value))
+                    idturno = int.Parse(resultsTurnos["IDTurno"].ToString());
+
+                if (!object.Equals(resultsTurnos["Descripcion"], DBNull.Value))
+                    Nombre = resultsTurnos["Descripcion"].ToString();
+                aux = new ComboPrueba(Nombre, idturno);
+                turnos.Add(aux);
+            }
+
+
+            cmbTurno.DataSource = turnos;
+            cmbTurno.DisplayMember = "Name";
+            cmbTurno.ValueMember = "Value";
+            cmbTurno.SelectedIndex = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -183,12 +211,12 @@ namespace UberFrba.Abm_Automovil
             int idChofer;
             int idMarca;
             int idModelo;
+            int idTurno;
             string patente;
             string licencia;
             string rodado;
-            if (cmbChofer.SelectedValue.ToString() == "0" || cmbMarca.SelectedValue.ToString() == "0" ||
-                cmbModelo.SelectedValue.ToString() == "0" || txtPatente.Text == "" || txtLicencia.Text == "" ||
-                txtRodado.Text == "")
+            if (cmbChofer.SelectedValue.ToString() == "0" || cmbMarca.SelectedValue.ToString() == "0" ||cmbTurno.SelectedValue.ToString() == "0" ||
+                cmbModelo.SelectedValue.ToString() == "0" || txtPatente.Text == "" )
             {
                 MessageBox.Show("Complete todos los campos por favor");
             }
@@ -202,6 +230,7 @@ namespace UberFrba.Abm_Automovil
                 idChofer = int.Parse(cmbChofer.SelectedValue.ToString());
                 idMarca = int.Parse(cmbMarca.SelectedValue.ToString());
                 idModelo = int.Parse(cmbModelo.SelectedValue.ToString());
+                idTurno = int.Parse(cmbTurno.SelectedValue.ToString());
                 patente = txtPatente.Text;
                 licencia = txtLicencia.Text;
                 rodado=txtRodado.Text;
@@ -209,6 +238,7 @@ namespace UberFrba.Abm_Automovil
                 parameterList.Add(new SqlParameter("@idChofer", idChofer));
                 parameterList.Add(new SqlParameter("@idMarca", idMarca));
                 parameterList.Add(new SqlParameter("@idModelo", idModelo));
+                parameterList.Add(new SqlParameter("@idTurno", idTurno));
                 parameterList.Add(new SqlParameter("@patente", patente));
                 parameterList.Add(new SqlParameter("@licencia", licencia));
                 parameterList.Add(new SqlParameter("@rodado", rodado));

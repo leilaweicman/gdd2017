@@ -38,7 +38,8 @@ namespace UberFrba.Abm_Automovil
 
             string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
             var resultChoferes = SQLHelper.ExecuteQuery(query2);
-
+            string query3 = "select IDModelo,Nombre from [GIRLPOWER].Modelo";
+            var resultModelos = SQLHelper.ExecuteQuery(query3);
             SQLHelper.Cerrar();
             List<ComboPrueba> marcas = new List<ComboPrueba>();
             ComboPrueba todas = new ComboPrueba("TODAS", 0);
@@ -83,6 +84,32 @@ namespace UberFrba.Abm_Automovil
             cmbChofer.DisplayMember = "Name";
             cmbChofer.ValueMember = "Value";
             cmbChofer.SelectedIndex = 0;
+
+
+
+
+            List<ComboPrueba> Modelos = new List<ComboPrueba>();
+            ComboPrueba todosm = new ComboPrueba("TODOS", 0);
+            Modelos.Add(todosm);
+            while (resultModelos.Read())
+            {
+                ComboPrueba aux;
+                int idmodelo = 0;
+                string Nombre = "";
+                if (!object.Equals(resultModelos["IDModelo"], DBNull.Value))
+                    idmodelo = int.Parse(resultModelos["IDModelo"].ToString());
+
+                if (!object.Equals(resultModelos["Nombre"], DBNull.Value))
+                    Nombre = resultModelos["Nombre"].ToString();
+                aux = new ComboPrueba(Nombre, idmodelo);
+                Modelos.Add(aux);
+            }
+
+
+            cmbModelo.DataSource = Modelos;
+            cmbModelo.DisplayMember = "Name";
+            cmbModelo.ValueMember = "Value";
+            cmbModelo.SelectedIndex = 0;
         }
           private void CargarAuomoviles(){
               dgvAutomoviles.Rows.Clear();
@@ -91,6 +118,7 @@ namespace UberFrba.Abm_Automovil
                parameterList.Add(new SqlParameter("@idChofer", int.Parse(cmbChofer.SelectedValue.ToString())));
                parameterList.Add(new SqlParameter("@idMarca",int.Parse(cmbMarca.SelectedValue.ToString())));
                parameterList.Add(new SqlParameter("@patente", txtPatente.Text));
+               parameterList.Add(new SqlParameter("@idModelo", int.Parse(cmbModelo.SelectedValue.ToString())));
 
               DataSet ds = SQLHelper.ExecuteDataSet("PR_TraerAutomoviles",CommandType.StoredProcedure,parameterList);
 
@@ -100,7 +128,7 @@ namespace UberFrba.Abm_Automovil
                   user.DataRowToObject(row);
                   clientes.Add(user);
 
-                  dgvAutomoviles.Rows.Add(user.IDAutomovil, user.Chofer, user.Marca, user.Modelo, user.Patente, user.Licencia, user.Rodado, user.Habilitado);
+                  dgvAutomoviles.Rows.Add(user.IDAutomovil, user.Chofer, user.Marca, user.Modelo, user.Patente, user.Licencia, user.Rodado, user.Habilitado,user.Turno);
 
 
               }
@@ -141,6 +169,7 @@ namespace UberFrba.Abm_Automovil
         private void btnFiltrarTristes_Click(object sender, EventArgs e)
         {
             cmbChofer.SelectedValue = 0;
+            cmbModelo.SelectedValue = 0;
             cmbMarca.SelectedValue = 0;
             txtPatente.Text = "";
             CargarAuomoviles();

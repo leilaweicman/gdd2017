@@ -26,6 +26,7 @@ namespace Classes
         private int _ID_Automovil;
         private string _Chofer;
         private string _Marca;
+        private string _Turno;
         private string _Modelo;
         private string _Rodado;
         private string _Patente;
@@ -78,6 +79,11 @@ namespace Classes
             get { return _Habilitado; }
             set { _Habilitado = value; }
         }
+        public string Turno
+        {
+            get { return _Turno; }
+            set { _Turno = value; }
+        }
         #endregion
 
         #region methods
@@ -118,7 +124,7 @@ namespace Classes
             this.Modelo = dr["Modelo"].ToString();
             this.Patente = dr["Patente"].ToString();
             this.Licencia = dr["Licencia"].ToString();
-
+            this.Turno = dr["Turno"].ToString();
             this.Rodado = dr["Rodado"].ToString();
             this.Habilitado =bool.Parse(dr["Habilitado"].ToString());           
         }

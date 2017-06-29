@@ -39,6 +39,8 @@
             this.Rodado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbModelo = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnFiltrarTristes = new System.Windows.Forms.Button();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.txtPatente = new System.Windows.Forms.TextBox();
@@ -51,6 +53,7 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.Turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutomoviles)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,7 +84,8 @@
             this.Patente,
             this.Licencia,
             this.Rodado,
-            this.Habilitado});
+            this.Habilitado,
+            this.Turno});
             this.dgvAutomoviles.Location = new System.Drawing.Point(6, 181);
             this.dgvAutomoviles.Name = "dgvAutomoviles";
             this.dgvAutomoviles.ReadOnly = true;
@@ -141,6 +145,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmbModelo);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.btnFiltrarTristes);
             this.groupBox2.Controls.Add(this.btnFiltrar);
             this.groupBox2.Controls.Add(this.txtPatente);
@@ -156,9 +162,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtros";
             // 
+            // cmbModelo
+            // 
+            this.cmbModelo.FormattingEnabled = true;
+            this.cmbModelo.Location = new System.Drawing.Point(326, 66);
+            this.cmbModelo.Name = "cmbModelo";
+            this.cmbModelo.Size = new System.Drawing.Size(121, 21);
+            this.cmbModelo.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(265, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Modelo";
+            // 
             // btnFiltrarTristes
             // 
-            this.btnFiltrarTristes.Location = new System.Drawing.Point(365, 64);
+            this.btnFiltrarTristes.Location = new System.Drawing.Point(463, 69);
             this.btnFiltrarTristes.Name = "btnFiltrarTristes";
             this.btnFiltrarTristes.Size = new System.Drawing.Size(75, 23);
             this.btnFiltrarTristes.TabIndex = 7;
@@ -168,7 +191,7 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(268, 63);
+            this.btnFiltrar.Location = new System.Drawing.Point(463, 19);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
             this.btnFiltrar.TabIndex = 6;
@@ -267,6 +290,12 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // Turno
+            // 
+            this.Turno.HeaderText = "Turno";
+            this.Turno.Name = "Turno";
+            this.Turno.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,5 +342,8 @@
         private System.Windows.Forms.Button btnFiltrarTristes;
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.ComboBox cmbModelo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Turno;
     }
 }
