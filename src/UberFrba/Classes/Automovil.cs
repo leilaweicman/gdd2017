@@ -124,7 +124,7 @@ namespace Classes
             this.Modelo = dr["Modelo"].ToString();
             this.Patente = dr["Patente"].ToString();
             this.Licencia = dr["Licencia"].ToString();
-            this.Turno = dr["Turno"].ToString();
+           // this.Turno = dr["Turno"].ToString();
             this.Rodado = dr["Rodado"].ToString();
             this.Habilitado =bool.Parse(dr["Habilitado"].ToString());           
         }

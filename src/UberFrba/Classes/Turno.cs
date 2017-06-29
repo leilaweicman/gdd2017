@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class Turno
+    public class Turno: Base
     {
         #region variables
         List<SqlParameter> parameterList = new List<SqlParameter>();
@@ -127,7 +127,23 @@ namespace Classes
         }
         #endregion
 
+        #region metodos publicos
+        public override string NombreTabla()
+        {
+            return "Turno";
+        }
 
+        public override string NombreEntidad()
+        {
+            return "Turno";
+        }
+
+        public static DataSet obtenerTodos()
+        {
+            Turno unTurno = new Turno();
+            return unTurno.TraerListado(unTurno.parameterList, "");
+        }
+        #endregion
         public void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB

@@ -147,3 +147,28 @@ BEGIN
 	join girlpower.Cliente c on u.IDUsuario=c.IDUsuario
 END
 GO
+
+IF OBJECT_ID ('GIRLPOWER.traerAutomovilDelChofer', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerAutomovilDelChofer]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerAutomovilDelChofer] (@IDChofer int) AS
+BEGIN
+	SELECT IDAutomovil, IDChofer as Chofer, ma.Nombre as Marca, mo.Nombre as Modelo, Licencia, Patente, Rodado, a.Habilitado
+	FROM [GIRLPOWER].[Automovil] a 
+	JOIN [GIRLPOWER].[MarcaModelo] m ON a.IDMarcaModelo = m.IDMarcaModelo
+	JOIN [GIRLPOWER].Marca ma ON ma.IDMarca = m.IDMarca
+	JOIN [GIRLPOWER].[Modelo] mo ON m.IDModelo = mo.IDModelo
+	WHERE IDChofer=@IDChofer
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoTurno', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoTurno]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoTurno] AS
+BEGIN
+	SELECT * FROM girlpower.Turno
+END
+GO

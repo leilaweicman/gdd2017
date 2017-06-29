@@ -27,6 +27,29 @@ namespace UberFrba.Registro_Viajes
             txtAutomovil.Enabled = false;
             CargarChoferes();
             CargarClientes();
+            cargarTurnos();
+        }
+
+        private void cargarTurnos()
+        {
+            try
+            {
+                //Obtengo los clientes y los muestro en el combobox.
+                DataSet ds = Turno.obtenerTodos();
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    //Uso el manager de dropdowns para cargar el comboBox con los clientes
+                    DropDownListManager.CargarCombo(cmbTurno, ds.Tables[0], "IDTurno", "Descripcion", false, "");
+                }
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CargarClientes()
@@ -95,6 +118,23 @@ namespace UberFrba.Registro_Viajes
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            //valido campos ingresados
+            ValidarCampos();
+        }
+
+        private void ValidarCampos()
+        {
+            string strErrores = "";
+            strErrores = Validator.SoloNumerosODecimales(txtKilometros.Text, "Kilometros");
+            //strErrores += Validator.ValidarNulo(txtContrasena.Text, "Contraseña");
+            if (strErrores.Length > 0)
+            {
+                throw new Exception(strErrores);
             }
         }
     }
