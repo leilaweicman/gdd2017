@@ -182,8 +182,8 @@ namespace UberFrba.Abm_Automovil
             string licencia;
             string rodado;
             SQLHelper.Inicializar();
-
-            string query = "EXEC  [GIRLPOWER].PR_verifExistePatente " + txtPatente.Text + "," + this.idAutomovil;
+           
+            string query = "EXEC  [GIRLPOWER].PR_verifExistePatente '" + txtPatente.Text + "'," + this.idAutomovil;
             var aux = SQLHelper.ExecuteQuery(query);
              int existePatente =0;
             while (aux.Read())
@@ -258,7 +258,10 @@ namespace UberFrba.Abm_Automovil
 
                     }
 
-
+                   
+                        MessageBox.Show("Los datos se han guardado correctamente");
+                    
+                   
                     UberFrba.Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
                     this.Hide();
                     SQLHelper.Cerrar();

@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
+            this.lstTurnosTot = new System.Windows.Forms.ListBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnSacar = new System.Windows.Forms.Button();
+            this.lstTurnos = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbModelo = new System.Windows.Forms.ComboBox();
             this.cmbMarca = new System.Windows.Forms.ComboBox();
@@ -44,10 +48,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lstTurnosTot = new System.Windows.Forms.ListBox();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnSacar = new System.Windows.Forms.Button();
-            this.lstTurnos = new System.Windows.Forms.ListBox();
             this.groupBoxReg.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +78,48 @@
             this.groupBoxReg.TabIndex = 2;
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
+            // 
+            // lstTurnosTot
+            // 
+            this.lstTurnosTot.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstTurnosTot.FormattingEnabled = true;
+            this.lstTurnosTot.ItemHeight = 18;
+            this.lstTurnosTot.Location = new System.Drawing.Point(354, 79);
+            this.lstTurnosTot.Name = "lstTurnosTot";
+            this.lstTurnosTot.Size = new System.Drawing.Size(145, 166);
+            this.lstTurnosTot.TabIndex = 41;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(533, 100);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(57, 37);
+            this.btnAgregar.TabIndex = 40;
+            this.btnAgregar.Text = ">>>";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnSacar
+            // 
+            this.btnSacar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacar.Location = new System.Drawing.Point(533, 152);
+            this.btnSacar.Name = "btnSacar";
+            this.btnSacar.Size = new System.Drawing.Size(57, 37);
+            this.btnSacar.TabIndex = 39;
+            this.btnSacar.Text = "<<<";
+            this.btnSacar.UseVisualStyleBackColor = true;
+            this.btnSacar.Click += new System.EventHandler(this.btnSacar_Click_1);
+            // 
+            // lstTurnos
+            // 
+            this.lstTurnos.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstTurnos.FormattingEnabled = true;
+            this.lstTurnos.ItemHeight = 18;
+            this.lstTurnos.Location = new System.Drawing.Point(627, 79);
+            this.lstTurnos.Name = "lstTurnos";
+            this.lstTurnos.Size = new System.Drawing.Size(145, 166);
+            this.lstTurnos.TabIndex = 38;
             // 
             // label3
             // 
@@ -120,7 +162,7 @@
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(141, 35);
             this.btnRegistrar.TabIndex = 33;
-            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.Text = "Guardar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
@@ -220,48 +262,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // lstTurnosTot
-            // 
-            this.lstTurnosTot.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstTurnosTot.FormattingEnabled = true;
-            this.lstTurnosTot.ItemHeight = 18;
-            this.lstTurnosTot.Location = new System.Drawing.Point(354, 79);
-            this.lstTurnosTot.Name = "lstTurnosTot";
-            this.lstTurnosTot.Size = new System.Drawing.Size(145, 166);
-            this.lstTurnosTot.TabIndex = 41;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(533, 100);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(57, 37);
-            this.btnAgregar.TabIndex = 40;
-            this.btnAgregar.Text = ">>>";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnSacar
-            // 
-            this.btnSacar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSacar.Location = new System.Drawing.Point(533, 152);
-            this.btnSacar.Name = "btnSacar";
-            this.btnSacar.Size = new System.Drawing.Size(57, 37);
-            this.btnSacar.TabIndex = 39;
-            this.btnSacar.Text = "<<<";
-            this.btnSacar.UseVisualStyleBackColor = true;
-            this.btnSacar.Click += new System.EventHandler(this.btnSacar_Click_1);
-            // 
-            // lstTurnos
-            // 
-            this.lstTurnos.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstTurnos.FormattingEnabled = true;
-            this.lstTurnos.ItemHeight = 18;
-            this.lstTurnos.Location = new System.Drawing.Point(627, 79);
-            this.lstTurnos.Name = "lstTurnos";
-            this.lstTurnos.Size = new System.Drawing.Size(145, 166);
-            this.lstTurnos.TabIndex = 38;
             // 
             // RegistroAutomovil
             // 

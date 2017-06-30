@@ -176,7 +176,14 @@ namespace Classes
             this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
 
         }
-
+        public static DataSet ObtenerTurnosPorAutomovil(int id)
+        {
+            Turno turno = new Turno();
+            turno.parameterList.Add(new SqlParameter("@IDAutomovil ", id));
+            DataSet ds = turno.TraerListado(turno.parameterList, "PorAutomovil");
+            turno.parameterList.Clear();
+            return ds;
+        }
         #endregion
     }
 }
