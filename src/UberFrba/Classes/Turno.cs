@@ -10,6 +10,7 @@ namespace Classes
 {
     public class Turno: Base
     {
+
         #region variables
         List<SqlParameter> parameterList = new List<SqlParameter>();
         #endregion
@@ -143,6 +144,14 @@ namespace Classes
             Turno unTurno = new Turno();
             return unTurno.TraerListado(unTurno.parameterList, "");
         }
+
+        public static DataSet ObtenerTurnosPorAutomovil(int id){
+            Turno turno = new Turno();
+            turno.parameterList.Add(new SqlParameter("@IDAutomovil ", id));
+            DataSet ds = turno.TraerListado(turno.parameterList, "PorAutomovil");
+            turno.parameterList.Clear();
+            return ds;
+        }
         #endregion
         public void DataRowToObject(DataRow dr)
         {
@@ -152,7 +161,7 @@ namespace Classes
             this.HoraFin = Convert.ToInt32(dr["HoraFin"]);
             this.Descripcion = dr["Descripcion"].ToString();
             this.ValorKilometro = Convert.ToDecimal(dr["ValorKilometro"]);
-            this.Precio = Convert.ToDecimal(dr["Precio"]);
+            this.Precio = Convert.ToDecimal(dr["PrecioBase"]);
             this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
         }
 

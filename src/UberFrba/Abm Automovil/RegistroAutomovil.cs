@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using Connection;
 using System.Data.SqlClient;
 using System.Reflection;
+using Classes;
 
 namespace UberFrba.Abm_Automovil
 {
     public partial class RegistroAutomovil : Form
     {
+        Automovil autoDelForm;
         int idAutomovil;
         public RegistroAutomovil()
         {
@@ -22,6 +24,7 @@ namespace UberFrba.Abm_Automovil
           CargarCombos();
           CargarModelos();
           this.idAutomovil = 0;
+          cargarListadoTurnosDelSistema();
         }
         public RegistroAutomovil(int ID)
         {
@@ -29,7 +32,7 @@ namespace UberFrba.Abm_Automovil
             CargarCombos();
             CargarModelos();
             this.idAutomovil = ID;
-
+            autoDelForm = new Automovil(ID);
             CargarDatos();
        
         }
@@ -54,12 +57,8 @@ namespace UberFrba.Abm_Automovil
 
                 if (!object.Equals(result["IDModelo"], DBNull.Value))
                     cmbModelo.SelectedValue =int.Parse( result["IDModelo"].ToString());
-                if (!object.Equals(result["IDTurno"], DBNull.Value))
-                    cmbTurno.SelectedValue = int.Parse(result["IDTurno"].ToString());
-                string f;
-                if (!object.Equals(result["IDChofer"], DBNull.Value))
-                    f = result["IDChofer"].ToString();
-
+              
+              
                 if (!object.Equals(result["Patente"], DBNull.Value))
                     txtPatente.Text = result["Patente"].ToString();
 
@@ -70,6 +69,8 @@ namespace UberFrba.Abm_Automovil
                     txtRodado.Text = result["Rodado"].ToString();
 
             }
+            cargarListadoTurnos();
+            cargarListadoTurnosDelSistema();
 
 
         }
@@ -125,28 +126,7 @@ namespace UberFrba.Abm_Automovil
             cmbChofer.ValueMember = "Value";
             cmbChofer.SelectedIndex = 0;
 
-
-
-            List<ComboPrueba> turnos = new List<ComboPrueba>();
-            while (resultsTurnos.Read())
-            {
-                ComboPrueba aux;
-                int idturno = 0;
-                string Nombre = "";
-                if (!object.Equals(resultsTurnos["IDTurno"], DBNull.Value))
-                    idturno = int.Parse(resultsTurnos["IDTurno"].ToString());
-
-                if (!object.Equals(resultsTurnos["Descripcion"], DBNull.Value))
-                    Nombre = resultsTurnos["Descripcion"].ToString();
-                aux = new ComboPrueba(Nombre, idturno);
-                turnos.Add(aux);
-            }
-
-
-            cmbTurno.DataSource = turnos;
-            cmbTurno.DisplayMember = "Name";
-            cmbTurno.ValueMember = "Value";
-            cmbTurno.SelectedIndex = 0;
+     
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -166,20 +146,7 @@ namespace UberFrba.Abm_Automovil
                 CargarModelos();
             }
         }
-        private bool patenteYaRegistrada(string patente,int id)
-        {
-            /*
-            SQLHelper.Inicializar();
-            string nomProcedure = "select  [GIRLPOWER].FUNC_PatenteYaRegistrada ("+id+",'"+patente+"') ";
 
-            var result = SQLHelper.ExecuteQuery(nomProcedure);
-            
-            SQLHelper.Cerrar();
-           if (1==1)
-                return true;
-             * */
-           return false;
-        }
         private void CargarModelos()
         {
             SQLHelper.Inicializar();
@@ -211,26 +178,36 @@ namespace UberFrba.Abm_Automovil
             int idChofer;
             int idMarca;
             int idModelo;
-            int idTurno;
             string patente;
             string licencia;
             string rodado;
-            if (cmbChofer.SelectedValue.ToString() == "0" || cmbMarca.SelectedValue.ToString() == "0" ||cmbTurno.SelectedValue.ToString() == "0" ||
+            SQLHelper.Inicializar();
+
+            string query = "EXEC  [GIRLPOWER].PR_verifExistePatente " + txtPatente.Text + "," + this.idAutomovil;
+            var aux = SQLHelper.ExecuteQuery(query);
+             int existePatente =0;
+            while (aux.Read())
+            { if (!object.Equals(aux["Existe"], DBNull.Value))
+                     existePatente = int.Parse(aux["Existe"].ToString());
+            }
+            if (cmbChofer.SelectedValue.ToString() == "0" || cmbMarca.SelectedValue.ToString() == "0"  ||
                 cmbModelo.SelectedValue.ToString() == "0" || txtPatente.Text == "" )
             {
                 MessageBox.Show("Complete todos los campos por favor");
             }
-            else if (patenteYaRegistrada(txtPatente.Text,this.idAutomovil))
+            else if (existePatente == 1)
             {
                 MessageBox.Show("La patente ya se encuentra registrada, por favor ingrese una diferente");
 
+            }else if (lstTurnos.Items.Count < 1)
+            {
+                MessageBox.Show("Debe ingresar al menos un turno");
             }
             else
             {
                 idChofer = int.Parse(cmbChofer.SelectedValue.ToString());
                 idMarca = int.Parse(cmbMarca.SelectedValue.ToString());
                 idModelo = int.Parse(cmbModelo.SelectedValue.ToString());
-                idTurno = int.Parse(cmbTurno.SelectedValue.ToString());
                 patente = txtPatente.Text;
                 licencia = txtLicencia.Text;
                 rodado=txtRodado.Text;
@@ -238,29 +215,54 @@ namespace UberFrba.Abm_Automovil
                 parameterList.Add(new SqlParameter("@idChofer", idChofer));
                 parameterList.Add(new SqlParameter("@idMarca", idMarca));
                 parameterList.Add(new SqlParameter("@idModelo", idModelo));
-                parameterList.Add(new SqlParameter("@idTurno", idTurno));
                 parameterList.Add(new SqlParameter("@patente", patente));
                 parameterList.Add(new SqlParameter("@licencia", licencia));
                 parameterList.Add(new SqlParameter("@rodado", rodado));
 
 
-                SQLHelper.Inicializar();
+               
                 string nomProcedure="";
                 if(this.idAutomovil==0)
                      nomProcedure ="PR_altaAutomovil";
                 else{
-                                    parameterList.Add(new SqlParameter("@idAutomovil", this.idAutomovil));
+                    parameterList.Add(new SqlParameter("@idAutomovil", this.idAutomovil));
                     nomProcedure="PR_modificarAutomovil";
                 }
                 try
                 {
 
                     int result = SQLHelper.ExecuteNonQuery(nomProcedure, CommandType.StoredProcedure, parameterList);
+                    if (this.idAutomovil == 0)
+                    {
+                        string query3 = "EXEC  [GIRLPOWER].PR_UltimoID " + txtPatente.Text;
+                        var aux2 = SQLHelper.ExecuteQuery(query3);
+                        while (aux2.Read())
+                        {
+                            if (!object.Equals(aux2["ID"], DBNull.Value))
+                                idAutomovil = int.Parse(aux2["ID"].ToString());
+                        }
+                    }
 
-                    SQLHelper.Cerrar();
+                    parameterList.Clear();
+                        parameterList.Add(new SqlParameter("@idAutomovil", this.idAutomovil));
+                         SQLHelper.ExecuteNonQuery("BorrarTurnosPorAutomovil", CommandType.StoredProcedure, parameterList);
+
+                   
+                    foreach (Turno unTurno in lstTurnos.Items)
+                    {
+                        parameterList.Clear();
+                        parameterList.Add(new SqlParameter("@idAutomovil", this.idAutomovil));
+                        parameterList.Add(new SqlParameter("@idTurno",unTurno.Id_Turno));
+
+                        SQLHelper.ExecuteNonQuery("AgregarTurnoPorAutomovil", CommandType.StoredProcedure, parameterList);
+
+                    }
+
 
                     UberFrba.Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
                     this.Hide();
+                    SQLHelper.Cerrar();
+
                     listado.Show();
                 }
                 catch (Exception ex)
@@ -269,11 +271,84 @@ namespace UberFrba.Abm_Automovil
                     MessageBox.Show(ex.ToString());
 
                 }
-
                 //deberia ir al listado de automoviles
 
             }
 
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            //agrego funcionalidades al listado de funcionalidades del rol
+            if (lstTurnosTot.SelectedItem != null)
+            {
+                lstTurnos.Items.Add(lstTurnosTot.SelectedItem);
+                lstTurnosTot.Items.Remove(lstTurnosTot.SelectedItem);
+                lstTurnos.DisplayMember = "Descripcion";
+            }
+        }
+
+        private void btnSacar_Click(object sender, EventArgs e)
+        {
+            //saco funcionalidades del rol
+            if (lstTurnos.SelectedItem != null)
+            {
+                lstTurnosTot.Items.Add(lstTurnos.SelectedItem);
+                lstTurnosTot.Items.Remove(lstTurnos.SelectedItem);
+            }
+        }
+
+        private void cargarListadoTurnos()
+        {
+            //cargo el listado de funcionalidades pertenecientes al rol 
+            //exijo que se muestre solo el nombre de las funcionalidades
+            lstTurnos.Items.Clear();
+            foreach (Turno unTurno in autoDelForm.Turnos)
+            {
+                lstTurnos.Items.Add(unTurno);
+            }
+            lstTurnos.DisplayMember = "Descripcion";
+        }
+
+        private void cargarListadoTurnosDelSistema()
+        {
+            //cargo el listado de funcionalidades no pertenecientes al rol cargadas en el sistema
+            //exijo que se muestre solo el nombre de las funcionalidades
+            lstTurnosTot.Items.Clear();
+            DataSet ds = Turno.obtenerTodos();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                Turno unTurno = new Turno();
+                unTurno.DataRowToObject(dr);
+                if (!(contieneLaListaDeTurnosDeAutomovil(unTurno)))
+                    lstTurnosTot.Items.Add(unTurno);
+            }
+            lstTurnosTot.DisplayMember = "Descripcion";
+        }
+
+        private bool contieneLaListaDeTurnosDeAutomovil(Turno unTurno)
+        {
+            //valido si la funcionalidad existe entre las del rol
+            foreach (Turno item in lstTurnos.Items)
+            {
+                if (item.Descripcion== unTurno.Descripcion)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void btnSacar_Click_1(object sender, EventArgs e)
+        {
+            //saco funcionalidades del rol
+            if (lstTurnos.SelectedItem != null)
+            {
+                lstTurnosTot.Items.Add(lstTurnos.SelectedItem);
+                lstTurnos.Items.Remove(lstTurnos.SelectedItem);
+            }
+        }
+
+    
     }
 }

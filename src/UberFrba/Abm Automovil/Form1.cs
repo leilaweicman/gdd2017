@@ -128,7 +128,7 @@ namespace UberFrba.Abm_Automovil
                   user.DataRowToObject(row);
                   clientes.Add(user);
 
-                  dgvAutomoviles.Rows.Add(user.IDAutomovil, user.Chofer, user.Marca, user.Modelo, user.Patente, user.Licencia, user.Rodado, user.Habilitado,user.Turno);
+                  dgvAutomoviles.Rows.Add(user.IDAutomovil, user.Chofer, user.Marca, user.Modelo, user.Patente, user.Licencia, user.Rodado, user.Habilitado);
 
 
               }
