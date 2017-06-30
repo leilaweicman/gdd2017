@@ -19,6 +19,11 @@ namespace Classes
         public Automovil()
         {
         }
+        public Automovil(int id)
+        {
+            this.IDAutomovil = id;
+            this.setearTurnos();
+        }
         #endregion
 
         #region atributos
@@ -26,13 +31,12 @@ namespace Classes
         private int _ID_Automovil;
         private string _Chofer;
         private string _Marca;
-        private string _Turno;
         private string _Modelo;
         private string _Rodado;
         private string _Patente;
         private string _Licencia;
         private bool _Habilitado;
-
+        List<Turno> _Turnos = new List<Turno>();
         #endregion
 
         #region properties
@@ -41,7 +45,11 @@ namespace Classes
             get { return _ID_Automovil; }
             set { _ID_Automovil = value; }
         }
-
+        public List<Turno> Turnos
+        {
+            get { return _Turnos; }
+            set { _Turnos = value; }
+        }
         public string Chofer 
         {
             get { return _Chofer; }
@@ -79,11 +87,7 @@ namespace Classes
             get { return _Habilitado; }
             set { _Habilitado = value; }
         }
-        public string Turno
-        {
-            get { return _Turno; }
-            set { _Turno = value; }
-        }
+     
         #endregion
 
         #region methods
@@ -114,7 +118,16 @@ namespace Classes
             base.Deshabilitar(parameterList);
             parameterList.Clear();
         }
-
+        public void setearTurnos()
+        {
+            DataSet dsturnos = Turno.ObtenerTurnosPorAutomovil(this.IDAutomovil);
+            foreach (DataRow dr in dsturnos.Tables[0].Rows)
+            {
+                Turno turno = new Turno();
+                turno.DataRowToObject(dr);
+                this.Turnos.Add(turno);
+            }
+        }
         public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB
@@ -124,7 +137,6 @@ namespace Classes
             this.Modelo = dr["Modelo"].ToString();
             this.Patente = dr["Patente"].ToString();
             this.Licencia = dr["Licencia"].ToString();
-           // this.Turno = dr["Turno"].ToString();
             this.Rodado = dr["Rodado"].ToString();
             this.Habilitado =bool.Parse(dr["Habilitado"].ToString());           
         }
