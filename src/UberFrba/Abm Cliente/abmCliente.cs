@@ -44,12 +44,10 @@ namespace UberFrba.Abm_Cliente
 
                 Usuario userSeleccionado = clientes[dni];
 
-                //UberFrba.Abm_Cliente.Editar editarClienteForm = new Abm_Cliente.Editar(userSeleccionado);
                 UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, 1);//1 es cliente
 
                 this.Hide();
-                //editarClienteForm.Show();
-
+                
                 registrarForm.Show();
             }
             else
@@ -60,8 +58,6 @@ namespace UberFrba.Abm_Cliente
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            dgvClientes.Rows.Clear();
-            
             cargarClientes();
             
         }
@@ -86,7 +82,6 @@ namespace UberFrba.Abm_Cliente
                 try
                 {
                     SQLHelper.ExecuteNonQuery("PR_inhabilitarCliente", CommandType.StoredProcedure, parameterList);
-                    dgvClientes.Rows.Clear();
                     cargarClientes();                    
                 } 
                 catch (Exception ex)
@@ -99,7 +94,8 @@ namespace UberFrba.Abm_Cliente
         private void cargarClientes()
         {
             clientes.Clear();
-
+            dgvClientes.Rows.Clear();
+                    
             List<SqlParameter> parameterList = new List<SqlParameter>();
             if (txtFiltDni.Text == "")
             {

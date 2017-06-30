@@ -24,6 +24,7 @@ namespace UberFrba.Abm_Chofer
         private void cargarChoferes()
         {
             choferes.Clear();
+            dgvChoferes.Rows.Clear();
 
             List<SqlParameter> parameterList = new List<SqlParameter>();
             if (txtFiltDni.Text == "")
@@ -62,14 +63,11 @@ namespace UberFrba.Abm_Chofer
             txtFiltDni.Text = "";
             txtFiltNombre.Text = "";
             txtFiltApellido.Text = "";
-            dgvChoferes.Rows.Clear();
             cargarChoferes();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            dgvChoferes.Rows.Clear();
-
             cargarChoferes();           
         }
 
@@ -115,7 +113,6 @@ namespace UberFrba.Abm_Chofer
                 try
                 {
                     SQLHelper.ExecuteNonQuery("PR_inhabilitarChofer", CommandType.StoredProcedure, parameterList);
-                    dgvChoferes.Rows.Clear();
                     cargarChoferes();
                 }
                 catch (Exception ex)
