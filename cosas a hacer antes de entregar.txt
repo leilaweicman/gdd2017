@@ -15,3 +15,9 @@ PROBAR QUE EL SCRIPT FUNCIONE
 - fechas
 - tipos
 - campos vacios
+
+*cambiar en la tabla administrador el IDChofer por IDAdministrador
+
+*cambiar el campo km en viaje a numeric (18,2)
+
+*cambiar el campo fechaFin de viaje (debe ser mayor a fechaInicio)
