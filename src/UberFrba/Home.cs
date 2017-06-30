@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba;
 
 namespace UberFrba
 {
@@ -104,21 +105,22 @@ namespace UberFrba
 
         private void lblRegistrarAutomovil_Click(object sender, EventArgs e)
         {
-            UberFrba.Abm_Automovil.RegistroAutomovil registroAutomovilForm = new Abm_Automovil.RegistroAutomovil();
+            
+            Abm_Automovil.RegistroAutomovil registroAutomovilForm = new Abm_Automovil.RegistroAutomovil();
             this.Hide();
             registroAutomovilForm.Show();
         }
 
         private void lblAbmCliente_Click(object sender, EventArgs e)
         {
-            UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+            Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
             this.Hide();
             abmCliente.Show();
         }
 
         private void lblListadoAutomoviles_Click(object sender, EventArgs e)
         {
-            UberFrba.Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
+            Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
             this.Hide();
             listado.Show();
         }
@@ -139,16 +141,23 @@ namespace UberFrba
 
         private void lblAbmRol_Click(object sender, EventArgs e)
         {
-            UberFrba.Abm_Rol.AbmRol abmRol = new Abm_Rol.AbmRol();
+            Abm_Rol.AbmRol abmRol = new Abm_Rol.AbmRol();
             this.Hide();
             abmRol.Show();
         }
 
         private void lblRegistrarViajes_Click(object sender, EventArgs e)
         {
-            UberFrba.Registro_Viajes.RegistroViaje registroViaje = new Registro_Viajes.RegistroViaje();
+            Registro_Viajes.RegistroViaje registroViaje = new Registro_Viajes.RegistroViaje();
             this.Hide();
             registroViaje.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Abm_Turno.AbmTurno abmTurno = new Abm_Turno.AbmTurno();
+            this.Hide();
+            abmTurno.Show();
         }
 
        
