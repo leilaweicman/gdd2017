@@ -172,3 +172,14 @@ BEGIN
 	SELECT * FROM girlpower.Turno
 END
 GO
+
+IF OBJECT_ID ('GIRLPOWER.insertViaje', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[insertViaje]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[insertViaje] (@IDChofer int, @IDTurno int, @IDCliente int, @IDAutomovil int, @CantKM numeric(18,0), @FechaInicio varchar(100), @FechaFin varchar(100) ) AS
+BEGIN
+	INSERT INTO girlpower.Viaje(IDChofer, IDTurno, IDCliente, IDAutomovil, CantidadKilometros, FechaInicio, FechaFin) 
+	VALUES (@IDChofer, @IDTurno, @IDCliente, @IDAutomovil, @CantKM, convert(datetime,@FechaInicio,120), convert(datetime,@FechaFin,120))
+END
+GO
