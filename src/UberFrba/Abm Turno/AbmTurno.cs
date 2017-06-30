@@ -28,33 +28,30 @@ namespace UberFrba.Abm_Turno
 
         private void AbmTurno_Load(object sender, EventArgs e)
         {
+            cargarTurnos();
+        }      
 
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            cargarTurnos();
         }
-
-
-
-
-
-
+        
+        private void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            txtFiltroDescrip.Text = "";
+            cargarTurnos();
+        }
 
         private void cargarTurnos()
         {
             turnos.Clear();
+            dgvTurnos.Rows.Clear();
 
             List<SqlParameter> parameterList = new List<SqlParameter>();
-           /* if (txtFiltDni.Text == "")
-            {
-                Decimal dni = 0;
-                parameterList.Add(new SqlParameter("@dni", dni));
-            }
-            else
-            {
-                parameterList.Add(new SqlParameter("@dni", int.Parse(txtFiltDni.Text)));
-            }
-            parameterList.Add(new SqlParameter("@nombre", txtFiltNombre.Text));
-            parameterList.Add(new SqlParameter("@apellido", txtFiltApellido.Text));*/
 
-            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerTurnos", CommandType.StoredProcedure);
+            parameterList.Add(new SqlParameter("@descripcion", txtFiltroDescrip.Text));
+
+            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerTurnos", CommandType.StoredProcedure, parameterList);
 
             foreach (DataRow row in ds.Tables[0].Rows)
             {
@@ -62,11 +59,11 @@ namespace UberFrba.Abm_Turno
                 turno.DataRowToObject(row);
                 turnos.Add(turno);
 
-                dgvClientes.Rows.Add(turno.Id_Turno, turno.HoraInicio, turno.HoraFin, turno.Descripcion, turno.Habilitado);
+                dgvTurnos.Rows.Add(turno.Id_Turno, turno.HoraInicio.TimeOfDay, turno.HoraFin.TimeOfDay, turno.Descripcion, turno.ValorKilometro, turno.PrecioBase,
+                    turno.Habilitado);
 
             }
         }
-
 
 
     }

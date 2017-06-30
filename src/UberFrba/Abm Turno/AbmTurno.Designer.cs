@@ -40,7 +40,7 @@
             this.txtFiltroDescrip = new System.Windows.Forms.TextBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.dgvTurnos = new System.Windows.Forms.DataGridView();
             this.IDTurno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,7 +50,7 @@
             this.Habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.grpTurnos.SuspendLayout();
             this.grpFiltros.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).BeginInit();
             this.SuspendLayout();
             // 
             // grpTurnos
@@ -60,7 +60,7 @@
             this.grpTurnos.Controls.Add(this.btnInicio);
             this.grpTurnos.Controls.Add(this.btnEditar);
             this.grpTurnos.Controls.Add(this.grpFiltros);
-            this.grpTurnos.Controls.Add(this.dgvClientes);
+            this.grpTurnos.Controls.Add(this.dgvTurnos);
             this.grpTurnos.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpTurnos.Location = new System.Drawing.Point(12, 25);
             this.grpTurnos.Name = "grpTurnos";
@@ -131,12 +131,14 @@
             this.btnLimpiarFiltro.TabIndex = 14;
             this.btnLimpiarFiltro.Text = "Limpiar filtros";
             this.btnLimpiarFiltro.UseVisualStyleBackColor = true;
+            this.btnLimpiarFiltro.Click += new System.EventHandler(this.btnLimpiarFiltro_Click);
             // 
             // txtFiltroDescrip
             // 
+            this.txtFiltroDescrip.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFiltroDescrip.Location = new System.Drawing.Point(25, 69);
             this.txtFiltroDescrip.Name = "txtFiltroDescrip";
-            this.txtFiltroDescrip.Size = new System.Drawing.Size(130, 27);
+            this.txtFiltroDescrip.Size = new System.Drawing.Size(153, 26);
             this.txtFiltroDescrip.TabIndex = 12;
             // 
             // btnFiltrar
@@ -148,26 +150,27 @@
             this.btnFiltrar.TabIndex = 9;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(22, 50);
+            this.lblDescripcion.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(22, 38);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(83, 16);
+            this.lblDescripcion.Size = new System.Drawing.Size(92, 18);
             this.lblDescripcion.TabIndex = 7;
             this.lblDescripcion.Text = "Descripción";
             // 
-            // dgvClientes
+            // dgvTurnos
             // 
-            this.dgvClientes.AllowUserToAddRows = false;
-            this.dgvClientes.AllowUserToDeleteRows = false;
+            this.dgvTurnos.AllowUserToAddRows = false;
+            this.dgvTurnos.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvTurnos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvTurnos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTurnos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDTurno,
             this.HoraInicio,
             this.HoraFin,
@@ -175,15 +178,15 @@
             this.ValorKM,
             this.PrecioBase,
             this.Habilitado});
-            this.dgvClientes.Location = new System.Drawing.Point(17, 244);
-            this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.ReadOnly = true;
+            this.dgvTurnos.Location = new System.Drawing.Point(17, 244);
+            this.dgvTurnos.Name = "dgvTurnos";
+            this.dgvTurnos.ReadOnly = true;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvClientes.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(819, 323);
-            this.dgvClientes.TabIndex = 0;
-            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
+            this.dgvTurnos.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTurnos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTurnos.Size = new System.Drawing.Size(819, 323);
+            this.dgvTurnos.TabIndex = 0;
+            this.dgvTurnos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // IDTurno
             // 
@@ -240,7 +243,7 @@
             this.grpTurnos.ResumeLayout(false);
             this.grpFiltros.ResumeLayout(false);
             this.grpFiltros.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,7 +260,7 @@
         private System.Windows.Forms.TextBox txtFiltroDescrip;
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.DataGridView dgvTurnos;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDTurno;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoraFin;

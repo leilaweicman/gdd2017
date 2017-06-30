@@ -1,0 +1,23 @@
+*Ordenar script:
+1. drop constraints
+2. drop tables
+3. drop procedures
+4. drop schema
+5. create schema
+6. create shchema
+7. create procedures
+8. inserts
+
+PROBAR QUE EL SCRIPT FUNCIONE
+
+*chequear que este todo validado
+- contenidos invalidos
+- fechas
+- tipos
+- campos vacios
+
+*cambiar en la tabla administrador el IDChofer por IDAdministrador
+
+*cambiar el campo km en viaje a numeric (18,2)
+
+*cambiar el campo fechaFin de viaje (debe ser mayor a fechaInicio)

@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class Turno: Base
+    public class Turno : Base
     {
-
         #region variables
         List<SqlParameter> parameterList = new List<SqlParameter>();
         #endregion
@@ -18,12 +17,18 @@ namespace Classes
         #region atributos
 
         private int _id_Turno;
-        private int _horaInicio;
-        private int _horaFin;
+        private DateTime _horaInicio;
+        private DateTime _horaFin;
         private string _descripcion;
         private Decimal _valorKilometro;
-        private Decimal _precio;
+        private Decimal _precioBase;
         private bool _habilitado;
+        /*public DateTime hora = new DateTime(1,1,2017,7,59,59);
+        TimeSpan horita = new TimeSpan();
+      */
+
+
+
 
         #endregion
 
@@ -41,7 +46,7 @@ namespace Classes
             }
         }
 
-        public int HoraInicio
+        public DateTime HoraInicio
         {
             get
             {
@@ -54,7 +59,7 @@ namespace Classes
             }
         }
 
-        public int HoraFin
+        public DateTime HoraFin
         {
             get
             {
@@ -93,16 +98,16 @@ namespace Classes
             }
         }
 
-        public decimal Precio
+        public decimal PrecioBase
         {
             get
             {
-                return _precio;
+                return _precioBase;
             }
 
             set
             {
-                _precio = value;
+                _precioBase = value;
             }
         }
 
@@ -145,25 +150,33 @@ namespace Classes
             return unTurno.TraerListado(unTurno.parameterList, "");
         }
 
-        public static DataSet ObtenerTurnosPorAutomovil(int id){
-            Turno turno = new Turno();
-            turno.parameterList.Add(new SqlParameter("@IDAutomovil ", id));
-            DataSet ds = turno.TraerListado(turno.parameterList, "PorAutomovil");
-            turno.parameterList.Clear();
+        public DataSet obtenerTurnoPorId(int idTurno)
+        {
+            Turno unTurno = new Turno();
+            unTurno.setearListaDeParametrosConId(idTurno);
+            DataSet ds = unTurno.TraerListado(unTurno.parameterList, "PorId");
+            unTurno.parameterList.Clear();
             return ds;
         }
-        #endregion
-        public void DataRowToObject(DataRow dr)
+
+        private void setearListaDeParametrosConId(int idTurno)
+        {
+            parameterList.Add(new SqlParameter("@IDTurno", idTurno));
+        }
+
+        public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB
             this.Id_Turno = Convert.ToInt32(dr["IDTurno"]);
-            this.HoraInicio = Convert.ToInt32(dr["HoraInicio"]);
-            this.HoraFin = Convert.ToInt32(dr["HoraFin"]);
+            //this.HoraInicio = Convert.ToDateTime(dr["HoraInicio"]);
+            //this.HoraFin = Convert.ToDateTime(dr["HoraFin"]);
             this.Descripcion = dr["Descripcion"].ToString();
             this.ValorKilometro = Convert.ToDecimal(dr["ValorKilometro"]);
-            this.Precio = Convert.ToDecimal(dr["PrecioBase"]);
+            this.PrecioBase = Convert.ToDecimal(dr["PrecioBase"]);
             this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
+
         }
 
+        #endregion
     }
 }

@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.grpFuncionalidades = new System.Windows.Forms.GroupBox();
+            this.lblAbmTurno = new System.Windows.Forms.Label();
+            this.lblRegistrarViajes = new System.Windows.Forms.Label();
             this.lblAbmRol = new System.Windows.Forms.Label();
             this.lblListadoAutomoviles = new System.Windows.Forms.Label();
             this.lblRegistrarAutomovil = new System.Windows.Forms.Label();
             this.lblAbmChofer = new System.Windows.Forms.Label();
             this.lblAbmCliente = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.lblRegistrarViajes = new System.Windows.Forms.Label();
             this.grpFuncionalidades.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpFuncionalidades
             // 
+            this.grpFuncionalidades.Controls.Add(this.lblAbmTurno);
             this.grpFuncionalidades.Controls.Add(this.lblRegistrarViajes);
             this.grpFuncionalidades.Controls.Add(this.lblAbmRol);
             this.grpFuncionalidades.Controls.Add(this.lblListadoAutomoviles);
@@ -54,6 +56,31 @@
             this.grpFuncionalidades.TabIndex = 1;
             this.grpFuncionalidades.TabStop = false;
             this.grpFuncionalidades.Text = "Funcionalidades";
+            // 
+            // lblAbmTurno
+            // 
+            this.lblAbmTurno.AutoSize = true;
+            this.lblAbmTurno.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbmTurno.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblAbmTurno.Location = new System.Drawing.Point(243, 126);
+            this.lblAbmTurno.Name = "lblAbmTurno";
+            this.lblAbmTurno.Size = new System.Drawing.Size(113, 23);
+            this.lblAbmTurno.TabIndex = 12;
+            this.lblAbmTurno.Text = "ABM Turno";
+            this.lblAbmTurno.Visible = false;
+            this.lblAbmTurno.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lblRegistrarViajes
+            // 
+            this.lblRegistrarViajes.AutoSize = true;
+            this.lblRegistrarViajes.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrarViajes.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblRegistrarViajes.Location = new System.Drawing.Point(243, 86);
+            this.lblRegistrarViajes.Name = "lblRegistrarViajes";
+            this.lblRegistrarViajes.Size = new System.Drawing.Size(161, 23);
+            this.lblRegistrarViajes.TabIndex = 11;
+            this.lblRegistrarViajes.Text = "Registrar Viajes";
+            this.lblRegistrarViajes.Click += new System.EventHandler(this.lblRegistrarViajes_Click);
             // 
             // lblAbmRol
             // 
@@ -74,7 +101,7 @@
             this.lblListadoAutomoviles.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblListadoAutomoviles.Location = new System.Drawing.Point(25, 184);
             this.lblListadoAutomoviles.Name = "lblListadoAutomoviles";
-            this.lblListadoAutomoviles.Size = new System.Drawing.Size(167, 23);
+            this.lblListadoAutomoviles.Size = new System.Drawing.Size(166, 23);
             this.lblListadoAutomoviles.TabIndex = 9;
             this.lblListadoAutomoviles.Text = "Ver Automoviles";
             this.lblListadoAutomoviles.Click += new System.EventHandler(this.lblListadoAutomoviles_Click);
@@ -126,18 +153,6 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // lblRegistrarViajes
-            // 
-            this.lblRegistrarViajes.AutoSize = true;
-            this.lblRegistrarViajes.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrarViajes.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblRegistrarViajes.Location = new System.Drawing.Point(243, 86);
-            this.lblRegistrarViajes.Name = "lblRegistrarViajes";
-            this.lblRegistrarViajes.Size = new System.Drawing.Size(161, 23);
-            this.lblRegistrarViajes.TabIndex = 11;
-            this.lblRegistrarViajes.Text = "Registrar Viajes";
-            this.lblRegistrarViajes.Click += new System.EventHandler(this.lblRegistrarViajes_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,6 +179,7 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblAbmRol;
         private System.Windows.Forms.Label lblRegistrarViajes;
+        private System.Windows.Forms.Label lblAbmTurno;
 
 
     }

@@ -132,7 +132,7 @@ namespace UberFrba.Registro_Viajes
             {
                 //los campos son validos, registro el viaje
               
-                MessageBox.Show(cmbChofer.SelectedValue.ToString() + " " + IDAutomovil.ToString() + " " + cmbTurno.SelectedValue.ToString()+ " " + cmbCliente.SelectedValue.ToString() + " " +  dtpFechaInicio.Value + " " + dtpFechaFin.Value.ToString("yyyy-mm-dd hh:mm:ss"));
+                //MessageBox.Show(cmbChofer.SelectedValue.ToString() + " " + IDAutomovil.ToString() + " " + cmbTurno.SelectedValue.ToString()+ " " + cmbCliente.SelectedValue.ToString() + " " +  dtpFechaInicio.Value + " " + dtpFechaFin.Value.ToString("yyyy-MM-dd hh:mm:ss"));
 
                 Viaje unNuevoViaje = new Viaje();
                 unNuevoViaje.Id_Chofer = Convert.ToInt32(cmbChofer.SelectedValue);
@@ -140,9 +140,22 @@ namespace UberFrba.Registro_Viajes
                 unNuevoViaje.Id_Turno = Convert.ToInt32(cmbTurno.SelectedValue);
                 unNuevoViaje.Id_Cliente = Convert.ToInt32(cmbCliente.SelectedValue);
                 unNuevoViaje.CantKilometros = Convert.ToInt32(txtKilometros.Text); //FIJARME COMO VALIDAR ESTO DEPENDIENDO DE SI ES DECIMAL O ENTERO
-                unNuevoViaje.FechaYHoraInicio = dtpFechaInicio.Value.ToString("yyyy-mm-dd hh:mm:ss");
-                unNuevoViaje.FechaYHoraFin = dtpFechaFin.Value.ToString("yyyy-mm-dd hh:mm:ss");
+                unNuevoViaje.FechaYHoraInicio = dtpFechaInicio.Value.ToString("yyyy-MM-dd hh:mm:ss");
+                unNuevoViaje.FechaYHoraFin = dtpFechaFin.Value.ToString("yyyy-MM-dd hh:mm:ss");
 
+                //obtengo el turno para calcular el precio del viaje
+                //precio base turno + valor del km * cant km
+
+                Turno unTurno = new Turno();
+                DataSet ds = unTurno.obtenerTurnoPorId(unNuevoViaje.Id_Turno);
+                unTurno.DataRowToObject(ds.Tables[0].Rows[0]);
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    decimal precio;
+                    precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
+                }
+                
+                  
                 unNuevoViaje.guardarDatosDeViajeNuevo();
                 DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (dr == DialogResult.OK)

@@ -1,0 +1,5 @@
+- para turnos: las horas son int, entonces por ej si un turno termina a las 8, es hasta las 7:59, desde las 8 es el proximo turno
+
+- registrar viaje: asumimos que el turno es unico para un auto y un chofer, por lo que solo muestra ese turno
+
+- login: tomamos como username de los usuarios ya registrados (los que estaban el la tabla maestra) su DNI y como contraseña "1"
