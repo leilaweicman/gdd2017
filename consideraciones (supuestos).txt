@@ -1,0 +1,1 @@
+- para turnos: las horas son int, entonces por ej si un turno termina a las 8, es hasta las 7:59, desde las 8 es el proximo turno
