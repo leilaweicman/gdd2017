@@ -1,11 +1,16 @@
 USE [GD1C2017]
 GO
 
---CREATE SCHEMA
+
+--DROP AND CREATE SCHEMA
+/*IF EXISTS (SELECT name FROM sys.schemas WHERE name = 'GIRLPOWER')
+DROP SCHEMA [GIRLPOWER]
+GO*/
+
 CREATE SCHEMA [GIRLPOWER]
 GO
 
--- CREATE TABLES
+-- DROP CONSTRAINTS
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[FK__Viaje__IDTurno__5D95E53A]') AND parent_object_id = OBJECT_ID(N'[GIRLPOWER].[Viaje]'))
 ALTER TABLE [GIRLPOWER].[Viaje] DROP CONSTRAINT [FK__Viaje__IDTurno__5D95E53A]
 GO
@@ -216,6 +221,9 @@ ALTER TABLE [GIRLPOWER].[Automovil] DROP CONSTRAINT [DF__Automovil__Habil__5FBE2
 END
 
 GO
+
+
+--DROP TABLES
 /****** Object:  Table [GIRLPOWER].[Viaje]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Viaje]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Viaje]
@@ -292,6 +300,9 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Administrador]') AND type in (N'U'))
 DROP TABLE [GIRLPOWER].[Administrador]
 GO
+
+
+--CREATE TABLES
 /****** Object:  Table [GIRLPOWER].[Administrador]    Script Date: 25/06/2017 02:31:20 p.m. ******/
 SET ANSI_NULLS ON
 GO
