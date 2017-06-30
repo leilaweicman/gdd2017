@@ -24,7 +24,7 @@ namespace Classes
         private int _id_Automovil;
         private int _id_Turno;
         private decimal _cant_Km;
-
+        private decimal _precio;
         #endregion
 
         #region getters y setters
@@ -90,6 +90,19 @@ namespace Classes
             set
             {
                 _cant_Km = value;
+            }
+        }
+
+        public decimal Precio
+        {
+            get
+            {
+                return _precio;
+            }
+
+            set
+            {
+                _precio = value;
             }
         }
 
@@ -169,18 +182,19 @@ namespace Classes
             this.FechaYHoraInicio = dr["FechaInicio"].ToString();
             this.FechaYHoraFin = dr["FechaFin"].ToString();
             this.CantKilometros = Convert.ToDecimal(dr["CantidadKilometros"]);
+            this.Precio = Convert.ToDecimal(dr["Precio"]);
         }
 
 
         public void guardarDatosDeViajeNuevo()
         {
             //creo el rol viaje
-            setearListaDeParametros(this.Id_Turno, this.Id_Cliente, this.Id_Chofer, this.Id_Automovil, this._fechaYHoraInicio, this.FechaYHoraFin, this.CantKilometros);
+            setearListaDeParametros();
             this.Guardar(parameterList);
             parameterList.Clear();
         }
 
-        private void setearListaDeParametros(int p1, int p2, int p3, int p4, string p5, string p6, decimal p7)
+        private void setearListaDeParametros()
         {
             parameterList.Add(new SqlParameter("@IDTurno", this.Id_Turno));
             parameterList.Add(new SqlParameter("@IDCliente", this.Id_Cliente));
@@ -189,6 +203,7 @@ namespace Classes
             parameterList.Add(new SqlParameter("@FechaInicio", this.FechaYHoraInicio));
             parameterList.Add(new SqlParameter("@FechaFin", this.FechaYHoraFin));
             parameterList.Add(new SqlParameter("@CantKM", this.CantKilometros));
+            parameterList.Add(new SqlParameter("@Precio", this.Precio));
         }
     }
 }

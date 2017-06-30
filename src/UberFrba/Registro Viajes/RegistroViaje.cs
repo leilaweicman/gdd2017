@@ -151,17 +151,17 @@ namespace UberFrba.Registro_Viajes
                 unTurno.DataRowToObject(ds.Tables[0].Rows[0]);
                 if (ds.Tables[0].Rows.Count != 0)
                 {
-                    decimal precio;
-                    precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
-                }
-                
+                    unNuevoViaje.Precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
+                    unNuevoViaje.guardarDatosDeViajeNuevo();
+                    DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (dr == DialogResult.OK)
+                    {
+                        resetearCampos();
+                    }
+
+                }          
                   
-                unNuevoViaje.guardarDatosDeViajeNuevo();
-                DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (dr == DialogResult.OK)
-                {
-                    resetearCampos();
-                }
+               
             }
 
         }
