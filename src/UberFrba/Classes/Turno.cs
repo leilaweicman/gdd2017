@@ -17,12 +17,19 @@ namespace Classes
         #region atributos
 
         private int _id_Turno;
-        private int _horaInicio;
-        private int _horaFin;
+        private DateTime _horaInicio;
+        private DateTime _horaFin;
         private string _descripcion;
         private Decimal _valorKilometro;
         private Decimal _precioBase;
         private bool _habilitado;
+        /*public DateTime hora = new DateTime(1,1,2017,7,59,59);
+
+        TimeSpan horita = new TimeSpan();
+      */
+        
+        
+          
 
         #endregion
 
@@ -148,12 +155,13 @@ namespace Classes
         {
             // Esto es tal cual lo devuelve el stored de la DB
             this.Id_Turno = Convert.ToInt32(dr["IDTurno"]);
-            this.HoraInicio = Convert.ToInt32(dr["HoraInicio"]);
-            this.HoraFin = Convert.ToInt32(dr["HoraFin"]);
+            this.HoraInicio = Convert.ToDateTime(dr["HoraInicio"]);
+            this.HoraFin = Convert.ToDateTime(dr["HoraFin"]);
             this.Descripcion = dr["Descripcion"].ToString();
             this.ValorKilometro = Convert.ToDecimal(dr["ValorKilometro"]);
             this.PrecioBase = Convert.ToDecimal(dr["PrecioBase"]);
             this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
+
         }
 
     }

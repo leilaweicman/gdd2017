@@ -622,8 +622,10 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWE
 BEGIN
 CREATE TABLE [GIRLPOWER].[Turno](
 	[IDTurno] [int] IDENTITY(1,1) NOT NULL,
-	[HoraInicio] [numeric](18, 0) NOT NULL,
-	[HoraFin] [numeric](18, 0) NOT NULL,
+	[HoraInicio] [numeric] (18,0) NOT NULL,
+	[HoraFin] [numeric] (18,0) NOT NULL,
+	/*[HoraInicio] [time] NOT NULL,
+	[HoraFin] [time] NOT NULL,*/
 	[Descripcion] [varchar](255) NULL,
 	[ValorKilometro] [numeric](18, 2) NOT NULL,
 	[PrecioBase] [numeric](18, 2) NOT NULL,
@@ -1624,4 +1626,5 @@ insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
 insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, convert(datetime,'1976-04-13 00:00:00.000',120), 
 	'52D77462B24987175C8D7DAB901A5967E927FFC8D0B6E4A234E07A4AEC5E3724', 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
 insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
+	
 	
