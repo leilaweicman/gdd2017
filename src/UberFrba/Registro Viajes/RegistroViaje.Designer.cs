@@ -72,7 +72,7 @@
             this.grpTurnos.Size = new System.Drawing.Size(596, 576);
             this.grpTurnos.TabIndex = 2;
             this.grpTurnos.TabStop = false;
-            this.grpTurnos.Text = "Turnos";
+            this.grpTurnos.Text = "Viaje";
             // 
             // lblCliente
             // 

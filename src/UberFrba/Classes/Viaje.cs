@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    class Viaje: Base
+    public class Viaje: Base
     {
          #region variables
         List<SqlParameter> parameterList = new List<SqlParameter>();
@@ -157,6 +157,7 @@ namespace Classes
             return unViaje.TraerListado(unViaje.parameterList, "");
         }
         #endregion
+
         public void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB
@@ -170,5 +171,24 @@ namespace Classes
             this.CantKilometros = Convert.ToDecimal(dr["CantidadKilometros"]);
         }
 
+
+        public void guardarDatosDeViajeNuevo()
+        {
+            //creo el rol viaje
+            setearListaDeParametros(this.Id_Turno, this.Id_Cliente, this.Id_Chofer, this.Id_Automovil, this._fechaYHoraInicio, this.FechaYHoraFin, this.CantKilometros);
+            this.Guardar(parameterList);
+            parameterList.Clear();
+        }
+
+        private void setearListaDeParametros(int p1, int p2, int p3, int p4, string p5, string p6, decimal p7)
+        {
+            parameterList.Add(new SqlParameter("@IDTurno", this.Id_Turno));
+            parameterList.Add(new SqlParameter("@IDCliente", this.Id_Cliente));
+            parameterList.Add(new SqlParameter("@IDChofer", this.Id_Chofer));
+            parameterList.Add(new SqlParameter("@IDAutomovil", this.Id_Automovil));
+            parameterList.Add(new SqlParameter("@FechaInicio", this.FechaYHoraInicio));
+            parameterList.Add(new SqlParameter("@FechaFin", this.FechaYHoraFin));
+            parameterList.Add(new SqlParameter("@CantKM", this.CantKilometros));
+        }
     }
 }

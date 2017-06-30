@@ -131,8 +131,31 @@ namespace UberFrba.Registro_Viajes
             if (ValidarCampos())
             {
                 //los campos son validos, registro el viaje
+              
+                MessageBox.Show(cmbChofer.SelectedValue.ToString() + " " + IDAutomovil.ToString() + " " + cmbTurno.SelectedValue.ToString()+ " " + cmbCliente.SelectedValue.ToString() + " " +  dtpFechaInicio.Value + " " + dtpFechaFin.Value.ToString("yyyy-mm-dd hh:mm:ss"));
+
+                Viaje unNuevoViaje = new Viaje();
+                unNuevoViaje.Id_Chofer = Convert.ToInt32(cmbChofer.SelectedValue);
+                unNuevoViaje.Id_Automovil = IDAutomovil;
+                unNuevoViaje.Id_Turno = Convert.ToInt32(cmbTurno.SelectedValue);
+                unNuevoViaje.Id_Cliente = Convert.ToInt32(cmbCliente.SelectedValue);
+                unNuevoViaje.CantKilometros = Convert.ToInt32(txtKilometros.Text); //FIJARME COMO VALIDAR ESTO DEPENDIENDO DE SI ES DECIMAL O ENTERO
+                unNuevoViaje.FechaYHoraInicio = dtpFechaInicio.Value.ToString("yyyy-mm-dd hh:mm:ss");
+                unNuevoViaje.FechaYHoraFin = dtpFechaFin.Value.ToString("yyyy-mm-dd hh:mm:ss");
+
+                unNuevoViaje.guardarDatosDeViajeNuevo();
+                DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dr == DialogResult.OK)
+                {
+                    resetearCampos();
+                }
             }
 
+        }
+
+        private void resetearCampos()
+        {
+            
         }
 
         private bool ValidarCampos()
@@ -145,7 +168,6 @@ namespace UberFrba.Registro_Viajes
             if (strErrores.Length > 0)
             {
                 MessageBox.Show(strErrores, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // throw new Exception(strErrores);
                 return false;
             }
 
