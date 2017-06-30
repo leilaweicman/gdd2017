@@ -47,7 +47,7 @@ namespace Classes
             }
         }
 
-        public int HoraInicio
+        public DateTime HoraInicio
         {
             get
             {
@@ -60,7 +60,7 @@ namespace Classes
             }
         }
 
-        public int HoraFin
+        public DateTime HoraFin
         {
             get
             {
