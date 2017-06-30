@@ -183,3 +183,13 @@ BEGIN
 	VALUES (@IDChofer, @IDTurno, @IDCliente, @IDAutomovil, @CantKM, convert(datetime,'2017-11-30 12:10:01',120), convert(datetime,'2017-11-30 14:10:01',120))
 END
 GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoTurnoPorId', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoTurnoPorId]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoTurnoPorId] (@IDTurno int) AS
+BEGIN
+	SELECT TOP 1 * FROM girlpower.Turno WHERE IDTurno= @IDTurno
+END
+GO

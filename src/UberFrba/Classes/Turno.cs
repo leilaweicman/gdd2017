@@ -150,7 +150,21 @@ namespace Classes
             Turno unTurno = new Turno();
             return unTurno.TraerListado(unTurno.parameterList, "");
         }
-        #endregion
+
+        public static DataSet obtenerTurnoPorId(int idTurno)
+        {
+            Turno unTurno = new Turno();
+            unTurno.setearListaDeParametrosConId(idTurno);
+            DataSet ds = unTurno.TraerListado(unTurno.parameterList, "PorId");
+            unTurno.parameterList.Clear();
+            return ds;
+        }
+
+        private void setearListaDeParametrosConId(int idTurno)
+        {
+            parameterList.Add(new SqlParameter("@IDTurno", idTurno));
+        }
+
         public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB
@@ -164,5 +178,6 @@ namespace Classes
 
         }
 
+        #endregion
     }
 }
