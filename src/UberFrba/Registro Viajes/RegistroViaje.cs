@@ -143,6 +143,19 @@ namespace UberFrba.Registro_Viajes
                 unNuevoViaje.FechaYHoraInicio = dtpFechaInicio.Value.ToString("yyyy-MM-dd hh:mm:ss");
                 unNuevoViaje.FechaYHoraFin = dtpFechaFin.Value.ToString("yyyy-MM-dd hh:mm:ss");
 
+                //obtengo el turno para calcular el precio del viaje
+                //precio base turno + valor del km * cant km
+
+                Turno unTurno = new Turno();
+                DataSet ds = unTurno.obtenerTurnoPorId(unNuevoViaje.Id_Turno);
+                unTurno.DataRowToObject(ds.Tables[0].Rows[0]);
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    decimal precio;
+                    precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
+                }
+                
+                  
                 unNuevoViaje.guardarDatosDeViajeNuevo();
                 DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (dr == DialogResult.OK)

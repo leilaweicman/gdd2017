@@ -151,7 +151,7 @@ namespace Classes
             return unTurno.TraerListado(unTurno.parameterList, "");
         }
 
-        public static DataSet obtenerTurnoPorId(int idTurno)
+        public DataSet obtenerTurnoPorId(int idTurno)
         {
             Turno unTurno = new Turno();
             unTurno.setearListaDeParametrosConId(idTurno);
@@ -169,8 +169,8 @@ namespace Classes
         {
             // Esto es tal cual lo devuelve el stored de la DB
             this.Id_Turno = Convert.ToInt32(dr["IDTurno"]);
-            this.HoraInicio = Convert.ToDateTime(dr["HoraInicio"]);
-            this.HoraFin = Convert.ToDateTime(dr["HoraFin"]);
+            //this.HoraInicio = Convert.ToDateTime(dr["HoraInicio"]);
+            //this.HoraFin = Convert.ToDateTime(dr["HoraFin"]);
             this.Descripcion = dr["Descripcion"].ToString();
             this.ValorKilometro = Convert.ToDecimal(dr["ValorKilometro"]);
             this.PrecioBase = Convert.ToDecimal(dr["PrecioBase"]);
