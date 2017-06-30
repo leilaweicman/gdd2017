@@ -88,6 +88,7 @@ namespace UberFrba
                     case Funcionalidades.ABM_Turno:
                         //facturarPublicacionesToolStripMenuItem.Visible = true;
                         //permisosPublicacion = true;
+                        lblAbmTurno.Visible=true;                       
                         break;
 
                 }

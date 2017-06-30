@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpFuncionalidades = new System.Windows.Forms.GroupBox();
+            this.lblAbmTurno = new System.Windows.Forms.Label();
             this.lblRegistrarViajes = new System.Windows.Forms.Label();
             this.lblAbmRol = new System.Windows.Forms.Label();
             this.lblListadoAutomoviles = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.lblAbmChofer = new System.Windows.Forms.Label();
             this.lblAbmCliente = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.lblAbmTurno = new System.Windows.Forms.Label();
             this.grpFuncionalidades.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +56,19 @@
             this.grpFuncionalidades.TabIndex = 1;
             this.grpFuncionalidades.TabStop = false;
             this.grpFuncionalidades.Text = "Funcionalidades";
+            // 
+            // lblAbmTurno
+            // 
+            this.lblAbmTurno.AutoSize = true;
+            this.lblAbmTurno.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbmTurno.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblAbmTurno.Location = new System.Drawing.Point(243, 126);
+            this.lblAbmTurno.Name = "lblAbmTurno";
+            this.lblAbmTurno.Size = new System.Drawing.Size(113, 23);
+            this.lblAbmTurno.TabIndex = 12;
+            this.lblAbmTurno.Text = "ABM Turno";
+            this.lblAbmTurno.Visible = false;
+            this.lblAbmTurno.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblRegistrarViajes
             // 
@@ -139,18 +152,6 @@
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // lblAbmTurno
-            // 
-            this.lblAbmTurno.AutoSize = true;
-            this.lblAbmTurno.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAbmTurno.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblAbmTurno.Location = new System.Drawing.Point(243, 126);
-            this.lblAbmTurno.Name = "lblAbmTurno";
-            this.lblAbmTurno.Size = new System.Drawing.Size(113, 23);
-            this.lblAbmTurno.TabIndex = 12;
-            this.lblAbmTurno.Text = "ABM Turno";
-            this.lblAbmTurno.Click += new System.EventHandler(this.label1_Click);
             // 
             // Home
             // 
