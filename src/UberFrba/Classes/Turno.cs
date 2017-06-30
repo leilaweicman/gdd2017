@@ -21,7 +21,7 @@ namespace Classes
         private int _horaFin;
         private string _descripcion;
         private Decimal _valorKilometro;
-        private Decimal _precio;
+        private Decimal _precioBase;
         private bool _habilitado;
 
         #endregion
@@ -92,16 +92,16 @@ namespace Classes
             }
         }
 
-        public decimal Precio
+        public decimal PrecioBase
         {
             get
             {
-                return _precio;
+                return _precioBase;
             }
 
             set
             {
-                _precio = value;
+                _precioBase = value;
             }
         }
 
@@ -144,7 +144,7 @@ namespace Classes
             return unTurno.TraerListado(unTurno.parameterList, "");
         }
         #endregion
-        public void DataRowToObject(DataRow dr)
+        public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB
             this.Id_Turno = Convert.ToInt32(dr["IDTurno"]);
@@ -152,7 +152,7 @@ namespace Classes
             this.HoraFin = Convert.ToInt32(dr["HoraFin"]);
             this.Descripcion = dr["Descripcion"].ToString();
             this.ValorKilometro = Convert.ToDecimal(dr["ValorKilometro"]);
-            this.Precio = Convert.ToDecimal(dr["Precio"]);
+            this.PrecioBase = Convert.ToDecimal(dr["PrecioBase"]);
             this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
         }
 
