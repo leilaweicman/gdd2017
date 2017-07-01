@@ -1,5 +1,6 @@
 ﻿using Classes;
 using Connection;
+using Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utilities;
 
 namespace UberFrba.Abm_Automovil
 {
@@ -28,6 +30,7 @@ namespace UberFrba.Abm_Automovil
         private void Form1_Load(object sender, EventArgs e)
         {
             CargarCombos();
+            CargarChoferes();
             CargarAuomoviles();
         }
         private void CargarCombos()
@@ -36,8 +39,8 @@ namespace UberFrba.Abm_Automovil
             string query = "select IDMarca,Nombre from [GIRLPOWER].Marca";
             var resultMarcas = SQLHelper.ExecuteQuery(query);
 
-            string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
-            var resultChoferes = SQLHelper.ExecuteQuery(query2);
+     //     string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
+        //   var resultChoferes = SQLHelper.ExecuteQuery(query2);
             string query3 = "select IDModelo,Nombre from [GIRLPOWER].Modelo";
             var resultModelos = SQLHelper.ExecuteQuery(query3);
             SQLHelper.Cerrar();
@@ -62,7 +65,7 @@ namespace UberFrba.Abm_Automovil
             cmbMarca.DisplayMember = "Name";
             cmbMarca.ValueMember = "Value";
             cmbMarca.SelectedIndex = 0;
-            List<ComboPrueba> choferes = new List<ComboPrueba>();
+     /*       List<ComboPrueba> choferes = new List<ComboPrueba>();
             ComboPrueba todos = new ComboPrueba("TODOS", 0);
             choferes.Add(todos);
             while (resultChoferes.Read())
@@ -84,7 +87,7 @@ namespace UberFrba.Abm_Automovil
             cmbChofer.DisplayMember = "Name";
             cmbChofer.ValueMember = "Value";
             cmbChofer.SelectedIndex = 0;
-
+            */
 
 
 
@@ -111,6 +114,38 @@ namespace UberFrba.Abm_Automovil
             cmbModelo.ValueMember = "Value";
             cmbModelo.SelectedIndex = 0;
         }
+        private void CargarChoferes()
+        {
+            try
+            {
+                //Obtengo los choferes y los muestro en el combobox.
+                DataSet ds = Usuario.ObtenerChoferes();
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                 
+                    //Uso el manager de dropdowns para cargar el comboBox con los choferes
+                    DropDownListManager.CargarCombo(cmbChofer, ds.Tables[0], "IDChofer", "Nombre", true, "");                   
+                    cmbChofer.SelectedIndex = 0;
+
+                }
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+
+
+        }
+
           private void CargarAuomoviles(){
               dgvAutomoviles.Rows.Clear();
               List<Automovil> clientes = new List<Automovil>();
