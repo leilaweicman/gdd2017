@@ -30,9 +30,7 @@ namespace UberFrba.Abm_Cliente
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            Home formHome = new Home();
-            this.Hide();
-            formHome.Show();
+            this.Hide();            
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
