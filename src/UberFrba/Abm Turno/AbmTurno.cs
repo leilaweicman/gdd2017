@@ -61,7 +61,7 @@ namespace UberFrba.Abm_Turno
 
                 dgvTurnos.Rows.Add(turno.Id_Turno, turno.HoraInicio, turno.HoraFin, turno.Descripcion, turno.ValorKilometro, turno.PrecioBase,
                     turno.Habilitado);
-                dgvTurnos.Sort(dgvTurnos.Columns[1], ListSortDirection.Ascending);
+                dgvTurnos.Sort(dgvTurnos.Columns[2], ListSortDirection.Ascending);
 
             }
         }

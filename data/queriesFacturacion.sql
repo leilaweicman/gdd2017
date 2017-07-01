@@ -1,4 +1,35 @@
+IF OBJECT_ID ('GIRLPOWER.PR_traerViajesFacturaDetalle', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_traerViajesFacturaDetalle]
+GO
 
+CREATE PROCEDURE [GIRLPOWER].[PR_traerViajesFacturaDetalle] 
+(@idCliente int, @fechaInicio datetime, @fechaFin datetime)
+AS --tengo que validar en la aplicacion que no exista una factura en este mes
+BEGIN
+	SELECT * FROM GIRLPOWER.viaje WHERE IDCliente=@idCliente AND CAST(FechaFin as date) >= CAST(@fechaInicio as date) 
+	AND CAST(FechaFin as date) >= CAST(@fechaFin as date)
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.PR_verifExisteFacturaEseMes', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_verifExisteFacturaEseMes]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_verifExisteFacturaEseMes] 
+(@idCliente int, @fechaInicio datetime) AS
+BEGIN
+	SELECT FechaFin FROM [GIRLPOWER].[Factura] WHERE IDCliente= @idCliente AND MONTH(FechaInicio) = MONTH(@fechaInicio)  
+	AND YEAR(FechaInicio) = YEAR(@FechaInicio);
+END
+GO
+
+select * from GIRLPOWER.Factura
+
+
+select * from GIRLPOWER.viaje where YEAR(FechaInicio) = 2017
+
+
+/*
 IF OBJECT_ID ('GIRLPOWER.TR_insertarViajeFacturaDetalle', 'T') IS NOT NULL
 DROP TRIGGER [GIRLPOWER].TR_insertarViajeFacturaDetalle
 GO
@@ -47,3 +78,6 @@ BEGIN
 	END CATCH
 END
 GO
+
+*/
+
