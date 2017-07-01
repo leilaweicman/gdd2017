@@ -16,8 +16,7 @@ namespace UberFrba.Registro_Viajes
     public partial class RegistroViaje : Form
     {
         int IDAutomovil = 0;
-        object mySender;
-        EventArgs myEvent;
+
         public RegistroViaje()
         {
             InitializeComponent();
@@ -25,8 +24,6 @@ namespace UberFrba.Registro_Viajes
 
         private void RegistroViaje_Load(object sender, EventArgs e)
         {
-            mySender = sender;
-            myEvent = e;
             txtAutomovil.Enabled = false;
             dtpFechaInicio.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             dtpFechaInicio.Format = DateTimePickerFormat.Custom;
@@ -157,7 +154,7 @@ namespace UberFrba.Registro_Viajes
                     DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (dr == DialogResult.OK)
                     {
-                        RegistroViaje_Load(mySender, myEvent);
+                        resetearCampos();
                     }
 
                 }          
@@ -169,6 +166,18 @@ namespace UberFrba.Registro_Viajes
 
         private void resetearCampos()
         {
+            txtAutomovil.Text = "";
+            txtKilometros.Text = "";
+            txtAutomovil.Enabled = false;
+            CargarChoferes();
+            CargarClientes();
+            cargarTurnos();            
+            dtpFechaInicio.Text = "";
+            dtpFechaFin.Text = "";
+            dtpFechaInicio.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            dtpFechaInicio.Format = DateTimePickerFormat.Custom;
+            dtpFechaFin.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            dtpFechaFin.Format = DateTimePickerFormat.Custom;
             
         }
 
