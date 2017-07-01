@@ -67,7 +67,7 @@ namespace UberFrba.Abm_Cliente
 
             if (dgvClientes.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Seleccione un usuario para editarlo");
+                MessageBox.Show("Seleccione un usuario para borarlo");
             }
             else
             {
@@ -82,6 +82,7 @@ namespace UberFrba.Abm_Cliente
                 try
                 {
                     SQLHelper.ExecuteNonQuery("PR_inhabilitarCliente", CommandType.StoredProcedure, parameterList);
+                    MessageBox.Show("El usuario se ha eliminado correctamente");
                     cargarClientes();                    
                 } 
                 catch (Exception ex)
