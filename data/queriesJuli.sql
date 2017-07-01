@@ -5,7 +5,7 @@ GO
 
 create procedure [GIRLPOWER].PR_altaAutomovil(
 @idChofer int, @idMarca int, @idModelo int,@patente varchar(10), @licencia varchar(26),
-@rodado varchar(10),@idTurno int
+@rodado varchar(10)
 )
 as 
 begin
@@ -15,9 +15,6 @@ IDMarca=@idMarca and IDModelo=@idModelo)
 insert into [GIRLPOWER].Automovil (IDChofer,IDMarcaModelo,Patente,Licencia,Rodado,Habilitado)values
 (@idChofer,@idMarcaModelo,@patente,@licencia,@rodado,1)
 
-declare @UltimoID int
-set @UltimoID= (select scope_identity() )
-insert into[GIRLPOWER].TurnoPorAutomovil (IDTurno,IDAutomovil)values(@idTurno,@UltimoID)
 	RETURN @@rowCount
 end 
 go 
@@ -29,7 +26,7 @@ GO
 
 create procedure [GIRLPOWER].PR_modificarAutomovil(
 @idAutomovil int,@idChofer int, @idMarca int, @idModelo int,@patente varchar(10), @licencia varchar(26),
-@rodado varchar(10),@idTurno int
+@rodado varchar(10)
 )
 as 
 begin
@@ -43,7 +40,7 @@ Patente=@patente,
 Licencia=@licencia,
 Rodado=@rodado
 where IDAutomovil=@idAutomovil
-UPDATE [GIRLPOWER].TurnoPorAutomovil SET IDTurno=@idTurno WHERE IDAutomovil=@idAutomovil
+
 	RETURN @@rowCount
 end 
 go
@@ -57,7 +54,7 @@ CREATE PROCEDURE [GIRLPOWER].PR_TraerAutomoviles (@idChofer int,@idMarca int, @p
  AS
 BEGIN
 	BEGIN TRY
-		SELECT a.IDAutomovil,u.Nombre as Chofer, ma.Nombre as Marca,mo.Nombre as Modelo,Licencia,Patente,Rodado,a.Habilitado,(select Descripcion from Turno where IDTurno=max(ta.IDTurno) )as Turno
+		SELECT a.IDAutomovil,u.Nombre as Chofer, ma.Nombre as Marca,mo.Nombre as Modelo,Licencia,Patente,Rodado,a.Habilitado
 		 FROM [GIRLPOWER].[Automovil] a 
 		JOIN [GIRLPOWER].[MarcaModelo] m
 		 ON a.IDMarcaModelo = m.IDMarcaModelo
@@ -73,18 +70,11 @@ JOIN [GIRLPOWER].[Chofer] c
 
 		 JOIN [GIRLPOWER].Usuario u
 		 on u.IDUsuario=c.IDUsuario
-
-		 JOIN [GIRLPOWER].TurnoPorAutomovil ta
-		 on ta.IDAutomovil=a.IDAutomovil
-
-		
-
-
 		 where (@idChofer=0 OR C.IDChofer=@idChofer)AND
 		 (@idMarca=0 OR ma.IDMarca=@idMarca)and
 		 (@patente='' OR Patente=@patente)and
 		 	 (@idModelo=0 OR m.IDModelo=@idModelo)
-			group by  a.IDAutomovil,u.Nombre , ma.Nombre,mo.Nombre,Licencia,Patente,Rodado,a.Habilitado
+
 
 	END TRY
 	BEGIN CATCH
@@ -104,3 +94,38 @@ BEGIN
 	
 END
 GO
+
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoTurnoPorAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].traerListadoTurnoPorAutomovil
+GO
+
+
+CREATE PROCEDURE [GIRLPOWER].traerListadoTurnoPorAutomovil (@IDAutomovil INT) AS
+BEGIN
+	SELECT * FROM girlpower.Turno t
+	inner join GIRLPOWER.TurnoPorAutomovil ta on ta.IDTurno=t.IDTurno
+	 WHERE ta.IDAutomovil=@IDAutomovil
+END
+GO
+
+
+
+create procedure [GIRLPOWER].PR_UltimoID(@Patente varchar (10))
+as
+begin
+select IDAutomovil as ID from Automovil where Patente=@Patente
+end
+
+GO
+create procedure [girlpower].BorrarTurnosPorAutomovil(@idAutomovil int)as
+begin
+delete TurnoPorAutomovil where IDAutomovil=@idAutomovil 
+end
+
+
+GO
+CREATE PROCEDURE [GIRLPOWER].AgregarTurnoPorAutomovil(@idAutomovil int, @idTurno int)as
+begin
+insert TurnoPorAutomovil(IDAutomovil,IDTurno) values(@idAutomovil , @idTurno)
+end

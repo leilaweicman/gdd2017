@@ -26,7 +26,12 @@ namespace Utilities
             if (strError.Length == 0 && !EsDecimal(textoAValidar))
             {
                 strError += "El campo " + nombreCampo + " tiene caracteres inválidos\n";
-            } 
+            }
+
+            if (textoAValidar.IndexOf(".") > 0)
+            {
+                strError += "El campo " + nombreCampo + " no tiene caracteres numéricos. Por favor utilice una coma en vez de un punto\n";
+            }
 
             return strError;
         }
@@ -78,6 +83,7 @@ namespace Utilities
 
         public static string FechaMenor(DateTime fechaInicio, DateTime fechaFin)
         {
+            int resul = DateTime.Compare(fechaInicio, fechaFin);
             if (DateTime.Compare(fechaInicio, fechaFin) >= 0)
                 return "La fecha de inicio debe ser menor a la fecha de fin " + "\n";
 
@@ -117,40 +123,31 @@ namespace Utilities
         public static string MayorACero(string textoAValidar, string nombreCampo)
         {
             string strError = "";
+            
             try
             {
-                if (Convert.ToInt32(textoAValidar) <= 0)
+                if (System.Convert.ToDecimal(textoAValidar) <= 0)
                 {
                     strError += "El campo " + nombreCampo + " debe ser mayor que cero\n";
                 }
                 return strError;
             }
-            catch
+            catch (System.OverflowException)
             {
-                try
-                {
-                    if (System.Convert.ToDecimal(textoAValidar) <= 0)
-                    {
-                        strError += "El campo " + nombreCampo + " debe ser mayor que cero\n";
-                    }
-                    return strError;
-                }
-                catch (System.OverflowException)
-                {
-                    return
-                       "Se produjo overflow por el campo " + nombreCampo + "\n";
-                }
-                catch (System.FormatException)
-                {
-                    return
-                        "El campo " + nombreCampo + " no es decimal\n";
-                }
-                catch (System.ArgumentNullException)
-                {
-                    return
-                        "El campo " + nombreCampo + " no puede ser vacio\n";
-                }
+                return
+                    "Se produjo overflow por el campo " + nombreCampo + "\n";
             }
+            catch (System.FormatException)
+            {
+                return
+                    "El campo " + nombreCampo + " no es decimal\n";
+            }
+            catch (System.ArgumentNullException)
+            {
+                return
+                    "El campo " + nombreCampo + " no puede ser vacio\n";
+            }
+            
         }
 
         public static string validarNuloEnListaDeCheckbox(CheckedListBox lstRubros, string nombreListado)

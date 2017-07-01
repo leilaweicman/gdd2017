@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class Turno: Base
+    public class Turno : Base
     {
         #region variables
         List<SqlParameter> parameterList = new List<SqlParameter>();
@@ -24,12 +24,11 @@ namespace Classes
         private Decimal _precioBase;
         private bool _habilitado;
         /*public DateTime hora = new DateTime(1,1,2017,7,59,59);
-
         TimeSpan horita = new TimeSpan();
       */
-        
-        
-          
+
+
+
 
         #endregion
 
@@ -177,7 +176,14 @@ namespace Classes
             this.Habilitado = Convert.ToBoolean(dr["Habilitado"]);
 
         }
-
+        public static DataSet ObtenerTurnosPorAutomovil(int id)
+        {
+            Turno turno = new Turno();
+            turno.parameterList.Add(new SqlParameter("@IDAutomovil ", id));
+            DataSet ds = turno.TraerListado(turno.parameterList, "PorAutomovil");
+            turno.parameterList.Clear();
+            return ds;
+        }
         #endregion
     }
 }

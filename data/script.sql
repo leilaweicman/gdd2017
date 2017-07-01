@@ -5,10 +5,10 @@ GO
 --DROP AND CREATE SCHEMA
 /*IF EXISTS (SELECT name FROM sys.schemas WHERE name = 'GIRLPOWER')
 DROP SCHEMA [GIRLPOWER]
-GO*/
+GO
 
 CREATE SCHEMA [GIRLPOWER]
-GO
+GO*/
 
 -- DROP CONSTRAINTS
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[FK__Viaje__IDTurno__5D95E53A]') AND parent_object_id = OBJECT_ID(N'[GIRLPOWER].[Viaje]'))
@@ -1537,8 +1537,8 @@ go
 insert into [GIRLPOWER].TurnoPorAutomovil (IDTurno,IDAutomovil)
 (select IDTurno,IDAutomovil from [GIRLPOWER].Turno, [GIRLPOWER].Automovil)
 go
- -- Inserto Viajes
 
+ -- Inserto Viajes
 
  insert into [GIRLPOWER].Viaje(IDChofer,IDCliente,IDAutomovil,IDTurno,CantidadKilometros,FechaInicio,FechaFin)
  (SELECT distinct chofer.IDChofer,cliente.IDCliente,a.IDAutomovil,t.IDTurno,
@@ -1551,6 +1551,15 @@ Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha FROM [gd_esquema].Maestra gdm
  inner join [GIRLPOWER].Turno t on t.Descripcion =gdm.Turno_Descripcion
  )
  go
+ 
+--ALTER TABLE VIAJE
+
+alter table GIRLPOWER.Viaje add Precio decimal(18,2)
+GO
+update GIRLPOWER.Viaje SET Precio=0
+GO
+alter table GIRLPOWER.Viaje alter column Precio decimal(18,2) NOT NULL
+GO
 
  --- inserto cabecera factura
 insert into [GIRLPOWER].Factura 
