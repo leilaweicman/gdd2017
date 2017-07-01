@@ -141,7 +141,7 @@ namespace UberFrba.Registro_Viajes
                 unNuevoViaje.FechaYHoraInicio = dtpFechaInicio.Value.ToString("yyyy-MM-dd HH:mm:ss");
                 unNuevoViaje.FechaYHoraFin = dtpFechaFin.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
-                //obtengo el turno para calcular el precio del viaje
+                //obtengo el turno para calcular el precio del viaje y para verificar que el horario de turno este entre los horarios ingresados
                 //precio base turno + valor del km * cant km
 
                 Turno unTurno = new Turno();
@@ -149,18 +149,52 @@ namespace UberFrba.Registro_Viajes
                 unTurno.DataRowToObject(ds.Tables[0].Rows[0]);
                 if (ds.Tables[0].Rows.Count != 0)
                 {
-                    unNuevoViaje.Precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
-                    unNuevoViaje.guardarDatosDeViajeNuevo();
-                    DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dr == DialogResult.OK)
+                    if (ValidarHorario(unTurno))
                     {
-                        resetearCampos();
+                        unNuevoViaje.Precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
+                        unNuevoViaje.guardarDatosDeViajeNuevo();
+                        DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dr == DialogResult.OK)
+                        {
+                            resetearCampos();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El horario ingresado esta fuera del rango del turno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }          
                   
                
             }
+
+        }
+
+        private bool ValidarHorario(Turno unTurno)
+        {
+            int horarioInicio = Convert.ToInt32(dtpFechaInicio.Value.ToString("HH"));
+            int horarioFinal = Convert.ToInt32(dtpFechaFin.Value.ToString("HH"));
+            int diaInicial = Convert.ToInt32(dtpFechaInicio.Value.ToString("dd"));
+            int diaFin = Convert.ToInt32(dtpFechaFin.Value.ToString("dd"));
+
+            if (diaFin != diaInicial) { 
+                //si entra aca significa que el turno paso de un dia al otro, entonces le sumo las horas del otro
+                horarioFinal = 24 + Convert.ToInt32(dtpFechaFin.Value.ToString("HH"));
+            }
+
+            //primero valido el inicio
+            if(horarioInicio < unTurno.HoraInicio){
+                return false;
+            }
+
+            //despues valido el de fin
+
+            if (horarioFinal > unTurno.HoraFin) {
+                return false;
+            }
+
+            return true;
 
         }
 
