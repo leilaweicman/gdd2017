@@ -29,33 +29,44 @@
         private void InitializeComponent()
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.dgvRendiciones = new System.Windows.Forms.DataGridView();
             this.Chofer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroRendicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendiciones)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxReg
             // 
-            this.groupBoxReg.Controls.Add(this.btnCancelar);
             this.groupBoxReg.Controls.Add(this.dgvRendiciones);
             this.groupBoxReg.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBoxReg.Location = new System.Drawing.Point(18, 42);
+            this.groupBoxReg.Location = new System.Drawing.Point(12, 22);
             this.groupBoxReg.Name = "groupBoxReg";
-            this.groupBoxReg.Size = new System.Drawing.Size(638, 445);
+            this.groupBoxReg.Size = new System.Drawing.Size(670, 442);
             this.groupBoxReg.TabIndex = 39;
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Listado";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(587, 481);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(80, 35);
+            this.btnCancelar.TabIndex = 40;
+            this.btnCancelar.Text = "Volver";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // dgvRendiciones
             // 
             this.dgvRendiciones.AllowUserToAddRows = false;
             this.dgvRendiciones.AllowUserToDeleteRows = false;
+            this.dgvRendiciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRendiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRendiciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Chofer,
@@ -63,11 +74,11 @@
             this.Turno,
             this.Fecha,
             this.Total});
-            this.dgvRendiciones.Location = new System.Drawing.Point(6, 39);
+            this.dgvRendiciones.Location = new System.Drawing.Point(15, 26);
             this.dgvRendiciones.Name = "dgvRendiciones";
             this.dgvRendiciones.ReadOnly = true;
             this.dgvRendiciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRendiciones.Size = new System.Drawing.Size(546, 367);
+            this.dgvRendiciones.Size = new System.Drawing.Size(640, 400);
             this.dgvRendiciones.TabIndex = 43;
             // 
             // Chofer
@@ -100,22 +111,12 @@
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(543, 410);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(80, 35);
-            this.btnCancelar.TabIndex = 40;
-            this.btnCancelar.Text = "Volver";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // Listado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 516);
+            this.ClientSize = new System.Drawing.Size(707, 528);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBoxReg);
             this.Name = "Listado";
             this.Text = "Listado";

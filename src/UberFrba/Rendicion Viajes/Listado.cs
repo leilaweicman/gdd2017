@@ -54,7 +54,9 @@ namespace UberFrba.Rendicion_Viajes
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            Rendicion_Viajes.Registro registro = new Rendicion_Viajes.Registro();
             this.Hide();
+            registro.Show();
         }
     }
 }

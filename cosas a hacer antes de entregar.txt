@@ -16,12 +16,14 @@ PROBAR QUE EL SCRIPT FUNCIONE
 - tipos
 - campos vacios
 
-*cambiar en la tabla administrador el IDChofer por IDAdministrador
+*cambiar en la tabla administrador el IDChofer por IDAdministrador - LISTO
 
-*cambiar el campo km en viaje a numeric (18,2)
+*cambiar el campo km en viaje a numeric (18,2) - LISTO
 
-*cambiar el campo fechaFin de viaje (debe ser mayor a fechaInicio)
+*cambiar el campo fechaFin de viaje (debe ser mayor a fechaInicio) - LISTO
 
-*DER
+*calcular el precio de los viajes ya creados - LISTO
 
-*agregar el insert de funcionalidades al script (y revisar bien que funcionalidades tendria que tener cada rol)
+*DER - LISTO
+
+*agregar el insert de funcionalidades al script (y revisar bien que funcionalidades tendria que tener cada rol) - LISTO

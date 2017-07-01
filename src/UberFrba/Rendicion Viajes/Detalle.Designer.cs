@@ -30,19 +30,21 @@
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
             this.dgvRendicionesDetalle = new System.Windows.Forms.DataGridView();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnConfirmarRendicion = new System.Windows.Forms.Button();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalViaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalChofer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnConfirmarRendicion = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendicionesDetalle)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxReg
             // 
+            this.groupBoxReg.Controls.Add(this.btnCancelar);
             this.groupBoxReg.Controls.Add(this.dgvRendicionesDetalle);
             this.groupBoxReg.Controls.Add(this.lblTotal);
             this.groupBoxReg.Controls.Add(this.label2);
@@ -59,6 +61,7 @@
             // 
             this.dgvRendicionesDetalle.AllowUserToAddRows = false;
             this.dgvRendicionesDetalle.AllowUserToDeleteRows = false;
+            this.dgvRendicionesDetalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRendicionesDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRendicionesDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cliente,
@@ -69,37 +72,8 @@
             this.dgvRendicionesDetalle.Name = "dgvRendicionesDetalle";
             this.dgvRendicionesDetalle.ReadOnly = true;
             this.dgvRendicionesDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRendicionesDetalle.Size = new System.Drawing.Size(454, 189);
+            this.dgvRendicionesDetalle.Size = new System.Drawing.Size(561, 189);
             this.dgvRendicionesDetalle.TabIndex = 43;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Verdana", 10F);
-            this.lblTotal.Location = new System.Drawing.Point(112, 45);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(0, 17);
-            this.lblTotal.TabIndex = 42;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label2.Location = new System.Drawing.Point(24, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 17);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "Total: $";
-            // 
-            // btnConfirmarRendicion
-            // 
-            this.btnConfirmarRendicion.Location = new System.Drawing.Point(447, 342);
-            this.btnConfirmarRendicion.Name = "btnConfirmarRendicion";
-            this.btnConfirmarRendicion.Size = new System.Drawing.Size(141, 67);
-            this.btnConfirmarRendicion.TabIndex = 33;
-            this.btnConfirmarRendicion.Text = "Confirmar Rendicion";
-            this.btnConfirmarRendicion.UseVisualStyleBackColor = true;
-            this.btnConfirmarRendicion.Click += new System.EventHandler(this.btnConfirmarRendicion_Click);
             // 
             // Cliente
             // 
@@ -124,6 +98,45 @@
             this.TotalChofer.HeaderText = "TotalChofer";
             this.TotalChofer.Name = "TotalChofer";
             this.TotalChofer.ReadOnly = true;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblTotal.Location = new System.Drawing.Point(112, 45);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(0, 17);
+            this.lblTotal.TabIndex = 42;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Verdana", 10F);
+            this.label2.Location = new System.Drawing.Point(24, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 17);
+            this.label2.TabIndex = 39;
+            this.label2.Text = "Total: $";
+            // 
+            // btnConfirmarRendicion
+            // 
+            this.btnConfirmarRendicion.Location = new System.Drawing.Point(295, 339);
+            this.btnConfirmarRendicion.Name = "btnConfirmarRendicion";
+            this.btnConfirmarRendicion.Size = new System.Drawing.Size(141, 67);
+            this.btnConfirmarRendicion.TabIndex = 33;
+            this.btnConfirmarRendicion.Text = "Confirmar Rendicion";
+            this.btnConfirmarRendicion.UseVisualStyleBackColor = true;
+            this.btnConfirmarRendicion.Click += new System.EventHandler(this.btnConfirmarRendicion_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(447, 339);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(141, 67);
+            this.btnCancelar.TabIndex = 44;
+            this.btnCancelar.Text = "Cancelar Rendicion";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Detalle
             // 
@@ -151,6 +164,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaFin;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalViaje;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalChofer;
+        private System.Windows.Forms.Button btnCancelar;
 
     }
 }

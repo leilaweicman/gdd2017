@@ -311,11 +311,11 @@ GO
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[GIRLPOWER].[Administrador]') AND type in (N'U'))
 BEGIN
 CREATE TABLE [GIRLPOWER].[Administrador](
-	[IDChofer] [int] IDENTITY(1,1) NOT NULL,
+	[IDAdministrador] [int] IDENTITY(1,1) NOT NULL,
 	[IDUsuario] [int] NULL,
  CONSTRAINT [PK__Administ__02DB5D058EA98653] PRIMARY KEY CLUSTERED 
 (
-	[IDChofer] ASC
+	[IDAdministrador] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END
@@ -707,7 +707,7 @@ CREATE TABLE [GIRLPOWER].[Viaje](
 	[IDCliente] [int] NOT NULL,
 	[IDAutomovil] [int] NOT NULL,
 	[IDTurno] [int] NOT NULL,
-	[CantidadKilometros] [numeric](18, 0) NOT NULL,
+	[CantidadKilometros] [numeric](18, 2) NOT NULL,
 	[FechaInicio] [datetime] NOT NULL,
 	[FechaFin] [datetime] NOT NULL,
  CONSTRAINT [PK__Viaje__6567E70C0642EFAF] PRIMARY KEY CLUSTERED 
@@ -1552,7 +1552,7 @@ GO
 
  insert into [GIRLPOWER].Viaje(IDChofer,IDCliente,IDAutomovil,IDTurno,CantidadKilometros,FechaInicio,FechaFin, Precio)
  (SELECT distinct chofer.IDChofer,cliente.IDCliente,a.IDAutomovil,t.IDTurno,
-Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha,0 FROM [gd_esquema].Maestra gdm 
+Viaje_Cant_Kilometros,Viaje_Fecha,DATEADD(minute,(Viaje_Cant_Kilometros * 5),Viaje_Fecha),t.PrecioBase+(Viaje_Cant_Kilometros * t.ValorKilometro) FROM [gd_esquema].Maestra gdm 
  inner join [GIRLPOWER].Usuario chof on chof.DNI=gdm.Chofer_Dni 
  inner join [GIRLPOWER].Chofer chofer on chofer.IDUsuario=chof.IDUsuario
  inner join [GIRLPOWER].Usuario cli on cli.DNI=gdm.Cliente_Dni
@@ -1561,7 +1561,7 @@ Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha,0 FROM [gd_esquema].Maestra gdm
  inner join [GIRLPOWER].Turno t on t.Descripcion =gdm.Turno_Descripcion
  )
  go
- 
+
  --- inserto cabecera factura
 insert into [GIRLPOWER].Factura 
 (IDCliente,FechaInicio,FechaFin,ImporteTotal,NroFactura,Fecha)
@@ -1641,5 +1641,24 @@ insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario)
 insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, convert(datetime,'1976-04-13 00:00:00.000',120), 
 	'52D77462B24987175C8D7DAB901A5967E927FFC8D0B6E4A234E07A4AEC5E3724', 'admin@admin.com', 1, 12, 'A', 'CABA', 'admin')
 insert into GIRLPOWER.RolPorUsuario values (1, (select idUsuario From Girlpower.Usuario where username = 'admin'), 1)
-	
-	
+
+--insert funcionalidades
+INSERT INTO GIRLPOWER.Funcionalidad
+(Nombre)
+VALUES
+('ABM_Rol'),
+('ABM_Cliente'),
+('ABM_Automovil'),
+('ABM_Chofer'),
+('Registro_Viajes'),
+('Rendicion_Cuenta'),
+('Facturacion'),
+('Listado_Estadistico'),
+('ABM_Turno')
+
+--insert funcionalidadPorRol
+INSERT INTO GIRLPOWER.FuncionalidadPorRol (IDFuncionalidad, IDRol) 
+VALUES (1,1), (2,1), (3,1), (4,1), (5,1), (6,1), (7,1), (8,1), (9,1),
+(5,2), (6,2),
+(5,3), (7,3)
+
