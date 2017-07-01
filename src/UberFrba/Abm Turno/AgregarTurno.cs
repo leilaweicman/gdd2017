@@ -137,26 +137,35 @@ namespace UberFrba.Abm_Turno
                 List<String> lstErrorSolapados = new List<string>();
                 bool huboErrorSolapados = false;
 
+                if (!editing)
+                {
+                    turnoNuevo.Id_Turno = -1;
+                    //hago esto para que cuando estoy editando, no se compare a si mismo cuando tiene que verificar el solapamiento de turnos
+                }
+
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     Turno turno = new Turno();
                     turno.DataRowToObject(row);
                     turnos.Add(turno.Id_Turno, turno);
-                                                     
-                    if (turnoNuevo.HoraInicio >= turno.HoraInicio && turnoNuevo.HoraInicio < turno.HoraFin)
+
+                    if (turnoNuevo.Id_Turno != turno.Id_Turno)
                     {
-                        lstErrorSolapados.Add("turno " + turno.Descripcion + " que es de " + turno.HoraInicio.ToString() + " hasta " + turno.HoraFin.ToString()+"\n");
-                        huboErrorSolapados = true;
-                    }
-                    else if (turnoNuevo.HoraFin <= turno.HoraFin && turnoNuevo.HoraFin > turno.HoraInicio)
-                    {
-                        lstErrorSolapados.Add("turno " + turno.Descripcion + " que es de " + turno.HoraInicio.ToString() + " hasta " + turno.HoraFin.ToString()+"\n");
-                        huboErrorSolapados = true;
-                    }
-                    else if (turnoNuevo.HoraInicio <= turno.HoraInicio && turnoNuevo.HoraFin >= turno.HoraFin)
-                    {
-                        lstErrorSolapados.Add("turno " + turno.Descripcion + " que es de " + turno.HoraInicio.ToString() + " hasta " + turno.HoraFin.ToString()+"\n");
-                        huboErrorSolapados = true;
+                        if (turnoNuevo.HoraInicio >= turno.HoraInicio && turnoNuevo.HoraInicio < turno.HoraFin)
+                        {
+                            lstErrorSolapados.Add("turno " + turno.Descripcion + " que es de " + turno.HoraInicio.ToString() + " hasta " + turno.HoraFin.ToString() + "\n");
+                            huboErrorSolapados = true;
+                        }
+                        else if (turnoNuevo.HoraFin <= turno.HoraFin && turnoNuevo.HoraFin > turno.HoraInicio)
+                        {
+                            lstErrorSolapados.Add("turno " + turno.Descripcion + " que es de " + turno.HoraInicio.ToString() + " hasta " + turno.HoraFin.ToString() + "\n");
+                            huboErrorSolapados = true;
+                        }
+                        else if (turnoNuevo.HoraInicio <= turno.HoraInicio && turnoNuevo.HoraFin >= turno.HoraFin)
+                        {
+                            lstErrorSolapados.Add("turno " + turno.Descripcion + " que es de " + turno.HoraInicio.ToString() + " hasta " + turno.HoraFin.ToString() + "\n");
+                            huboErrorSolapados = true;
+                        }
                     }
                 }
 
@@ -184,6 +193,7 @@ namespace UberFrba.Abm_Turno
                         }
                         else
                         {
+                            parameterList.Add(new SqlParameter("@idTurno", turnoNuevo.Id_Turno));
                             if (chkHabilitado.Checked)
                             {
                                 parameterList.Add(new SqlParameter("@habilitado", 1));

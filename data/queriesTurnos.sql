@@ -95,7 +95,7 @@ BEGIN
 	BEGIN TRY
 		UPDATE GIRLPOWER.Turno SET Descripcion=@descripcion, HoraInicio=@horaInicio, HoraFin=@horaFin, PrecioBase=@precioBase, 
 		ValorKilometro=@valorKilometro, Habilitado = @habilitado 
-		WHERE IDTurno=IDTurno
+		WHERE IDTurno=@idTurno
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error modificando el turno', 16, 217)
