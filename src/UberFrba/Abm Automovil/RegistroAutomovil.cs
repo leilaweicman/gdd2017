@@ -11,6 +11,8 @@ using Connection;
 using System.Data.SqlClient;
 using System.Reflection;
 using Classes;
+using Utilities;
+using Exceptions;
 
 namespace UberFrba.Abm_Automovil
 {
@@ -22,6 +24,7 @@ namespace UberFrba.Abm_Automovil
         {
           InitializeComponent();
           CargarCombos();
+          CargarChoferes();
           CargarModelos();
           this.idAutomovil = 0;
           cargarListadoTurnosDelSistema();
@@ -30,6 +33,8 @@ namespace UberFrba.Abm_Automovil
         {
             InitializeComponent();
             CargarCombos();
+            CargarChoferes();
+
             CargarModelos();
             this.idAutomovil = ID;
             autoDelForm = new Automovil(ID);
@@ -80,8 +85,8 @@ namespace UberFrba.Abm_Automovil
             string query = "select IDMarca,Nombre from [GIRLPOWER].Marca";
             var resultMarcas = SQLHelper.ExecuteQuery(query);
 
-            string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
-            var resultChoferes = SQLHelper.ExecuteQuery(query2);
+         //   string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
+           // var resultChoferes = SQLHelper.ExecuteQuery(query2);
 
             string query3 = "select IDTurno,Descripcion from [GIRLPOWER].Turno";
             var resultsTurnos = SQLHelper.ExecuteQuery(query3);
@@ -105,7 +110,7 @@ namespace UberFrba.Abm_Automovil
             cmbMarca.DisplayMember = "Name";
             cmbMarca.ValueMember = "Value";
             cmbMarca.SelectedIndex = 0;
-            List<ComboPrueba> choferes = new List<ComboPrueba>();
+     /*       List<ComboPrueba> choferes = new List<ComboPrueba>();
             while (resultChoferes.Read())
             {
                 ComboPrueba aux;
@@ -125,10 +130,29 @@ namespace UberFrba.Abm_Automovil
             cmbChofer.DisplayMember = "Name";
             cmbChofer.ValueMember = "Value";
             cmbChofer.SelectedIndex = 0;
-
-     
+      */
         }
-
+        private void CargarChoferes()
+        {
+            try
+            {
+                //Obtengo los choferes y los muestro en el combobox.
+                DataSet ds = Usuario.ObtenerChoferes();
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    //Uso el manager de dropdowns para cargar el comboBox con los choferes
+                    DropDownListManager.CargarCombo(cmbChofer, ds.Tables[0], "IDChofer", "Nombre", false, "");
+                }
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
            
