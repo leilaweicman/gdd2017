@@ -161,7 +161,7 @@ namespace UberFrba.LogIn
 
         private void Ingresar()
         {
-            Home homeForm = new Home();
+            Principal homeForm = new Principal();
             this.Hide();
            // homeForm.Show();
             homeForm.abrirConUsuario(user);

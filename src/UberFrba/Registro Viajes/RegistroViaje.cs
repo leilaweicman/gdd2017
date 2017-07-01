@@ -230,5 +230,10 @@ namespace UberFrba.Registro_Viajes
 
             return true;
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

@@ -37,9 +37,6 @@ namespace UberFrba
 
             usuario.Rol.setearFuncionalidadesAlRol();
            
-            bool permisosAdmin = false;
-            bool permisosPublicacion = false;
-            bool permisosUsuario = false;
             //Segun el rol, voy a tener funcionalidades. Voy a comparar cada funcionalidad del rol
             //contra el enum de la clase de funcionalidades que tiene definido todos los posibles tipos
             //de funcionalidades permitidas para el usuario. Segun las funcionalidades que mi rol tenga
@@ -49,58 +46,33 @@ namespace UberFrba
                 switch (unaFunc.obtenerPorNombre())
                 {
                     case Funcionalidades.ABM_Cliente:
-                        //aBMClientesToolStripMenuItem.Visible = true;
-                        //permisosAdmin = true;
                         lblAbmCliente.Visible = true;
                         break;
                     case Funcionalidades.ABM_Rol:
-                        //ABMRolesToolStripMenuItem.Visible = true;
-                        //permisosAdmin = true;
                         lblAbmRol.Visible = true;
                         break;
                     case Funcionalidades.ABM_Automovil:
-                        //administrarUsuariosToolStripMenuItem.Visible = true;
-                        //permisosAdmin = true;
                         lblRegistrarAutomovil.Visible = true;
                         lblListadoAutomoviles.Visible = true;
                         break;
                     case Funcionalidades.ABM_Chofer:
-                        //cambiarClaveToolStripMenuItem.Visible = true;
-                        //permisosAdmin = true;
                         lblAbmChofer.Visible = true;
                         break;
                     case Funcionalidades.Registro_Viajes:
-                        //AbmVisiblidadToolStripMenuItem.Visible = true;
-                        //permisosPublicacion = true;
                         break;
                     case Funcionalidades.Rendicion_Cuenta:
-                        //calificarVendedoresToolStripMenuItem.Visible = true;
-                        //permisosUsuario = true;
                         break;
                     case Funcionalidades.Facturacion:
-                        //comprarOfertarToolStripMenuItem.Visible = true;
-                        //permisosPublicacion = true;
                         break;
                     case Funcionalidades.Listado_Estadistico:
-                        //listadoEstadísticoToolStripMenuItem.Visible = true;
-                        //permisosUsuario = true;
                         break;
                     case Funcionalidades.ABM_Turno:
-                        //facturarPublicacionesToolStripMenuItem.Visible = true;
-                        //permisosPublicacion = true;
                         lblAbmTurno.Visible=true;                       
                         break;
 
                 }
             }
-
-            //if (!permisosAdmin)
-            //    menu.Items.Remove(pestanaAdmin);
-            //if (!permisosPublicacion)
-            //    menu.Items.Remove(pestanaPublicacion);
-            //if (!permisosUsuario)
-            //    menu.Items.Remove(pestanaUsuario);
-
+            
         }
         
 

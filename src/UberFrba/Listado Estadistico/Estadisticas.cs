@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UberFrba.Listado_Estadistico
 {
-    public partial class Form1 : Form
+    public partial class Estadisticas : Form
     {
-        public Form1()
+        public Estadisticas()
         {
             InitializeComponent();
         }

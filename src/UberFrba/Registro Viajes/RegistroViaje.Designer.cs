@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.grpTurnos = new System.Windows.Forms.GroupBox();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.lblCliente = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,8 +45,6 @@
             this.txtAutomovil = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lbAutomovil = new System.Windows.Forms.Label();
-            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.grpTurnos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,24 @@
             this.grpTurnos.TabIndex = 2;
             this.grpTurnos.TabStop = false;
             this.grpTurnos.Text = "Viaje";
+            // 
+            // dtpFechaFin
+            // 
+            this.dtpFechaFin.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtpFechaFin.Location = new System.Drawing.Point(19, 392);
+            this.dtpFechaFin.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(243, 27);
+            this.dtpFechaFin.TabIndex = 60;
+            // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.Location = new System.Drawing.Point(19, 322);
+            this.dtpFechaInicio.MaxDate = new System.DateTime(9888, 12, 31, 0, 0, 0, 0);
+            this.dtpFechaInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(243, 27);
+            this.dtpFechaInicio.TabIndex = 59;
             // 
             // lblCliente
             // 
@@ -194,8 +212,9 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(103, 35);
             this.btnCancelar.TabIndex = 45;
-            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Text = "Cerrar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // lbAutomovil
             // 
@@ -206,24 +225,6 @@
             this.lbAutomovil.Size = new System.Drawing.Size(83, 18);
             this.lbAutomovil.TabIndex = 7;
             this.lbAutomovil.Text = "Automovil";
-            // 
-            // dtpFechaInicio
-            // 
-            this.dtpFechaInicio.Location = new System.Drawing.Point(19, 322);
-            this.dtpFechaInicio.MaxDate = new System.DateTime(9888, 12, 31, 0, 0, 0, 0);
-            this.dtpFechaInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtpFechaInicio.Name = "dtpFechaInicio";
-            this.dtpFechaInicio.Size = new System.Drawing.Size(243, 27);
-            this.dtpFechaInicio.TabIndex = 59;
-            // 
-            // dtpFechaFin
-            // 
-            this.dtpFechaFin.CustomFormat = "dd/MM/yyyy hh:mm:ss";
-            this.dtpFechaFin.Location = new System.Drawing.Point(19, 392);
-            this.dtpFechaFin.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtpFechaFin.Name = "dtpFechaFin";
-            this.dtpFechaFin.Size = new System.Drawing.Size(243, 27);
-            this.dtpFechaFin.TabIndex = 60;
             // 
             // RegistroViaje
             // 
