@@ -137,7 +137,7 @@ namespace UberFrba.Abm_Automovil
             try
             {
                 //Obtengo los choferes y los muestro en el combobox.
-                DataSet ds = Usuario.ObtenerChoferes();
+                DataSet ds = Usuario.ObtenerChoferesHabilitados();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los choferes
@@ -342,7 +342,7 @@ namespace UberFrba.Abm_Automovil
             //cargo el listado de funcionalidades no pertenecientes al rol cargadas en el sistema
             //exijo que se muestre solo el nombre de las funcionalidades
             lstTurnosTot.Items.Clear();
-            DataSet ds = Turno.obtenerTodos();
+            DataSet ds = Turno.obtenerTurnosHabilitados();
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 Turno unTurno = new Turno();

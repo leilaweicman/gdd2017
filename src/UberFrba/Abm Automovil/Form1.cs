@@ -119,7 +119,7 @@ namespace UberFrba.Abm_Automovil
             try
             {
                 //Obtengo los choferes y los muestro en el combobox.
-                DataSet ds = Usuario.ObtenerChoferes();
+                DataSet ds = Usuario.ObtenerChoferesHabilitados();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                  

@@ -33,7 +33,7 @@ namespace UberFrba.Rendicion_Viajes
             try
             {
                 //Obtengo los clientes y los muestro en el combobox.
-                DataSet ds = Turno.obtenerTodos();
+                DataSet ds = Turno.obtenerTurnosHabilitados();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los clientes
@@ -54,7 +54,7 @@ namespace UberFrba.Rendicion_Viajes
             try
             {
                 //Obtengo los choferes y los muestro en el combobox.
-                DataSet ds = Usuario.ObtenerChoferes();
+                DataSet ds = Usuario.ObtenerChoferesHabilitados();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los choferes
