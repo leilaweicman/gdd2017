@@ -217,7 +217,7 @@ BEGIN
 	END CATCH
 END
 GO
-
+/*
 
 --EXTRAS!!! las uso para probar
 SELECT * FROM [GIRLPOWER].Factura
@@ -241,4 +241,11 @@ SELECT u.IDUsuario, u.Apellido, u.ContraseniaEncriptada, u.Depto, u.Direccion, u
 		JOIN GIRLPOWER.Rol r ON r.IDRol = ru.IDRol
 		WHERE r.Nombre= 'Cliente'
 
+select * from girlpower.Rol
+select * from girlpower.Usuario u JOIN GIRLPOWER.RolPorUsuario ru ON ru.IDUsuario = u.IDUsuario WHERE IDRol=3
+select * from GIRLPOWER.Automovil a JOIN girlpower.turnoPorAutomovil ta ON ta.IDAutomovil = a.IDAutomovil 
+JOIN GIRLPOWER.turno t on ta.IDAutomovil=t.IDTurno
 
+insert into GIRLPOWER.Viaje (IDChofer, IDCliente, IDAutomovil, IDTurno, CantidadKilometros, FechaInicio, FechaFin, Precio)
+VALUES (23, 42, 1, 1, 10, CONVERT(DateTime,'1976-04-13 17:00:00.000'), CONVERT(DateTime,'1976-04-13 18:00:00.000'), 170)
+*/
