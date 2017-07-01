@@ -1,3 +1,6 @@
+IF OBJECT_ID ('GIRLPOWER.traerListadoRendicionDetalle', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].traerListadoRendicionDetalle
+go
 create procedure  girlpower.traerListadoRendicionDetalle (@fecha date, @porcentaje int,
  @idchofer int, @idturno int)as begin
   select u.Nombre,v.FechaFin,v.Precio as precioViaje,
@@ -8,7 +11,10 @@ create procedure  girlpower.traerListadoRendicionDetalle (@fecha date, @porcenta
    where v.IDTurno=@idturno and v.IDChofer=@idchofer and 
    cast(FechaFin as date)=CAST(@fecha as date )
    end
-
+   go
+   IF OBJECT_ID ('GIRLPOWER.PR_TotalRendicion', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].PR_TotalRendicion
+go
 
    create procedure  girlpower.PR_TotalRendicion (@fecha date, @porcentaje int,
  @idchofer int, @idturno int)as begin
@@ -18,7 +24,10 @@ create procedure  girlpower.traerListadoRendicionDetalle (@fecha date, @porcenta
    where v.IDTurno=@idturno and v.IDChofer=@idchofer and 
    cast(FechaFin as date)=CAST(@fecha as date )
    end
-
+   go
+      IF OBJECT_ID ('GIRLPOWER.PR_GenerarRendicion', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].PR_GenerarRendicion
+go
    create procedure GIRLPOWER.PR_GenerarRendicion(@fecha date, @porcentaje int,
  @idchofer int, @idturno int)as
  begin
@@ -44,7 +53,10 @@ set @ultimoID=@@IDENTITY
    update [GIRLPOWER].Rendicion set ImporteTotal=@total
    where IDRendicion=@ultimoID
  end
-
+ go
+     IF OBJECT_ID ('GIRLPOWER.traerListadoRendicion', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].traerListadoRendicion
+go
  create procedure girlpower.traerListadoRendicion as begin
   select top 100 u.Nombre,r.NroRendicion,r.Fecha,t.Descripcion,r.ImporteTotal
   from [GD1C2017].[GIRLPOWER].Rendicion r  join
@@ -53,6 +65,10 @@ set @ultimoID=@@IDENTITY
    JOIN [GD1C2017].[GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario
   order by Fecha desc
    end
+   go
+        IF OBJECT_ID ('GIRLPOWER.PR_verifExisteRendicion', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].PR_verifExisteRendicion
+go
    create PROCEDURE [GIRLPOWER].PR_verifExisteRendicion 
 (@fecha varchar(50),@idturno int,@idchofer int) AS
 BEGIN
