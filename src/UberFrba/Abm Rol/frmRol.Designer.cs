@@ -180,7 +180,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 418);
             this.Controls.Add(this.grpRol);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rol";
             this.grpRol.ResumeLayout(false);
             this.grpRol.PerformLayout();
