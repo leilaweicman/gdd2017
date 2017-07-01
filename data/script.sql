@@ -629,7 +629,7 @@ CREATE TABLE [GIRLPOWER].[Turno](
 	[Descripcion] [varchar](255) NULL,
 	[ValorKilometro] [numeric](18, 2) NOT NULL,
 	[PrecioBase] [numeric](18, 2) NOT NULL,
-	[Habilitado] [bit] NOT NULL,
+	[Habilitado] [bit] NOT NULL DEFAULT 1,
  CONSTRAINT [PK__Turno__9763AA1E62AC0EA3] PRIMARY KEY CLUSTERED 
 (
 	[IDTurno] ASC
