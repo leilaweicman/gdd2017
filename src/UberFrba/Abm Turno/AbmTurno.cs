@@ -15,7 +15,7 @@ namespace UberFrba.Abm_Turno
 {
     public partial class AbmTurno : Form
     {
-        List<Turno> turnos  = new List<Turno>();
+        Dictionary<int, Turno> turnos  = new Dictionary<int, Turno>();
         public AbmTurno()
         {
             InitializeComponent();
@@ -52,17 +52,81 @@ namespace UberFrba.Abm_Turno
             parameterList.Add(new SqlParameter("@descripcion", txtFiltroDescrip.Text));
 
             DataSet ds = SQLHelper.ExecuteDataSet("PR_traerTurnos", CommandType.StoredProcedure, parameterList);
-
+     
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 Turno turno = new Turno();
                 turno.DataRowToObject(row);
-                turnos.Add(turno);
+                turnos.Add(turno.Id_Turno, turno);
 
-                dgvTurnos.Rows.Add(turno.Id_Turno, turno.HoraInicio.TimeOfDay, turno.HoraFin.TimeOfDay, turno.Descripcion, turno.ValorKilometro, turno.PrecioBase,
+                dgvTurnos.Rows.Add(turno.Id_Turno, turno.HoraInicio, turno.HoraFin, turno.Descripcion, turno.ValorKilometro, turno.PrecioBase,
                     turno.Habilitado);
+                dgvTurnos.Sort(dgvTurnos.Columns[1], ListSortDirection.Ascending);
 
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvTurnos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un turno para borarlo");
+            }
+            else
+            {
+                DataGridViewRow row = this.dgvTurnos.SelectedRows[0];
+                int idTurno = int.Parse(row.Cells["IDTurno"].Value.ToString());
+
+                Turno turnoSeleccionado = turnos[idTurno];
+
+                List<SqlParameter> parameterList = new List<SqlParameter>();
+                parameterList.Add(new SqlParameter("@idTurno", turnoSeleccionado.Id_Turno));
+
+                try
+                {
+                    SQLHelper.ExecuteNonQuery("PR_inhabilitarTurno", CommandType.StoredProcedure, parameterList);
+                    MessageBox.Show("El turno se ha eliminado correctamente");
+                    cargarTurnos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarTurno agregarTurnoForm = new AgregarTurno();
+            this.Hide();
+            agregarTurnoForm.Show();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvTurnos.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = this.dgvTurnos.SelectedRows[0];
+                int idTurno = int.Parse(row.Cells["IDTurno"].Value.ToString());
+
+                Turno turnoSeleccionado = turnos[idTurno];
+
+                AgregarTurno agregarTurnoForm = new AgregarTurno(turnoSeleccionado);
+
+                this.Hide();
+
+
+                agregarTurnoForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un turno para editarlo");
+            }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
 
 
