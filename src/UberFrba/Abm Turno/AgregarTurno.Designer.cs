@@ -126,7 +126,6 @@
             // 
             // cmbHoraInicio
             // 
-            this.cmbHoraInicio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbHoraInicio.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbHoraInicio.FormattingEnabled = true;
             this.cmbHoraInicio.Location = new System.Drawing.Point(209, 73);
@@ -202,6 +201,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gpbDatosPersonales);
             this.Name = "AgregarTurno";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgregarTurno";
             this.Load += new System.EventHandler(this.AgregarTurno_Load);
             this.gpbDatosPersonales.ResumeLayout(false);
