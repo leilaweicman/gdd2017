@@ -44,6 +44,8 @@
     <Compile Include="Automovil.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Funcionalidad.cs" />
+    <Compile Include="Rendicion.cs" />
+    <Compile Include="RendicionDetalle.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Turno.cs" />
     <Compile Include="Usuario.cs" />
