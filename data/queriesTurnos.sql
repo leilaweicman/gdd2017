@@ -120,7 +120,7 @@ select hashbytes('SHA2_256', 'w23e')
 
 /*
 IF OBJECT_ID ('GIRLPOWER.TR_insertarTurnosConDatetime', 'T') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].[TR_insertarTurnosConDatetime]
+DROP TRIGGER [GIRLPOWER].[TR_insertarTurnosConDatetime]
 GO
 
 CREATE TRIGGER [GIRLPOWER].[TR_insertarTurnosConDatetime]

@@ -7,3 +7,5 @@
 	- traemos todos los choferes, turnos y clientes, por el mismo supuesto anterior 
 
 - login: tomamos como username de los usuarios ya registrados (los que estaban el la tabla maestra) su DNI y como contraseña "1"
+
+- facturacion: una factura para un cliente se crea con el primer viaje que este realiza en el mes. La fecha de fin de la factura queda en null hasta que el administrador, a fin de mes, solicite realizar la facturacion y ahi se pondra la fecha de fin.

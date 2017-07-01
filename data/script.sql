@@ -396,10 +396,10 @@ CREATE TABLE [GIRLPOWER].[Factura](
 	[IDFactura] [int] IDENTITY(1,1) NOT NULL,
 	[IDCliente] [int] NOT NULL,
 	[FechaInicio] [datetime] NOT NULL,
-	[FechaFin] [datetime] NOT NULL,
-	[ImporteTotal] [numeric](18, 2) NOT NULL,
-	[Fecha] [datetime] NOT NULL,
-	[NroFactura] [numeric](18, 0) NOT NULL,
+	[FechaFin] [datetime],-- NOT NULL,
+	[ImporteTotal] [numeric](18, 2),-- NOT NULL,
+	[Fecha] [datetime],-- NOT NULL,
+	[NroFactura] [numeric](18, 0), --NOT NULL,
  CONSTRAINT [PK__Factura__492FE939ED543D91] PRIMARY KEY CLUSTERED 
 (
 	[IDFactura] ASC
