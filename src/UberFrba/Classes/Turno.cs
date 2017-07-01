@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Connection;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -149,6 +150,13 @@ namespace Classes
             Turno unTurno = new Turno();
             return unTurno.TraerListado(unTurno.parameterList, "");
         }
+
+        public static DataSet obtenerTurnosHabilitados()
+        {            
+            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerTurnosHabilitados", CommandType.StoredProcedure);          
+            return ds;
+        }
+
 
         public DataSet obtenerTurnoPorId(int idTurno)
         {

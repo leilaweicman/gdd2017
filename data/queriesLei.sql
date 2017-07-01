@@ -55,6 +55,13 @@ IF OBJECT_ID ('GIRLPOWER.traerListadoUsuarioQueSonClientes', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueSonClientes]
 GO
 
+IF OBJECT_ID ('GIRLPOWER.traerListadoUsuarioQueSonChoferesHabilitados', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueSonChoferesHabilitados]
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoUsuarioQueSonClientesHabilitados', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueSonClientesHabilitados]
+GO
 CREATE PROCEDURE [GIRLPOWER].[PR_traerUsuarioPorUsername] (@Username VARCHAR(30)) AS
 BEGIN
 	SELECT * FROM girlpower.usuario WHERE username=@Username
@@ -148,6 +155,25 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueSonChoferesHabilitados] AS
+BEGIN
+	SELECT * FROM girlpower.Usuario u
+	join girlpower.Chofer c on u.IDUsuario=c.IDUsuario
+	join GIRLPOWER.RolPorUsuario r on u.IDUsuario= r.IDUsuario
+	WHERE r.Habilitado = 1
+END
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueSonClientesHabilitados] AS
+BEGIN
+	SELECT * FROM girlpower.Usuario u
+	join girlpower.Cliente c on u.IDUsuario=c.IDUsuario
+	join GIRLPOWER.RolPorUsuario r on u.IDUsuario= r.IDUsuario
+	WHERE r.Habilitado = 1
+END
+GO
+
+
 IF OBJECT_ID ('GIRLPOWER.traerAutomovilDelChofer', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[traerAutomovilDelChofer]
 GO
@@ -181,7 +207,7 @@ CREATE PROCEDURE [GIRLPOWER].[insertViaje] (@IDChofer int, @IDTurno int, @IDClie
 BEGIN
 	INSERT INTO girlpower.Viaje(IDChofer, IDTurno, IDCliente, IDAutomovil, CantidadKilometros, FechaInicio, FechaFin, Precio) 
 	VALUES 
-	(@IDChofer, @IDTurno, @IDCliente, @IDAutomovil, @CantKM, convert(datetime,'2017-11-30 12:10:01',120), convert(datetime,'2017-11-30 14:10:01',120), @Precio)
+	(@IDChofer, @IDTurno, @IDCliente, @IDAutomovil, @CantKM, convert(datetime,@FechaInicio,120), convert(datetime,@FechaFin,120), @Precio)
 END
 GO
 

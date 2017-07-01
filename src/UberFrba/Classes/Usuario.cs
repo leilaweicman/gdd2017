@@ -316,10 +316,22 @@ namespace Classes
             return unUsuario.TraerListado(unUsuario.parameterList, "QueSonChoferes");
         }
 
+        public static DataSet ObtenerChoferesHabilitados()
+        {
+            Usuario unUsuario = new Usuario();
+            return unUsuario.TraerListado(unUsuario.parameterList, "QueSonChoferesHabilitados");
+        }
+
         public static DataSet ObtenerClientes()
         {
             Usuario unUsuario = new Usuario();
             return unUsuario.TraerListado(unUsuario.parameterList, "QueSonClientes");
+        }
+
+        public static DataSet ObtenerClientesHabilitados()
+        {
+            Usuario unUsuario = new Usuario();
+            return unUsuario.TraerListado(unUsuario.parameterList, "QueSonClientesHabilitados");
         }
     }
 }

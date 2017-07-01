@@ -1538,11 +1538,21 @@ insert into [GIRLPOWER].TurnoPorAutomovil (IDTurno,IDAutomovil)
 (select IDTurno,IDAutomovil from [GIRLPOWER].Turno, [GIRLPOWER].Automovil)
 go
 
+
+--ALTER TABLE VIAJE
+
+alter table GIRLPOWER.Viaje add Precio decimal(18,2) NOT NULL
+GO
+--alter table GIRLPOWER.Viaje alter column Precio decimal(18,2) NOT NULL
+----GO
+--update GIRLPOWER.Viaje SET Precio=0
+--GO
+
  -- Inserto Viajes
 
- insert into [GIRLPOWER].Viaje(IDChofer,IDCliente,IDAutomovil,IDTurno,CantidadKilometros,FechaInicio,FechaFin)
+ insert into [GIRLPOWER].Viaje(IDChofer,IDCliente,IDAutomovil,IDTurno,CantidadKilometros,FechaInicio,FechaFin, Precio)
  (SELECT distinct chofer.IDChofer,cliente.IDCliente,a.IDAutomovil,t.IDTurno,
-Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha FROM [gd_esquema].Maestra gdm 
+Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha,0 FROM [gd_esquema].Maestra gdm 
  inner join [GIRLPOWER].Usuario chof on chof.DNI=gdm.Chofer_Dni 
  inner join [GIRLPOWER].Chofer chofer on chofer.IDUsuario=chof.IDUsuario
  inner join [GIRLPOWER].Usuario cli on cli.DNI=gdm.Cliente_Dni
@@ -1552,15 +1562,6 @@ Viaje_Cant_Kilometros,Viaje_Fecha,Viaje_Fecha FROM [gd_esquema].Maestra gdm
  )
  go
  
---ALTER TABLE VIAJE
-
-alter table GIRLPOWER.Viaje add Precio decimal(18,2)
-GO
-update GIRLPOWER.Viaje SET Precio=0
-GO
-alter table GIRLPOWER.Viaje alter column Precio decimal(18,2) NOT NULL
-GO
-
  --- inserto cabecera factura
 insert into [GIRLPOWER].Factura 
 (IDCliente,FechaInicio,FechaFin,ImporteTotal,NroFactura,Fecha)
@@ -1620,16 +1621,21 @@ insert into [GIRLPOWER].RendicionDetalle (IDRendicion,IDViaje,Importe)
 
  --insert into rol por usuario 
  --insert clientes into rol por usuario
- insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
-  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
-	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
-	WHERE r.Nombre = 'Cliente' group by u.IDUsuario, r.IDRol)
+ --insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+ -- (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	--JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	--WHERE r.Nombre = 'Cliente' group by u.IDUsuario, r.IDRol)
+insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+(select 3, IDUsuario from GIRLPOWER.Cliente)
 
 --insert chofer into rol por usuario
- insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
-  (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
-	JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
-	WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
+ --insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+ -- (SELECT r.IDRol, u.IDUsuario FROM GIRLPOWER.Rol r, GIRLPOWER.Usuario u
+	--JOIN gd_esquema.Maestra m ON u.Telefono = m.Cliente_Telefono
+	--WHERE r.Nombre = 'Chofer' group by u.IDUsuario, r.IDRol)
+insert into GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) 
+(select 2, IDUsuario from GIRLPOWER.Chofer)
+
 
 --insert usuario admin 
 insert into GIRLPOWER.usuario values ('admin', 'admin', 'Calle Falsa 123', 12345678, 87654321, convert(datetime,'1976-04-13 00:00:00.000',120), 
