@@ -17,8 +17,8 @@ namespace Classes
         #region atributos
 
         private int _id_Turno;
-        private DateTime _horaInicio;
-        private DateTime _horaFin;
+        private int _horaInicio;
+        private int _horaFin;
         private string _descripcion;
         private Decimal _valorKilometro;
         private Decimal _precioBase;
@@ -47,7 +47,7 @@ namespace Classes
             }
         }
 
-        public DateTime HoraInicio
+        public int HoraInicio
         {
             get
             {
@@ -60,7 +60,7 @@ namespace Classes
             }
         }
 
-        public DateTime HoraFin
+        public int HoraFin
         {
             get
             {
@@ -169,8 +169,8 @@ namespace Classes
         {
             // Esto es tal cual lo devuelve el stored de la DB
             this.Id_Turno = Convert.ToInt32(dr["IDTurno"]);
-            //this.HoraInicio = Convert.ToDateTime(dr["HoraInicio"]);
-            //this.HoraFin = Convert.ToDateTime(dr["HoraFin"]);
+            this.HoraInicio = Convert.ToInt32(dr["HoraInicio"]);
+            this.HoraFin = Convert.ToInt32(dr["HoraFin"]);
             this.Descripcion = dr["Descripcion"].ToString();
             this.ValorKilometro = Convert.ToDecimal(dr["ValorKilometro"]);
             this.PrecioBase = Convert.ToDecimal(dr["PrecioBase"]);
