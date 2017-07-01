@@ -16,7 +16,7 @@ namespace UberFrba.Abm_Cliente
     public partial class AbmCliente : Form
     {
         
-        Dictionary<Decimal, Usuario> clientes = new Dictionary<decimal, Usuario>();
+        Dictionary<int, Usuario> clientes = new Dictionary<int, Usuario>();
 
         public AbmCliente()
         {
@@ -38,9 +38,9 @@ namespace UberFrba.Abm_Cliente
             if (dgvClientes.SelectedRows.Count != 0)
             {
                 DataGridViewRow row = this.dgvClientes.SelectedRows[0];
-                Decimal dni = Decimal.Parse(row.Cells["Dni"].Value.ToString());
+                int idCliente = int.Parse(row.Cells["IDCliente"].Value.ToString());
 
-                Usuario userSeleccionado = clientes[dni];
+                Usuario userSeleccionado = clientes[idCliente];
 
                 UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, 1);//1 es cliente
 
@@ -65,17 +65,15 @@ namespace UberFrba.Abm_Cliente
 
             if (dgvClientes.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Seleccione un usuario para borarlo");
+                MessageBox.Show("Seleccione un usuario para borrarlo");
             }
             else
             {
                 DataGridViewRow row = this.dgvClientes.SelectedRows[0];
-                Decimal dni = Decimal.Parse(row.Cells["Dni"].Value.ToString());
-
-                Usuario userSeleccionado = clientes[dni];
+                int idCliente = int.Parse(row.Cells["IDCliente"].Value.ToString());
 
                 List<SqlParameter> parameterList = new List<SqlParameter>();
-                parameterList.Add(new SqlParameter("@idUsuario", userSeleccionado.Id_Usuario));
+                parameterList.Add(new SqlParameter("@idUsuario", idCliente));
 
                 try
                 {
@@ -114,9 +112,9 @@ namespace UberFrba.Abm_Cliente
             {
                 Usuario user = new Usuario();
                 user.DataRowToObject(row);
-                clientes.Add(user.Dni, user);
+                clientes.Add(user.Id_Usuario, user);
 
-                dgvClientes.Rows.Add(user.Dni, user.Nombre, user.Apellido, user.Tel, user.Username, user.Habilitado, user.FechaNac, user.Mail,
+                dgvClientes.Rows.Add(user.Id_Usuario, user.Dni, user.Nombre, user.Apellido, user.Tel, user.Username, user.Habilitado, user.FechaNac, user.Mail,
                     user.Direccion, user.Piso, user.Depto, user.CodPost, user.Localidad);
             
             }

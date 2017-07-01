@@ -161,5 +161,18 @@ namespace Utilities
 
         }
 
+
+        public static void mostrarErrores(List<String> lstErroresCampos, string textoError)
+        {
+            //textoError que viene por parametro puede ser vacio o un mensaje que quiera mostrarse antes de la lista
+            //este metodo no pone saltos de linea
+            foreach (string error in lstErroresCampos)
+            {
+                textoError = textoError + error;
+            }
+            MessageBox.Show(textoError);
+        }
+
+
     }
 }

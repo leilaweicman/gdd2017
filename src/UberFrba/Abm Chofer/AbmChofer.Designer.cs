@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvChoferes = new System.Windows.Forms.DataGridView();
+            this.IDChofer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,7 +96,7 @@
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(103, 35);
             this.btnInicio.TabIndex = 1;
-            this.btnInicio.Text = "Ir a inicio";
+            this.btnInicio.Text = "Cerrar";
             this.btnInicio.UseVisualStyleBackColor = true;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
@@ -208,6 +209,7 @@
             this.dgvChoferes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvChoferes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChoferes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IDChofer,
             this.Dni,
             this.Nombre,
             this.Apellido,
@@ -228,6 +230,13 @@
             this.dgvChoferes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvChoferes.Size = new System.Drawing.Size(1163, 313);
             this.dgvChoferes.TabIndex = 0;
+            // 
+            // IDChofer
+            // 
+            this.IDChofer.HeaderText = "IDChofer";
+            this.IDChofer.Name = "IDChofer";
+            this.IDChofer.ReadOnly = true;
+            this.IDChofer.Visible = false;
             // 
             // Dni
             // 
@@ -342,6 +351,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvChoferes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDChofer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dni;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;

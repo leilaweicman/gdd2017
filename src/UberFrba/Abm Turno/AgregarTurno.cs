@@ -122,7 +122,7 @@ namespace UberFrba.Abm_Turno
 
             if (huboErrorDato)
             {
-                mostrarErrores(lstErroresCampos, "");   
+                Validator.mostrarErrores(lstErroresCampos, "");   
             }
             else
             {
@@ -162,7 +162,7 @@ namespace UberFrba.Abm_Turno
 
                 if (huboErrorSolapados)
                 {
-                    mostrarErrores(lstErrorSolapados, "No se pudo agregar el turno, se solapa con: \n");
+                    Validator.mostrarErrores(lstErrorSolapados, "No se pudo agregar el turno, se solapa con: \n");
                 }
                 else
                 {
@@ -211,16 +211,6 @@ namespace UberFrba.Abm_Turno
                 
             }
 
-        }
-
-        private void mostrarErrores(List<String> lstErroresCampos, string textoError)
-        {
-            //string textoError = "";
-            foreach (string error in lstErroresCampos)
-            {
-                textoError = textoError + error;
-            }
-            MessageBox.Show(textoError);
         }
     }
 }

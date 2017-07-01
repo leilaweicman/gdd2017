@@ -15,7 +15,7 @@ namespace UberFrba.Abm_Chofer
 {
     public partial class AbmChofer : Form
     {
-        Dictionary<Decimal, Usuario> choferes = new Dictionary<decimal, Usuario>();
+        Dictionary<int, Usuario> choferes = new Dictionary<int, Usuario>();
 
         public AbmChofer()
         {
@@ -45,9 +45,9 @@ namespace UberFrba.Abm_Chofer
             {
                 Usuario user = new Usuario();
                 user.DataRowToObject(row);
-                choferes.Add(user.Dni, user);
+                choferes.Add(user.Id_Usuario, user);
 
-                dgvChoferes.Rows.Add(user.Dni, user.Nombre, user.Apellido, user.Tel, user.Username, user.Habilitado, user.FechaNac, user.Mail,
+                dgvChoferes.Rows.Add(user.Id_Usuario,user.Dni, user.Nombre, user.Apellido, user.Tel, user.Username, user.Habilitado, user.FechaNac, user.Mail,
                     user.Direccion, user.Piso, user.Depto, user.Localidad);
 
             }
@@ -76,9 +76,9 @@ namespace UberFrba.Abm_Chofer
             if (dgvChoferes.SelectedRows.Count != 0)
             {
                 DataGridViewRow row = this.dgvChoferes.SelectedRows[0];
-                Decimal dni = Decimal.Parse(row.Cells["Dni"].Value.ToString());
+                int idChofer = int.Parse(row.Cells["IDChofer"].Value.ToString());
 
-                Usuario userSeleccionado = choferes[dni];
+                Usuario userSeleccionado = choferes[idChofer];
 
                 UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, 2);// 2 es chofer
 
@@ -103,12 +103,12 @@ namespace UberFrba.Abm_Chofer
             else
             {
                 DataGridViewRow row = this.dgvChoferes.SelectedRows[0];
-                Decimal dni = Decimal.Parse(row.Cells["Dni"].Value.ToString());
+                int idChofer = int.Parse(row.Cells["IDChofer"].Value.ToString());
 
-                Usuario userSeleccionado = choferes[dni];
+                //Usuario userSeleccionado = choferes[idChofer];
 
                 List<SqlParameter> parameterList = new List<SqlParameter>();
-                parameterList.Add(new SqlParameter("@idUsuario", userSeleccionado.Id_Usuario));
+                parameterList.Add(new SqlParameter("@idUsuario", idChofer));
 
                 try
                 {
