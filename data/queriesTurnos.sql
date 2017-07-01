@@ -17,6 +17,26 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID ('GIRLPOWER.PR_traerTurnosHabilitados', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_traerTurnosHabilitados]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_traerTurnosHabilitados] 
+AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM [GIRLPOWER].[Turno] t
+		WHERE t.Habilitado=1
+		ORDER BY t.HoraInicio
+	END TRY
+	BEGIN CATCH
+		RAISERROR('Hubo un error cargando los turnos', 16, 217)
+			WITH SETERROR
+	END CATCH
+END
+GO
+
+
 IF OBJECT_ID ('GIRLPOWER.PR_inhabilitarTurno', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[PR_inhabilitarTurno]
 GO
@@ -36,25 +56,6 @@ BEGIN
 END
 GO
 
-IF OBJECT_ID ('GIRLPOWER.PR_inhabilitarTurno', 'P') IS NOT NULL
-DROP PROCEDURE [GIRLPOWER].[PR_inhabilitarTurno]
-GO
-
-CREATE PROCEDURE [GIRLPOWER].[PR_inhabilitarTurno] 
-(@idTurno int)
-AS
-BEGIN
-	BEGIN TRY
-		UPDATE GIRLPOWER.Turno SET Habilitado=0 
-		WHERE IDTurno=@IdTurno
-	END TRY
-	BEGIN CATCH
-		RAISERROR('Hubo un error eliminando el turno', 16, 217)
-			WITH SETERROR
-	END CATCH
-END
-GO
-
 IF OBJECT_ID ('GIRLPOWER.PR_altaTurno', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[PR_altaTurno]
 GO
@@ -64,7 +65,6 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaTurno]
 --ver si sirve pasarle el habilitado o no 
  AS
  BEGIN
-	DECLARE @idUsuario int
 	
 	BEGIN TRANSACTION
 	BEGIN TRY
@@ -83,11 +83,40 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaTurno]
  END
 GO
 
+IF OBJECT_ID ('GIRLPOWER.PR_editarTurno', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_editarTurno]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_editarTurno] 
+(@idTurno int, @descripcion varchar(255), @horaInicio numeric (18,0), @horaFin numeric (18,0), @precioBase numeric (18,2), 
+@valorKilometro numeric (18,2), @habilitado bit)
+AS
+BEGIN
+	BEGIN TRY
+		UPDATE GIRLPOWER.Turno SET Descripcion=@descripcion, HoraInicio=@horaInicio, HoraFin=@horaFin, PrecioBase=@precioBase, 
+		ValorKilometro=@valorKilometro, Habilitado = @habilitado 
+		WHERE IDTurno=IDTurno
+	END TRY
+	BEGIN CATCH
+		RAISERROR('Hubo un error modificando el turno', 16, 217)
+			WITH SETERROR
+	END CATCH
+END
+GO
 
 
+/*insert into GIRLPOWER.Turno (Descripcion, HoraInicio, HoraFin, PrecioBase, ValorKilometro)
+Values ('asd', 22, 24, 12, 12)
 
+select * from GIRLPOWER.Turno
 
+delete from GIRLPOWER.Turno where IDTurno = 4
 
+select ContraseniaEncriptada from GIRLPOWER.Usuario where Username='admin'
+
+select hashbytes('SHA2_256', 'w32e')
+select hashbytes('SHA2_256', 'w23e')
+*/
 
 /*
 IF OBJECT_ID ('GIRLPOWER.TR_insertarTurnosConDatetime', 'T') IS NOT NULL

@@ -16,11 +16,21 @@ namespace UberFrba.Abm_Turno
 {
     public partial class AgregarTurno : Form
     {
-        bool editing = false; 
+        bool editing = false;
+        Turno turnoNuevo = new Turno();
+                
         public AgregarTurno()
         {
             InitializeComponent();
         }
+
+        public AgregarTurno(Turno turnoAEditar)
+        {
+            InitializeComponent();
+            turnoNuevo = turnoAEditar;
+            editing = true;
+        }
+
 
         private void AgregarTurno_Load(object sender, EventArgs e)
         {
@@ -39,6 +49,24 @@ namespace UberFrba.Abm_Turno
                     cmbHoraInicio.Items.Add(i);
                     cmbHoraFin.Items.Add(i);
                 }
+            }
+            if (editing)
+            {
+                txtDescripcion.Text = turnoNuevo.Descripcion;
+                cmbHoraInicio.SelectedIndex = turnoNuevo.HoraInicio;
+                cmbHoraFin.SelectedItem = turnoNuevo.HoraFin;
+                txtPrecioBase.Text = turnoNuevo.PrecioBase.ToString();
+                txtValorKilometro.Text = turnoNuevo.PrecioBase.ToString();
+                chkHabilitado.Visible = true;
+                if (turnoNuevo.Habilitado)
+                {
+                    chkHabilitado.Checked = true;
+                }
+            }
+            else
+            {
+                cmbHoraFin.SelectedIndex = 0;
+                cmbHoraInicio.SelectedIndex = 0;
             }
         }
 
@@ -84,6 +112,10 @@ namespace UberFrba.Abm_Turno
                 {
                     lstErroresCampos.Add("El valor del kilómetro debe ser mayor a cero\n");
                 }
+                if(int.Parse(cmbHoraInicio.SelectedItem.ToString()) <= int.Parse(cmbHoraFin.SelectedItem.ToString()))
+                {
+                    lstErroresCampos.Add("El horario de inicio debe ser mayor al de finalización\n");
+                }
             }
 
             #endregion
@@ -94,7 +126,6 @@ namespace UberFrba.Abm_Turno
             }
             else
             {
-                Turno turnoNuevo = new Turno();
                 turnoNuevo.Descripcion = txtDescripcion.Text;
                 turnoNuevo.HoraInicio = int.Parse(cmbHoraInicio.SelectedItem.ToString());
                 turnoNuevo.HoraFin = int.Parse(cmbHoraFin.SelectedItem.ToString());
@@ -112,7 +143,7 @@ namespace UberFrba.Abm_Turno
                     turno.DataRowToObject(row);
                     turnos.Add(turno.Id_Turno, turno);
                                                      
-                    if (turnoNuevo.HoraInicio > turno.HoraInicio && turnoNuevo.HoraInicio <= turno.HoraFin)
+                    if (turnoNuevo.HoraInicio >= turno.HoraInicio && turnoNuevo.HoraInicio < turno.HoraFin)
                     {
                         lstErrorSolapados.Add("turno " + turno.Descripcion + " que es de " + turno.HoraInicio.ToString() + " hasta " + turno.HoraFin.ToString()+"\n");
                         huboErrorSolapados = true;
@@ -149,23 +180,26 @@ namespace UberFrba.Abm_Turno
                         {
                             SQLHelper.ExecuteNonQuery("PR_altaTurno", CommandType.StoredProcedure, parameterList);
 
-                            MessageBox.Show("El turno se ha agregado correctamente");
-
-                            AbmTurno abmTurno = new AbmTurno();
-                            this.Hide();
-                            abmTurno.Show();
+                            MessageBox.Show("El turno se ha agregado correctamente");                            
                         }
-                        /* else
-                         {
-                             parameterList.Add(new SqlParameter("@esChofer", esChofer));
-                             parameterList.Add(new SqlParameter("@esCliente", esCliente));
+                        else
+                        {
+                            if (chkHabilitado.Checked)
+                            {
+                                parameterList.Add(new SqlParameter("@habilitado", 1));
+                            }
+                            else
+                            {
+                                parameterList.Add(new SqlParameter("@habilitado", 0));
+                            }
 
-                             SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
-                             MessageBox.Show("El usuario se ha registrado correctamente");
-                         }
+                            SQLHelper.ExecuteNonQuery("PR_editarTurno", CommandType.StoredProcedure, parameterList);
+                            MessageBox.Show("El turno se ha modificado correctamente");
+                        }
 
-
-                         */
+                        AbmTurno abmTurno = new AbmTurno();
+                        this.Hide();
+                        abmTurno.Show();
                     }
                     catch (Exception ex)
                     {

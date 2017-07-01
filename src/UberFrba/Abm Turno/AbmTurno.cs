@@ -102,6 +102,33 @@ namespace UberFrba.Abm_Turno
             agregarTurnoForm.Show();
         }
 
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvTurnos.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = this.dgvTurnos.SelectedRows[0];
+                int idTurno = int.Parse(row.Cells["IDTurno"].Value.ToString());
+
+                Turno turnoSeleccionado = turnos[idTurno];
+
+                AgregarTurno agregarTurnoForm = new AgregarTurno(turnoSeleccionado);
+
+                this.Hide();
+
+
+                agregarTurnoForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un turno para editarlo");
+            }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
 
     }
 }
