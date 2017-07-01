@@ -104,11 +104,31 @@ DROP PROCEDURE [GIRLPOWER].[PR_verifExisteUsuario]
 GO
 
 CREATE PROCEDURE [GIRLPOWER].[PR_verifExisteUsuario] 
-(@username varchar(50)) AS
+(@username varchar(50), @idUsuario int = 0) AS
 BEGIN
-	
-	IF (EXISTS (SELECT 1 FROM [GIRLPOWER].[Usuario] WHERE Username = @username))
-		RETURN 1
+	SELECT DNI FROM [GIRLPOWER].[Usuario] WHERE Username = @username AND (@idUsuario=0 OR IDUsuario!= @idUsuario)
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.PR_verifExisteDni', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_verifExisteDni]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_verifExisteDni] 
+(@dni numeric(18,0), @idUsuario int = 0) AS
+BEGIN
+	SELECT DNI FROM [GIRLPOWER].[Usuario] WHERE Dni = @dni AND (@idUsuario=0 OR IDUsuario!= @idUsuario)
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.PR_verifExisteTelefono', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_verifExisteTelefono]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_verifExisteTelefono] 
+(@telefono numeric(18,0), @idUsuario int = 0) AS
+BEGIN
+	SELECT DNI FROM [GIRLPOWER].[Usuario] WHERE Telefono = @telefono AND (@idUsuario=0 OR IDUsuario!= @idUsuario)
 END
 GO
 

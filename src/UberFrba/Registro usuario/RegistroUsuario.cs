@@ -123,10 +123,13 @@ namespace UberFrba.Registro_usuario
             string username;
 
             bool huboErrorDato = false;
+            bool errorYaExiste = false;
             DateTime fechaMinSql = new DateTime(1753, 01, 01);
             DateTime fechaMaxSql = new DateTime(9999, 12, 12);
 
             List<string> lstErroresCampos = new List<string>();
+            List<string> lstErroresExistencia = new List<string>();
+
             #region validacionCampos
 
             if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || (txtContrasenia.Text=="" || 
@@ -167,7 +170,7 @@ namespace UberFrba.Registro_usuario
                 }
                 if (!DateTime.TryParse(maskedTxtFechaNac.Text, out fechaNac))
                 {
-                    lstErroresCampos.Add("La fecha ingresada es incorrecta. El formato debe ser mm/dd/aaaa.\n");
+                    lstErroresCampos.Add("La fecha ingresada es incorrecta. El formato debe ser dd/mm/aaaa.\n");
                     huboErrorDato = true;
                 }
                 else
@@ -185,12 +188,7 @@ namespace UberFrba.Registro_usuario
 
             if (huboErrorDato)
             {
-                string textoError="";
-                foreach(string error in lstErroresCampos)
-                {
-                    textoError = textoError + error;   
-                }
-                MessageBox.Show(textoError);
+                Validator.mostrarErrores(lstErroresCampos, "");
             }
             else 
             { 
@@ -227,15 +225,48 @@ namespace UberFrba.Registro_usuario
 
 
                 List<SqlParameter> parameterList = new List<SqlParameter>();
-                parameterList.Add(new SqlParameter("@username", username));
-
-                if (SQLHelper.ExecuteNonQuery("PR_verifExisteUsuario", CommandType.StoredProcedure, parameterList) == 1)
+                if (editing)
                 {
-                    MessageBox.Show("El usuario ya existe");
+                    parameterList.Add(new SqlParameter("@idUsuario", user.Id_Usuario));
                 }
                 else
                 {
-                    
+                    parameterList.Add(new SqlParameter("@idUsuario", 0));
+                }
+                
+                SqlParameter param = new SqlParameter("@username", username);
+                parameterList.Add(param);
+                if (SQLHelper.ExecuteDataSet("PR_verifExisteUsuario", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count>0)
+                {
+                    errorYaExiste = true;
+                    lstErroresExistencia.Add("El usuario ya existe");
+                }
+
+                parameterList.Remove(param);
+                param = new SqlParameter("@dni", dni);
+                parameterList.Add(param);
+                if (SQLHelper.ExecuteDataSet("PR_verifExisteDni", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
+                {
+                    errorYaExiste = true;
+                    lstErroresExistencia.Add("El dni ya existe");
+                }
+
+                parameterList.Remove(param);
+                param = new SqlParameter("@telefono", tel);
+                parameterList.Add(param);
+                if (SQLHelper.ExecuteDataSet("PR_verifExisteTelefono", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
+                {
+                    errorYaExiste = true;
+                    lstErroresExistencia.Add("El telefono ya existe");
+                }
+                parameterList.Clear();
+                if (errorYaExiste)
+                {
+                    Validator.mostrarErrores(lstErroresExistencia, "");
+                }
+                else
+                {
+
                     parameterList.Add(new SqlParameter("@nombre", nombre));
                     parameterList.Add(new SqlParameter("@apellido", apellido));
                     parameterList.Add(new SqlParameter("@direccion", calle));
@@ -247,8 +278,7 @@ namespace UberFrba.Registro_usuario
                     parameterList.Add(new SqlParameter("@piso", piso));
                     parameterList.Add(new SqlParameter("@depto", depto));
                     parameterList.Add(new SqlParameter("@localidad", localidad));
-                    
-
+                    parameterList.Add(new SqlParameter("@username", username));
 
                     try
                     {
@@ -274,13 +304,13 @@ namespace UberFrba.Registro_usuario
                         {
                             parameterList.Add(new SqlParameter("@esChofer", esChofer));
                             parameterList.Add(new SqlParameter("@esCliente", esCliente));
-                   
+
                             SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
                             MessageBox.Show("El usuario se ha registrado correctamente");
                         }
 
-                        
-                        
+
+
                     }
                     catch (Exception ex)
                     {
