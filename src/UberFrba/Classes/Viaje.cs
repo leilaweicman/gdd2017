@@ -205,5 +205,32 @@ namespace Classes
             parameterList.Add(new SqlParameter("@CantKM", this.CantKilometros));
             parameterList.Add(new SqlParameter("@Precio", this.Precio));
         }
+
+        private void setearListaDeParametrosParaVerificarExistencia()
+        {
+            parameterList.Add(new SqlParameter("@IDTurno", this.Id_Turno));
+            parameterList.Add(new SqlParameter("@IDCliente", this.Id_Cliente));
+            parameterList.Add(new SqlParameter("@IDChofer", this.Id_Chofer));
+            parameterList.Add(new SqlParameter("@FechaInicio", this.FechaYHoraInicio));
+            parameterList.Add(new SqlParameter("@FechaFin", this.FechaYHoraFin));
+        }
+
+        public bool ViajeExistente()
+        {           
+            DataSet ds = this.obtenerViaje();
+            if (ds.Tables[0].Rows.Count != 0)
+                return true;
+
+            return false;
+
+        }
+
+        private DataSet obtenerViaje()
+        {            
+            this.setearListaDeParametrosParaVerificarExistencia();
+            DataSet ds = this.TraerListado(this.parameterList, "ParaVerificarExistencia");
+            parameterList.Clear();
+            return ds;
+        }
     }
 }

@@ -130,7 +130,7 @@ namespace UberFrba.Registro_Viajes
             //valido campos ingresados
             if (ValidarCampos())
             {
-                //los campos son validos, registro el viaje
+                //los campos son validos, valido que no exista el viaje y lo registro
               
                 Viaje unNuevoViaje = new Viaje();
                 unNuevoViaje.Id_Chofer = Convert.ToInt32(cmbChofer.SelectedValue);
@@ -141,31 +141,37 @@ namespace UberFrba.Registro_Viajes
                 unNuevoViaje.FechaYHoraInicio = dtpFechaInicio.Value.ToString("yyyy-MM-dd HH:mm:ss");
                 unNuevoViaje.FechaYHoraFin = dtpFechaFin.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
-                //obtengo el turno para calcular el precio del viaje y para verificar que el horario de turno este entre los horarios ingresados
-                //precio base turno + valor del km * cant km
-
-                Turno unTurno = new Turno();
-                DataSet ds = unTurno.obtenerTurnoPorId(unNuevoViaje.Id_Turno);
-                unTurno.DataRowToObject(ds.Tables[0].Rows[0]);
-                if (ds.Tables[0].Rows.Count != 0)
+                if (!unNuevoViaje.ViajeExistente())
                 {
-                    if (ValidarHorario(unTurno))
-                    {
-                        unNuevoViaje.Precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
-                        unNuevoViaje.guardarDatosDeViajeNuevo();
-                        DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (dr == DialogResult.OK)
-                        {
-                            resetearCampos();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("El horario ingresado esta fuera del rango del turno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    //obtengo el turno para calcular el precio del viaje y para verificar que el horario de turno este entre los horarios ingresados
+                    //precio base turno + valor del km * cant km
 
-                }          
-                  
+                    Turno unTurno = new Turno();
+                    DataSet ds = unTurno.obtenerTurnoPorId(unNuevoViaje.Id_Turno);
+                    unTurno.DataRowToObject(ds.Tables[0].Rows[0]);
+                    if (ds.Tables[0].Rows.Count != 0)
+                    {
+                        if (ValidarHorario(unTurno))
+                        {
+                            unNuevoViaje.Precio = unTurno.PrecioBase + unTurno.ValorKilometro * unNuevoViaje.CantKilometros;
+                            unNuevoViaje.guardarDatosDeViajeNuevo();
+                            DialogResult dr = MessageBox.Show("El viaje ha sido creado", "Perfecto!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (dr == DialogResult.OK)
+                            {
+                                resetearCampos();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El horario ingresado esta fuera del rango del turno", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe un viaje dentro de ese rango horario para ese chofer, turno y cliente. Por favor, ingrese los datos correctamente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                
             }
 
