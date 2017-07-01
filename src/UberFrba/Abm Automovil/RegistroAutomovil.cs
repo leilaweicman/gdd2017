@@ -131,9 +131,9 @@ namespace UberFrba.Abm_Automovil
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            UberFrba.Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
+           
             this.Hide();
-            listado.Show();
+         
         
         }
 

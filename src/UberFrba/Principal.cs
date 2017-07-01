@@ -57,7 +57,7 @@ namespace UberFrba
 
         private void rendicionDeCuentaDelChoferToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Rendicion_Viajes.Listado frmRendicion = new Rendicion_Viajes.Listado();
+            Rendicion_Viajes.Registro frmRendicion = new Rendicion_Viajes.Registro();
             frmRendicion.Show(this);
         }
 

@@ -110,13 +110,18 @@ END
 GO
 
 
-
+IF OBJECT_ID ('GIRLPOWER.PR_UltimoID', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].PR_UltimoID
+GO
 create procedure [GIRLPOWER].PR_UltimoID(@Patente varchar (10))
 as
 begin
 select IDAutomovil as ID from Automovil where Patente=@Patente
 end
 
+GO
+IF OBJECT_ID ('GIRLPOWER.BorrarTurnosPorAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].BorrarTurnosPorAutomovil
 GO
 create procedure [girlpower].BorrarTurnosPorAutomovil(@idAutomovil int)as
 begin
@@ -125,7 +130,27 @@ end
 
 
 GO
+IF OBJECT_ID ('GIRLPOWER.AgregarTurnoPorAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].AgregarTurnoPorAutomovil
+GO
 CREATE PROCEDURE [GIRLPOWER].AgregarTurnoPorAutomovil(@idAutomovil int, @idTurno int)as
 begin
 insert TurnoPorAutomovil(IDAutomovil,IDTurno) values(@idAutomovil , @idTurno)
 end
+
+
+go
+IF OBJECT_ID ('GIRLPOWER.[PR_verifExistePatente]', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_verifExistePatente]
+GO
+create PROCEDURE [GIRLPOWER].[PR_verifExistePatente] 
+(@patente varchar(50),@id int) AS
+BEGIN
+declare @result int
+	set @result=0
+
+	IF (EXISTS (SELECT 1 FROM [GIRLPOWER].[Automovil] WHERE Patente = @patente and IDAutomovil<>@id))
+		select 1 as Existe
+		else
+		select 0 as Existe
+END

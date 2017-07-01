@@ -31,15 +31,18 @@
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
             this.dgvRendiciones = new System.Windows.Forms.DataGridView();
             this.Chofer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroRendicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendiciones)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxReg
             // 
+            this.groupBoxReg.Controls.Add(this.btnCancelar);
             this.groupBoxReg.Controls.Add(this.dgvRendiciones);
             this.groupBoxReg.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.groupBoxReg.Location = new System.Drawing.Point(18, 42);
@@ -56,6 +59,7 @@
             this.dgvRendiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRendiciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Chofer,
+            this.NumeroRendicion,
             this.Turno,
             this.Fecha,
             this.Total});
@@ -63,7 +67,7 @@
             this.dgvRendiciones.Name = "dgvRendiciones";
             this.dgvRendiciones.ReadOnly = true;
             this.dgvRendiciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRendiciones.Size = new System.Drawing.Size(444, 367);
+            this.dgvRendiciones.Size = new System.Drawing.Size(546, 367);
             this.dgvRendiciones.TabIndex = 43;
             // 
             // Chofer
@@ -71,6 +75,12 @@
             this.Chofer.HeaderText = "Chofer";
             this.Chofer.Name = "Chofer";
             this.Chofer.ReadOnly = true;
+            // 
+            // NumeroRendicion
+            // 
+            this.NumeroRendicion.HeaderText = "NumeroRendicion";
+            this.NumeroRendicion.Name = "NumeroRendicion";
+            this.NumeroRendicion.ReadOnly = true;
             // 
             // Turno
             // 
@@ -89,6 +99,17 @@
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(543, 410);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(80, 35);
+            this.btnCancelar.TabIndex = 40;
+            this.btnCancelar.Text = "Volver";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Listado
             // 
@@ -109,8 +130,10 @@
         private System.Windows.Forms.GroupBox groupBoxReg;
         private System.Windows.Forms.DataGridView dgvRendiciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn Chofer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroRendicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Turno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

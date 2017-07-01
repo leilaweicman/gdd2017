@@ -21,3 +21,7 @@ PROBAR QUE EL SCRIPT FUNCIONE
 *cambiar el campo km en viaje a numeric (18,2)
 
 *cambiar el campo fechaFin de viaje (debe ser mayor a fechaInicio)
+
+*DER
+
+*agregar el insert de funcionalidades al script (y revisar bien que funcionalidades tendria que tener cada rol)
