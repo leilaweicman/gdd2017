@@ -62,7 +62,7 @@ AS
 BEGIN
 	BEGIN TRY
 		SELECT u.IDUsuario, u.Apellido, u.ContraseniaEncriptada, u.Depto, u.Direccion, u.DNI, u.FechaNacimiento, u.Localidad,
-		u.Mail, u.Nombre, u.Piso, u.Telefono, u.Username, c.CodPostal, ru.Habilitado /*as [RolHabilit]*/ FROM [GIRLPOWER].[Usuario] u 
+		u.Mail, u.Nombre, u.Piso, u.Telefono, u.Username, c.CodPostal, ru.Habilitado, c.CodPostal  FROM [GIRLPOWER].[Usuario] u 
 		JOIN [GIRLPOWER].[Cliente] c ON u.IDUsuario = c.IDUsuario
 		JOIN [GIRLPOWER].RolPorUsuario ru ON ru.IDUsuario = u.IDUsuario 
 		JOIN [GIRLPOWER].Rol r ON r.IDRol = ru.IDRol
@@ -257,3 +257,8 @@ VALUES (23, 42, 1, 1, 10, CONVERT(DateTime,'1976-04-13 17:00:00.000'), CONVERT(D
 */
 
 select * from GIRLPOWER.Turno
+
+select * from GIRLPOWER.Viaje where (IDCliente=1 OR IDCliente=3 AND YEAR(FechaInicio)=2017
+
+select * from GIRLPOWER.viaje where YEAR(FechaInicio)=2017
+

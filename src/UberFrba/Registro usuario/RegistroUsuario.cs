@@ -138,17 +138,16 @@ namespace UberFrba.Registro_usuario
 
             #region validacionCampos
 
-            if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || (txtContrasenia.Text=="" || 
-                txtConfContrasenia.Text =="" && !editing)|| txtUsername.Text =="" ||
+            if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || ((txtContrasenia.Text=="" || 
+                txtConfContrasenia.Text =="") && !editing)|| txtUsername.Text =="" ||
                 maskedTxtFechaNac.Text == "  /  /    " ||
-                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtDepto.Text=="" || (txtCP.Enabled && txtCP.Text==""))
+                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || (txtCP.Enabled && txtCP.Text==""))
             {
                 lstErroresCampos.Add("Complete todos los campos por favor.\n");
                 huboErrorDato = true;
             }
             else
-            {
-                //if(txtCP.Enabled && txtCP.Text=="")
+            {            
                 if (!chkCliente.Checked && !chkChofer.Checked)
                 {
                     lstErroresCampos.Add("Indique el tipo de usuario.\n");
@@ -170,7 +169,7 @@ namespace UberFrba.Registro_usuario
                     huboErrorDato = true;
                 }
                
-                if (!Validator.EsNumero(txtPiso.Text))
+                if (txtPiso.Text != "" && !Validator.EsNumero(txtPiso.Text))
                 {
                     lstErroresCampos.Add("El piso debe contener solo números.\n");
                     huboErrorDato = true;
@@ -202,7 +201,14 @@ namespace UberFrba.Registro_usuario
                 nombre = txtNombre.Text;
                 apellido = txtApellido.Text;
                 dni = Decimal.Parse(txtDni.Text);
-                contraEncriptada = Encryptor.GetSHA256(txtContrasenia.Text);
+                if (txtContrasenia.Text == "" && editing)
+                {
+                    contraEncriptada = user.ContraseniaEncriptada;
+                }
+                else
+                {
+                    contraEncriptada = Encryptor.GetSHA256(txtContrasenia.Text);
+                }
                 fechaNac = Convert.ToDateTime(maskedTxtFechaNac.Text);
                 tel = Decimal.Parse(txtTel.Text);
                 mail = txtMail.Text;
@@ -306,12 +312,11 @@ namespace UberFrba.Registro_usuario
                             parameterList.Add(new SqlParameter("@idUsuario", user.Id_Usuario));
                             if (tipoUsuario == 1)
                             {
-                                parameterList.Add(new SqlParameter("@codPost", user.CodPost));
+                                parameterList.Add(new SqlParameter("@codPost", codPost));
                                 SQLHelper.ExecuteNonQuery("PR_editarCliente", CommandType.StoredProcedure, parameterList);
                             }
                             else if (tipoUsuario == 2)
                             {
-                                parameterList.Add(new SqlParameter("@codPost", -1));
                                 SQLHelper.ExecuteNonQuery("PR_editarChofer", CommandType.StoredProcedure, parameterList);
                             }
                             MessageBox.Show("El usuario se ha modificado");
