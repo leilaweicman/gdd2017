@@ -64,6 +64,7 @@ namespace UberFrba.Registro_usuario
                 txtDni.Text = user.Dni.ToString();
                 txtUsername.Text = user.Username;
                 maskedTxtFechaNac.Text = user.FechaNac.ToString();
+                dtpFechaNac.Text = user.FechaNac.ToString();
                 txtCalle.Text = user.Direccion;
                 txtDepto.Text = user.Depto;
                 if (user.Habilitado == true)
@@ -113,9 +114,7 @@ namespace UberFrba.Registro_usuario
                 }
                 else
                 {
-                    UberFrba.Principal principalForm = new Principal();
-                    this.Hide();
-                    principalForm.Show();
+                    this.Hide();                    
                 }
             }
             else
@@ -378,9 +377,7 @@ namespace UberFrba.Registro_usuario
                             }
                             else
                             {
-                                UberFrba.Principal principalForm = new Principal();
                                 this.Hide();
-                                principalForm.Show();
                             }
                         }
                         else
