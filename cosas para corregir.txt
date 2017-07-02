@@ -1,0 +1,39 @@
+cosas que vi:
+
+*login
+- estaria bueno que tenga un cancelar para volver para atras y poder registrarse en caso de haber apretado mal
+
+*principal
+- aunque no sea admin me muestra todas las funcionalidades
+
+*abm rol:
+-el cliente no deberia tener la funcionalidad de facturacion
+- en la dgv deberia seleccionarse automaticamente toda una row y no solo un campo
+- cuando creo un rol se pone como inhabilitado cuando en el script tiene como default 1 --> creo que el problema esta en la sp insertRol_RetornarID. No deberia recibir el habilitado como parametro ni insertarlo entonces se pondria el default
+
+*abm chofer y cliente (editar)
+- no permite hacer que un chofer pase a ser cliente (es a proposito, es un lio si no, lo puse en la estrategia)
+- el admin puede modif contrasenias (para solucionar esto deberia saber que usuario esta entrando al edit y si es admin dejarlo enabled)
+
+*registro usuario:
+- la fecha podria hacerla con el date picker
+
+*abm automovil
+- el boton cancelar en registrar y editar deberia devolver al abm automovil en vez de cerrarse
+- cuando quiero deshabilitar un auto se cierra la conexion 
+- el boton inicio en el form de abm va al form viejo de home y rompe
+
+*rendicion
+- el total chofer podria rendondearse con dos decimales
+
+*estadisticas
+- chofer con viaje mas largo realizado trae como chofer a un cliente (supongo que sea el cliente del viaje mas largo realizado)
+- cuando no hay viajes realizados ese trimestre muestra la tabla vacia, esta bien o deberiamos mostrar un msg diciendo que no hay viajes ese trimestre?
+- cliente con mas viajes con el mismo auto: no seria mejor ordenar por cantidad?
+- clientes con mayor consumo solo trae los que tienen factura, no los que hicieron un viaje, esta bien eso?
+- se muestra siempre una fila vacia al final en la dgv
+- el auto select deberia ser por row
+
+*estrtegia:
+- esto es asi posta? para mi no se usan para esto, en realidad no se si al final se estan usando para algo
+•	Las tablas “Cliente” y “Chofer” contienen información necesaria para el momento en el que el usuario ingrese con alguno de estos roles.
