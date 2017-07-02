@@ -177,16 +177,19 @@ GO
 CREATE PROCEDURE [GIRLPOWER].[PR_editarCliente] 
 (@idUsuario int, @nombre varchar(255), @apellido varchar(255), @direccion varchar(255), @telefono numeric(18,0), @dni numeric (18,0),
  @fechaNac datetime, @contrasenia varchar(255), @mail varchar(50), @piso numeric(2,0), @depto varchar(10), @localidad varchar(255),
- @codPost int, @username varchar(50))
+ @codPost int, @username varchar(50), @habilitado bit)
 AS
 BEGIN
 	BEGIN TRY
 		UPDATE GIRLPOWER.Usuario SET nombre=@nombre, apellido= @apellido, direccion=@direccion, telefono=@telefono, dni = @dni,
 			 FechaNacimiento = @fechaNac, ContraseniaEncriptada= isnull(@contrasenia, ContraseniaEncriptada), Mail=@mail, piso = @piso,
-			 depto = @depto, localidad = @localidad, Username = @username 
+			 depto = @depto, localidad = @localidad, Username = @username
 		WHERE IDUsuario = @idUsuario
 
 		UPDATE GIRLPOWER.Cliente SET CodPostal = @codPost WHERE IDUsuario=@idUsuario
+
+		UPDATE GIRLPOWER.RolPorUsuario SET Habilitado = @habilitado
+		WHERE IDUsuario=@idUsuario AND IDRol = 3
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error modificando el cliente', 16, 217)
@@ -202,7 +205,7 @@ GO
 CREATE PROCEDURE [GIRLPOWER].[PR_editarChofer] 
 (@idUsuario int, @nombre varchar(255), @apellido varchar(255), @direccion varchar(255), @telefono numeric(18,0), @dni numeric (18,0),
  @fechaNac datetime, @contrasenia varchar(255), @mail varchar(50), @piso numeric(2,0), @depto varchar(10), @localidad varchar(255),
- @username varchar(50))
+ @username varchar(50), @habilitado bit)
 AS
 BEGIN
 	BEGIN TRY
@@ -210,6 +213,9 @@ BEGIN
 			 FechaNacimiento = @fechaNac, ContraseniaEncriptada= isnull(@contrasenia, ContraseniaEncriptada), Mail=@mail, piso = @piso,
 			 depto = @depto, localidad = @localidad, Username = @username 
 		WHERE IDUsuario = @idUsuario
+		
+		UPDATE GIRLPOWER.RolPorUsuario SET Habilitado = @habilitado
+		WHERE IDUsuario=@idUsuario AND IDRol = 2
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error modificando el chofer', 16, 217)

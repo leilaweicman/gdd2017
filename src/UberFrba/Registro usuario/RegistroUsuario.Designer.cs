@@ -63,6 +63,7 @@
             this.gpbTipoUsuario = new System.Windows.Forms.GroupBox();
             this.chkChofer = new System.Windows.Forms.CheckBox();
             this.chkCliente = new System.Windows.Forms.CheckBox();
+            this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.groupBoxReg.SuspendLayout();
             this.gpbDatosPersonales.SuspendLayout();
             this.gpbTipoUsuario.SuspendLayout();
@@ -84,6 +85,7 @@
             // 
             // gpbDatosPersonales
             // 
+            this.gpbDatosPersonales.Controls.Add(this.chkHabilitado);
             this.gpbDatosPersonales.Controls.Add(this.txtNombre);
             this.gpbDatosPersonales.Controls.Add(this.txtLocalidad);
             this.gpbDatosPersonales.Controls.Add(this.maskedTxtFechaNac);
@@ -441,6 +443,18 @@
             this.chkCliente.UseVisualStyleBackColor = true;
             this.chkCliente.CheckedChanged += new System.EventHandler(this.chkCliente_CheckedChanged);
             // 
+            // chkHabilitado
+            // 
+            this.chkHabilitado.AutoSize = true;
+            this.chkHabilitado.Font = new System.Drawing.Font("Verdana", 11F);
+            this.chkHabilitado.Location = new System.Drawing.Point(508, 306);
+            this.chkHabilitado.Name = "chkHabilitado";
+            this.chkHabilitado.Size = new System.Drawing.Size(99, 22);
+            this.chkHabilitado.TabIndex = 39;
+            this.chkHabilitado.Text = "Habilitado";
+            this.chkHabilitado.UseVisualStyleBackColor = true;
+            this.chkHabilitado.Visible = false;
+            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,5 +511,6 @@
         private System.Windows.Forms.TextBox txtTel;
         private System.Windows.Forms.MaskedTextBox maskedTxtFechaNac;
         private System.Windows.Forms.GroupBox gpbDatosPersonales;
+        private System.Windows.Forms.CheckBox chkHabilitado;
     }
 }

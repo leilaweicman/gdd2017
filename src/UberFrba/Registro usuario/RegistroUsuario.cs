@@ -38,6 +38,7 @@ namespace UberFrba.Registro_usuario
         {            
             if (editing)
             {
+                chkHabilitado.Visible = true;
                 gpbTipoUsuario.Enabled = false;
                 if (tipoUsuario == 1)//es cliente
                 {
@@ -57,6 +58,10 @@ namespace UberFrba.Registro_usuario
                 maskedTxtFechaNac.Text = user.FechaNac.ToString();
                 txtCalle.Text = user.Direccion;
                 txtDepto.Text = user.Depto;
+                if (user.Habilitado == true)
+                {
+                    chkHabilitado.Checked = true;
+                } 
                 if (user.Piso == -1)
                 {
                     txtPiso.Text = "";
@@ -121,6 +126,7 @@ namespace UberFrba.Registro_usuario
             DateTime fechaNac;
             int codPost;
             string username;
+            bool habilitado;
 
             bool huboErrorDato = false;
             bool errorYaExiste = false;
@@ -135,13 +141,14 @@ namespace UberFrba.Registro_usuario
             if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || (txtContrasenia.Text=="" || 
                 txtConfContrasenia.Text =="" && !editing)|| txtUsername.Text =="" ||
                 maskedTxtFechaNac.Text == "  /  /    " ||
-                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtDepto.Text=="" || txtPiso.Text=="")
+                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtDepto.Text=="" || (txtCP.Enabled && txtCP.Text==""))
             {
                 lstErroresCampos.Add("Complete todos los campos por favor.\n");
                 huboErrorDato = true;
             }
             else
             {
+                //if(txtCP.Enabled && txtCP.Text=="")
                 if (!chkCliente.Checked && !chkChofer.Checked)
                 {
                     lstErroresCampos.Add("Indique el tipo de usuario.\n");
@@ -201,7 +208,14 @@ namespace UberFrba.Registro_usuario
                 mail = txtMail.Text;
                 calle = txtCalle.Text;
                 depto = txtDepto.Text;
-                piso = Decimal.Parse(txtPiso.Text);
+                if (txtPiso.Text == "")
+                {
+                    piso = -1;
+                }
+                else
+                {
+                    piso = Decimal.Parse(txtPiso.Text);
+                }
                 localidad = txtLocalidad.Text;
                 username = txtUsername.Text;
                 
@@ -239,7 +253,7 @@ namespace UberFrba.Registro_usuario
                 if (SQLHelper.ExecuteDataSet("PR_verifExisteUsuario", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count>0)
                 {
                     errorYaExiste = true;
-                    lstErroresExistencia.Add("El usuario ya existe");
+                    lstErroresExistencia.Add("El usuario ya existe\n");
                 }
 
                 parameterList.Remove(param);
@@ -248,7 +262,7 @@ namespace UberFrba.Registro_usuario
                 if (SQLHelper.ExecuteDataSet("PR_verifExisteDni", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
                 {
                     errorYaExiste = true;
-                    lstErroresExistencia.Add("El dni ya existe");
+                    lstErroresExistencia.Add("El dni ya existe\n");
                 }
 
                 parameterList.Remove(param);
@@ -257,7 +271,7 @@ namespace UberFrba.Registro_usuario
                 if (SQLHelper.ExecuteDataSet("PR_verifExisteTelefono", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
                 {
                     errorYaExiste = true;
-                    lstErroresExistencia.Add("El telefono ya existe");
+                    lstErroresExistencia.Add("El telefono ya existe\n");
                 }
                 parameterList.Clear();
                 if (errorYaExiste)
@@ -284,6 +298,11 @@ namespace UberFrba.Registro_usuario
                     {
                         if (editing)
                         {
+                            if(chkHabilitado.Checked){
+                                parameterList.Add(new SqlParameter("@habilitado", 1));
+                            } else {
+                                parameterList.Add(new SqlParameter("@habilitado", 0));
+                            }
                             parameterList.Add(new SqlParameter("@idUsuario", user.Id_Usuario));
                             if (tipoUsuario == 1)
                             {
@@ -292,21 +311,35 @@ namespace UberFrba.Registro_usuario
                             }
                             else if (tipoUsuario == 2)
                             {
+                                parameterList.Add(new SqlParameter("@codPost", -1));
                                 SQLHelper.ExecuteNonQuery("PR_editarChofer", CommandType.StoredProcedure, parameterList);
                             }
                             MessageBox.Show("El usuario se ha modificado");
 
-                            UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
-                            this.Hide();
-                            abmCliente.Show();
+                            if (tipoUsuario == 1)
+                            {
+                                UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                                this.Hide();
+                                abmCliente.Show();
+                            }
+                            else
+                            {
+                                UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                                this.Hide();
+                                abmChofer.Show();
+                            }
                         }
                         else
                         {
                             parameterList.Add(new SqlParameter("@esChofer", esChofer));
                             parameterList.Add(new SqlParameter("@esCliente", esCliente));
+                            parameterList.Add(new SqlParameter("@codPost", -1));
 
                             SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
                             MessageBox.Show("El usuario se ha registrado correctamente");
+                            Inicial inicialForm = new Inicial();
+                            this.Hide();
+                            inicialForm.Show();
                         }
 
 
