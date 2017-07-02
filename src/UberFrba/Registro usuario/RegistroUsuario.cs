@@ -173,7 +173,7 @@ namespace UberFrba.Registro_usuario
                 }
                 else if (int.Parse(txtDni.Text) <= 0)
                 {
-                    lstErroresCampos.Add("El dni debe ser mayor a cero");
+                    lstErroresCampos.Add("El dni debe ser mayor a cero.\n");
                     huboErrorDato = true;
                 }
                 
@@ -184,7 +184,7 @@ namespace UberFrba.Registro_usuario
                 }
                 else if (int.Parse(txtTel.Text) <= 0)
                 {
-                    lstErroresCampos.Add("El telefono debe ser mayor a cero");
+                    lstErroresCampos.Add("El telefono debe ser mayor a cero.\n");
                     huboErrorDato = true;
                 }
                 
@@ -195,7 +195,7 @@ namespace UberFrba.Registro_usuario
                 }
                 else if (Validator.EsNumero(txtPiso.Text) && int.Parse(txtPiso.Text) < 0)
                 {
-                    lstErroresCampos.Add("El piso debe ser mayor o igual a cero");
+                    lstErroresCampos.Add("El piso debe ser mayor o igual a cero.\n");
                     huboErrorDato = true;
                 }
                 

@@ -45,6 +45,7 @@ namespace UberFrba.Abm_Chofer
             {
                 Usuario user = new Usuario();
                 user.DataRowToObject(row);
+                user.Rol = new Rol();
                 user.Rol.Id_Rol = 2;
                 choferes.Add(user.Id_Usuario, user);
 
@@ -114,6 +115,7 @@ namespace UberFrba.Abm_Chofer
                 try
                 {
                     SQLHelper.ExecuteNonQuery("PR_inhabilitarChofer", CommandType.StoredProcedure, parameterList);
+                    MessageBox.Show("El chofer se ha inhabilitado");
                     cargarChoferes();
                 }
                 catch (Exception ex)

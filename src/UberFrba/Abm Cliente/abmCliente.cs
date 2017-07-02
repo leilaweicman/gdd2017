@@ -78,7 +78,7 @@ namespace UberFrba.Abm_Cliente
                 try
                 {
                     SQLHelper.ExecuteNonQuery("PR_inhabilitarCliente", CommandType.StoredProcedure, parameterList);
-                    MessageBox.Show("El usuario se ha eliminado correctamente");
+                    MessageBox.Show("El cliente se ha inhabilitado");
                     cargarClientes();                    
                 } 
                 catch (Exception ex)
@@ -107,8 +107,6 @@ namespace UberFrba.Abm_Cliente
             parameterList.Add(new SqlParameter("@apellido", txtFiltApellido.Text));
 
             DataSet ds = SQLHelper.ExecuteDataSet("PR_traerClientes", CommandType.StoredProcedure, parameterList);
-            Rol rol = new Rol();
-            rol.Id_Rol = 3;
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 Usuario user = new Usuario();

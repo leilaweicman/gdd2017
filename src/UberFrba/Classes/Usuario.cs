@@ -262,7 +262,11 @@ namespace Classes
             this.Dni = Convert.ToDecimal(dr["DNI"]);
             this.FechaNac = Convert.ToDateTime(dr["FechaNacimiento"]);
             this.Mail = dr["Mail"].ToString();
-            this.Localidad = dr["Localidad"].ToString();
+            if(dr["Localidad"].ToString()== " "){
+                this.Localidad = "";
+            } else {
+                this.Localidad = dr["Localidad"].ToString();
+            }
             this.Direccion = dr["Direccion"].ToString();
             this.Piso = Convert.ToDecimal(dr["Piso"]);
             this.Depto = dr["Depto"].ToString();
