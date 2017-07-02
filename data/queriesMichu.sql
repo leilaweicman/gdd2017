@@ -249,3 +249,5 @@ JOIN GIRLPOWER.turno t on ta.IDAutomovil=t.IDTurno
 insert into GIRLPOWER.Viaje (IDChofer, IDCliente, IDAutomovil, IDTurno, CantidadKilometros, FechaInicio, FechaFin, Precio)
 VALUES (23, 42, 1, 1, 10, CONVERT(DateTime,'1976-04-13 17:00:00.000'), CONVERT(DateTime,'1976-04-13 18:00:00.000'), 170)
 */
+
+select * from GIRLPOWER.Turno

@@ -63,7 +63,7 @@ namespace UberFrba
 
         private void facturacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Facturacion.Form1 frmFacturacion = new Facturacion.Form1();
+            Facturacion.RegistroFactura frmFacturacion = new Facturacion.RegistroFactura();
             frmFacturacion.Show(this);
         }
 
