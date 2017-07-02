@@ -254,6 +254,3 @@ insert into GIRLPOWER.Viaje (IDChofer, IDCliente, IDAutomovil, IDTurno, Cantidad
 VALUES (23, 42, 1, 1, 10, CONVERT(DateTime,'1976-04-13 17:00:00.000'), CONVERT(DateTime,'1976-04-13 18:00:00.000'), 170)
 */
 
-
-
-		
