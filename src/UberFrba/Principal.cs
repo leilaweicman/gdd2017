@@ -51,7 +51,7 @@ namespace UberFrba
 
         private void registrarViajeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Registro_Viajes.RegistroViaje frmRegViaje = new Registro_Viajes.RegistroViaje();
+            Registro_Viajes.RegistroViaje frmRegViaje = new Registro_Viajes.RegistroViaje(usuario);
             frmRegViaje.Show(this);
         }
 

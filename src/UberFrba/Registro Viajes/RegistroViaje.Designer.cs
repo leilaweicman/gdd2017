@@ -104,6 +104,7 @@
             // 
             // cmbCliente
             // 
+            this.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCliente.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(19, 464);
@@ -150,6 +151,7 @@
             // 
             // cmbTurno
             // 
+            this.cmbTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTurno.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTurno.FormattingEnabled = true;
             this.cmbTurno.Location = new System.Drawing.Point(19, 182);
@@ -179,6 +181,7 @@
             // 
             // cmbChofer
             // 
+            this.cmbChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChofer.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbChofer.FormattingEnabled = true;
             this.cmbChofer.Location = new System.Drawing.Point(19, 55);

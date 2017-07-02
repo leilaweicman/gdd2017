@@ -375,5 +375,21 @@ namespace Classes
             this.parameterList.Clear();
             return ds;
         }
+
+        public DataSet ObtenerChoferHabilitado()
+        {
+            this.setearListaDeParametrosSoloConIdUsuario();
+            DataSet ds = this.TraerListado(this.parameterList, "QueEsChoferHabilitado");
+            this.parameterList.Clear();
+            return ds;
+        }
+
+        public DataSet ObtenerClienteHabilitado()
+        {
+            this.setearListaDeParametrosSoloConIdUsuario();
+            DataSet ds = this.TraerListado(this.parameterList, "QueEsClienteHabilitado");
+            this.parameterList.Clear();
+            return ds;
+        }
     }
 }

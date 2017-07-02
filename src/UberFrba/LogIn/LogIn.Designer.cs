@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpLogIn = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLogIn = new System.Windows.Forms.Button();
             this.txtContrasena = new System.Windows.Forms.TextBox();
             this.lblContrasena = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.grpRol = new System.Windows.Forms.GroupBox();
             this.btnRol = new System.Windows.Forms.Button();
             this.cmbRol = new System.Windows.Forms.ComboBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.grpLogIn.SuspendLayout();
             this.grpRol.SuspendLayout();
             this.SuspendLayout();
@@ -53,10 +53,20 @@
             this.grpLogIn.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpLogIn.Location = new System.Drawing.Point(24, 24);
             this.grpLogIn.Name = "grpLogIn";
-            this.grpLogIn.Size = new System.Drawing.Size(398, 269);
+            this.grpLogIn.Size = new System.Drawing.Size(398, 254);
             this.grpLogIn.TabIndex = 0;
             this.grpLogIn.TabStop = false;
             this.grpLogIn.Text = "Log In";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(24, 201);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(342, 40);
+            this.btnCancelar.TabIndex = 5;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnLogIn
             // 
@@ -125,6 +135,7 @@
             // 
             // cmbRol
             // 
+            this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRol.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRol.FormattingEnabled = true;
             this.cmbRol.Location = new System.Drawing.Point(25, 40);
@@ -132,21 +143,11 @@
             this.cmbRol.Size = new System.Drawing.Size(331, 26);
             this.cmbRol.TabIndex = 0;
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(24, 212);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(342, 40);
-            this.btnCancelar.TabIndex = 5;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 305);
+            this.ClientSize = new System.Drawing.Size(459, 292);
             this.Controls.Add(this.grpRol);
             this.Controls.Add(this.grpLogIn);
             this.Name = "LogIn";
