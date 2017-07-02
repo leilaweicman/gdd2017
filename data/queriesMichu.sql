@@ -31,13 +31,13 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 		IF (@esChofer=1)
 		BEGIN
 			INSERT INTO [GD1C2017].[GIRLPOWER].[Chofer] (IDUsuario) VALUES (@idUsuario)
-			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES ((SELECT idRol FROM GIRLPOWER.Rol WHERE nombre = 'Chofer'), @idUsuario)
+			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES (2, @idUsuario)
 		END
 
 		IF (@esCliente=1)
 		BEGIN
 			INSERT INTO [GD1C2017].[GIRLPOWER].[Cliente] (IDUsuario, CodPostal) VALUES (@idUsuario, @codPost)
-			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES ((SELECT idRol FROM GIRLPOWER.Rol WHERE nombre = 'Cliente'), @idUsuario)
+			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES (3, @idUsuario)
 		END
 
 		IF @@ERROR = 0
@@ -65,8 +65,7 @@ BEGIN
 		u.Mail, u.Nombre, u.Piso, u.Telefono, u.Username, c.CodPostal, ru.Habilitado, c.CodPostal  FROM [GIRLPOWER].[Usuario] u 
 		JOIN [GIRLPOWER].[Cliente] c ON u.IDUsuario = c.IDUsuario
 		JOIN [GIRLPOWER].RolPorUsuario ru ON ru.IDUsuario = u.IDUsuario 
-		JOIN [GIRLPOWER].Rol r ON r.IDRol = ru.IDRol
-		WHERE r.Nombre = 'Cliente' AND (@dni=0 OR u.dni=@dni) AND (@nombre='' OR u.Nombre = @nombre) 
+		WHERE ru.IDRol =3 AND (@dni=0 OR u.dni=@dni) AND (@nombre='' OR u.Nombre = @nombre) 
 		AND (@apellido='' OR u.Apellido = @apellido)		
 	END TRY
 	BEGIN CATCH
@@ -88,8 +87,7 @@ BEGIN
 		SELECT u.IDUsuario, u.Apellido, u.ContraseniaEncriptada, u.Depto, u.Direccion, u.DNI, u.FechaNacimiento, u.Localidad,
 		u.Mail, u.Nombre, u.Piso, u.Telefono, u.Username, ru.Habilitado /*as [RolHabilit]*/ FROM [GIRLPOWER].[Usuario] u 
 		JOIN [GIRLPOWER].RolPorUsuario ru ON ru.IDUsuario = u.IDUsuario 
-		JOIN [GIRLPOWER].Rol r ON r.IDRol = ru.IDRol
-		WHERE r.Nombre = 'Chofer' AND (@dni=0 OR u.dni=@dni) AND (@nombre='' OR u.Nombre = @nombre) 
+		WHERE ru.IDRol=2 AND (@dni=0 OR u.dni=@dni) AND (@nombre='' OR u.Nombre = @nombre) 
 		AND (@apellido='' OR u.Apellido = @apellido)
 	END TRY
 	BEGIN CATCH
@@ -142,7 +140,7 @@ AS
 BEGIN
 	BEGIN TRY
 		UPDATE GIRLPOWER.RolPorUsuario SET Habilitado=0 
-		WHERE IDUsuario=@IdUsuario AND IDRol = ( SELECT IDRol FROM GIRLPOWER.Rol WHERE Nombre= 'Cliente') --podria poner el id rol pero no lo se con seguridad
+		WHERE IDUsuario=@IdUsuario AND IDRol = 3 
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error eliminando al cliente', 16, 217)
@@ -161,7 +159,7 @@ AS
 BEGIN
 	BEGIN TRY
 		UPDATE GIRLPOWER.RolPorUsuario SET Habilitado=0 
-		WHERE IDUsuario=@IdUsuario AND IDRol = ( SELECT IDRol FROM GIRLPOWER.Rol WHERE Nombre= 'Chofer') --podria poner el id rol pero no lo se con seguridad
+		WHERE IDUsuario=@IdUsuario AND IDRol = 2
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error eliminando al chofer', 16, 217)
@@ -262,3 +260,5 @@ select * from GIRLPOWER.Viaje where (IDCliente=1 OR IDCliente=3 AND YEAR(FechaIn
 
 select * from GIRLPOWER.viaje where YEAR(FechaInicio)=2017
 
+
+		
