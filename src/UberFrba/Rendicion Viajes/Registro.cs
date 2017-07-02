@@ -88,10 +88,8 @@ namespace UberFrba.Rendicion_Viajes
         }
         private bool existe()
         {
-            SQLHelper.Inicializar();
             string query = "EXEC  [GIRLPOWER].PR_verifExisteRendicion '" + this.dtpFecha.Value.ToString("yyyy-MM-dd") + "'," + this.cmbTurno.SelectedValue + "," + this.cmbChofer.SelectedValue;
             var aux = SQLHelper.ExecuteQuery(query);
-            SQLHelper.Cerrar();
             int existe= 0;
             while (aux.Read())
             {
@@ -103,10 +101,9 @@ namespace UberFrba.Rendicion_Viajes
 
         private int ObtenerCantidadViajes()
         {
-             SQLHelper.Inicializar();
+           
             string query = "select count(*) as Cantidad from  [GIRLPOWER].Viaje where cast(FechaFin as date)='" + this.dtpFecha.Value.ToString("yyyy-MM-dd") + "' and idTurno=" + this.cmbTurno.SelectedValue + " and idChofer=" + this.cmbChofer.SelectedValue;
             var aux = SQLHelper.ExecuteQuery(query);
-            SQLHelper.Cerrar();
             int cant= 0;
             while (aux.Read())
             {

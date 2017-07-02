@@ -115,8 +115,9 @@ namespace Classes
             IDAutomovil = Convert.ToInt32(id);
 
             setearListaDeParametrosSoloConIdAutomovil();
-            base.Deshabilitar(parameterList);
-            parameterList.Clear();
+            Automovil auto = new Automovil();
+            auto.Deshabilitar(parameterList);
+            auto.parameterList.Clear();
         }
         public void setearTurnos()
         {

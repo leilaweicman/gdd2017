@@ -43,14 +43,14 @@ namespace UberFrba.Abm_Automovil
         }
         private void CargarDatos()
         {
-            SQLHelper.Inicializar();
+         //   SQLHelper.Inicializar();
 
             string query = "select IDChofer,IDMarca,IDModelo,Patente,Licencia,Rodado ,max(IDTurno) as IDTurno from [GIRLPOWER].Automovil a ";
                 query +="inner join [GIRLPOWER].MarcaModelo m on m.IDMarcaModelo=a.IDMarcaModelo INNER JOIN [GIRLPOWER].TurnoPorAutomovil t on t.IDAutomovil=a.IDAutomovil";
                 query += " where a.IDAutomovil=" + this.idAutomovil + " group by IDChofer,IDMarca,IDModelo,Patente,Licencia,Rodado ";
 
             var result = SQLHelper.ExecuteQuery(query);
-            SQLHelper.Cerrar();
+      //      SQLHelper.Cerrar();
             while (result.Read())
             {
                 
@@ -81,16 +81,10 @@ namespace UberFrba.Abm_Automovil
         }
         private void CargarCombos()
         {
-            SQLHelper.Inicializar();
+        //    SQLHelper.Inicializar();
             string query = "select IDMarca,Nombre from [GIRLPOWER].Marca";
-            var resultMarcas = SQLHelper.ExecuteQuery(query);
-
-         //   string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
-           // var resultChoferes = SQLHelper.ExecuteQuery(query2);
-
-            string query3 = "select IDTurno,Descripcion from [GIRLPOWER].Turno";
-            var resultsTurnos = SQLHelper.ExecuteQuery(query3);
-            SQLHelper.Cerrar();
+            var resultMarcas = SQLHelper.ExecuteQuery(query);     
+       //     SQLHelper.Cerrar();
             List<ComboPrueba>marcas=new List<ComboPrueba>();
             while (resultMarcas.Read())
             {
@@ -110,27 +104,7 @@ namespace UberFrba.Abm_Automovil
             cmbMarca.DisplayMember = "Name";
             cmbMarca.ValueMember = "Value";
             cmbMarca.SelectedIndex = 0;
-     /*       List<ComboPrueba> choferes = new List<ComboPrueba>();
-            while (resultChoferes.Read())
-            {
-                ComboPrueba aux;
-                int idchofer = 0;
-                string Nombre = "";
-                if (!object.Equals(resultChoferes["IDChofer"], DBNull.Value))
-                    idchofer = int.Parse(resultChoferes["IDChofer"].ToString());
-
-                if (!object.Equals(resultChoferes["Nombre"], DBNull.Value))
-                    Nombre = resultChoferes["Nombre"].ToString();
-                aux = new ComboPrueba(Nombre, idchofer);
-                choferes.Add(aux);
-            }
-
-      
-            cmbChofer.DataSource = choferes;
-            cmbChofer.DisplayMember = "Name";
-            cmbChofer.ValueMember = "Value";
-            cmbChofer.SelectedIndex = 0;
-      */
+    
         }
         private void CargarChoferes()
         {
@@ -173,12 +147,12 @@ namespace UberFrba.Abm_Automovil
 
         private void CargarModelos()
         {
-            SQLHelper.Inicializar();
+         //   SQLHelper.Inicializar();
             string query = "select mo.IDModelo,Nombre from [GIRLPOWER].Modelo mo inner join [GIRLPOWER].MarcaModelo ma on mo.IDModelo=ma.IDModelo where IDMarca=" + int.Parse(cmbMarca.SelectedValue.ToString());
             int i = 0;
             var resultModelos = SQLHelper.ExecuteQuery(query);
 
-            SQLHelper.Cerrar();
+       //     SQLHelper.Cerrar();
             List<ComboPrueba> modelos = new List<ComboPrueba>();
             while (resultModelos.Read())
             {
@@ -205,7 +179,7 @@ namespace UberFrba.Abm_Automovil
             string patente;
             string licencia;
             string rodado;
-            SQLHelper.Inicializar();
+         //   SQLHelper.Inicializar();
            
             string query = "EXEC  [GIRLPOWER].PR_verifExistePatente '" + txtPatente.Text + "'," + this.idAutomovil;
             var aux = SQLHelper.ExecuteQuery(query);
@@ -288,13 +262,13 @@ namespace UberFrba.Abm_Automovil
                    
                     UberFrba.Abm_Automovil.Form1 listado = new Abm_Automovil.Form1();
                     this.Hide();
-                    SQLHelper.Cerrar();
+               //     SQLHelper.Cerrar();
 
                     listado.Show();
                 }
                 catch (Exception ex)
                 {
-                    SQLHelper.Cerrar();
+                  //  SQLHelper.Cerrar();
                     MessageBox.Show(ex.ToString());
 
                 }
