@@ -199,7 +199,12 @@ namespace UberFrba.LogIn
             
         }
 
-        
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Inicial inicial = new Inicial();
+            this.Hide();
+            inicial.Show();
+        }       
 
 
     }
