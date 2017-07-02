@@ -391,5 +391,50 @@ namespace Classes
             this.parameterList.Clear();
             return ds;
         }
+
+        public DataSet ObtenerUsuarioPorIdChofer(int IDChofer)
+        {
+            this.setearListaDeParametrosSoloConIdChofer(IDChofer);
+            DataSet ds = this.TraerListado(this.parameterList, "PorIdChofer");
+            this.parameterList.Clear();
+            return ds;
+        }
+
+        private void setearListaDeParametrosSoloConIdChofer(int IDChofer)
+        {
+            parameterList.Add(new SqlParameter("@IDChofer", IDChofer));
+        }
+
+        public DataSet ObtenerUsuarioPorIdCliente(int IDCliente)
+        {
+            this.setearListaDeParametrosSoloConIdCliente(IDCliente);
+            DataSet ds = this.TraerListado(this.parameterList, "PorIdCliente");
+            this.parameterList.Clear();
+            return ds;
+        }
+
+        private void setearListaDeParametrosSoloConIdCliente(int IDCliente)
+        {
+            parameterList.Add(new SqlParameter("@IDCliente", IDCliente));
+        }
+
+        public static bool UsuarioChoferDistintoDeUsuarioCliente(int IDChofer, int IDCliente)
+        {
+            Usuario unUsuario = new Usuario();
+            Usuario otroUsuario = new Usuario();
+
+            DataSet dsChofer = unUsuario.ObtenerUsuarioPorIdChofer(IDChofer);
+            unUsuario.DataRowToObject(dsChofer.Tables[0].Rows[0]);
+            
+            DataSet dsCliente = otroUsuario.ObtenerUsuarioPorIdCliente(IDCliente);
+            otroUsuario.DataRowToObject(dsChofer.Tables[0].Rows[0]);
+
+            if (unUsuario.Id_Usuario == otroUsuario.Id_Usuario)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -203,6 +203,8 @@ namespace UberFrba.Registro_Viajes
             //valido campos ingresados
             if (ValidarCampos())
             {
+                //valido que no sea el mismo usario cliente y chofer
+
                 //los campos son validos, valido que no exista el viaje y lo registro
               
                 Viaje unNuevoViaje = new Viaje();
@@ -323,6 +325,11 @@ namespace UberFrba.Registro_Viajes
             strErrores += Validator.ValidarNulo(cmbCliente.Text, "Cliente");
             strErrores += Validator.ValidarNulo(cmbTurno.Text, "Turno");
 
+            if (Usuario.UsuarioChoferDistintoDeUsuarioCliente(Convert.ToInt32(cmbChofer.SelectedValue), Convert.ToInt32(cmbCliente.SelectedValue)))
+            {
+                strErrores += "El cliente y el chofer deben ser distintos usuarios";
+            }
+            
             if (strErrores.Length > 0)
             {
                 MessageBox.Show(strErrores, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
