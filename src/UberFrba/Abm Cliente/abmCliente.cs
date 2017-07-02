@@ -42,7 +42,7 @@ namespace UberFrba.Abm_Cliente
 
                 Usuario userSeleccionado = clientes[idCliente];
 
-                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, 1);//1 es cliente
+                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, true);//3 es cliente
 
                 this.Hide();
                 
@@ -107,11 +107,14 @@ namespace UberFrba.Abm_Cliente
             parameterList.Add(new SqlParameter("@apellido", txtFiltApellido.Text));
 
             DataSet ds = SQLHelper.ExecuteDataSet("PR_traerClientes", CommandType.StoredProcedure, parameterList);
-
+            Rol rol = new Rol();
+            rol.Id_Rol = 3;
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 Usuario user = new Usuario();
                 user.DataRowToObject(row);
+                user.Rol = new Rol();
+                user.Rol.Id_Rol = 3;
                 clientes.Add(user.Id_Usuario, user);
 
                 dgvClientes.Rows.Add(user.Id_Usuario, user.Dni, user.Nombre, user.Apellido, user.Tel, user.Username, user.Habilitado, user.FechaNac, user.Mail,

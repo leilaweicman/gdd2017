@@ -45,6 +45,7 @@ namespace UberFrba.Abm_Chofer
             {
                 Usuario user = new Usuario();
                 user.DataRowToObject(row);
+                user.Rol.Id_Rol = 2;
                 choferes.Add(user.Id_Usuario, user);
 
                 dgvChoferes.Rows.Add(user.Id_Usuario,user.Dni, user.Nombre, user.Apellido, user.Tel, user.Username, user.Habilitado, user.FechaNac, user.Mail,
@@ -80,7 +81,7 @@ namespace UberFrba.Abm_Chofer
 
                 Usuario userSeleccionado = choferes[idChofer];
 
-                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, 2);// 2 es chofer
+                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, true);// 2 es chofer
 
                 this.Hide();
                 

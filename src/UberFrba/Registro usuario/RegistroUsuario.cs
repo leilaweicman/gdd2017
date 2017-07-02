@@ -19,28 +19,36 @@ namespace UberFrba.Registro_usuario
         Usuario user;
         bool editing= false;
         int tipoUsuario=0;
+        bool ejecutaAdmin;
 
         public RegistroUsuario()
         {
             InitializeComponent();
         }
 
-        public RegistroUsuario(Usuario usuario, int tipoUser)
+        public RegistroUsuario(Usuario usuario, bool ejecutaAdmin)
         {
             user = usuario;
             editing = true;
-            tipoUsuario = tipoUser;
+            tipoUsuario = usuario.Rol.Id_Rol;
+            this.ejecutaAdmin = ejecutaAdmin;
             InitializeComponent();
         }
 
     
         private void RegistroUsuario_Load(object sender, EventArgs e)
-        {            
+        {
+            if (ejecutaAdmin)
+            {
+                txtConfContrasenia.Enabled = false;
+                txtContrasenia.Enabled = false;
+            }
+
             if (editing)
             {
                 chkHabilitado.Visible = true;
                 gpbTipoUsuario.Enabled = false;
-                if (tipoUsuario == 1)//es cliente
+                if (tipoUsuario == 3)//es cliente
                 {
                     chkCliente.Checked=true;
                     chkChofer.Checked = false;
@@ -88,7 +96,7 @@ namespace UberFrba.Registro_usuario
         {
             if (editing)
             {
-                if (tipoUsuario == 1)
+                if (tipoUsuario == 3)
                 {
                     UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
                     this.Hide();
@@ -141,7 +149,7 @@ namespace UberFrba.Registro_usuario
             if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || ((txtContrasenia.Text=="" || 
                 txtConfContrasenia.Text =="") && !editing)|| txtUsername.Text =="" ||
                 maskedTxtFechaNac.Text == "  /  /    " ||
-                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || (txtCP.Enabled && txtCP.Text==""))
+                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtLocalidad.Text == ""|| (txtCP.Enabled && txtCP.Text==""))
             {
                 lstErroresCampos.Add("Complete todos los campos por favor.\n");
                 huboErrorDato = true;
@@ -163,17 +171,34 @@ namespace UberFrba.Registro_usuario
                     lstErroresCampos.Add("El dni debe contener solo números.\n");
                     huboErrorDato = true;
                 }
+                else if (int.Parse(txtDni.Text) <= 0)
+                {
+                    lstErroresCampos.Add("El dni debe ser mayor a cero");
+                    huboErrorDato = true;
+                }
+                
                 if (!Validator.EsNumero(txtTel.Text))
                 {
                     lstErroresCampos.Add("El telefono debe contener solo números.\n");
                     huboErrorDato = true;
                 }
-               
+                else if (int.Parse(txtTel.Text) <= 0)
+                {
+                    lstErroresCampos.Add("El telefono debe ser mayor a cero");
+                    huboErrorDato = true;
+                }
+                
                 if (txtPiso.Text != "" && !Validator.EsNumero(txtPiso.Text))
                 {
                     lstErroresCampos.Add("El piso debe contener solo números.\n");
                     huboErrorDato = true;
                 }
+                else if (Validator.EsNumero(txtPiso.Text) && int.Parse(txtPiso.Text) < 0)
+                {
+                    lstErroresCampos.Add("El piso debe ser mayor o igual a cero");
+                    huboErrorDato = true;
+                }
+                
                 if (!DateTime.TryParse(maskedTxtFechaNac.Text, out fechaNac))
                 {
                     lstErroresCampos.Add("La fecha ingresada es incorrecta. El formato debe ser dd/mm/aaaa.\n");
@@ -310,7 +335,7 @@ namespace UberFrba.Registro_usuario
                                 parameterList.Add(new SqlParameter("@habilitado", 0));
                             }
                             parameterList.Add(new SqlParameter("@idUsuario", user.Id_Usuario));
-                            if (tipoUsuario == 1)
+                            if (tipoUsuario == 3)
                             {
                                 parameterList.Add(new SqlParameter("@codPost", codPost));
                                 SQLHelper.ExecuteNonQuery("PR_editarCliente", CommandType.StoredProcedure, parameterList);
@@ -321,7 +346,7 @@ namespace UberFrba.Registro_usuario
                             }
                             MessageBox.Show("El usuario se ha modificado");
 
-                            if (tipoUsuario == 1)
+                            if (tipoUsuario == 3)
                             {
                                 UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
                                 this.Hide();
