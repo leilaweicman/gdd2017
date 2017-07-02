@@ -35,15 +35,12 @@ namespace UberFrba.Abm_Automovil
         }
         private void CargarCombos()
         {
-            SQLHelper.Inicializar();
+           // SQLHelper.Inicializar();
             string query = "select IDMarca,Nombre from [GIRLPOWER].Marca";
             var resultMarcas = SQLHelper.ExecuteQuery(query);
-
-     //     string query2 = "select c.IDChofer, u.Nombre from [GIRLPOWER].Chofer c inner join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario";
-        //   var resultChoferes = SQLHelper.ExecuteQuery(query2);
             string query3 = "select IDModelo,Nombre from [GIRLPOWER].Modelo";
             var resultModelos = SQLHelper.ExecuteQuery(query3);
-            SQLHelper.Cerrar();
+           
             List<ComboPrueba> marcas = new List<ComboPrueba>();
             ComboPrueba todas = new ComboPrueba("TODAS", 0);
             marcas.Add(todas);
@@ -65,32 +62,6 @@ namespace UberFrba.Abm_Automovil
             cmbMarca.DisplayMember = "Name";
             cmbMarca.ValueMember = "Value";
             cmbMarca.SelectedIndex = 0;
-     /*       List<ComboPrueba> choferes = new List<ComboPrueba>();
-            ComboPrueba todos = new ComboPrueba("TODOS", 0);
-            choferes.Add(todos);
-            while (resultChoferes.Read())
-            {
-                ComboPrueba aux;
-                int idchofer = 0;
-                string Nombre = "";
-                if (!object.Equals(resultChoferes["IDChofer"], DBNull.Value))
-                    idchofer = int.Parse(resultChoferes["IDChofer"].ToString());
-
-                if (!object.Equals(resultChoferes["Nombre"], DBNull.Value))
-                    Nombre = resultChoferes["Nombre"].ToString();
-                aux = new ComboPrueba(Nombre, idchofer);
-                choferes.Add(aux);
-            }
-
-
-            cmbChofer.DataSource = choferes;
-            cmbChofer.DisplayMember = "Name";
-            cmbChofer.ValueMember = "Value";
-            cmbChofer.SelectedIndex = 0;
-            */
-
-
-
             List<ComboPrueba> Modelos = new List<ComboPrueba>();
             ComboPrueba todosm = new ComboPrueba("TODOS", 0);
             Modelos.Add(todosm);
@@ -112,7 +83,8 @@ namespace UberFrba.Abm_Automovil
             cmbModelo.DataSource = Modelos;
             cmbModelo.DisplayMember = "Name";
             cmbModelo.ValueMember = "Value";
-            cmbModelo.SelectedIndex = 0;
+            cmbModelo.SelectedIndex = 0; 
+          //  SQLHelper.Cerrar();
         }
         private void CargarChoferes()
         {
@@ -150,11 +122,12 @@ namespace UberFrba.Abm_Automovil
               dgvAutomoviles.Rows.Clear();
               List<Automovil> clientes = new List<Automovil>();
                List<SqlParameter> parameterList = new List<SqlParameter>();
-               parameterList.Add(new SqlParameter("@idChofer", int.Parse(cmbChofer.SelectedValue.ToString())));
+              parameterList.Add(new SqlParameter("@idChofer", int.Parse(cmbChofer.SelectedValue.ToString())));
                parameterList.Add(new SqlParameter("@idMarca",int.Parse(cmbMarca.SelectedValue.ToString())));
                parameterList.Add(new SqlParameter("@patente", txtPatente.Text));
                parameterList.Add(new SqlParameter("@idModelo", int.Parse(cmbModelo.SelectedValue.ToString())));
-
+         
+            
               DataSet ds = SQLHelper.ExecuteDataSet("PR_TraerAutomoviles",CommandType.StoredProcedure,parameterList);
 
               foreach (DataRow row in ds.Tables[0].Rows)
@@ -195,8 +168,15 @@ namespace UberFrba.Abm_Automovil
             {
                 DataGridViewRow row = this.dgvAutomoviles.SelectedRows[0];
                 var id = row.Cells["IDAutomovil"].Value.ToString();
+                  var Habilitado =bool.Parse(row.Cells["Habilitado"].Value.ToString());
                 Automovil auto = new Automovil();
                 auto.Deshabilitar(int.Parse(id));
+              
+                if(Habilitado)
+                    MessageBox.Show("El automovil se ha deshabilitado correctamente");
+                else
+                    MessageBox.Show("El automovil se ha habilitado correctamente");
+
                 CargarAuomoviles();
             }
         }

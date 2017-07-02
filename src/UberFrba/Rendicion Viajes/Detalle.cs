@@ -27,10 +27,10 @@ namespace UberFrba.Rendicion_Viajes
         {
             try
             {
-                SQLHelper.Inicializar();
+             
              string query = "exec girlpower.PR_TotalRendicion '" + rdForm.Fecha + "'," + rdForm.Porcentaje+","+rdForm.idchofer+","+rdForm.IDTurno;
               var aux = SQLHelper.ExecuteQuery(query);
-              SQLHelper.Cerrar();
+            
            string total ="";
             while (aux.Read())
             { if (!object.Equals(aux["total"], DBNull.Value))
