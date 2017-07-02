@@ -310,6 +310,12 @@ namespace Classes
             parameterList.Add(new SqlParameter("@IdUsuario", this.Id_Usuario));
         }
 
+        private void setearListaDeParametrosConTrimestreAño(DateTime Fecha_Hasta, DateTime Fecha_Desde)
+        {
+            parameterList.Add(new SqlParameter("@fechaFin", Fecha_Hasta));
+            parameterList.Add(new SqlParameter("@fechaInicio", Fecha_Desde));
+        }
+
         public static DataSet ObtenerChoferes()
         {
             Usuario unUsuario = new Usuario();
@@ -332,6 +338,38 @@ namespace Classes
         {
             Usuario unUsuario = new Usuario();
             return unUsuario.TraerListado(unUsuario.parameterList, "QueSonClientesHabilitados");
+        }
+
+        public DataSet obtenerChoferesConMayorRecaudacion(DateTime Fecha_Hasta, DateTime Fecha_Desde)
+        {            
+            this.setearListaDeParametrosConTrimestreAño(Fecha_Hasta, Fecha_Desde);
+            DataSet ds = this.TraerListado(this.parameterList, "ChoferesConMasRecaudacion");
+            this.parameterList.Clear();
+            return ds;
+        }
+
+        public DataSet obtenerChoferesConViajeMasLargo(DateTime Fecha_Hasta, DateTime Fecha_Desde)
+        {
+            this.setearListaDeParametrosConTrimestreAño(Fecha_Hasta, Fecha_Desde);
+            DataSet ds = this.TraerListado(this.parameterList, "ChoferesConViajeMasLargo");
+            this.parameterList.Clear();
+            return ds;
+        }
+
+        public DataSet obtenerClientesConMayorConsumo(DateTime Fecha_Hasta, DateTime Fecha_Desde)
+        {
+            this.setearListaDeParametrosConTrimestreAño(Fecha_Hasta, Fecha_Desde);
+            DataSet ds = this.TraerListado(this.parameterList, "ClientesConMayorConsumo");
+            this.parameterList.Clear();
+            return ds;
+        }
+
+        public DataSet obtenerClienteQueUtilizoMasVecesElMismoAutomovil(DateTime Fecha_Hasta, DateTime Fecha_Desde)
+        {
+            this.setearListaDeParametrosConTrimestreAño(Fecha_Hasta, Fecha_Desde);
+            DataSet ds = this.TraerListado(this.parameterList, "ClienteQueUtilizoMasVecesElMismoAuto");
+            this.parameterList.Clear();
+            return ds;
         }
     }
 }

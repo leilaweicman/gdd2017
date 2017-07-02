@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.dgvRendiciones = new System.Windows.Forms.DataGridView();
             this.Chofer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroRendicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Turno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendiciones)).BeginInit();
             this.SuspendLayout();
@@ -51,22 +51,10 @@
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Listado";
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(587, 481);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(80, 35);
-            this.btnCancelar.TabIndex = 40;
-            this.btnCancelar.Text = "Volver";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // dgvRendiciones
             // 
             this.dgvRendiciones.AllowUserToAddRows = false;
             this.dgvRendiciones.AllowUserToDeleteRows = false;
-            this.dgvRendiciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRendiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRendiciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Chofer,
@@ -86,30 +74,46 @@
             this.Chofer.HeaderText = "Chofer";
             this.Chofer.Name = "Chofer";
             this.Chofer.ReadOnly = true;
+            this.Chofer.Width = 119;
             // 
             // NumeroRendicion
             // 
             this.NumeroRendicion.HeaderText = "NumeroRendicion";
             this.NumeroRendicion.Name = "NumeroRendicion";
             this.NumeroRendicion.ReadOnly = true;
+            this.NumeroRendicion.Width = 120;
             // 
             // Turno
             // 
             this.Turno.HeaderText = "Turno";
             this.Turno.Name = "Turno";
             this.Turno.ReadOnly = true;
+            this.Turno.Width = 119;
             // 
             // Fecha
             // 
             this.Fecha.HeaderText = "Fecha";
             this.Fecha.Name = "Fecha";
             this.Fecha.ReadOnly = true;
+            this.Fecha.Width = 120;
             // 
             // Total
             // 
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
+            this.Total.Width = 119;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(587, 481);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(80, 35);
+            this.btnCancelar.TabIndex = 40;
+            this.btnCancelar.Text = "Volver";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Listado
             // 
