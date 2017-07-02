@@ -42,6 +42,7 @@
             this.facturacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.datosPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +64,8 @@
             this.administracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aBMRolesToolStripMenuItem,
             this.aBMChoferesToolStripMenuItem,
-            this.aBMClientesToolStripMenuItem});
+            this.aBMClientesToolStripMenuItem,
+            this.datosPersonalesToolStripMenuItem});
             this.administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
             this.administracionToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.administracionToolStripMenuItem.Text = "Administracion";
@@ -71,21 +73,21 @@
             // aBMRolesToolStripMenuItem
             // 
             this.aBMRolesToolStripMenuItem.Name = "aBMRolesToolStripMenuItem";
-            this.aBMRolesToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.aBMRolesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.aBMRolesToolStripMenuItem.Text = "ABM Roles";
             this.aBMRolesToolStripMenuItem.Click += new System.EventHandler(this.aBMRolesToolStripMenuItem_Click);
             // 
             // aBMChoferesToolStripMenuItem
             // 
             this.aBMChoferesToolStripMenuItem.Name = "aBMChoferesToolStripMenuItem";
-            this.aBMChoferesToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.aBMChoferesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.aBMChoferesToolStripMenuItem.Text = "ABM Choferes";
             this.aBMChoferesToolStripMenuItem.Click += new System.EventHandler(this.aBMChoferesToolStripMenuItem_Click);
             // 
             // aBMClientesToolStripMenuItem
             // 
             this.aBMClientesToolStripMenuItem.Name = "aBMClientesToolStripMenuItem";
-            this.aBMClientesToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.aBMClientesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.aBMClientesToolStripMenuItem.Text = "ABM Clientes";
             this.aBMClientesToolStripMenuItem.Click += new System.EventHandler(this.aBMClientesToolStripMenuItem_Click);
             // 
@@ -158,6 +160,13 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem1_Click);
             // 
+            // datosPersonalesToolStripMenuItem
+            // 
+            this.datosPersonalesToolStripMenuItem.Name = "datosPersonalesToolStripMenuItem";
+            this.datosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.datosPersonalesToolStripMenuItem.Text = "Datos Personales";
+            this.datosPersonalesToolStripMenuItem.Click += new System.EventHandler(this.datosPersonalesToolStripMenuItem_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,5 +203,6 @@
         private System.Windows.Forms.ToolStripMenuItem estadisticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aBMTurnosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem datosPersonalesToolStripMenuItem;
     }
 }
