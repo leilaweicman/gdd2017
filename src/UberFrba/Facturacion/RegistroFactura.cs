@@ -34,61 +34,38 @@ namespace UberFrba.Facturacion
             DateTime fechaInicio = new DateTime();
             DateTime fechaFin = new DateTime();
 
-            if (maskedTxtFechaFin.Text == "  /  /    " || maskedTxtFechaInicio.Text == "  /  /    " || cmbCliente.SelectedIndex == -1)
+            
+            fechaInicio = Convert.ToDateTime(dtpFechaInicio.Text);
+            if (fechaInicio.CompareTo(fechaMinSql) < 0 || fechaInicio.CompareTo(fechaMaxSql) > 0)
             {
+                lstErroresCampos.Add("La fecha de inicio debe estar entre 1/1/1753 y 12/12/9999.\n");
                 huboErrorCampo = true;
-                lstErroresCampos.Add("Complete todos los campos por favor");
+                fechasValidas = false;
             }
-            else
-            {
-                if (!DateTime.TryParse(maskedTxtFechaInicio.Text, out fechaInicio))
-                {
-                    lstErroresCampos.Add("La fecha de inicio ingresada es incorrecta. El formato debe ser dd/mm/aaaa.\n");
-                    huboErrorCampo = true;
-                    fechasValidas = false;
-                }
-                else
-                {
-                    fechaInicio = Convert.ToDateTime(maskedTxtFechaInicio.Text);
-                    if (fechaInicio.CompareTo(fechaMinSql) < 0 || fechaInicio.CompareTo(fechaMaxSql) > 0)
-                    {
-                        lstErroresCampos.Add("La fecha de inicio debe estar entre 1/1/1753 y 12/12/9999.\n");
-                        huboErrorCampo = true;
-                        fechasValidas = false;
-                    }
-                }
+            
                 
-                if (!DateTime.TryParse(maskedTxtFechaFin.Text, out fechaFin))
+            fechaFin = Convert.ToDateTime(dtpFechaFin.Text);
+            if (fechaFin.CompareTo(fechaMinSql) < 0 || fechaFin.CompareTo(fechaMaxSql) > 0)
+            {
+                lstErroresCampos.Add("La fecha de finalización debe estar entre 1/1/1753 y 12/12/9999.\n");
+                huboErrorCampo = true;
+                fechasValidas = false;
+            }
+            
+            if (fechasValidas)
+            {
+                if (fechaInicio.CompareTo(fechaFin) >= 0)
                 {
-                    lstErroresCampos.Add("La fecha de finalización ingresada es incorrecta. El formato debe ser dd/mm/aaaa.\n");
+                    lstErroresCampos.Add("La fecha de finalización debe ser posterior a la de inicio.\n");
                     huboErrorCampo = true;
-                    fechasValidas = false;
                 }
-                else
+                if (fechaFin.Month != fechaInicio.Month)
                 {
-                    fechaFin = Convert.ToDateTime(maskedTxtFechaFin.Text);
-                    if (fechaFin.CompareTo(fechaMinSql) < 0 || fechaFin.CompareTo(fechaMaxSql) > 0)
-                    {
-                        lstErroresCampos.Add("La fecha de finalización debe estar entre 1/1/1753 y 12/12/9999.\n");
-                        huboErrorCampo = true;
-                        fechasValidas = false;
-                    }
-                }
-
-                if (fechasValidas)
-                {
-                    if (fechaInicio.CompareTo(fechaFin) >= 0)
-                    {
-                        lstErroresCampos.Add("La fecha de finalización debe ser posterior a la de inicio.\n");
-                        huboErrorCampo = true;
-                    }
-                    if (fechaFin.Month != fechaInicio.Month)
-                    {
-                        lstErroresCampos.Add("Las facturas solo pueden realizarse en días de un mismo mes.\n");
-                        huboErrorCampo = true;
-                    }
+                    lstErroresCampos.Add("Las facturas solo pueden realizarse en días de un mismo mes.\n");
+                    huboErrorCampo = true;
                 }
             }
+            
             if (huboErrorCampo)
             {
                 Validator.mostrarErrores(lstErroresCampos, "");

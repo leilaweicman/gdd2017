@@ -32,7 +32,6 @@
             this.gpbDatosPersonales = new System.Windows.Forms.GroupBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
-            this.maskedTxtFechaNac = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCP = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -72,7 +71,6 @@
             // 
             // groupBoxReg
             // 
-            this.groupBoxReg.Controls.Add(this.dtpFechaNac);
             this.groupBoxReg.Controls.Add(this.gpbDatosPersonales);
             this.groupBoxReg.Controls.Add(this.btnRegistrar);
             this.groupBoxReg.Controls.Add(this.btnCancelar);
@@ -87,10 +85,10 @@
             // 
             // gpbDatosPersonales
             // 
+            this.gpbDatosPersonales.Controls.Add(this.dtpFechaNac);
             this.gpbDatosPersonales.Controls.Add(this.chkHabilitado);
             this.gpbDatosPersonales.Controls.Add(this.txtNombre);
             this.gpbDatosPersonales.Controls.Add(this.txtLocalidad);
-            this.gpbDatosPersonales.Controls.Add(this.maskedTxtFechaNac);
             this.gpbDatosPersonales.Controls.Add(this.label1);
             this.gpbDatosPersonales.Controls.Add(this.txtCP);
             this.gpbDatosPersonales.Controls.Add(this.label6);
@@ -139,17 +137,6 @@
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(198, 24);
             this.txtLocalidad.TabIndex = 16;
-            // 
-            // maskedTxtFechaNac
-            // 
-            this.maskedTxtFechaNac.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTxtFechaNac.Location = new System.Drawing.Point(176, 171);
-            this.maskedTxtFechaNac.Mask = "##/##/####";
-            this.maskedTxtFechaNac.Name = "maskedTxtFechaNac";
-            this.maskedTxtFechaNac.PromptChar = ' ';
-            this.maskedTxtFechaNac.Size = new System.Drawing.Size(154, 23);
-            this.maskedTxtFechaNac.TabIndex = 9;
-            this.maskedTxtFechaNac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -460,12 +447,12 @@
             // dtpFechaNac
             // 
             this.dtpFechaNac.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaNac.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaNac.Font = new System.Drawing.Font("Verdana", 10F);
             this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(194, 475);
+            this.dtpFechaNac.Location = new System.Drawing.Point(176, 173);
             this.dtpFechaNac.Name = "dtpFechaNac";
-            this.dtpFechaNac.Size = new System.Drawing.Size(151, 23);
-            this.dtpFechaNac.TabIndex = 44;
+            this.dtpFechaNac.Size = new System.Drawing.Size(154, 24);
+            this.dtpFechaNac.TabIndex = 9;
             // 
             // RegistroUsuario
             // 
@@ -521,7 +508,6 @@
         private System.Windows.Forms.TextBox txtCP;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtTel;
-        private System.Windows.Forms.MaskedTextBox maskedTxtFechaNac;
         private System.Windows.Forms.GroupBox gpbDatosPersonales;
         private System.Windows.Forms.CheckBox chkHabilitado;
         private System.Windows.Forms.DateTimePicker dtpFechaNac;

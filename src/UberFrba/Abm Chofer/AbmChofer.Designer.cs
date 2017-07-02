@@ -84,7 +84,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(812, 91);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(103, 35);
-            this.btnEliminar.TabIndex = 45;
+            this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -95,7 +95,7 @@
             this.btnInicio.Location = new System.Drawing.Point(937, 91);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(103, 35);
-            this.btnInicio.TabIndex = 1;
+            this.btnInicio.TabIndex = 8;
             this.btnInicio.Text = "Cerrar";
             this.btnInicio.UseVisualStyleBackColor = true;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
@@ -106,7 +106,7 @@
             this.btnEditar.Location = new System.Drawing.Point(679, 91);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(103, 35);
-            this.btnEditar.TabIndex = 10;
+            this.btnEditar.TabIndex = 6;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -134,7 +134,7 @@
             this.btnLimpiarFiltro.Location = new System.Drawing.Point(238, 124);
             this.btnLimpiarFiltro.Name = "btnLimpiarFiltro";
             this.btnLimpiarFiltro.Size = new System.Drawing.Size(105, 35);
-            this.btnLimpiarFiltro.TabIndex = 14;
+            this.btnLimpiarFiltro.TabIndex = 4;
             this.btnLimpiarFiltro.Text = "Limpiar filtros";
             this.btnLimpiarFiltro.UseVisualStyleBackColor = true;
             this.btnLimpiarFiltro.Click += new System.EventHandler(this.btnLimpiarFiltro_Click);
@@ -144,21 +144,21 @@
             this.txtFiltApellido.Location = new System.Drawing.Point(349, 69);
             this.txtFiltApellido.Name = "txtFiltApellido";
             this.txtFiltApellido.Size = new System.Drawing.Size(146, 27);
-            this.txtFiltApellido.TabIndex = 13;
+            this.txtFiltApellido.TabIndex = 3;
             // 
             // txtFiltNombre
             // 
             this.txtFiltNombre.Location = new System.Drawing.Point(176, 69);
             this.txtFiltNombre.Name = "txtFiltNombre";
             this.txtFiltNombre.Size = new System.Drawing.Size(130, 27);
-            this.txtFiltNombre.TabIndex = 12;
+            this.txtFiltNombre.TabIndex = 2;
             // 
             // txtFiltDni
             // 
             this.txtFiltDni.Location = new System.Drawing.Point(32, 69);
             this.txtFiltDni.Name = "txtFiltDni";
             this.txtFiltDni.Size = new System.Drawing.Size(100, 27);
-            this.txtFiltDni.TabIndex = 10;
+            this.txtFiltDni.TabIndex = 1;
             // 
             // btnFiltrar
             // 
@@ -166,7 +166,7 @@
             this.btnFiltrar.Location = new System.Drawing.Point(392, 124);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(103, 35);
-            this.btnFiltrar.TabIndex = 9;
+            this.btnFiltrar.TabIndex = 5;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);

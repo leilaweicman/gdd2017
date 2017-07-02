@@ -65,15 +65,12 @@ namespace UberFrba.Listado_Estadistico
             //se valida que el año ingresado esté entre 1900 y 2017, que sea un número y que no sea nulo
             string strErrores = "";
             strErrores += Validator.ValidarNulo(txtAño.Text, "Año");
-            strErrores += Validator.SoloNumeros(txtAño.Text, "Año");
             
-            if (strErrores.Length > 0)
+            if (txtAño.Text != "")
             {
-                MessageBox.Show(strErrores, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                strErrores += Validator.SoloNumeros(txtAño.Text, "Año");
+                strErrores += Validator.EsAño(txtAño.Text, "Año");
             }
-
-            strErrores += Validator.EsAño(txtAño.Text, "Año");
 
             //se valida que los combobox no esten vacíos
             strErrores += Validator.ValidarNulo(cmbTrimestre.Text, "Trimestre");
@@ -92,7 +89,14 @@ namespace UberFrba.Listado_Estadistico
             try
             {
                 DataSet ds = unUsuario.obtenerClienteQueUtilizoMasVecesElMismoAutomovil(Fecha_Hasta, Fecha_Desde);
-                configurarGrillaClienteQueUtilizoMasVecesElMismoAutomovil(ds);
+                if (ds.Tables[0].Rows.Count <= 0)
+                {
+                    MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                }
+                else
+                {
+                    configurarGrillaClienteQueUtilizoMasVecesElMismoAutomovil(ds);
+                }
             }
 
             catch (ErrorConsultaException ex)
@@ -132,6 +136,8 @@ namespace UberFrba.Listado_Estadistico
             dgvListado.Columns.Add(clmCantidad);
 
             dgvListado.DataSource = ds.Tables[0];
+
+            dgvListado.Sort(clmCantidad, ListSortDirection.Descending);
         }
 
         private void cargarListadoClientesConMayorConsumo()
@@ -139,7 +145,14 @@ namespace UberFrba.Listado_Estadistico
             try
             {
                 DataSet ds = unUsuario.obtenerClientesConMayorConsumo(Fecha_Hasta, Fecha_Desde);
-                configurarGrillaClientesConMayorConsumo(ds);
+                if (ds.Tables[0].Rows.Count <= 0)
+                {
+                    MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                }
+                else
+                {
+                    configurarGrillaClientesConMayorConsumo(ds);
+                }                
             }
 
             catch (ErrorConsultaException ex)
@@ -179,7 +192,14 @@ namespace UberFrba.Listado_Estadistico
             try
             {
                 DataSet ds = unUsuario.obtenerChoferesConViajeMasLargo(Fecha_Hasta, Fecha_Desde);
-                configurarGrillaChoferesConViajeMasLargo(ds);
+                if (ds.Tables[0].Rows.Count <= 0)
+                {
+                    MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                }
+                else
+                {
+                    configurarGrillaChoferesConViajeMasLargo(ds);
+                }                
             }
 
             catch (ErrorConsultaException ex)
@@ -219,7 +239,14 @@ namespace UberFrba.Listado_Estadistico
             try
             {
                 DataSet ds = unUsuario.obtenerChoferesConMayorRecaudacion(Fecha_Hasta, Fecha_Desde);
-                configurarGrillaChoferesConMayorRecaudacion(ds);
+                if (ds.Tables[0].Rows.Count <= 0)
+                {
+                    MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                }
+                else
+                {
+                    configurarGrillaChoferesConMayorRecaudacion(ds);
+                }                
             }
 
             catch (ErrorConsultaException ex)

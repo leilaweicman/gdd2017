@@ -63,7 +63,7 @@ namespace UberFrba.Registro_usuario
                 txtApellido.Text = user.Apellido;
                 txtDni.Text = user.Dni.ToString();
                 txtUsername.Text = user.Username;
-                maskedTxtFechaNac.Text = user.FechaNac.ToString();
+                dtpFechaNac.Text = user.FechaNac.ToString();
                 dtpFechaNac.Text = user.FechaNac.ToString();
                 txtCalle.Text = user.Direccion;
                 txtDepto.Text = user.Depto;
@@ -155,9 +155,8 @@ namespace UberFrba.Registro_usuario
             #region validacionCampos
 
             if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || ((txtContrasenia.Text=="" || 
-                txtConfContrasenia.Text =="") && !editing)|| txtUsername.Text =="" ||
-                maskedTxtFechaNac.Text == "  /  /    " ||
-                txtTel.Text=="" || txtMail.Text=="" || txtCalle.Text=="" || txtLocalidad.Text == ""|| (txtCP.Enabled && txtCP.Text==""))
+                txtConfContrasenia.Text =="") && !editing)|| txtUsername.Text =="" || txtTel.Text=="" || txtMail.Text=="" || 
+                txtCalle.Text=="" || txtLocalidad.Text == ""|| (txtCP.Enabled && txtCP.Text==""))
             {
                 lstErroresCampos.Add("Complete todos los campos por favor.\n");
                 huboErrorDato = true;
@@ -206,20 +205,16 @@ namespace UberFrba.Registro_usuario
                     lstErroresCampos.Add("El piso debe ser mayor o igual a cero.\n");
                     huboErrorDato = true;
                 }
-                
-                if (!DateTime.TryParse(maskedTxtFechaNac.Text, out fechaNac))
+                fechaNac = Convert.ToDateTime(dtpFechaNac.Text);
+                if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)
                 {
-                    lstErroresCampos.Add("La fecha ingresada es incorrecta. El formato debe ser dd/mm/aaaa.\n");
+                    lstErroresCampos.Add("La fecha de nacimiento debe estar entre 1/1/1753 y 12/12/9999.\n");
                     huboErrorDato = true;
                 }
-                else
-                {                    
-                    fechaNac = Convert.ToDateTime(maskedTxtFechaNac.Text);
-                    if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)
-                    {
-                        lstErroresCampos.Add("La fecha debe estar entre 1/1/1753 y 12/12/9999.\n");
-                        huboErrorDato = true;
-                    }
+                if (fechaNac >= DateTime.Now.Date)
+                {
+                    lstErroresCampos.Add("La fecha de nacimiento debe anterior a la del dia de hoy.\n");
+                    huboErrorDato = true;
                 }
 
                 if (txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
@@ -248,7 +243,7 @@ namespace UberFrba.Registro_usuario
                 {
                     contraEncriptada = Encryptor.GetSHA256(txtContrasenia.Text);
                 }
-                fechaNac = Convert.ToDateTime(maskedTxtFechaNac.Text);
+                fechaNac = Convert.ToDateTime(dtpFechaNac.Text);
                 tel = Decimal.Parse(txtTel.Text);
                 mail = txtMail.Text;
                 calle = txtCalle.Text;
@@ -279,7 +274,7 @@ namespace UberFrba.Registro_usuario
                 }
                 else
                 {
-                    codPost = 0;
+                    codPost = -1;
                 }
 
 
@@ -384,7 +379,7 @@ namespace UberFrba.Registro_usuario
                         {
                             parameterList.Add(new SqlParameter("@esChofer", esChofer));
                             parameterList.Add(new SqlParameter("@esCliente", esCliente));
-                            parameterList.Add(new SqlParameter("@codPost", -1));
+                            parameterList.Add(new SqlParameter("@codPost", codPost));
 
                             SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
                             MessageBox.Show("El usuario se ha registrado correctamente");

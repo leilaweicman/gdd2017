@@ -170,7 +170,7 @@ namespace Utilities
             {
                 textoError = textoError + error;
             }
-            MessageBox.Show(textoError);
+            MessageBox.Show(textoError, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 

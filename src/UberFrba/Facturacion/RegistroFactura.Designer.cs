@@ -30,13 +30,13 @@
         {
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
-            this.maskedTxtFechaFin = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.maskedTxtFechaInicio = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.groupBoxReg.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,10 +53,10 @@
             // 
             // groupBoxReg
             // 
+            this.groupBoxReg.Controls.Add(this.dtpFechaFin);
+            this.groupBoxReg.Controls.Add(this.dtpFechaInicio);
             this.groupBoxReg.Controls.Add(this.btnCancelar);
-            this.groupBoxReg.Controls.Add(this.maskedTxtFechaFin);
             this.groupBoxReg.Controls.Add(this.label5);
-            this.groupBoxReg.Controls.Add(this.maskedTxtFechaInicio);
             this.groupBoxReg.Controls.Add(this.label2);
             this.groupBoxReg.Controls.Add(this.cmbCliente);
             this.groupBoxReg.Controls.Add(this.btnSiguiente);
@@ -69,17 +69,6 @@
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
             // 
-            // maskedTxtFechaFin
-            // 
-            this.maskedTxtFechaFin.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTxtFechaFin.Location = new System.Drawing.Point(144, 90);
-            this.maskedTxtFechaFin.Mask = "##/##/####";
-            this.maskedTxtFechaFin.Name = "maskedTxtFechaFin";
-            this.maskedTxtFechaFin.PromptChar = ' ';
-            this.maskedTxtFechaFin.Size = new System.Drawing.Size(154, 23);
-            this.maskedTxtFechaFin.TabIndex = 2;
-            this.maskedTxtFechaFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -89,17 +78,6 @@
             this.label5.Size = new System.Drawing.Size(87, 17);
             this.label5.TabIndex = 44;
             this.label5.Text = "Fecha inicio";
-            // 
-            // maskedTxtFechaInicio
-            // 
-            this.maskedTxtFechaInicio.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTxtFechaInicio.Location = new System.Drawing.Point(144, 41);
-            this.maskedTxtFechaInicio.Mask = "##/##/####";
-            this.maskedTxtFechaInicio.Name = "maskedTxtFechaInicio";
-            this.maskedTxtFechaInicio.PromptChar = ' ';
-            this.maskedTxtFechaInicio.Size = new System.Drawing.Size(154, 23);
-            this.maskedTxtFechaInicio.TabIndex = 1;
-            this.maskedTxtFechaInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -140,6 +118,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
             // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaInicio.Font = new System.Drawing.Font("Verdana", 10F);
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(144, 38);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(154, 24);
+            this.dtpFechaInicio.TabIndex = 1;
+            // 
+            // dtpFechaFin
+            // 
+            this.dtpFechaFin.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaFin.Font = new System.Drawing.Font("Verdana", 10F);
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaFin.Location = new System.Drawing.Point(144, 87);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(154, 24);
+            this.dtpFechaFin.TabIndex = 2;
+            // 
             // RegistroFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,8 +162,8 @@
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox maskedTxtFechaFin;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox maskedTxtFechaInicio;
+        private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
     }
 }
