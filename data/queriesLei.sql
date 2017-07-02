@@ -115,9 +115,9 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [GIRLPOWER].[insertRol_RetornarID] (@Nombre VARCHAR(255), @Habilitado bit) AS
+CREATE PROCEDURE [GIRLPOWER].[insertRol_RetornarID] (@Nombre VARCHAR(255)) AS
 BEGIN
-	INSERT INTO girlpower.Rol (Nombre, Habilitado) VALUES (@Nombre, @Habilitado)
+	INSERT INTO girlpower.Rol (Nombre) VALUES (@Nombre)
 	SELECT @@IDENTITY AS IDRol
 END
 GO

@@ -136,9 +136,8 @@ namespace UberFrba.Abm_Rol
             {
                 ValidarCampos();
                 string nombre = txtNombre.Text;
-                bool habilitado = chkHabilitado.Checked;
 
-                Rol unRolNuevo = new Rol(nombre, habilitado);
+                Rol unRolNuevo = new Rol(nombre, true);
 
                 foreach (Funcionalidad unaFunc in lstFuncRol.Items)
                 {

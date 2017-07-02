@@ -136,7 +136,7 @@ namespace Classes
                 throw new EntidadExistenteException("un rol");
 
             //creo el rol nuevo y obtengo el id
-            setearListaDeParametrosConNombreYHabilitado(this.Nombre, this.Habilitado);
+            setearListaDeParametrosConNombre(this.Nombre);
             DataSet dsNuevoRol = this.GuardarYObtenerID(parameterList);
             parameterList.Clear();
 
