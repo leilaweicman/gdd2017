@@ -227,6 +227,9 @@ namespace UberFrba.Registro_Viajes
             strErrores = Validator.FechaMenor(dtpFechaInicio.Value, dtpFechaFin.Value);
             strErrores += Validator.SoloNumerosODecimales(txtKilometros.Text, "Kilometros");
             strErrores += Validator.MayorACero(txtKilometros.Text, "Kilometros");
+            strErrores += Validator.ValidarNulo(cmbChofer.Text, "Chofer");
+            strErrores += Validator.ValidarNulo(cmbCliente.Text, "Cliente");
+            strErrores += Validator.ValidarNulo(cmbTurno.Text, "Turno");
 
             if (strErrores.Length > 0)
             {
