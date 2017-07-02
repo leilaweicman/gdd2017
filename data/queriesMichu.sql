@@ -31,13 +31,13 @@ CREATE PROCEDURE [GIRLPOWER].[PR_altaUsuario]
 		IF (@esChofer=1)
 		BEGIN
 			INSERT INTO [GD1C2017].[GIRLPOWER].[Chofer] (IDUsuario) VALUES (@idUsuario)
-			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES ((SELECT idRol FROM GIRLPOWER.Rol WHERE nombre = 'Cliente'), @idUsuario)
+			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES ((SELECT idRol FROM GIRLPOWER.Rol WHERE nombre = 'Chofer'), @idUsuario)
 		END
 
 		IF (@esCliente=1)
 		BEGIN
 			INSERT INTO [GD1C2017].[GIRLPOWER].[Cliente] (IDUsuario, CodPostal) VALUES (@idUsuario, @codPost)
-			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES ((SELECT idRol FROM GIRLPOWER.Rol WHERE nombre = 'Chofer'), @idUsuario)
+			INSERT INTO GIRLPOWER.RolPorUsuario (IDRol, IDUsuario) VALUES ((SELECT idRol FROM GIRLPOWER.Rol WHERE nombre = 'Cliente'), @idUsuario)
 		END
 
 		IF @@ERROR = 0

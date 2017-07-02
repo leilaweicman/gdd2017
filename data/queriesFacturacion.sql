@@ -31,8 +31,8 @@ GO
 CREATE PROCEDURE [GIRLPOWER].[PR_altaFacturaDetalle] 
 (@idFactura int, @idCliente int, @fechaInicio datetime, @fechaFin datetime) AS
 BEGIN
-	INSERT INTO GIRLPOWER.FacturaDetalle (IDFactura, IDViaje)
-	(SELECT @idFactura, IDViaje FROM GIRLPOWER.viaje WHERE IDCliente=@idCliente AND CAST(FechaFin as date) >= CAST(@fechaInicio as date) 
+	INSERT INTO GIRLPOWER.FacturaDetalle (IDFactura, IDViaje, Importe)
+	(SELECT @idFactura, IDViaje, Precio FROM GIRLPOWER.viaje WHERE IDCliente=@idCliente AND CAST(FechaFin as date) >= CAST(@fechaInicio as date) 
 	AND CAST(FechaFin as date) <= CAST(@fechaFin as date))
 END
 GO
