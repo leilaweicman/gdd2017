@@ -81,6 +81,20 @@ namespace UberFrba
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            administracionToolStripMenuItem.Visible = false;
+            automovilToolStripMenuItem.Visible = false;
+            viajesToolStripMenuItem.Visible = false;
+
+            aBMClientesToolStripMenuItem.Visible = false;
+            aBMRolesToolStripMenuItem.Visible = false;
+            abmAutomovilesToolStripMenuItem.Visible = false;
+            aBMChoferesToolStripMenuItem.Visible = false;
+            registrarViajeToolStripMenuItem1.Visible = false;
+            rendicionDeCuentaDelChoferToolStripMenuItem.Visible = false;
+            facturacionToolStripMenuItem.Visible = false;
+            estadisticasToolStripMenuItem.Visible = false;
+            aBMTurnosToolStripMenuItem.Visible = false;
+
             usuario.Rol.setearFuncionalidadesAlRol();
 
             //Segun el rol, voy a tener funcionalidades. Voy a comparar cada funcionalidad del rol
