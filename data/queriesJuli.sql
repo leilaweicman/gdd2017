@@ -90,7 +90,7 @@ GO
 CREATE PROCEDURE [GIRLPOWER].deshabilitarAutomovil (@id int) AS
 BEGIN
 	
-		update [GIRLPOWER].Automovil set Habilitado=0 where IDAutomovil=@id
+		update [GIRLPOWER].Automovil set Habilitado=(case when Habilitado=0 then 1 else 0 end) where IDAutomovil=@id
 	
 END
 GO
