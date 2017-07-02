@@ -64,6 +64,7 @@
             this.chkChofer = new System.Windows.Forms.CheckBox();
             this.chkCliente = new System.Windows.Forms.CheckBox();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.groupBoxReg.SuspendLayout();
             this.gpbDatosPersonales.SuspendLayout();
             this.gpbTipoUsuario.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             // groupBoxReg
             // 
+            this.groupBoxReg.Controls.Add(this.dtpFechaNac);
             this.groupBoxReg.Controls.Add(this.gpbDatosPersonales);
             this.groupBoxReg.Controls.Add(this.btnRegistrar);
             this.groupBoxReg.Controls.Add(this.btnCancelar);
@@ -455,6 +457,13 @@
             this.chkHabilitado.UseVisualStyleBackColor = true;
             this.chkHabilitado.Visible = false;
             // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.Location = new System.Drawing.Point(206, 475);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.Size = new System.Drawing.Size(200, 27);
+            this.dtpFechaNac.TabIndex = 44;
+            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,5 +521,6 @@
         private System.Windows.Forms.MaskedTextBox maskedTxtFechaNac;
         private System.Windows.Forms.GroupBox gpbDatosPersonales;
         private System.Windows.Forms.CheckBox chkHabilitado;
+        private System.Windows.Forms.DateTimePicker dtpFechaNac;
     }
 }

@@ -96,17 +96,26 @@ namespace UberFrba.Registro_usuario
         {
             if (editing)
             {
-                if (tipoUsuario == 3)
+                if (ejecutaAdmin)
                 {
-                    UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
-                    this.Hide();
-                    abmCliente.Show();
+                    if (tipoUsuario == 3)
+                    {
+                        UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                        this.Hide();
+                        abmCliente.Show();
+                    }
+                    else
+                    {
+                        UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                        this.Hide();
+                        abmChofer.Show();
+                    }
                 }
                 else
                 {
-                    UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                    UberFrba.Principal principalForm = new Principal();
                     this.Hide();
-                    abmChofer.Show();
+                    principalForm.Show();
                 }
             }
             else
@@ -212,6 +221,12 @@ namespace UberFrba.Registro_usuario
                         lstErroresCampos.Add("La fecha debe estar entre 1/1/1753 y 12/12/9999.\n");
                         huboErrorDato = true;
                     }
+                }
+
+                if (txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
+                {
+                    lstErroresCampos.Add("El codigo postal debe ser mayor a cero.\n");
+                    huboErrorDato = true;
                 }
             }
 
@@ -346,17 +361,26 @@ namespace UberFrba.Registro_usuario
                             }
                             MessageBox.Show("El usuario se ha modificado");
 
-                            if (tipoUsuario == 3)
+                            if (ejecutaAdmin)
                             {
-                                UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
-                                this.Hide();
-                                abmCliente.Show();
+                                if (tipoUsuario == 3)
+                                {
+                                    UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                                    this.Hide();
+                                    abmCliente.Show();
+                                }
+                                else
+                                {
+                                    UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                                    this.Hide();
+                                    abmChofer.Show();
+                                }
                             }
                             else
                             {
-                                UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                                UberFrba.Principal principalForm = new Principal();
                                 this.Hide();
-                                abmChofer.Show();
+                                principalForm.Show();
                             }
                         }
                         else
