@@ -94,6 +94,7 @@ namespace UberFrba
             facturacionToolStripMenuItem.Visible = false;
             estadisticasToolStripMenuItem.Visible = false;
             aBMTurnosToolStripMenuItem.Visible = false;
+            datosPersonalesToolStripMenuItem.Visible = false;
 
             usuario.Rol.setearFuncionalidadesAlRol();
 
@@ -141,6 +142,10 @@ namespace UberFrba
                         automovilToolStripMenuItem.Visible = true;
                         aBMTurnosToolStripMenuItem.Visible = true;
                         break;
+                    case Funcionalidades.Datos_Personales:
+                        administracionToolStripMenuItem.Visible = true;
+                        datosPersonalesToolStripMenuItem.Visible = true;
+                        break;
 
                 }
             }
@@ -157,6 +162,21 @@ namespace UberFrba
         {
             Abm_Turno.AbmTurno frmAbmTurno = new Abm_Turno.AbmTurno();
             frmAbmTurno.Show(this);
+        }
+
+        private void datosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int numero;
+            if (usuario.Rol.Id_Rol == 2 ) 
+            {
+                numero=2;
+            } else {
+                numero = 1;
+            }
+
+            Registro_usuario.RegistroUsuario registro = new Registro_usuario.RegistroUsuario(usuario, numero);
+            registro.Show(this);
+
         }
     }
 }

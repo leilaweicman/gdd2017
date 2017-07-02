@@ -112,6 +112,7 @@
             this.dgvRoles.Location = new System.Drawing.Point(18, 35);
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.ReadOnly = true;
+            this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRoles.Size = new System.Drawing.Size(343, 150);
             this.dgvRoles.TabIndex = 0;
             // 

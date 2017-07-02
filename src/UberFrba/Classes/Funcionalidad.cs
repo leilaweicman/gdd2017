@@ -90,9 +90,7 @@ namespace Classes
     }
 
     public enum Funcionalidades
-    {        
-        //Administrar_Usuarios,
-        //Cambiar_Clave,
+    {           
         ABM_Rol,
         ABM_Cliente,
         ABM_Automovil,
@@ -101,6 +99,7 @@ namespace Classes
         Rendicion_Cuenta,
         Facturacion,
         Listado_Estadistico,
-        ABM_Turno
+        ABM_Turno,
+        Datos_Personales
     }
 }

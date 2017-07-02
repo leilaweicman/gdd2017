@@ -35,14 +35,16 @@
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.grpRol = new System.Windows.Forms.GroupBox();
-            this.cmbRol = new System.Windows.Forms.ComboBox();
             this.btnRol = new System.Windows.Forms.Button();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.grpLogIn.SuspendLayout();
             this.grpRol.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpLogIn
             // 
+            this.grpLogIn.Controls.Add(this.btnCancelar);
             this.grpLogIn.Controls.Add(this.btnLogIn);
             this.grpLogIn.Controls.Add(this.txtContrasena);
             this.grpLogIn.Controls.Add(this.lblContrasena);
@@ -51,7 +53,7 @@
             this.grpLogIn.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpLogIn.Location = new System.Drawing.Point(24, 24);
             this.grpLogIn.Name = "grpLogIn";
-            this.grpLogIn.Size = new System.Drawing.Size(398, 215);
+            this.grpLogIn.Size = new System.Drawing.Size(398, 269);
             this.grpLogIn.TabIndex = 0;
             this.grpLogIn.TabStop = false;
             this.grpLogIn.Text = "Log In";
@@ -111,15 +113,6 @@
             this.grpRol.TabStop = false;
             this.grpRol.Text = "Seleccionar Rol";
             // 
-            // cmbRol
-            // 
-            this.cmbRol.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Location = new System.Drawing.Point(25, 40);
-            this.cmbRol.Name = "cmbRol";
-            this.cmbRol.Size = new System.Drawing.Size(331, 26);
-            this.cmbRol.TabIndex = 0;
-            // 
             // btnRol
             // 
             this.btnRol.Location = new System.Drawing.Point(25, 87);
@@ -130,11 +123,30 @@
             this.btnRol.UseVisualStyleBackColor = true;
             this.btnRol.Click += new System.EventHandler(this.btnRol_Click);
             // 
+            // cmbRol
+            // 
+            this.cmbRol.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRol.FormattingEnabled = true;
+            this.cmbRol.Location = new System.Drawing.Point(25, 40);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.Size = new System.Drawing.Size(331, 26);
+            this.cmbRol.TabIndex = 0;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(24, 212);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(342, 40);
+            this.btnCancelar.TabIndex = 5;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 260);
+            this.ClientSize = new System.Drawing.Size(459, 305);
             this.Controls.Add(this.grpRol);
             this.Controls.Add(this.grpLogIn);
             this.Name = "LogIn";
@@ -158,6 +170,7 @@
         private System.Windows.Forms.GroupBox grpRol;
         private System.Windows.Forms.Button btnRol;
         private System.Windows.Forms.ComboBox cmbRol;
+        private System.Windows.Forms.Button btnCancelar;
 
     }
 }
