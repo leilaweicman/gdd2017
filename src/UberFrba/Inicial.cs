@@ -75,5 +75,19 @@ namespace UberFrba
             this.Hide();
             abmChofer.Show();
         }
+
+        private void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            LogIn.LogIn loginForm = new LogIn.LogIn();
+            this.Hide();
+            loginForm.Show();
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            Registro_usuario.RegistroUsuario registroUsuarioForm = new Registro_usuario.RegistroUsuario();
+            this.Hide();
+            registroUsuarioForm.Show();
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace UberFrba.Abm_Rol
             cargarListadoFuncionalidadesDelSistema();
             btnGuardar.Visible = false;
             btnAceptar.Visible = true;
+            chkHabilitado.Visible = false;
         }
 
         public void Editar(Rol unRol)
