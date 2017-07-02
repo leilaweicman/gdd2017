@@ -254,11 +254,6 @@ insert into GIRLPOWER.Viaje (IDChofer, IDCliente, IDAutomovil, IDTurno, Cantidad
 VALUES (23, 42, 1, 1, 10, CONVERT(DateTime,'1976-04-13 17:00:00.000'), CONVERT(DateTime,'1976-04-13 18:00:00.000'), 170)
 */
 
-select * from GIRLPOWER.Turno
-
-select * from GIRLPOWER.Viaje where (IDCliente=1 OR IDCliente=3 AND YEAR(FechaInicio)=2017
-
-select * from GIRLPOWER.viaje where YEAR(FechaInicio)=2017
 
 
 		
