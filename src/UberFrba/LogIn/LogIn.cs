@@ -180,11 +180,22 @@ namespace UberFrba.LogIn
 
         private void btnRol_Click(object sender, EventArgs e)
         {
-            Rol rolAAsignar = new Rol();
-            rolAAsignar.Id_Rol = Convert.ToInt32(cmbRol.SelectedValue);
-            rolAAsignar.Nombre = cmbRol.SelectedText.ToString();
-            user.Rol = rolAAsignar;
-            Ingresar();
+            string strErrores = "";
+            strErrores += Validator.ValidarNulo(cmbRol.Text, "Rol");
+
+            if (strErrores.Length > 0)
+            {
+                MessageBox.Show(strErrores, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Rol rolAAsignar = new Rol();
+                rolAAsignar.Id_Rol = Convert.ToInt32(cmbRol.SelectedValue);
+                rolAAsignar.Nombre = cmbRol.SelectedText.ToString();
+                user.Rol = rolAAsignar;
+                Ingresar();
+            }
+
             
         }
 
