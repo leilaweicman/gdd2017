@@ -19,14 +19,17 @@ namespace UberFrba.Facturacion
         string nomCliente;
         DateTime fechaInicio = new DateTime();
         DateTime fechaFin = new DateTime();
+        DataSet ds;
+        Decimal totalFactura = 0;
 
-        public FacturaDetalle(int idCliente, string nomCliente, DateTime fechaInicio, DateTime fechaFin)
+        public FacturaDetalle(int idCliente, string nomCliente, DateTime fechaInicio, DateTime fechaFin, DataSet ds)
         {
             InitializeComponent();
             this.idCliente = idCliente;
             this.nomCliente = nomCliente;
             this.fechaInicio = fechaInicio;
             this.fechaFin = fechaFin;
+            this.ds = ds;
         }
 
         private void groupBoxReg_Enter(object sender, EventArgs e)
@@ -42,9 +45,10 @@ namespace UberFrba.Facturacion
         private void FacturaDetalle_Load(object sender, EventArgs e)
         {
             lblCliente.Text += nomCliente;
-            lblFechaInicio.Text += fechaInicio.Date.ToString();
-            lblFechaFin.Text += fechaFin.Date.ToString();
+            lblFechaInicio.Text += fechaInicio.Date.ToString("d");
+            lblFechaFin.Text += fechaFin.Date.ToString("d");
             cargarViajes();
+            lblTotalFact.Text += Convert.ToString(totalFactura);
         }
 
         private void cargarViajes()
@@ -57,7 +61,7 @@ namespace UberFrba.Facturacion
             parameterList.Add(new SqlParameter("@fechaInicio", fechaInicio));
             parameterList.Add(new SqlParameter("@fechaFin", fechaFin));
 
-            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerViajesFacturaDetalle", CommandType.StoredProcedure, parameterList);
+            //DataSet ds = SQLHelper.ExecuteDataSet("PR_traerViajesFacturaDetalle", CommandType.StoredProcedure, parameterList);
      
             foreach (DataRow row in ds.Tables[0].Rows)
             {
@@ -68,7 +72,43 @@ namespace UberFrba.Facturacion
                     viaje.FechaYHoraFin, viaje.CantKilometros, viaje.Precio);
                 dgvViajes.Sort(dgvViajes.Columns[2], ListSortDirection.Ascending);
 
+                totalFactura += viaje.Precio;
+
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            RegistroFactura regFacturaForm = new RegistroFactura();
+            this.Hide();
+            regFacturaForm.Show();
+        }
+
+        private void btnConfirmarRendicion_Click(object sender, EventArgs e)
+        {
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+            
+            parameterList.Add(new SqlParameter("@idCliente", idCliente));
+            parameterList.Add(new SqlParameter("@fechaInicio", fechaInicio));
+            parameterList.Add(new SqlParameter("@fechaFin", fechaFin));
+            parameterList.Add(new SqlParameter("@importeTotal", totalFactura));
+            parameterList.Add(new SqlParameter("@fecha", DateTime.Now));
+
+            try
+            {
+                SQLHelper.ExecuteNonQuery("PR_altaFactura", CommandType.StoredProcedure, parameterList);
+                MessageBox.Show("La factura se registró correctamente");
+
+                RegistroFactura regFacturaForm = new RegistroFactura();
+                this.Hide();
+                regFacturaForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+        }
+
     }
 }

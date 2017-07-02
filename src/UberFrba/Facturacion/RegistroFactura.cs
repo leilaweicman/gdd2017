@@ -82,6 +82,11 @@ namespace UberFrba.Facturacion
                         lstErroresCampos.Add("La fecha de finalización debe ser posterior a la de inicio.\n");
                         huboErrorCampo = true;
                     }
+                    if (fechaFin.Month != fechaInicio.Month)
+                    {
+                        lstErroresCampos.Add("Las facturas solo pueden realizarse en días de un mismo mes.\n");
+                        huboErrorCampo = true;
+                    }
                 }
             }
             if (huboErrorCampo)
@@ -105,14 +110,29 @@ namespace UberFrba.Facturacion
                     {
                         fechaFinFacturaExistente = Convert.ToDateTime(dr["FechaFin"]);
                     }
-                    MessageBox.Show("Ya existe una factura para el mes y año ingresado que finaliza el " + fechaFinFacturaExistente.ToString());
+                    MessageBox.Show("Ya existe una factura para el mes y año ingresado que finaliza el " + fechaFinFacturaExistente.Date.ToString("d"));
                 }
                 else
                 {
-                    string nomCliente = cmbCliente.SelectedItem.ToString();
-                    FacturaDetalle factDetalleForm = new FacturaDetalle(idCliente, nomCliente, fechaInicio, fechaFin);
-                    this.Hide();
-                    factDetalleForm.Show();
+                    parameterList.Clear();
+
+                    parameterList.Add(new SqlParameter("@idCliente", idCliente));
+                    parameterList.Add(new SqlParameter("@fechaInicio", fechaInicio));
+                    parameterList.Add(new SqlParameter("@fechaFin", fechaFin));
+
+                    ds = SQLHelper.ExecuteDataSet("PR_traerViajesFacturaDetalle", CommandType.StoredProcedure, parameterList);
+
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        string nomCliente = cmbCliente.Text;
+                        FacturaDetalle factDetalleForm = new FacturaDetalle(idCliente, nomCliente, fechaInicio, fechaFin, ds);
+                        this.Hide();
+                        factDetalleForm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El cliente no realizó viajes este mes, no hay nada para facturar");
+                    }
                 }
             }
         }

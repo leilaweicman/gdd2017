@@ -30,13 +30,13 @@
         {
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
+            this.maskedTxtFechaFin = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.maskedTxtFechaInicio = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.maskedTxtFechaInicio = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTxtFechaFin = new System.Windows.Forms.MaskedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBoxReg.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(315, 197);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(114, 35);
-            this.btnCancelar.TabIndex = 40;
+            this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -69,6 +69,38 @@
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
             // 
+            // maskedTxtFechaFin
+            // 
+            this.maskedTxtFechaFin.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTxtFechaFin.Location = new System.Drawing.Point(144, 90);
+            this.maskedTxtFechaFin.Mask = "##/##/####";
+            this.maskedTxtFechaFin.Name = "maskedTxtFechaFin";
+            this.maskedTxtFechaFin.PromptChar = ' ';
+            this.maskedTxtFechaFin.Size = new System.Drawing.Size(154, 23);
+            this.maskedTxtFechaFin.TabIndex = 2;
+            this.maskedTxtFechaFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Verdana", 10F);
+            this.label5.Location = new System.Drawing.Point(32, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 17);
+            this.label5.TabIndex = 44;
+            this.label5.Text = "Fecha inicio";
+            // 
+            // maskedTxtFechaInicio
+            // 
+            this.maskedTxtFechaInicio.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTxtFechaInicio.Location = new System.Drawing.Point(144, 41);
+            this.maskedTxtFechaInicio.Mask = "##/##/####";
+            this.maskedTxtFechaInicio.Name = "maskedTxtFechaInicio";
+            this.maskedTxtFechaInicio.PromptChar = ' ';
+            this.maskedTxtFechaInicio.Size = new System.Drawing.Size(154, 23);
+            this.maskedTxtFechaInicio.TabIndex = 1;
+            this.maskedTxtFechaInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -86,14 +118,14 @@
             this.cmbCliente.Location = new System.Drawing.Point(125, 141);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(173, 24);
-            this.cmbCliente.TabIndex = 34;
+            this.cmbCliente.TabIndex = 3;
             // 
             // btnSiguiente
             // 
             this.btnSiguiente.Location = new System.Drawing.Point(184, 197);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(114, 35);
-            this.btnSiguiente.TabIndex = 33;
+            this.btnSiguiente.TabIndex = 4;
             this.btnSiguiente.Text = "Siguiente";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
@@ -107,38 +139,6 @@
             this.label1.Size = new System.Drawing.Size(55, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
-            // 
-            // maskedTxtFechaInicio
-            // 
-            this.maskedTxtFechaInicio.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTxtFechaInicio.Location = new System.Drawing.Point(144, 41);
-            this.maskedTxtFechaInicio.Mask = "##/##/####";
-            this.maskedTxtFechaInicio.Name = "maskedTxtFechaInicio";
-            this.maskedTxtFechaInicio.PromptChar = ' ';
-            this.maskedTxtFechaInicio.Size = new System.Drawing.Size(154, 23);
-            this.maskedTxtFechaInicio.TabIndex = 43;
-            this.maskedTxtFechaInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // maskedTxtFechaFin
-            // 
-            this.maskedTxtFechaFin.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTxtFechaFin.Location = new System.Drawing.Point(144, 90);
-            this.maskedTxtFechaFin.Mask = "##/##/####";
-            this.maskedTxtFechaFin.Name = "maskedTxtFechaFin";
-            this.maskedTxtFechaFin.PromptChar = ' ';
-            this.maskedTxtFechaFin.Size = new System.Drawing.Size(154, 23);
-            this.maskedTxtFechaFin.TabIndex = 45;
-            this.maskedTxtFechaFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label5.Location = new System.Drawing.Point(32, 93);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 17);
-            this.label5.TabIndex = 44;
-            this.label5.Text = "Fecha inicio";
             // 
             // RegistroFactura
             // 

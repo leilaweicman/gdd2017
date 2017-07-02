@@ -7,7 +7,7 @@ CREATE PROCEDURE [GIRLPOWER].[PR_traerViajesFacturaDetalle]
 AS --tengo que validar en la aplicacion que no exista una factura en este mes
 BEGIN
 	SELECT * FROM GIRLPOWER.viaje WHERE IDCliente=@idCliente AND CAST(FechaFin as date) >= CAST(@fechaInicio as date) 
-	AND CAST(FechaFin as date) >= CAST(@fechaFin as date)
+	AND CAST(FechaFin as date) <= CAST(@fechaFin as date)
 END
 GO
 
@@ -23,6 +23,36 @@ BEGIN
 END
 GO
 
+
+IF OBJECT_ID ('GIRLPOWER.PR_altaFacturaDetalle', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_altaFacturaDetalle]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_altaFacturaDetalle] 
+(@idFactura int, @idCliente int, @fechaInicio datetime, @fechaFin datetime) AS
+BEGIN
+	INSERT INTO GIRLPOWER.FacturaDetalle (IDFactura, IDViaje)
+	(SELECT @idFactura, IDViaje FROM GIRLPOWER.viaje WHERE IDCliente=@idCliente AND CAST(FechaFin as date) >= CAST(@fechaInicio as date) 
+	AND CAST(FechaFin as date) <= CAST(@fechaFin as date))
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.PR_altaFactura', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_altaFactura]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_altaFactura] 
+(@idCliente int, @fechaInicio datetime, @fechaFin datetime, @importeTotal numeric(18,2), @fecha dateTime) AS
+BEGIN
+	declare @proxNumFactura numeric (18,0) = (select max(f.NroFactura) + 1 from GIRLPOWER.Factura f)
+
+	INSERT INTO GIRLPOWER.Factura (IDCliente, FechaInicio, FechaFin, ImporteTotal, Fecha, NroFactura)
+	VALUES (@idCliente, @fechaInicio, @fechaFin, @importeTotal, @fecha, @proxNumFactura)
+
+	declare @idFactura int = (select IDFactura from Factura where NroFactura = @proxNumFactura)
+	exec [GIRLPOWER].[PR_altaFacturaDetalle] @idFactura, @idCliente, @fechaInicio, @fechaFin
+END
+GO
 select * from GIRLPOWER.Factura
 
 
