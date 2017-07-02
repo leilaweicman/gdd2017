@@ -75,6 +75,7 @@ namespace Classes
             if (Nombre == "Registro_Viajes") return Funcionalidades.Registro_Viajes;
             if (Nombre == "Listado_Estadistico") return Funcionalidades.Listado_Estadistico;
             if (Nombre == "ABM_Turno") return Funcionalidades.ABM_Turno;
+            if (Nombre == "Datos_Personales") return Funcionalidades.Datos_Personales;
             return null;
         }
 
