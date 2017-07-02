@@ -170,7 +170,7 @@ namespace UberFrba.Registro_usuario
                 }
                 if (txtContrasenia.Text != txtConfContrasenia.Text)
                 {
-                    lstErroresCampos.Add("Las constrasenias no coinciden.\n");
+                    lstErroresCampos.Add("Las constraseñas no coinciden.\n");
                     huboErrorDato = true;
                 }
                 if (!Validator.EsNumero(txtDni.Text))
@@ -186,7 +186,7 @@ namespace UberFrba.Registro_usuario
                 
                 if (!Validator.EsNumero(txtTel.Text))
                 {
-                    lstErroresCampos.Add("El telefono debe contener solo números.\n");
+                    lstErroresCampos.Add("El teléfono debe contener solo números.\n");
                     huboErrorDato = true;
                 }
                 else if (int.Parse(txtTel.Text) <= 0)
