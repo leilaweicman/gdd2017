@@ -33,7 +33,7 @@ namespace UberFrba.Rendicion_Viajes
             try
             {
                 //Obtengo los clientes y los muestro en el combobox.
-                DataSet ds = Turno.obtenerTodos();
+                DataSet ds = Turno.obtenerTurnosHabilitados();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los clientes
@@ -54,7 +54,7 @@ namespace UberFrba.Rendicion_Viajes
             try
             {
                 //Obtengo los choferes y los muestro en el combobox.
-                DataSet ds = Usuario.ObtenerChoferes();
+                DataSet ds = Usuario.ObtenerChoferesHabilitados();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los choferes
@@ -100,20 +100,42 @@ namespace UberFrba.Rendicion_Viajes
             }
             return existe==1?true:false;
         }
+
+        private int ObtenerCantidadViajes()
+        {
+             SQLHelper.Inicializar();
+            string query = "select count(*) as Cantidad from  [GIRLPOWER].Viaje where cast(FechaFin as date)='" + this.dtpFecha.Value.ToString("yyyy-MM-dd") + "' and idTurno=" + this.cmbTurno.SelectedValue + " and idChofer=" + this.cmbChofer.SelectedValue;
+            var aux = SQLHelper.ExecuteQuery(query);
+            SQLHelper.Cerrar();
+            int cant= 0;
+            while (aux.Read())
+            {
+                if (!object.Equals(aux["Cantidad"], DBNull.Value))
+                    cant = int.Parse(aux["Cantidad"].ToString());
+            }
+            return cant;
+        }
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             if (this.txtPorcentaje.Text != ""&&this.dtpFecha.Value.ToString("yyyy-MM-dd") != "")
             {
                 if (!existe())
                 {
-                    RendicionDetalle rd = new RendicionDetalle();
-                    rd.Fecha = this.dtpFecha.Value.ToString("yyyy-MM-dd");
-                    rd.Porcentaje = int.Parse(this.txtPorcentaje.Text);
-                    rd.idchofer = int.Parse(this.cmbChofer.SelectedValue.ToString());
-                    rd.IDTurno = int.Parse(this.cmbTurno.SelectedValue.ToString());
-                    Rendicion_Viajes.Detalle reind = new Rendicion_Viajes.Detalle(rd);
-                    this.Hide();
-                    reind.Show();
+                    if (ObtenerCantidadViajes() > 0)
+                    {
+                        RendicionDetalle rd = new RendicionDetalle();
+                        rd.Fecha = this.dtpFecha.Value.ToString("yyyy-MM-dd");
+                        rd.Porcentaje = int.Parse(this.txtPorcentaje.Text);
+                        rd.idchofer = int.Parse(this.cmbChofer.SelectedValue.ToString());
+                        rd.IDTurno = int.Parse(this.cmbTurno.SelectedValue.ToString());
+                        Rendicion_Viajes.Detalle reind = new Rendicion_Viajes.Detalle(rd);
+                        this.Hide();
+                        reind.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay ningun viaje para realizar la rendicion");
+                    }
                 }
                 else
                 {

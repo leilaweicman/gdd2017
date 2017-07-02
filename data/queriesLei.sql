@@ -220,3 +220,32 @@ BEGIN
 	SELECT TOP 1 * FROM girlpower.Turno WHERE IDTurno= @IDTurno
 END
 GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoViaje', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoViaje]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoViaje] AS
+BEGIN
+	SELECT * FROM girlpower.Viaje
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoViajeParaVerificarExistencia', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoViajeParaVerificarExistencia]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoViajeParaVerificarExistencia] 
+(@IDTurno int, @IDChofer int, @IDCliente int, @FechaInicio varchar (100), @FechaFin varchar(100)) AS
+BEGIN
+	SELECT TOP 1 * FROM girlpower.Viaje 
+	WHERE IDTurno= @IDTurno AND IDCliente = @IDCliente AND IDChofer=@IDChofer 
+	AND ( 
+	(convert(datetime,@FechaInicio,120) between FechaInicio AND FechaFin)
+	OR (convert(datetime,@FechaFin,120) BETWEEN FechaInicio AND FechaFin) 
+	OR FechaInicio between convert(datetime,@FechaInicio,120) AND convert(datetime,@FechaFin,120)
+	OR FechaFin between convert(datetime,@FechaInicio,120) AND convert(datetime,@FechaFin,120)
+	)
+END
+GO
+
