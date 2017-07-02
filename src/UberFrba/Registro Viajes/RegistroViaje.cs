@@ -16,10 +16,16 @@ namespace UberFrba.Registro_Viajes
     public partial class RegistroViaje : Form
     {
         int IDAutomovil = 0;
-
+        Usuario usuario = new Usuario();
         public RegistroViaje()
         {
             InitializeComponent();
+        }
+
+        public RegistroViaje(Usuario u)
+        {
+            InitializeComponent();
+            usuario = u;
         }
 
         private void RegistroViaje_Load(object sender, EventArgs e)
@@ -29,9 +35,76 @@ namespace UberFrba.Registro_Viajes
             dtpFechaInicio.Format = DateTimePickerFormat.Custom;
             dtpFechaFin.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             dtpFechaFin.Format = DateTimePickerFormat.Custom;
-            CargarChoferes();
-            CargarClientes();
+           
+            //me fijo con que rol ingresó al sistema
+            //si entro con chofer, cargo los datos de ese chofer en el combo y desahbilito el cmbChofer
+            //si entro con cliente, cargo los datos de ese cliente en el combo y desahbilito el cmbCliente
+            if (usuario.Rol.Id_Rol == 2)
+            {
+                CargarChofer();
+                cmbChofer.Enabled = false;
+            }
+            else
+            {
+                CargarChoferes();
+            }
+
+
+            if (usuario.Rol.Id_Rol == 3)
+            {
+                CargarClienter();
+                cmbCliente.Enabled = false;
+            }
+            else
+            {
+                CargarClientes();
+            }
+
             cargarTurnos();
+        }
+
+        private void CargarClienter()
+        {
+            try
+            {
+                //Obtengo el cliente que ingresó al sistema y lo muestro en el combo
+                DataSet ds = usuario.ObtenerClienteHabilitado();
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    //Uso el manager de dropdowns para cargar el comboBox con el chofer
+                    DropDownListManager.CargarCombo(cmbCliente, ds.Tables[0], "IDCliente", "Nombre", false, "");
+                }
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarChofer()
+        {
+            try
+            {
+                //Obtengo el chofer que ingresó al sistema y lo muestro en el combo
+                DataSet ds = usuario.ObtenerChoferHabilitado();
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    //Uso el manager de dropdowns para cargar el comboBox con el chofer
+                    DropDownListManager.CargarCombo(cmbChofer, ds.Tables[0], "IDChofer", "Nombre", false, "");
+                }
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cargarTurnos()
@@ -209,8 +282,27 @@ namespace UberFrba.Registro_Viajes
             txtAutomovil.Text = "";
             txtKilometros.Text = "";
             txtAutomovil.Enabled = false;
-            CargarChoferes();
-            CargarClientes();
+            
+            if (usuario.Rol.Id_Rol == 2)
+            {
+                CargarChofer();
+                cmbChofer.Enabled = false;
+            }
+            else
+            {
+                CargarChoferes();
+            }
+
+            if (usuario.Rol.Id_Rol == 3)
+            {
+                CargarClienter();
+                cmbCliente.Enabled = false;
+            }
+            else
+            {
+                CargarClientes();
+            }
+
             cargarTurnos();            
             dtpFechaInicio.Text = "";
             dtpFechaFin.Text = "";

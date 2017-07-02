@@ -174,6 +174,32 @@ END
 GO
 
 
+IF OBJECT_ID ('GIRLPOWER.traerListadoUsuarioQueEsChoferHabilitado', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueEsChoferHabilitado]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueEsChoferHabilitado] (@IDUsuario int) AS
+BEGIN
+	SELECT top 1 * FROM girlpower.Usuario u
+	join girlpower.Chofer c on u.IDUsuario=c.IDUsuario
+	join GIRLPOWER.RolPorUsuario r on u.IDUsuario= r.IDUsuario
+	WHERE r.Habilitado = 1 and u.IDUsuario=@IDUsuario
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoUsuarioQueEsClienteHabilitado', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueEsClienteHabilitado]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueEsClienteHabilitado] (@IDUsuario int) AS
+BEGIN
+	SELECT top 1 * FROM girlpower.Usuario u
+	join girlpower.Cliente c on u.IDUsuario=c.IDUsuario
+	join GIRLPOWER.RolPorUsuario r on u.IDUsuario= r.IDUsuario
+	WHERE r.Habilitado = 1 and u.IDUsuario=@IDUsuario
+END
+GO
+
 IF OBJECT_ID ('GIRLPOWER.traerAutomovilDelChofer', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[traerAutomovilDelChofer]
 GO
