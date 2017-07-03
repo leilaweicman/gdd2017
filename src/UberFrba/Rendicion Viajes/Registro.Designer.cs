@@ -111,6 +111,7 @@
             // 
             // cmbTurno
             // 
+            this.cmbTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTurno.FormattingEnabled = true;
             this.cmbTurno.Location = new System.Drawing.Point(132, 178);
             this.cmbTurno.Name = "cmbTurno";
@@ -129,6 +130,7 @@
             // 
             // cmbChofer
             // 
+            this.cmbChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChofer.FormattingEnabled = true;
             this.cmbChofer.Location = new System.Drawing.Point(132, 124);
             this.cmbChofer.Name = "cmbChofer";

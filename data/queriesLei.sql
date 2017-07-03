@@ -295,8 +295,8 @@ GO
 CREATE PROCEDURE [GIRLPOWER].[traerListadoUsuarioPorIdCliente] (@IDCliente int) AS
 BEGIN
 	SELECT top 1 * FROM girlpower.Usuario u
-	join girlpower.Chofer c on u.IDUsuario=c.IDUsuario
+	join girlpower.Cliente c on u.IDUsuario=c.IDUsuario
 	join GIRLPOWER.RolPorUsuario r on u.IDUsuario = r.IDUsuario
-	WHERE c.IDChofer=@IDCliente
+	WHERE c.IDCliente=@IDCliente
 END
 GO

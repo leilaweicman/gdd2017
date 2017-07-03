@@ -65,12 +65,21 @@ namespace UberFrba.Listado_Estadistico
             //se valida que el año ingresado esté entre 1900 y 2017, que sea un número y que no sea nulo
             string strErrores = "";
             strErrores += Validator.ValidarNulo(txtAño.Text, "Año");
-            
-            if (txtAño.Text != "")
+            if (strErrores.Length > 0)
             {
-                strErrores += Validator.SoloNumeros(txtAño.Text, "Año");
-                strErrores += Validator.EsAño(txtAño.Text, "Año");
+                MessageBox.Show(strErrores, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
+
+            strErrores += Validator.SoloNumeros(txtAño.Text, "Año");
+
+            if (strErrores.Length > 0)
+            {
+                MessageBox.Show(strErrores, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            strErrores += Validator.EsAño(txtAño.Text, "Año");           
 
             //se valida que los combobox no esten vacíos
             strErrores += Validator.ValidarNulo(cmbTrimestre.Text, "Trimestre");
