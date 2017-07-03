@@ -129,5 +129,12 @@ namespace UberFrba.Abm_Cliente
             dgvClientes.Rows.Clear();
             cargarClientes();
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Registro_usuario.RegistroUsuario registroUsuarioForm = new Registro_usuario.RegistroUsuario(3);//porque el id de rol cliente es 3
+            this.Hide();
+            registroUsuarioForm.Show();
+        }
     }
 }

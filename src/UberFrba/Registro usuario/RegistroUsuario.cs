@@ -20,6 +20,8 @@ namespace UberFrba.Registro_usuario
         bool editing= false;
         int tipoUsuario=0;
         bool ejecutaAdmin;
+        bool altaConRol = false;
+        int rolAlta;
 
         public RegistroUsuario()
         {
@@ -35,6 +37,12 @@ namespace UberFrba.Registro_usuario
             InitializeComponent();
         }
 
+        public RegistroUsuario(int rol)
+        {
+            altaConRol = true;
+            rolAlta = rol;
+            InitializeComponent();
+        }
     
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
@@ -43,6 +51,19 @@ namespace UberFrba.Registro_usuario
                 txtConfContrasenia.Enabled = false;
                 txtContrasenia.Enabled = false;
             }
+            if (altaConRol)
+            {
+                if (rolAlta == 2)
+                {
+                    chkChofer.Checked = true;
+                }
+                else if (rolAlta == 3)
+                {
+                    chkCliente.Checked = true;
+                }
+                gpbTipoUsuario.Enabled = false;
+            }
+
 
             if (editing)
             {
@@ -363,7 +384,7 @@ namespace UberFrba.Registro_usuario
                                     this.Hide();
                                     abmCliente.Show();
                                 }
-                                else
+                                else if(tipoUsuario ==2)
                                 {
                                     UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
                                     this.Hide();
@@ -383,9 +404,28 @@ namespace UberFrba.Registro_usuario
 
                             SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
                             MessageBox.Show("El usuario se ha registrado correctamente");
-                            Inicial inicialForm = new Inicial();
-                            this.Hide();
-                            inicialForm.Show();
+
+                            if (altaConRol)
+                            {
+                                if (rolAlta == 3)
+                                {
+                                    UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                                    this.Hide();
+                                    abmCliente.Show();
+                                }
+                                else if(rolAlta ==2)
+                                {
+                                    UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                                    this.Hide();
+                                    abmChofer.Show();
+                                }
+                            }
+                            else
+                            {
+                                Inicial inicialForm = new Inicial();
+                                this.Hide();
+                                inicialForm.Show();
+                            }
                         }
 
 

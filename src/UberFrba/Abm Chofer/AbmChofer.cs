@@ -130,6 +130,13 @@ namespace UberFrba.Abm_Chofer
             this.Hide();            
         }
 
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Registro_usuario.RegistroUsuario registroUsuarioForm = new Registro_usuario.RegistroUsuario(2);//porque el id de rol chofer es 2
+            this.Hide();
+            registroUsuarioForm.Show();
+        }
+
 
     }
 }

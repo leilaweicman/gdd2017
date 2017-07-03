@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
@@ -58,6 +58,7 @@
             this.Piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Depto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChoferes)).BeginInit();
@@ -65,6 +66,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAgregar);
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnInicio);
             this.groupBox1.Controls.Add(this.btnEditar);
@@ -81,10 +83,10 @@
             // btnEliminar
             // 
             this.btnEliminar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(812, 91);
+            this.btnEliminar.Location = new System.Drawing.Point(880, 91);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(103, 35);
-            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.TabIndex = 8;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -92,10 +94,10 @@
             // btnInicio
             // 
             this.btnInicio.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio.Location = new System.Drawing.Point(937, 91);
+            this.btnInicio.Location = new System.Drawing.Point(1002, 91);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(103, 35);
-            this.btnInicio.TabIndex = 8;
+            this.btnInicio.TabIndex = 9;
             this.btnInicio.Text = "Cerrar";
             this.btnInicio.UseVisualStyleBackColor = true;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
@@ -103,10 +105,10 @@
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(679, 91);
+            this.btnEditar.Location = new System.Drawing.Point(758, 91);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(103, 35);
-            this.btnEditar.TabIndex = 6;
+            this.btnEditar.TabIndex = 7;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -205,8 +207,8 @@
             // 
             this.dgvChoferes.AllowUserToAddRows = false;
             this.dgvChoferes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvChoferes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvChoferes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvChoferes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChoferes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDChofer,
@@ -225,8 +227,8 @@
             this.dgvChoferes.Location = new System.Drawing.Point(17, 222);
             this.dgvChoferes.Name = "dgvChoferes";
             this.dgvChoferes.ReadOnly = true;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvChoferes.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvChoferes.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvChoferes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvChoferes.Size = new System.Drawing.Size(1163, 313);
             this.dgvChoferes.TabIndex = 0;
@@ -240,8 +242,8 @@
             // 
             // Dni
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dni.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dni.DefaultCellStyle = dataGridViewCellStyle8;
             this.Dni.HeaderText = "DNI";
             this.Dni.Name = "Dni";
             this.Dni.ReadOnly = true;
@@ -317,6 +319,17 @@
             this.Localidad.ReadOnly = true;
             this.Localidad.Width = 102;
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(637, 91);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(103, 35);
+            this.btnAgregar.TabIndex = 6;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // AbmChofer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,6 +377,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Piso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Depto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Localidad;
+        private System.Windows.Forms.Button btnAgregar;
 
     }
 }
