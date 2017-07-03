@@ -140,9 +140,27 @@ namespace UberFrba.Registro_usuario
             }
             else
             {
-                Inicial formInicial = new Inicial();
-                this.Hide();
-                formInicial.Show();
+                if (altaConRol)
+                {
+                    if (tipoUsuario == 3)
+                    {
+                        UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                        this.Hide();
+                        abmCliente.Show();
+                    }
+                    else
+                    {
+                        UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                        this.Hide();
+                        abmChofer.Show();
+                    }
+                }
+                else
+                {
+                    Inicial formInicial = new Inicial();
+                    this.Hide();
+                    formInicial.Show();
+                }
             }
         }
 
