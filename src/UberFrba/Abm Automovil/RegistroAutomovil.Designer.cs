@@ -133,6 +133,7 @@
             // 
             // cmbModelo
             // 
+            this.cmbModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbModelo.FormattingEnabled = true;
             this.cmbModelo.Location = new System.Drawing.Point(132, 131);
             this.cmbModelo.Name = "cmbModelo";
@@ -141,6 +142,7 @@
             // 
             // cmbMarca
             // 
+            this.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMarca.FormattingEnabled = true;
             this.cmbMarca.Location = new System.Drawing.Point(132, 88);
             this.cmbMarca.Name = "cmbMarca";
@@ -150,6 +152,7 @@
             // 
             // cmbChofer
             // 
+            this.cmbChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChofer.FormattingEnabled = true;
             this.cmbChofer.Location = new System.Drawing.Point(132, 44);
             this.cmbChofer.Name = "cmbChofer";
@@ -158,7 +161,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(473, 333);
+            this.btnRegistrar.Location = new System.Drawing.Point(608, 322);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(141, 35);
             this.btnRegistrar.TabIndex = 33;
@@ -255,9 +258,9 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(389, 451);
+            this.btnCancelar.Location = new System.Drawing.Point(655, 424);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(80, 35);
+            this.btnCancelar.Size = new System.Drawing.Size(141, 35);
             this.btnCancelar.TabIndex = 36;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -267,7 +270,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 515);
+            this.ClientSize = new System.Drawing.Size(857, 481);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBoxReg);
             this.Name = "RegistroAutomovil";

@@ -1,5 +1,11 @@
 cosas que vi:
 
+- el abm automovil deberia traer solo los choferes que tengan auto, o si no tiene y se selecciona, message box diciendo que no tiene auto 
+
+- registre un usuario, y el combobox de cliente y chofer me los trae repetidos en viaje y en automovil (debe estar mal la sp)
+
+- si abro el abm de choferes o clientes y toco agregar, si pongo cancelar abre la ventana de iniciar sesion (el menu quda abierto)
+
 *login
 - estaria bueno que tenga un cancelar para volver para atras y poder registrarse en caso de haber apretado mal
 
