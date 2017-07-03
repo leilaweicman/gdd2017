@@ -238,9 +238,13 @@ namespace UberFrba.Registro_usuario
                     huboErrorDato = true;
                 }
 
-                if (txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
+                if(txtCP.Enabled && !Validator.EsNumero(txtCP.Text))
                 {
-                    lstErroresCampos.Add("El codigo postal debe ser mayor a cero.\n");
+                    lstErroresCampos.Add("El código postal debe ser numérico");
+                }
+                else if(txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
+                {
+                    lstErroresCampos.Add("El código postal debe ser mayor a cero.\n");
                     huboErrorDato = true;
                 }
             }
