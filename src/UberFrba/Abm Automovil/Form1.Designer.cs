@@ -299,7 +299,7 @@
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "AbmAutomovil";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutomoviles)).EndInit();

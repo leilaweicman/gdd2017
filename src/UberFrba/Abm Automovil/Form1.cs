@@ -198,9 +198,7 @@ namespace UberFrba.Abm_Automovil
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Home formHome = new Home();
-            this.Hide();
-            formHome.Show();
+            this.Hide();            
         }
 
         private void dgvAutomoviles_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -95,26 +95,42 @@ namespace UberFrba.Abm_Turno
             }
             else
             {
-                if(!Validator.EsNumero(txtPrecioBase.Text))
+                if(!Validator.EsDecimal(txtPrecioBase.Text))
                 {
-                    lstErroresCampos.Add("El precio base debe ser numérico\n");
+                    lstErroresCampos.Add("El precio base debe ser decimal con coma y no con punto.\n");
+                    huboErrorDato = true;
                 } 
                 else if (Validator.MayorACero(txtPrecioBase.Text, "Precio base")!="")
                 {
-                    lstErroresCampos.Add("El precio base debe ser mayor a cero\n");
+                    lstErroresCampos.Add("El precio base debe ser mayor a cero.\n");
+                    huboErrorDato = true;
+                }
+                else if (txtPrecioBase.Text.IndexOf(".") > 0)
+                {
+                    lstErroresCampos.Add("Por favor utilice una coma en vez de un punto para indicar el precio base.\n");
+                    huboErrorDato = true;
                 }
 
-                if(!Validator.EsNumero(txtValorKilometro.Text))
+                if(!Validator.EsDecimal(txtValorKilometro.Text))
                 {
-                    lstErroresCampos.Add("El valor del kilómetro base debe ser numérico\n");
+                    lstErroresCampos.Add("El valor del kilómetro base debe ser decimal con coma y no con punto.\n");
+                    huboErrorDato = true;
                 } 
                 else if (Validator.MayorACero(txtValorKilometro.Text, "Valor kilómetro")!="")
                 {
-                    lstErroresCampos.Add("El valor del kilómetro debe ser mayor a cero\n");
+                    lstErroresCampos.Add("El valor del kilómetro debe ser mayor a cero.\n");
+                    huboErrorDato = true;
                 }
-                if(int.Parse(cmbHoraInicio.SelectedItem.ToString()) <= int.Parse(cmbHoraFin.SelectedItem.ToString()))
+                else if (txtValorKilometro.Text.IndexOf(".") > 0)
                 {
-                    lstErroresCampos.Add("El horario de inicio debe ser mayor al de finalización\n");
+                    lstErroresCampos.Add("Por favor utilice una coma en vez de un punto para indicar el valor del kilómetro.\n");
+                    huboErrorDato = true;
+                }
+
+                if(int.Parse(cmbHoraInicio.SelectedItem.ToString()) >= int.Parse(cmbHoraFin.SelectedItem.ToString()))
+                {
+                    lstErroresCampos.Add("El horario de inicio debe ser menor al de finalización.\n");
+                    huboErrorDato = true;
                 }
             }
 
