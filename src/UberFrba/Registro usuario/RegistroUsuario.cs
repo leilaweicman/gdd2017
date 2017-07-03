@@ -241,6 +241,7 @@ namespace UberFrba.Registro_usuario
                 if(txtCP.Enabled && !Validator.EsNumero(txtCP.Text))
                 {
                     lstErroresCampos.Add("El código postal debe ser numérico");
+                    huboErrorDato = true;
                 }
                 else if(txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
                 {
