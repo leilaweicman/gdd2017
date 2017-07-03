@@ -129,10 +129,9 @@ namespace UberFrba.Abm_Automovil
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-           
+            Form1 abmAutomovilForm = new Form1();
             this.Hide();
-         
-        
+            abmAutomovilForm.Show();
         }
 
         private void cmbMarca_SelectedIndexChanged(object sender, EventArgs e)
