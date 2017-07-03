@@ -183,7 +183,22 @@ BEGIN
 	SELECT top 1 * FROM girlpower.Usuario u
 	join girlpower.Chofer c on u.IDUsuario=c.IDUsuario
 	join GIRLPOWER.RolPorUsuario r on u.IDUsuario= r.IDUsuario
+	join girlpower.Automovil a on c.IDChofer=a.IDChofer
 	WHERE r.Habilitado = 1 and u.IDUsuario=@IDUsuario
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoUsuarioQueSonChoferesHabilitadosConAuto', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueSonChoferesHabilitadosConAuto]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoUsuarioQueSonChoferesHabilitadosConAuto] AS
+BEGIN
+	SELECT * FROM girlpower.Usuario u
+	join girlpower.Chofer c on u.IDUsuario=c.IDUsuario
+	join GIRLPOWER.RolPorUsuario r on u.IDUsuario= r.IDUsuario
+	join girlpower.Automovil a on c.IDChofer=a.IDChofer
+	WHERE r.Habilitado = 1
 END
 GO
 
@@ -298,5 +313,17 @@ BEGIN
 	join girlpower.Cliente c on u.IDUsuario=c.IDUsuario
 	join GIRLPOWER.RolPorUsuario r on u.IDUsuario = r.IDUsuario
 	WHERE c.IDCliente=@IDCliente
+END
+GO
+
+IF OBJECT_ID ('GIRLPOWER.traerListadoTurnoHabilitadosPorAutomovil', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[traerListadoTurnoHabilitadosPorAutomovil]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[traerListadoTurnoHabilitadosPorAutomovil] (@IDAutomovil INT) AS
+BEGIN
+	SELECT * FROM girlpower.Turno t
+	inner join GIRLPOWER.TurnoPorAutomovil ta on ta.IDTurno=t.IDTurno
+	 WHERE ta.IDAutomovil=@IDAutomovil and t.Habilitado = 1
 END
 GO

@@ -28,6 +28,10 @@ cosas que vi:
 
 *estadisticas
 - chofer con viaje mas largo realizado trae como chofer a un cliente (supongo que sea el cliente del viaje mas largo realizado)
+
+*registrar viaje
+- deberia traer los turnos de ese automovil
+- deberia validar el si el chofer selccionado no tiene automovil
 - cuando no hay viajes realizados ese trimestre muestra la tabla vacia, esta bien o deberiamos mostrar un msg diciendo que no hay viajes ese trimestre?
 - cliente con mas viajes con el mismo auto: no seria mejor ordenar por cantidad?
 - clientes con mayor consumo solo trae los que tienen factura, no los que hicieron un viaje, esta bien eso?

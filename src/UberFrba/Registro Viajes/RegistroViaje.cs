@@ -17,6 +17,7 @@ namespace UberFrba.Registro_Viajes
     {
         int IDAutomovil = 0;
         Usuario usuario = new Usuario();
+        bool choferTieneAuto = true;
         public RegistroViaje()
         {
             InitializeComponent();
@@ -26,41 +27,58 @@ namespace UberFrba.Registro_Viajes
         {
             InitializeComponent();
             usuario = u;
+
         }
 
         private void RegistroViaje_Load(object sender, EventArgs e)
         {
-            txtAutomovil.Enabled = false;
-            dtpFechaInicio.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            dtpFechaInicio.Format = DateTimePickerFormat.Custom;
-            dtpFechaFin.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            dtpFechaFin.Format = DateTimePickerFormat.Custom;
-           
-            //me fijo con que rol ingresó al sistema
-            //si entro con chofer, cargo los datos de ese chofer en el combo y desahbilito el cmbChofer
-            //si entro con cliente, cargo los datos de ese cliente en el combo y desahbilito el cmbCliente
-            if (usuario.Rol.Id_Rol == 2)
-            {
-                CargarChofer();
-                cmbChofer.Enabled = false;
-            }
-            else
-            {
-                CargarChoferes();
-            }
+            
+                txtAutomovil.Enabled = false;
+                dtpFechaInicio.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+                dtpFechaInicio.Format = DateTimePickerFormat.Custom;
+                dtpFechaFin.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+                dtpFechaFin.Format = DateTimePickerFormat.Custom;
 
+                //me fijo con que rol ingresó al sistema
+                //si entro con chofer, cargo los datos de ese chofer en el combo y desahbilito el cmbChofer
+                //si entro con cliente, cargo los datos de ese cliente en el combo y desahbilito el cmbCliente
+                if (usuario.Rol.Id_Rol == 2)
+                {
+                    CargarChofer();
+                    cmbChofer.Enabled = false;
+                }
+                else
+                {
+                    CargarChoferes();
+                }
+                if (usuario.Rol.Id_Rol == 3)
+                {
+                    CargarClienter();
+                    cmbCliente.Enabled = false;
+                }
+                else
+                {
+                    CargarClientes();
+                }
 
-            if (usuario.Rol.Id_Rol == 3)
-            {
-                CargarClienter();
-                cmbCliente.Enabled = false;
-            }
-            else
-            {
-                CargarClientes();
-            }
+               // cargarTurnos(); los turnos se cargan cuando selecciona el chofer
 
-            cargarTurnos();
+                //si está ingresando como chofer, debe tener automovil
+                if (! choferTieneAuto)
+                {
+                    //no puede registrar viaje porque no tiene automovil
+                    cmbChofer.Enabled = false;
+                    cmbCliente.Enabled = false;
+                    cmbTurno.Enabled = false;
+                    txtAutomovil.Enabled = false;
+                    txtKilometros.Enabled = false;
+                    dtpFechaFin.Enabled = false;
+                    dtpFechaInicio.Enabled = false;
+                    btnRegistrar.Enabled = false;
+
+                    MessageBox.Show("Debe tener automovil para regisrtar su viaje.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   
+                }
         }
 
         private void CargarClienter()
@@ -90,11 +108,15 @@ namespace UberFrba.Registro_Viajes
             try
             {
                 //Obtengo el chofer que ingresó al sistema y lo muestro en el combo
-                DataSet ds = usuario.ObtenerChoferHabilitado();
+                DataSet ds = usuario.ObtenerChoferHabilitadoConAuto();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con el chofer
                     DropDownListManager.CargarCombo(cmbChofer, ds.Tables[0], "IDChofer", "Nombre", false, "");
+                }
+                else
+                {
+                    choferTieneAuto = false;                   
                 }
             }
             catch (ErrorConsultaException ex)
@@ -112,7 +134,7 @@ namespace UberFrba.Registro_Viajes
             try
             {
                 //Obtengo los clientes y los muestro en el combobox.
-                DataSet ds = Turno.obtenerTurnosHabilitados();
+                DataSet ds = Turno.ObtenerTurnosHabilitadosDelAuto(IDAutomovil);
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los clientes
@@ -156,7 +178,7 @@ namespace UberFrba.Registro_Viajes
             try
             {
                 //Obtengo los choferes y los muestro en el combobox.
-                DataSet ds = Usuario.ObtenerChoferesHabilitados();
+                DataSet ds = Usuario.ObtenerChoferesHabilitadosConAuto();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
                     //Uso el manager de dropdowns para cargar el comboBox con los choferes
@@ -187,6 +209,8 @@ namespace UberFrba.Registro_Viajes
                     txtAutomovil.Text = auto.Patente;
                     IDAutomovil = auto.IDAutomovil;
                 }
+
+                cargarTurnos();
             }
             catch (ErrorConsultaException ex)
             {
