@@ -24,11 +24,11 @@ GO
 create procedure [girlpower].[traerListadoUsuarioChoferesConViajeMasLargo] (@fechaInicio datetime, @fechaFin datetime)
 as begin
 select top 5 u.Nombre, max(v.CantidadKilometros)as Kilometros
-from [GIRLPOWER].Viaje v join [GIRLPOWER].Cliente c
-on v.IDCliente=c.IDCliente
+from [GIRLPOWER].Viaje v join [GIRLPOWER].Chofer c
+on v.IDCliente=c.IDChofer
 join [GIRLPOWER].Usuario u on u.IDUsuario=c.IDUsuario
 where v.FechaInicio between CAST(@fechaInicio as date) and CAST(@fechaFin as date)
-group by v.IDCliente,u.Nombre
+group by v.IDChofer,u.Nombre
 order by 2 desc
 end
 go
