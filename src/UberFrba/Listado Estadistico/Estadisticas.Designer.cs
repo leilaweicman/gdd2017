@@ -83,6 +83,7 @@
             // 
             // cmbTipo
             // 
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
             "Choferes con mayor recaudación",
@@ -115,12 +116,13 @@
             this.lblTrimestre.AutoSize = true;
             this.lblTrimestre.Location = new System.Drawing.Point(15, 41);
             this.lblTrimestre.Name = "lblTrimestre";
-            this.lblTrimestre.Size = new System.Drawing.Size(78, 18);
+            this.lblTrimestre.Size = new System.Drawing.Size(79, 18);
             this.lblTrimestre.TabIndex = 6;
             this.lblTrimestre.Text = "Trimestre";
             // 
             // cmbTrimestre
             // 
+            this.cmbTrimestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTrimestre.FormattingEnabled = true;
             this.cmbTrimestre.Items.AddRange(new object[] {
             "Enero - Marzo",

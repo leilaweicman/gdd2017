@@ -30,13 +30,13 @@
         {
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaFin = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.groupBoxReg.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.groupBoxReg.Controls.Add(this.dtpFechaFin);
             this.groupBoxReg.Controls.Add(this.dtpFechaInicio);
             this.groupBoxReg.Controls.Add(this.btnCancelar);
-            this.groupBoxReg.Controls.Add(this.label5);
+            this.groupBoxReg.Controls.Add(this.lblFechaFin);
             this.groupBoxReg.Controls.Add(this.label2);
             this.groupBoxReg.Controls.Add(this.cmbCliente);
             this.groupBoxReg.Controls.Add(this.btnSiguiente);
@@ -69,15 +69,35 @@
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
             // 
-            // label5
+            // dtpFechaFin
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label5.Location = new System.Drawing.Point(32, 93);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 17);
-            this.label5.TabIndex = 44;
-            this.label5.Text = "Fecha inicio";
+            this.dtpFechaFin.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaFin.Font = new System.Drawing.Font("Verdana", 10F);
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaFin.Location = new System.Drawing.Point(144, 87);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(154, 24);
+            this.dtpFechaFin.TabIndex = 2;
+            // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaInicio.Font = new System.Drawing.Font("Verdana", 10F);
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(144, 38);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(154, 24);
+            this.dtpFechaInicio.TabIndex = 1;
+            // 
+            // lblFechaFin
+            // 
+            this.lblFechaFin.AutoSize = true;
+            this.lblFechaFin.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblFechaFin.Location = new System.Drawing.Point(32, 93);
+            this.lblFechaFin.Name = "lblFechaFin";
+            this.lblFechaFin.Size = new System.Drawing.Size(70, 17);
+            this.lblFechaFin.TabIndex = 44;
+            this.lblFechaFin.Text = "Fecha fin";
             // 
             // label2
             // 
@@ -91,6 +111,7 @@
             // 
             // cmbCliente
             // 
+            this.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCliente.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(125, 141);
@@ -118,26 +139,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
             // 
-            // dtpFechaInicio
-            // 
-            this.dtpFechaInicio.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaInicio.Font = new System.Drawing.Font("Verdana", 10F);
-            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaInicio.Location = new System.Drawing.Point(144, 38);
-            this.dtpFechaInicio.Name = "dtpFechaInicio";
-            this.dtpFechaInicio.Size = new System.Drawing.Size(154, 24);
-            this.dtpFechaInicio.TabIndex = 1;
-            // 
-            // dtpFechaFin
-            // 
-            this.dtpFechaFin.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaFin.Font = new System.Drawing.Font("Verdana", 10F);
-            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaFin.Location = new System.Drawing.Point(144, 87);
-            this.dtpFechaFin.Name = "dtpFechaFin";
-            this.dtpFechaFin.Size = new System.Drawing.Size(154, 24);
-            this.dtpFechaFin.TabIndex = 2;
-            // 
             // RegistroFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,7 +163,7 @@
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.DateTimePicker dtpFechaFin;
         private System.Windows.Forms.DateTimePicker dtpFechaInicio;
     }

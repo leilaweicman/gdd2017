@@ -162,6 +162,7 @@
             // 
             // cmbModelo
             // 
+            this.cmbModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbModelo.FormattingEnabled = true;
             this.cmbModelo.Location = new System.Drawing.Point(326, 66);
             this.cmbModelo.Name = "cmbModelo";
@@ -234,6 +235,7 @@
             // 
             // cmbMarca
             // 
+            this.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMarca.FormattingEnabled = true;
             this.cmbMarca.Location = new System.Drawing.Point(84, 66);
             this.cmbMarca.Name = "cmbMarca";
@@ -242,6 +244,7 @@
             // 
             // cmbChofer
             // 
+            this.cmbChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChofer.FormattingEnabled = true;
             this.cmbChofer.Location = new System.Drawing.Point(84, 19);
             this.cmbChofer.Name = "cmbChofer";

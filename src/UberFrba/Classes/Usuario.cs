@@ -427,7 +427,7 @@ namespace Classes
             unUsuario.DataRowToObject(dsChofer.Tables[0].Rows[0]);
             
             DataSet dsCliente = otroUsuario.ObtenerUsuarioPorIdCliente(IDCliente);
-            otroUsuario.DataRowToObject(dsChofer.Tables[0].Rows[0]);
+            otroUsuario.DataRowToObject(dsCliente.Tables[0].Rows[0]);
 
             if (unUsuario.Id_Usuario == otroUsuario.Id_Usuario)
             {
