@@ -13,15 +13,10 @@ cosas que vi:
 
 *abm chofer y cliente (editar)
 - no permite hacer que un chofer pase a ser cliente (es a proposito, es un lio si no, lo puse en la estrategia)
-- el admin puede modif contrasenias (para solucionar esto deberia saber que usuario esta entrando al edit y si es admin dejarlo enabled)
+- el admin puede modif contrasenias (para solucionar esto deberia saber que usuario esta entrando al edit y si es admin dejarlo disabled)
 
 *registro usuario:
 - la fecha podria hacerla con el date picker
-
-*abm automovil
-- el boton cancelar en registrar y editar deberia devolver al abm automovil en vez de cerrarse
-- cuando quiero deshabilitar un auto se cierra la conexion 
-- el boton inicio en el form de abm va al form viejo de home y rompe
 
 *rendicion
 - el total chofer podria rendondearse con dos decimales
