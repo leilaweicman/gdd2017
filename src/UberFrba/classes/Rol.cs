@@ -164,6 +164,18 @@ namespace Classes
 
         }
 
+        public static DataSet obtenerRolesExtra(int idRol)
+        {
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@idRol", idRol));
+
+            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerRolesExtra", CommandType.StoredProcedure, parameterList);
+
+            return ds;
+
+        }
+
         #endregion
 
         #region metodos privados

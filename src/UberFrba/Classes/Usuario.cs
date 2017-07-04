@@ -376,7 +376,7 @@ namespace Classes
             return ds;
         }
 
-        public DataSet ObtenerChoferHabilitado()
+        public DataSet ObtenerChoferHabilitadoConAuto()
         {
             this.setearListaDeParametrosSoloConIdUsuario();
             DataSet ds = this.TraerListado(this.parameterList, "QueEsChoferHabilitado");
@@ -435,6 +435,12 @@ namespace Classes
             }
 
             return false;
+        }
+
+        public static DataSet ObtenerChoferesHabilitadosConAuto()
+        {         
+            Usuario unUsuario = new Usuario();
+            return unUsuario.TraerListado(unUsuario.parameterList, "QueSonChoferesHabilitadosConAuto");        
         }
     }
 }

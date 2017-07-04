@@ -192,6 +192,16 @@ namespace Classes
             turno.parameterList.Clear();
             return ds;
         }
+
+        public static DataSet ObtenerTurnosHabilitadosDelAuto(int IDAutomovil)
+        {
+            Turno turno = new Turno();
+            turno.parameterList.Add(new SqlParameter("@IDAutomovil ", IDAutomovil));
+            DataSet ds = turno.TraerListado(turno.parameterList, "HabilitadosPorAutomovil");
+            turno.parameterList.Clear();
+            return ds;
+        }
+        
         #endregion
     }
 }

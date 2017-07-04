@@ -221,6 +221,25 @@ BEGIN
 	END CATCH
 END
 GO
+
+IF OBJECT_ID ('GIRLPOWER.PR_traerRolesExtra', 'P') IS NOT NULL
+DROP PROCEDURE [GIRLPOWER].[PR_traerRolesExtra]
+GO
+
+CREATE PROCEDURE [GIRLPOWER].[PR_traerRolesExtra] 
+(@idRol int)
+AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM GIRLPOWER.Rol
+		WHERE IDRol <> IDRol AND IDRol <> 1
+	END TRY
+	BEGIN CATCH
+		RAISERROR('Hubo un error cargando los roles', 16, 217)
+			WITH SETERROR
+	END CATCH
+END
+GO
 /*
 
 --EXTRAS!!! las uso para probar
