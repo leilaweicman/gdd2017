@@ -29,7 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
+            this.gpbAgregarRol = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cmbRolExtra = new System.Windows.Forms.ComboBox();
             this.gpbDatosPersonales = new System.Windows.Forms.GroupBox();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
+            this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,15 +67,15 @@
             this.gpbTipoUsuario = new System.Windows.Forms.GroupBox();
             this.chkChofer = new System.Windows.Forms.CheckBox();
             this.chkCliente = new System.Windows.Forms.CheckBox();
-            this.chkHabilitado = new System.Windows.Forms.CheckBox();
-            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.groupBoxReg.SuspendLayout();
+            this.gpbAgregarRol.SuspendLayout();
             this.gpbDatosPersonales.SuspendLayout();
             this.gpbTipoUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxReg
             // 
+            this.groupBoxReg.Controls.Add(this.gpbAgregarRol);
             this.groupBoxReg.Controls.Add(this.gpbDatosPersonales);
             this.groupBoxReg.Controls.Add(this.btnRegistrar);
             this.groupBoxReg.Controls.Add(this.btnCancelar);
@@ -82,6 +87,39 @@
             this.groupBoxReg.TabIndex = 0;
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
+            // 
+            // gpbAgregarRol
+            // 
+            this.gpbAgregarRol.Controls.Add(this.label15);
+            this.gpbAgregarRol.Controls.Add(this.cmbRolExtra);
+            this.gpbAgregarRol.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
+            this.gpbAgregarRol.Location = new System.Drawing.Point(392, 26);
+            this.gpbAgregarRol.Name = "gpbAgregarRol";
+            this.gpbAgregarRol.Size = new System.Drawing.Size(333, 66);
+            this.gpbAgregarRol.TabIndex = 44;
+            this.gpbAgregarRol.TabStop = false;
+            this.gpbAgregarRol.Text = "Agregar rol";
+            this.gpbAgregarRol.Visible = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Verdana", 10F);
+            this.label15.Location = new System.Drawing.Point(18, 32);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(151, 17);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "Seleccione nuevo rol";
+            // 
+            // cmbRolExtra
+            // 
+            this.cmbRolExtra.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRolExtra.FormattingEnabled = true;
+            this.cmbRolExtra.Location = new System.Drawing.Point(196, 27);
+            this.cmbRolExtra.Name = "cmbRolExtra";
+            this.cmbRolExtra.Size = new System.Drawing.Size(121, 26);
+            this.cmbRolExtra.TabIndex = 0;
+            this.cmbRolExtra.SelectedIndexChanged += new System.EventHandler(this.cmbRolExtra_SelectedIndexChanged);
             // 
             // gpbDatosPersonales
             // 
@@ -121,6 +159,28 @@
             this.gpbDatosPersonales.TabIndex = 43;
             this.gpbDatosPersonales.TabStop = false;
             this.gpbDatosPersonales.Text = "Datos personales";
+            // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaNac.Font = new System.Drawing.Font("Verdana", 10F);
+            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaNac.Location = new System.Drawing.Point(176, 173);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.Size = new System.Drawing.Size(154, 24);
+            this.dtpFechaNac.TabIndex = 9;
+            // 
+            // chkHabilitado
+            // 
+            this.chkHabilitado.AutoSize = true;
+            this.chkHabilitado.Font = new System.Drawing.Font("Verdana", 11F);
+            this.chkHabilitado.Location = new System.Drawing.Point(508, 306);
+            this.chkHabilitado.Name = "chkHabilitado";
+            this.chkHabilitado.Size = new System.Drawing.Size(99, 22);
+            this.chkHabilitado.TabIndex = 39;
+            this.chkHabilitado.Text = "Habilitado";
+            this.chkHabilitado.UseVisualStyleBackColor = true;
+            this.chkHabilitado.Visible = false;
             // 
             // txtNombre
             // 
@@ -432,28 +492,6 @@
             this.chkCliente.UseVisualStyleBackColor = true;
             this.chkCliente.CheckedChanged += new System.EventHandler(this.chkCliente_CheckedChanged);
             // 
-            // chkHabilitado
-            // 
-            this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Font = new System.Drawing.Font("Verdana", 11F);
-            this.chkHabilitado.Location = new System.Drawing.Point(508, 306);
-            this.chkHabilitado.Name = "chkHabilitado";
-            this.chkHabilitado.Size = new System.Drawing.Size(99, 22);
-            this.chkHabilitado.TabIndex = 39;
-            this.chkHabilitado.Text = "Habilitado";
-            this.chkHabilitado.UseVisualStyleBackColor = true;
-            this.chkHabilitado.Visible = false;
-            // 
-            // dtpFechaNac
-            // 
-            this.dtpFechaNac.CalendarFont = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaNac.Font = new System.Drawing.Font("Verdana", 10F);
-            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(176, 173);
-            this.dtpFechaNac.Name = "dtpFechaNac";
-            this.dtpFechaNac.Size = new System.Drawing.Size(154, 24);
-            this.dtpFechaNac.TabIndex = 9;
-            // 
             // RegistroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,6 +503,8 @@
             this.Text = "RegistroUsuario";
             this.Load += new System.EventHandler(this.RegistroUsuario_Load);
             this.groupBoxReg.ResumeLayout(false);
+            this.gpbAgregarRol.ResumeLayout(false);
+            this.gpbAgregarRol.PerformLayout();
             this.gpbDatosPersonales.ResumeLayout(false);
             this.gpbDatosPersonales.PerformLayout();
             this.gpbTipoUsuario.ResumeLayout(false);
@@ -511,5 +551,8 @@
         private System.Windows.Forms.GroupBox gpbDatosPersonales;
         private System.Windows.Forms.CheckBox chkHabilitado;
         private System.Windows.Forms.DateTimePicker dtpFechaNac;
+        private System.Windows.Forms.GroupBox gpbAgregarRol;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cmbRolExtra;
     }
 }

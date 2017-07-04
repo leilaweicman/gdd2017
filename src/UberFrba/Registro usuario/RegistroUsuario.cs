@@ -11,14 +11,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utilities;
 using Classes;
+using Exceptions;
 
 namespace UberFrba.Registro_usuario
 {
     public partial class RegistroUsuario : Form
     {
-        Usuario user;
-        bool editing= false;
-        int tipoUsuario=0;
+        Usuario userAEditar;
+        bool editing = false;
+        int tipoUsuario = 0;
         bool ejecutaAdmin;
         bool altaConRol = false;
         int rolAlta;
@@ -30,7 +31,7 @@ namespace UberFrba.Registro_usuario
 
         public RegistroUsuario(Usuario usuario, bool ejecutaAdmin)
         {
-            user = usuario;
+            userAEditar = usuario;
             editing = true;
             tipoUsuario = usuario.Rol.Id_Rol;
             this.ejecutaAdmin = ejecutaAdmin;
@@ -43,7 +44,7 @@ namespace UberFrba.Registro_usuario
             rolAlta = rol;
             InitializeComponent();
         }
-    
+
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
             if (ejecutaAdmin)
@@ -67,50 +68,54 @@ namespace UberFrba.Registro_usuario
 
             if (editing)
             {
+                gpbAgregarRol.Visible = true;
                 chkHabilitado.Visible = true;
                 gpbTipoUsuario.Enabled = false;
+
+                cargarOtrosRoles();
+
                 if (tipoUsuario == 3)//es cliente
                 {
-                    chkCliente.Checked=true;
+                    chkCliente.Checked = true;
                     chkChofer.Checked = false;
                 }
                 else if (tipoUsuario == 2)//es chofer. no deberia haber mas tipos pero porlas de que se agreguen mas
                 {
                     chkChofer.Checked = true;
                     chkCliente.Checked = false;
-                }              
+                }
                 gpbDatosPersonales.Enabled = true;
-                txtNombre.Text = user.Nombre;
-                txtApellido.Text = user.Apellido;
-                txtDni.Text = user.Dni.ToString();
-                txtUsername.Text = user.Username;
-                dtpFechaNac.Text = user.FechaNac.ToString();
-                dtpFechaNac.Text = user.FechaNac.ToString();
-                txtCalle.Text = user.Direccion;
-                txtDepto.Text = user.Depto;
-                if (user.Habilitado == true)
+                txtNombre.Text = userAEditar.Nombre;
+                txtApellido.Text = userAEditar.Apellido;
+                txtDni.Text = userAEditar.Dni.ToString();
+                txtUsername.Text = userAEditar.Username;
+                dtpFechaNac.Text = userAEditar.FechaNac.ToString();
+                dtpFechaNac.Text = userAEditar.FechaNac.ToString();
+                txtCalle.Text = userAEditar.Direccion;
+                txtDepto.Text = userAEditar.Depto;
+                if (userAEditar.Habilitado == true)
                 {
                     chkHabilitado.Checked = true;
-                } 
-                if (user.Piso == -1)
+                }
+                if (userAEditar.Piso == -1)
                 {
                     txtPiso.Text = "";
                 }
                 else
                 {
-                    txtPiso.Text = user.Piso.ToString();
+                    txtPiso.Text = userAEditar.Piso.ToString();
                 }
-                if (user.CodPost == -1)
+                if (userAEditar.CodPost == -1)
                 {
                     txtCP.Text = "";
                 }
                 else
                 {
-                    txtCP.Text = user.CodPost.ToString();
+                    txtCP.Text = userAEditar.CodPost.ToString();
                 }
-                txtLocalidad.Text = user.Localidad;
-                txtMail.Text = user.Mail;
-                txtTel.Text = user.Tel.ToString();
+                txtLocalidad.Text = userAEditar.Localidad;
+                txtMail.Text = userAEditar.Mail;
+                txtTel.Text = userAEditar.Tel.ToString();
             }
         }
 
@@ -135,7 +140,7 @@ namespace UberFrba.Registro_usuario
                 }
                 else
                 {
-                    this.Hide();                    
+                    this.Hide();
                 }
             }
             else
@@ -166,238 +171,75 @@ namespace UberFrba.Registro_usuario
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            string nombre;
-            string apellido;
-            Decimal dni;
-            string contraEncriptada;
-            Decimal tel;
-            string mail;
-            string calle;
-            string depto;
-            Decimal piso;
-            string localidad;
             int esChofer = 0;
             int esCliente = 0;
-            DateTime fechaNac;
-            int codPost;
-            string username;
-            bool habilitado;
 
             bool huboErrorDato = false;
             bool errorYaExiste = false;
-            DateTime fechaMinSql = new DateTime(1753, 01, 01);
-            DateTime fechaMaxSql = new DateTime(9999, 12, 12);
 
             List<string> lstErroresCampos = new List<string>();
             List<string> lstErroresExistencia = new List<string>();
 
-            #region validacionCampos
-
-            if (txtNombre.Text=="" || txtApellido.Text =="" || txtDni.Text=="" || ((txtContrasenia.Text=="" || 
-                txtConfContrasenia.Text =="") && !editing)|| txtUsername.Text =="" || txtTel.Text=="" || txtMail.Text=="" || 
-                txtCalle.Text=="" || txtLocalidad.Text == ""|| (txtCP.Enabled && txtCP.Text==""))
-            {
-                lstErroresCampos.Add("Complete todos los campos por favor.\n");
-                huboErrorDato = true;
-            }
-            else
-            {            
-                if (!chkCliente.Checked && !chkChofer.Checked)
-                {
-                    lstErroresCampos.Add("Indique el tipo de usuario.\n");
-                    huboErrorDato = true;
-                }
-                if (txtContrasenia.Text != txtConfContrasenia.Text)
-                {
-                    lstErroresCampos.Add("Las constraseñas no coinciden.\n");
-                    huboErrorDato = true;
-                }
-                if (!Validator.EsNumero(txtDni.Text))
-                {
-                    lstErroresCampos.Add("El dni debe contener solo números.\n");
-                    huboErrorDato = true;
-                }
-                else if (int.Parse(txtDni.Text) <= 0)
-                {
-                    lstErroresCampos.Add("El dni debe ser mayor a cero.\n");
-                    huboErrorDato = true;
-                }
-                
-                if (!Validator.EsNumero(txtTel.Text))
-                {
-                    lstErroresCampos.Add("El teléfono debe contener solo números.\n");
-                    huboErrorDato = true;
-                }
-                else if (int.Parse(txtTel.Text) <= 0)
-                {
-                    lstErroresCampos.Add("El telefono debe ser mayor a cero.\n");
-                    huboErrorDato = true;
-                }
-                
-                if (txtPiso.Text != "" && !Validator.EsNumero(txtPiso.Text))
-                {
-                    lstErroresCampos.Add("El piso debe contener solo números.\n");
-                    huboErrorDato = true;
-                }
-                else if (Validator.EsNumero(txtPiso.Text) && int.Parse(txtPiso.Text) < 0)
-                {
-                    lstErroresCampos.Add("El piso debe ser mayor o igual a cero.\n");
-                    huboErrorDato = true;
-                }
-                fechaNac = Convert.ToDateTime(dtpFechaNac.Text);
-                if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)
-                {
-                    lstErroresCampos.Add("La fecha de nacimiento debe estar entre 1/1/1753 y 12/12/9999.\n");
-                    huboErrorDato = true;
-                }
-                if (fechaNac >= DateTime.Now.Date)
-                {
-                    lstErroresCampos.Add("La fecha de nacimiento debe anterior a la del dia de hoy.\n");
-                    huboErrorDato = true;
-                }
-
-                if(txtCP.Enabled && !Validator.EsNumero(txtCP.Text))
-                {
-                    lstErroresCampos.Add("El código postal debe ser numérico");
-                    huboErrorDato = true;
-                }
-                else if(txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
-                {
-                    lstErroresCampos.Add("El código postal debe ser mayor a cero.\n");
-                    huboErrorDato = true;
-                }
-            }
-
-            #endregion
+            huboErrorDato = validarCampos(ref lstErroresCampos);
 
             if (huboErrorDato)
             {
                 Validator.mostrarErrores(lstErroresCampos, "");
             }
-            else 
-            { 
-                nombre = txtNombre.Text;
-                apellido = txtApellido.Text;
-                dni = Decimal.Parse(txtDni.Text);
-                if (txtContrasenia.Text == "" && editing)
-                {
-                    contraEncriptada = user.ContraseniaEncriptada;
-                }
-                else
-                {
-                    contraEncriptada = Encryptor.GetSHA256(txtContrasenia.Text);
-                }
-                fechaNac = Convert.ToDateTime(dtpFechaNac.Text);
-                tel = Decimal.Parse(txtTel.Text);
-                mail = txtMail.Text;
-                calle = txtCalle.Text;
-                depto = txtDepto.Text;
-                if (txtPiso.Text == "")
-                {
-                    piso = -1;
-                }
-                else
-                {
-                    piso = Decimal.Parse(txtPiso.Text);
-                }
-                localidad = txtLocalidad.Text;
-                username = txtUsername.Text;
+            else
+            {
+
+                Usuario usuarioNuevo = crearNuevoUsuario(ref esCliente, ref esChofer);
+
+                errorYaExiste = verificarExistencia(ref lstErroresExistencia, usuarioNuevo);
                 
-                if (chkChofer.Checked)
-                {
-                    esChofer = 1;
-                }
-                if (chkCliente.Checked)
-                {
-                    esCliente = 1;
-                }
-
-                if (txtCP.Enabled)
-                {
-                    codPost = int.Parse(txtCP.Text);
-                }
-                else
-                {
-                    codPost = -1;
-                }
-
-
-                List<SqlParameter> parameterList = new List<SqlParameter>();
-                if (editing)
-                {
-                    parameterList.Add(new SqlParameter("@idUsuario", user.Id_Usuario));
-                }
-                else
-                {
-                    parameterList.Add(new SqlParameter("@idUsuario", 0));
-                }
-                
-                SqlParameter param = new SqlParameter("@username", username);
-                parameterList.Add(param);
-                if (SQLHelper.ExecuteDataSet("PR_verifExisteUsuario", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count>0)
-                {
-                    errorYaExiste = true;
-                    lstErroresExistencia.Add("El usuario ya existe\n");
-                }
-
-                parameterList.Remove(param);
-                param = new SqlParameter("@dni", dni);
-                parameterList.Add(param);
-                if (SQLHelper.ExecuteDataSet("PR_verifExisteDni", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
-                {
-                    errorYaExiste = true;
-                    lstErroresExistencia.Add("El dni ya existe\n");
-                }
-
-                parameterList.Remove(param);
-                param = new SqlParameter("@telefono", tel);
-                parameterList.Add(param);
-                if (SQLHelper.ExecuteDataSet("PR_verifExisteTelefono", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
-                {
-                    errorYaExiste = true;
-                    lstErroresExistencia.Add("El telefono ya existe\n");
-                }
-                parameterList.Clear();
                 if (errorYaExiste)
                 {
                     Validator.mostrarErrores(lstErroresExistencia, "");
                 }
                 else
                 {
-
-                    parameterList.Add(new SqlParameter("@nombre", nombre));
-                    parameterList.Add(new SqlParameter("@apellido", apellido));
-                    parameterList.Add(new SqlParameter("@direccion", calle));
-                    parameterList.Add(new SqlParameter("@telefono", tel));
-                    parameterList.Add(new SqlParameter("@dni", dni));
-                    parameterList.Add(new SqlParameter("@fechaNac", fechaNac));
-                    parameterList.Add(new SqlParameter("@contrasenia", contraEncriptada));
-                    parameterList.Add(new SqlParameter("@mail", mail));
-                    parameterList.Add(new SqlParameter("@piso", piso));
-                    parameterList.Add(new SqlParameter("@depto", depto));
-                    parameterList.Add(new SqlParameter("@localidad", localidad));
-                    parameterList.Add(new SqlParameter("@username", username));
+                    List<SqlParameter> parameterList = cargarParametrosComunesQuery(usuarioNuevo);
 
                     try
-                    {
+                    {                       
                         if (editing)
                         {
-                            if(chkHabilitado.Checked){
+                            #region if editing
+                            if (chkHabilitado.Checked) {
                                 parameterList.Add(new SqlParameter("@habilitado", 1));
                             } else {
                                 parameterList.Add(new SqlParameter("@habilitado", 0));
                             }
-                            parameterList.Add(new SqlParameter("@idUsuario", user.Id_Usuario));
+                            parameterList.Add(new SqlParameter("@idUsuario", userAEditar.Id_Usuario));
                             if (tipoUsuario == 3)
                             {
-                                parameterList.Add(new SqlParameter("@codPost", codPost));
+                                parameterList.Add(new SqlParameter("@codPost", usuarioNuevo.CodPost));
                                 SQLHelper.ExecuteNonQuery("PR_editarCliente", CommandType.StoredProcedure, parameterList);
                             }
                             else if (tipoUsuario == 2)
                             {
                                 SQLHelper.ExecuteNonQuery("PR_editarChofer", CommandType.StoredProcedure, parameterList);
                             }
+
+                            if(cmbRolExtra.SelectedIndex != 0)
+                            {
+                                Rol nuevoRol = new Rol();
+                                nuevoRol.Id_Rol = int.Parse(cmbRolExtra.SelectedValue.ToString());
+                                if (nuevoRol.Id_Rol == 2)
+                                {
+                                    SQLHelper.ExecuteNonQuery("PR_altaChofer", CommandType.StoredProcedure, parameterList);
+                                }
+                                else if(nuevoRol.Id_Rol ==1)
+                                {
+                                    SQLHelper.ExecuteNonQuery("PR_altaCliente", CommandType.StoredProcedure, parameterList);
+                                }
+
+                            }
                             MessageBox.Show("El usuario se ha modificado");
+
+                            
+
 
                             if (ejecutaAdmin)
                             {
@@ -407,7 +249,7 @@ namespace UberFrba.Registro_usuario
                                     this.Hide();
                                     abmCliente.Show();
                                 }
-                                else if(tipoUsuario ==2)
+                                else if (tipoUsuario == 2)
                                 {
                                     UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
                                     this.Hide();
@@ -418,12 +260,13 @@ namespace UberFrba.Registro_usuario
                             {
                                 this.Hide();
                             }
+                            #endregion
                         }
                         else
                         {
                             parameterList.Add(new SqlParameter("@esChofer", esChofer));
                             parameterList.Add(new SqlParameter("@esCliente", esCliente));
-                            parameterList.Add(new SqlParameter("@codPost", codPost));
+                            parameterList.Add(new SqlParameter("@codPost", usuarioNuevo.CodPost));
 
                             SQLHelper.ExecuteNonQuery("PR_altaUsuario", CommandType.StoredProcedure, parameterList);
                             MessageBox.Show("El usuario se ha registrado correctamente");
@@ -436,7 +279,7 @@ namespace UberFrba.Registro_usuario
                                     this.Hide();
                                     abmCliente.Show();
                                 }
-                                else if(rolAlta ==2)
+                                else if (rolAlta == 2)
                                 {
                                     UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
                                     this.Hide();
@@ -475,7 +318,7 @@ namespace UberFrba.Registro_usuario
                     gpbDatosPersonales.Enabled = true;
                 }
             }
-            else 
+            else
             {
                 txtCP.Enabled = false;
                 if (!chkChofer.Checked)
@@ -497,13 +340,245 @@ namespace UberFrba.Registro_usuario
                 if (!gpbDatosPersonales.Enabled)
                 {
                     gpbDatosPersonales.Enabled = true;
-                    
+
                 }
-            } 
-            else if(!chkCliente.Checked)
+            }
+            else if (!chkCliente.Checked)
             {
                 gpbDatosPersonales.Enabled = false;
                 txtCP.Enabled = false;
+            }
+        } 
+
+        private bool verificarExistencia(ref List<String> lstErroresExistencia, Usuario usuario)
+        {
+            bool errorYaExiste = false; 
+
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+            if (editing)
+            {
+                parameterList.Add(new SqlParameter("@idUsuario", userAEditar.Id_Usuario)); //es el user que estoy editando
+            }
+            else
+            {
+                parameterList.Add(new SqlParameter("@idUsuario", 0));
+            }
+
+            SqlParameter param = new SqlParameter("@username", usuario.Username);
+            parameterList.Add(param);
+            if (SQLHelper.ExecuteDataSet("PR_verifExisteUsuario", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
+            {
+                errorYaExiste = true;
+                lstErroresExistencia.Add("El usuario ya existe\n");
+            }
+
+            parameterList.Remove(param);
+            param = new SqlParameter("@dni", usuario.Dni);
+            parameterList.Add(param);
+            if (SQLHelper.ExecuteDataSet("PR_verifExisteDni", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
+            {
+                errorYaExiste = true;
+                lstErroresExistencia.Add("El dni ya existe\n");
+            }
+
+            parameterList.Remove(param);
+            param = new SqlParameter("@telefono", usuario.Tel);
+            parameterList.Add(param);
+            if (SQLHelper.ExecuteDataSet("PR_verifExisteTelefono", CommandType.StoredProcedure, parameterList).Tables[0].Rows.Count > 0)
+            {
+                errorYaExiste = true;
+                lstErroresExistencia.Add("El telefono ya existe\n");
+            }
+            parameterList.Clear();
+            return errorYaExiste;
+        }
+
+        private Usuario crearNuevoUsuario(ref int esChofer, ref int esCliente)
+        {
+            Usuario nuevoUsuario = new Usuario();
+            nuevoUsuario.Nombre = txtNombre.Text;
+            nuevoUsuario.Apellido = txtApellido.Text;
+            nuevoUsuario.Dni = Decimal.Parse(txtDni.Text);
+            if (txtContrasenia.Text == "" && editing)
+            {
+                nuevoUsuario.ContraseniaEncriptada = userAEditar.ContraseniaEncriptada;
+            }
+            else
+            {
+                nuevoUsuario.ContraseniaEncriptada = Encryptor.GetSHA256(txtContrasenia.Text);
+            }
+            nuevoUsuario.FechaNac = Convert.ToDateTime(dtpFechaNac.Text);
+            nuevoUsuario.Tel = Decimal.Parse(txtTel.Text);
+            nuevoUsuario.Mail = txtMail.Text;
+            nuevoUsuario.Direccion = txtCalle.Text;
+            nuevoUsuario.Depto = txtDepto.Text;
+            if (txtPiso.Text == "")
+            {
+                nuevoUsuario.Piso = -1;
+            }
+            else
+            {
+                nuevoUsuario.Piso = Decimal.Parse(txtPiso.Text);
+            }
+            nuevoUsuario.Localidad = txtLocalidad.Text;
+            nuevoUsuario.Username = txtUsername.Text;
+
+            if (chkChofer.Checked)
+            {
+                esChofer = 1;
+            }
+            if (chkCliente.Checked)
+            {
+                esCliente = 1;
+            }
+
+            if (txtCP.Enabled)
+            {
+                nuevoUsuario.CodPost = int.Parse(txtCP.Text);
+            }
+            else
+            {
+                nuevoUsuario.CodPost = -1;
+            }
+            return nuevoUsuario;
+        }
+
+        private List<SqlParameter> cargarParametrosComunesQuery (Usuario usuario)
+        {
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+            parameterList.Add(new SqlParameter("@nombre", usuario.Nombre));
+            parameterList.Add(new SqlParameter("@apellido", usuario.Apellido));
+            parameterList.Add(new SqlParameter("@direccion", usuario.Direccion));
+            parameterList.Add(new SqlParameter("@telefono", usuario.Tel));
+            parameterList.Add(new SqlParameter("@dni", usuario.Dni));
+            parameterList.Add(new SqlParameter("@fechaNac", usuario.FechaNac));
+            parameterList.Add(new SqlParameter("@contrasenia", usuario.ContraseniaEncriptada));
+            parameterList.Add(new SqlParameter("@mail", usuario.Mail));
+            parameterList.Add(new SqlParameter("@piso", usuario.Piso));
+            parameterList.Add(new SqlParameter("@depto", usuario.Depto));
+            parameterList.Add(new SqlParameter("@localidad", usuario.Localidad));
+            parameterList.Add(new SqlParameter("@username", usuario.Username));
+
+            return parameterList;
+        }
+
+        public bool validarCampos(ref List<string> lstErroresCampos)
+        {
+            bool huboErrorDato = false;
+
+            DateTime fechaMinSql = new DateTime(1753, 01, 01);
+            DateTime fechaMaxSql = new DateTime(9999, 12, 12);
+            DateTime fechaNac;
+
+            if (txtNombre.Text == "" || txtApellido.Text == "" || txtDni.Text == "" || ((txtContrasenia.Text == "" ||
+                txtConfContrasenia.Text == "") && !editing) || txtUsername.Text == "" || txtTel.Text == "" || txtMail.Text == "" ||
+                txtCalle.Text == "" || txtLocalidad.Text == "" || (txtCP.Enabled && txtCP.Text == ""))
+            {
+                lstErroresCampos.Add("Complete todos los campos por favor.\n");
+                huboErrorDato = true;
+            }
+            else
+            {
+                if (!chkCliente.Checked && !chkChofer.Checked)
+                {
+                    lstErroresCampos.Add("Indique el tipo de usuario.\n");
+                    huboErrorDato = true;
+                }
+                if (txtContrasenia.Text != txtConfContrasenia.Text)
+                {
+                    lstErroresCampos.Add("Las constraseñas no coinciden.\n");
+                    huboErrorDato = true;
+                }
+                if (!Validator.EsNumero(txtDni.Text))
+                {
+                    lstErroresCampos.Add("El dni debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                else if (int.Parse(txtDni.Text) <= 0)
+                {
+                    lstErroresCampos.Add("El dni debe ser mayor a cero.\n");
+                    huboErrorDato = true;
+                }
+
+                if (!Validator.EsNumero(txtTel.Text))
+                {
+                    lstErroresCampos.Add("El teléfono debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                else if (int.Parse(txtTel.Text) <= 0)
+                {
+                    lstErroresCampos.Add("El telefono debe ser mayor a cero.\n");
+                    huboErrorDato = true;
+                }
+
+                if (txtPiso.Text != "" && !Validator.EsNumero(txtPiso.Text))
+                {
+                    lstErroresCampos.Add("El piso debe contener solo números.\n");
+                    huboErrorDato = true;
+                }
+                else if (Validator.EsNumero(txtPiso.Text) && int.Parse(txtPiso.Text) < 0)
+                {
+                    lstErroresCampos.Add("El piso debe ser mayor o igual a cero.\n");
+                    huboErrorDato = true;
+                }
+                fechaNac = Convert.ToDateTime(dtpFechaNac.Text);
+                if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)
+                {
+                    lstErroresCampos.Add("La fecha de nacimiento debe estar entre 1/1/1753 y 12/12/9999.\n");
+                    huboErrorDato = true;
+                }
+                if (fechaNac >= DateTime.Now.Date)
+                {
+                    lstErroresCampos.Add("La fecha de nacimiento debe anterior a la del dia de hoy.\n");
+                    huboErrorDato = true;
+                }
+
+                if (txtCP.Enabled && !Validator.EsNumero(txtCP.Text))
+                {
+                    lstErroresCampos.Add("El código postal debe ser numérico");
+                    huboErrorDato = true;
+                }
+                else if (txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
+                {
+                    lstErroresCampos.Add("El código postal debe ser mayor a cero.\n");
+                    huboErrorDato = true;
+                }
+
+            }
+
+            return huboErrorDato;
+        }
+
+        private void cargarOtrosRoles()
+        {
+            try
+            {
+                //Obtengo los choferes y los muestro en el combobox.
+                DataSet ds = Rol.obtenerRolesExtra(userAEditar.Rol.Id_Rol);
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    //Uso el manager de dropdowns para cargar el comboBox con los cliente
+                    DropDownListManager.CargarCombo(cmbRolExtra, ds.Tables[0], "IDRol", "Nombre", true, "");
+                }
+            }
+            catch (ErrorConsultaException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbRolExtra_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(int.Parse(cmbRolExtra.SelectedValue.ToString()) == 1)
+            {
+                if (!txtCP.Enabled)
+                {
+                    txtCP.Enabled = true;
+                }
             }
         }
     }
