@@ -146,7 +146,7 @@ namespace UberFrba.Abm_Turno
                 turnoNuevo.HoraInicio = int.Parse(cmbHoraInicio.SelectedItem.ToString());
                 turnoNuevo.HoraFin = int.Parse(cmbHoraFin.SelectedItem.ToString());
                 turnoNuevo.PrecioBase = Decimal.Parse(txtPrecioBase.Text);
-                turnoNuevo.ValorKilometro = Decimal.Parse(txtPrecioBase.Text);
+                turnoNuevo.ValorKilometro = Decimal.Parse(txtValorKilometro.Text);
 
                 DataSet ds = SQLHelper.ExecuteDataSet("PR_traerTurnosHabilitados", CommandType.StoredProcedure);
                 Dictionary<int, Turno> turnos = new Dictionary<int, Turno>();
