@@ -177,7 +177,7 @@ namespace UberFrba.Registro_Viajes
         {
             try
             {
-                //Obtengo los choferes y los muestro en el combobox.
+                //Obtengo los choferes habilitados y que tengan autos habilitados, y los muestro en el combobox.
                 DataSet ds = Usuario.ObtenerChoferesHabilitadosConAuto();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
