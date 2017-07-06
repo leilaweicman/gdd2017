@@ -175,7 +175,7 @@ namespace UberFrba
             }*/
 
             Registro_usuario.RegistroUsuario registro = new Registro_usuario.RegistroUsuario(usuario, false);
-            registro.Show(this);
+            registro.Show();
 
         }
     }

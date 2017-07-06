@@ -161,6 +161,10 @@ namespace UberFrba.LogIn
 
         private void Ingresar()
         {
+            if(user.Rol.Id_Rol == 3)
+            {
+                user.traerCodPostUsuario();
+            }
             Principal homeForm = new Principal();
             this.Hide();
            // homeForm.Show();
