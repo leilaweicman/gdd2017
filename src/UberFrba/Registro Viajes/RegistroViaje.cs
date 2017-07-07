@@ -342,6 +342,8 @@ namespace UberFrba.Registro_Viajes
         {
             string strErrores = "";
             strErrores = Validator.FechaMenor(dtpFechaInicio.Value, dtpFechaFin.Value);
+            strErrores += Validator.FechaMenorOIgualAFechaActual(dtpFechaInicio.Value, "Fecha Inicio");
+            strErrores += Validator.FechaMenorOIgualAFechaActual(dtpFechaFin.Value, "Fecha Fin");
             strErrores += Validator.SoloNumerosODecimales(txtKilometros.Text, "Kilometros");
             strErrores += Validator.MayorACero(txtKilometros.Text, "Kilometros");
             strErrores += Validator.ValidarNulo(cmbChofer.Text, "Chofer");
