@@ -236,6 +236,7 @@
             this.ClientSize = new System.Drawing.Size(653, 609);
             this.Controls.Add(this.grpTurnos);
             this.Name = "RegistroViaje";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegistroViaje";
             this.Load += new System.EventHandler(this.RegistroViaje_Load);
             this.grpTurnos.ResumeLayout(false);

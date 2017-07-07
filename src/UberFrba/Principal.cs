@@ -33,44 +33,44 @@ namespace UberFrba
         private void aBMRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbmRol frmListadoRoles = new AbmRol();
-            frmListadoRoles.Show(this);
+            frmListadoRoles.Show();
         }
 
         private void aBMChoferesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbmChofer frmABMChofer = new AbmChofer();
-            frmABMChofer.Show(this);
+            frmABMChofer.Show();
         }
 
         private void aBMClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Abm_Cliente.AbmCliente frmABMCliente = new Abm_Cliente.AbmCliente();
-            frmABMCliente.Show(this);
+            frmABMCliente.Show();
         }
 
 
         private void registrarViajeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Registro_Viajes.RegistroViaje frmRegViaje = new Registro_Viajes.RegistroViaje(usuario);
-            frmRegViaje.Show(this);
+            frmRegViaje.Show();
         }
 
         private void rendicionDeCuentaDelChoferToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Rendicion_Viajes.Registro frmRendicion = new Rendicion_Viajes.Registro();
-            frmRendicion.Show(this);
+            frmRendicion.Show();
         }
 
         private void facturacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Facturacion.RegistroFactura frmFacturacion = new Facturacion.RegistroFactura();
-            frmFacturacion.Show(this);
+            frmFacturacion.Show();
         }
 
         private void estadisticasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Listado_Estadistico.Estadisticas frmEstadisticas = new Listado_Estadistico.Estadisticas();
-            frmEstadisticas.Show(this);
+            frmEstadisticas.Show();
         }
 
         public void abrirConUsuario(Usuario user)
@@ -155,13 +155,13 @@ namespace UberFrba
         private void abmAutomovilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Abm_Automovil.Form1 frmABMAutomovil = new Abm_Automovil.Form1();
-            frmABMAutomovil.Show(this);
+            frmABMAutomovil.Show();
         }
 
         private void aBMTurnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Abm_Turno.AbmTurno frmAbmTurno = new Abm_Turno.AbmTurno();
-            frmAbmTurno.Show(this);
+            frmAbmTurno.Show();
         }
 
         private void datosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)

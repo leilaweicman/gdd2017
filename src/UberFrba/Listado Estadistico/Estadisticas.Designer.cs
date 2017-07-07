@@ -92,7 +92,7 @@
             "Cliente que utilizó más veces el mismo automovil en los viajes "});
             this.cmbTipo.Location = new System.Drawing.Point(100, 127);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(331, 26);
+            this.cmbTipo.Size = new System.Drawing.Size(370, 26);
             this.cmbTipo.TabIndex = 3;
             // 
             // txtAño
@@ -164,6 +164,7 @@
             this.Controls.Add(this.grpEstadisticas);
             this.Controls.Add(this.btnVolver);
             this.Name = "Estadisticas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Estadisticas";
             this.Load += new System.EventHandler(this.Estadisticas_Load);
             this.grpEstadisticas.ResumeLayout(false);

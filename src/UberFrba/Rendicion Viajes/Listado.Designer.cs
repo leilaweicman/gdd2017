@@ -46,7 +46,7 @@
             this.groupBoxReg.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.groupBoxReg.Location = new System.Drawing.Point(12, 22);
             this.groupBoxReg.Name = "groupBoxReg";
-            this.groupBoxReg.Size = new System.Drawing.Size(670, 442);
+            this.groupBoxReg.Size = new System.Drawing.Size(759, 494);
             this.groupBoxReg.TabIndex = 39;
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Listado";
@@ -55,6 +55,7 @@
             // 
             this.dgvRendiciones.AllowUserToAddRows = false;
             this.dgvRendiciones.AllowUserToDeleteRows = false;
+            this.dgvRendiciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRendiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRendiciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Chofer,
@@ -66,7 +67,7 @@
             this.dgvRendiciones.Name = "dgvRendiciones";
             this.dgvRendiciones.ReadOnly = true;
             this.dgvRendiciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRendiciones.Size = new System.Drawing.Size(640, 400);
+            this.dgvRendiciones.Size = new System.Drawing.Size(730, 449);
             this.dgvRendiciones.TabIndex = 43;
             // 
             // Chofer
@@ -74,40 +75,35 @@
             this.Chofer.HeaderText = "Chofer";
             this.Chofer.Name = "Chofer";
             this.Chofer.ReadOnly = true;
-            this.Chofer.Width = 119;
             // 
             // NumeroRendicion
             // 
             this.NumeroRendicion.HeaderText = "NumeroRendicion";
             this.NumeroRendicion.Name = "NumeroRendicion";
             this.NumeroRendicion.ReadOnly = true;
-            this.NumeroRendicion.Width = 120;
             // 
             // Turno
             // 
             this.Turno.HeaderText = "Turno";
             this.Turno.Name = "Turno";
             this.Turno.ReadOnly = true;
-            this.Turno.Width = 119;
             // 
             // Fecha
             // 
             this.Fecha.HeaderText = "Fecha";
             this.Fecha.Name = "Fecha";
             this.Fecha.ReadOnly = true;
-            this.Fecha.Width = 120;
             // 
             // Total
             // 
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
-            this.Total.Width = 119;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(587, 481);
+            this.btnCancelar.Location = new System.Drawing.Point(691, 522);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(80, 35);
             this.btnCancelar.TabIndex = 40;
@@ -119,10 +115,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 528);
+            this.ClientSize = new System.Drawing.Size(786, 569);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBoxReg);
             this.Name = "Listado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado";
             this.groupBoxReg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendiciones)).EndInit();

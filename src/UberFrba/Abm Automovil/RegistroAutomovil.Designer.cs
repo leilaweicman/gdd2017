@@ -274,6 +274,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBoxReg);
             this.Name = "RegistroAutomovil";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegistroAutomovil";
             this.groupBoxReg.ResumeLayout(false);
             this.groupBoxReg.PerformLayout();
