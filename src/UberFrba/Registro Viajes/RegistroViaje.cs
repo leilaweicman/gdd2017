@@ -227,7 +227,6 @@ namespace UberFrba.Registro_Viajes
             //valido campos ingresados
             if (ValidarCampos())
             {
-
                 //los campos son validos, valido que no exista el viaje y lo registro
               
                 Viaje unNuevoViaje = new Viaje();

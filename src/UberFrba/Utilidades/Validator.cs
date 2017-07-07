@@ -82,9 +82,16 @@ namespace Utilities
         }
 
         public static string FechaMenor(DateTime fechaInicio, DateTime fechaFin)
-        {
+        {            
             int resul = DateTime.Compare(fechaInicio, fechaFin);
             if (resul >= 0)
+                return "La fecha de inicio debe ser menor a la fecha de fin " + "\n";
+
+            string fechaI = fechaInicio.ToString("yyyy-MM-dd HH:mm:ss");
+            string fechaF = fechaFin.ToString("yyyy-MM-dd HH:mm:ss");
+
+            bool result = fechaI.Equals(fechaF, StringComparison.Ordinal);
+            if (result)
                 return "La fecha de inicio debe ser menor a la fecha de fin " + "\n";
 
             return string.Empty;
@@ -95,7 +102,7 @@ namespace Utilities
             DateTime fechaHoy = DateTime.Now;
             int resul = DateTime.Compare(fecha, fechaHoy);
             if (resul > 0)
-                return "Tiene que ingresar una fecha menor o igual a la fecha de hoy, para el campo " + nombreCampo + "\n";
+                return "Tiene que ingresar una fecha y hora menor o igual a la fecha y hora de hoy, para el campo " + nombreCampo + "\n";
 
             return string.Empty;
         }
