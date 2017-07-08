@@ -56,7 +56,7 @@ namespace UberFrba.Abm_Turno
                 cmbHoraInicio.SelectedIndex = turnoNuevo.HoraInicio;
                 cmbHoraFin.SelectedItem = turnoNuevo.HoraFin;
                 txtPrecioBase.Text = turnoNuevo.PrecioBase.ToString();
-                txtValorKilometro.Text = turnoNuevo.PrecioBase.ToString();
+                txtValorKilometro.Text = turnoNuevo.ValorKilometro.ToString();
                 chkHabilitado.Visible = true;
                 if (turnoNuevo.Habilitado)
                 {
