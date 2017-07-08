@@ -118,7 +118,7 @@
             this.gpbDatosPersonales.Location = new System.Drawing.Point(18, 98);
             this.gpbDatosPersonales.Name = "gpbDatosPersonales";
             this.gpbDatosPersonales.Size = new System.Drawing.Size(705, 353);
-            this.gpbDatosPersonales.TabIndex = 43;
+            this.gpbDatosPersonales.TabIndex = 1;
             this.gpbDatosPersonales.TabStop = false;
             this.gpbDatosPersonales.Text = "Datos personales";
             // 
