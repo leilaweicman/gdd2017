@@ -59,8 +59,20 @@ namespace UberFrba.Abm_Cliente
         {
             List<String> lstErrores = new List<string>();
             bool huboErrorDato = false;
+            String error = "";
 
             if (txtFiltDni.Text != "")
+            {
+
+                error = Validator.MayorACero(txtFiltDni.Text, "Dni");
+                if (error != "")
+                {
+                    lstErrores.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                }
+            }
+            else if (txtFiltDni.Text != "")
             {
                 if (!Validator.EsNumero(txtFiltDni.Text))
                 {

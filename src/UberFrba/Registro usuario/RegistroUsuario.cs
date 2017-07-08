@@ -504,6 +504,8 @@ namespace UberFrba.Registro_usuario
             DateTime fechaMaxSql = new DateTime(9999, 12, 12);
             DateTime fechaNac;
 
+            String error="";
+
             if (txtNombre.Text == "" || txtApellido.Text == "" || txtDni.Text == "" || ((txtContrasenia.Text == "" ||
                 txtConfContrasenia.Text == "") && !editing) || txtUsername.Text == "" || txtTel.Text == "" || txtMail.Text == "" ||
                 txtCalle.Text == "" || txtLocalidad.Text == "" || (txtCP.Enabled && txtCP.Text == ""))
@@ -523,38 +525,46 @@ namespace UberFrba.Registro_usuario
                     lstErroresCampos.Add("Las contraseñas no coinciden.\n");
                     huboErrorDato = true;
                 }
-                if (!Validator.EsNumero(txtDni.Text))
+
+                error = Validator.MayorACero(txtDni.Text, "Dni");
+                if(error!="")
+                {
+                    lstErroresCampos.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                }
+                else if (!Validator.EsNumero(txtDni.Text))
                 {
                     lstErroresCampos.Add("El dni debe contener solo números.\n");
                     huboErrorDato = true;
                 }
-                else if (int.Parse(txtDni.Text) <= 0)
-                {
-                    lstErroresCampos.Add("El dni debe ser mayor a cero.\n");
-                    huboErrorDato = true;
-                }
 
-                if (!Validator.EsNumero(txtTel.Text))
+                error = Validator.MayorACero(txtTel.Text, "Telefono");
+                if (error != "")
+                {
+                    lstErroresCampos.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                }
+                else if (!Validator.EsNumero(txtTel.Text))
                 {
                     lstErroresCampos.Add("El teléfono debe contener solo números.\n");
                     huboErrorDato = true;
                 }
-                else if (int.Parse(txtTel.Text) <= 0)
-                {
-                    lstErroresCampos.Add("El telefono debe ser mayor a cero.\n");
-                    huboErrorDato = true;
-                }
 
-                if (txtPiso.Text != "" && !Validator.EsNumero(txtPiso.Text))
+                error = Validator.MayorACero(txtPiso.Text, "Piso");
+                if (txtPiso.Text != "" && error != "")
+                {
+                    lstErroresCampos.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                }
+                else if (txtPiso.Text != "" && !Validator.EsNumero(txtPiso.Text))
                 {
                     lstErroresCampos.Add("El piso debe contener solo números.\n");
                     huboErrorDato = true;
                 }
-                else if (Validator.EsNumero(txtPiso.Text) && int.Parse(txtPiso.Text) < 0)
-                {
-                    lstErroresCampos.Add("El piso debe ser mayor o igual a cero.\n");
-                    huboErrorDato = true;
-                }
+
                 fechaNac = Convert.ToDateTime(dtpFechaNac.Text);
                 if (fechaNac.CompareTo(fechaMinSql) < 0 || fechaNac.CompareTo(fechaMaxSql) > 0)
                 {
@@ -563,18 +573,20 @@ namespace UberFrba.Registro_usuario
                 }
                 if (fechaNac >= DateTime.Now.Date)
                 {
-                    lstErroresCampos.Add("La fecha de nacimiento debe anterior a la del dia de hoy.\n");
+                    lstErroresCampos.Add("La fecha de nacimiento debe ser anterior a la del dia de hoy.\n");
                     huboErrorDato = true;
                 }
 
-                if (txtCP.Enabled && !Validator.EsNumero(txtCP.Text))
+                error = Validator.MayorACero(txtCP.Text, "C. P.");
+                if (txtCP.Enabled && error != "")
+                {
+                    lstErroresCampos.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                }
+                else if (txtCP.Enabled && !Validator.EsNumero(txtCP.Text))
                 {
                     lstErroresCampos.Add("El código postal debe ser numérico");
-                    huboErrorDato = true;
-                }
-                else if (txtCP.Enabled && Validator.EsNumero(txtCP.Text) && int.Parse(txtCP.Text) <= 0)
-                {
-                    lstErroresCampos.Add("El código postal debe ser mayor a cero.\n");
                     huboErrorDato = true;
                 }
 

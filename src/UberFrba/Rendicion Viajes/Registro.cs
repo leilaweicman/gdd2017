@@ -114,32 +114,64 @@ namespace UberFrba.Rendicion_Viajes
         }
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            if (this.txtPorcentaje.Text != ""&&this.dtpFecha.Value.ToString("yyyy-MM-dd") != "")
-            {
-                if (!existe())
+                DateTime fechaMinSql = new DateTime(1753, 01, 01);
+                DateTime fechaMaxSql = new DateTime(9999, 12, 12);
+                DateTime fecha=Convert.ToDateTime(dtpFecha.Text);
+
+                List<String> lstErrores = new List<string>();
+                bool huboErrorDato = false;
+
+                string error="";
+
+            if (this.txtPorcentaje.Text != "" && this.dtpFecha.Value.ToString("yyyy-MM-dd") != "")
+            {  
+                error = Validator.MayorACero(txtPorcentaje.Text, "Porcentaje");
+                if(error!="")
                 {
-                    if (ObtenerCantidadViajes() > 0)
+                    lstErrores.Add(error);
+                    huboErrorDato = true;
+                }
+                if (fecha.CompareTo(fechaMinSql) < 0 || fecha.CompareTo(fechaMaxSql) > 0)
+                {
+                    lstErrores.Add("La fecha debe estar entre 1/1/1753 y 12/12/9999.\n");
+                    huboErrorDato = true;
+                }
+                if (fecha >= DateTime.Now.Date)
+                {
+                    lstErrores.Add("La fecha debe ser anterior a la del dia de hoy.\n");
+                    huboErrorDato = true;
+                }
+                if(huboErrorDato){
+                    Validator.mostrarErrores(lstErrores, "");    
+                }
+                else 
+                {
+                    if (!existe())
                     {
-                        RendicionDetalle rd = new RendicionDetalle();
-                        rd.Fecha = this.dtpFecha.Value.ToString("yyyy-MM-dd");
-                        rd.Porcentaje = int.Parse(this.txtPorcentaje.Text);
-                        rd.idchofer = int.Parse(this.cmbChofer.SelectedValue.ToString());
-                        rd.IDTurno = int.Parse(this.cmbTurno.SelectedValue.ToString());
-                        Rendicion_Viajes.Detalle reind = new Rendicion_Viajes.Detalle(rd);
-                        this.Hide();
-                        reind.Show();
+                        if (ObtenerCantidadViajes() > 0)
+                        {
+                            RendicionDetalle rd = new RendicionDetalle();
+                            rd.Fecha = this.dtpFecha.Value.ToString("yyyy-MM-dd");
+                            rd.Porcentaje = int.Parse(this.txtPorcentaje.Text);
+                            rd.idchofer = int.Parse(this.cmbChofer.SelectedValue.ToString());
+                            rd.IDTurno = int.Parse(this.cmbTurno.SelectedValue.ToString());
+                            Rendicion_Viajes.Detalle reind = new Rendicion_Viajes.Detalle(rd);
+                            this.Hide();
+                            reind.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No hay ningun viaje para realizar la rendicion");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("No hay ningun viaje para realizar la rendicion");
+                        MessageBox.Show("Ya existe una rendicion para ese turno, fecha y chofer");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Ya existe una rendicion para ese turno, fecha y chofer");
-
-                }
-            }else{
+            }
+            else
+            {
                 MessageBox.Show("Debe completar todos los campos");
             }
         }

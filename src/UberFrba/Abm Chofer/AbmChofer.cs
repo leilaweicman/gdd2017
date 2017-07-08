@@ -73,10 +73,19 @@ namespace UberFrba.Abm_Chofer
         {
             List<String> lstErrores = new List<string>();
             bool huboErrorDato = false;
+            String error = "";
 
             if (txtFiltDni.Text != "")
             {
-                if (!Validator.EsNumero(txtFiltDni.Text))
+
+                error = Validator.MayorACero(txtFiltDni.Text, "Dni");
+                if (error != "")
+                {
+                    lstErrores.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                } 
+                else if (!Validator.EsNumero(txtFiltDni.Text))
                 {
                     lstErrores.Add("El dni debe ser numérico");
                     huboErrorDato = true;

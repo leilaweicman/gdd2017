@@ -85,6 +85,7 @@ namespace UberFrba.Abm_Turno
             DateTime fechaMaxSql = new DateTime(9999, 12, 12);
 
             List<string> lstErroresCampos = new List<string>();
+            String error = "";
             #region validacionCampos
 
             if (txtDescripcion.Text == "" || txtPrecioBase.Text == "" || txtValorKilometro.Text == "" || cmbHoraInicio.SelectedIndex == -1 ||
@@ -95,32 +96,36 @@ namespace UberFrba.Abm_Turno
             }
             else
             {
-                if(!Validator.EsDecimal(txtPrecioBase.Text))
+                error = Validator.MayorACero(txtPrecioBase.Text, "Precio base");
+                if (error != "")
+                {
+                    lstErroresCampos.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                }
+                else if(!Validator.EsDecimal(txtPrecioBase.Text))
                 {
                     lstErroresCampos.Add("El precio base debe ser decimal con coma y no con punto.\n");
                     huboErrorDato = true;
                 } 
-                else if (Validator.MayorACero(txtPrecioBase.Text, "Precio base")!="")
-                {
-                    lstErroresCampos.Add("El precio base debe ser mayor a cero.\n");
-                    huboErrorDato = true;
-                }
                 else if (txtPrecioBase.Text.IndexOf(".") > 0)
                 {
                     lstErroresCampos.Add("Por favor utilice una coma en vez de un punto para indicar el precio base.\n");
                     huboErrorDato = true;
                 }
 
-                if(!Validator.EsDecimal(txtValorKilometro.Text))
+                error = Validator.MayorACero(txtValorKilometro.Text, "Valor kilometro");
+                if(error!="")
+                {
+                    lstErroresCampos.Add(error);
+                    huboErrorDato = true;
+                    error = "";
+                }
+                else if(!Validator.EsDecimal(txtValorKilometro.Text))
                 {
                     lstErroresCampos.Add("El valor del kilómetro base debe ser decimal con coma y no con punto.\n");
                     huboErrorDato = true;
                 } 
-                else if (Validator.MayorACero(txtValorKilometro.Text, "Valor kilómetro")!="")
-                {
-                    lstErroresCampos.Add("El valor del kilómetro debe ser mayor a cero.\n");
-                    huboErrorDato = true;
-                }
                 else if (txtValorKilometro.Text.IndexOf(".") > 0)
                 {
                     lstErroresCampos.Add("Por favor utilice una coma en vez de un punto para indicar el valor del kilómetro.\n");

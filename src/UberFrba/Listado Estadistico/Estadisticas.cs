@@ -64,6 +64,7 @@ namespace UberFrba.Listado_Estadistico
             //se valida que el año ingresado sea mayor a 2000, que sea un número y que no sea nulo
             string strErrores = "";
             strErrores += Validator.ValidarNulo(txtAño.Text, "Año");
+            
             if (strErrores.Length > 0)
             {
                 MessageBox.Show(strErrores, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -71,6 +72,7 @@ namespace UberFrba.Listado_Estadistico
             }
 
             strErrores += Validator.SoloNumeros(txtAño.Text, "Año");
+            strErrores += Validator.MayorACero(txtAño.Text, "Año");
 
             if (strErrores.Length > 0)
             {
