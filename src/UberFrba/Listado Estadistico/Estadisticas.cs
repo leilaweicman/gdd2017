@@ -56,13 +56,12 @@ namespace UberFrba.Listado_Estadistico
                     cargarListadoClienteQueUtilizoMasVecesElMismoAutomovil();
                 }
 
-                dgvListado.Visible = true;
             }
         }
 
         private bool ValidarCampos()
         {
-            //se valida que el año ingresado esté entre 1900 y 2017, que sea un número y que no sea nulo
+            //se valida que el año ingresado sea mayor a 2000, que sea un número y que no sea nulo
             string strErrores = "";
             strErrores += Validator.ValidarNulo(txtAño.Text, "Año");
             if (strErrores.Length > 0)
@@ -101,10 +100,12 @@ namespace UberFrba.Listado_Estadistico
                 if (ds.Tables[0].Rows.Count <= 0)
                 {
                     MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                    dgvListado.Visible = false;
                 }
                 else
                 {
                     configurarGrillaClienteQueUtilizoMasVecesElMismoAutomovil(ds);
+                    dgvListado.Visible = true;
                 }
             }
 
@@ -157,10 +158,12 @@ namespace UberFrba.Listado_Estadistico
                 if (ds.Tables[0].Rows.Count <= 0)
                 {
                     MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                    dgvListado.Visible = false;
                 }
                 else
                 {
                     configurarGrillaClientesConMayorConsumo(ds);
+                    dgvListado.Visible = true;
                 }                
             }
 
@@ -204,10 +207,12 @@ namespace UberFrba.Listado_Estadistico
                 if (ds.Tables[0].Rows.Count <= 0)
                 {
                     MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                    dgvListado.Visible = false;
                 }
                 else
                 {
                     configurarGrillaChoferesConViajeMasLargo(ds);
+                    dgvListado.Visible = true;
                 }                
             }
 
@@ -251,10 +256,12 @@ namespace UberFrba.Listado_Estadistico
                 if (ds.Tables[0].Rows.Count <= 0)
                 {
                     MessageBox.Show("No hay resultados para el listado solicitado en el trimestre del año ingresado");
+                    dgvListado.Visible = false;
                 }
                 else
                 {
                     configurarGrillaChoferesConMayorRecaudacion(ds);
+                    dgvListado.Visible = true;
                 }                
             }
 

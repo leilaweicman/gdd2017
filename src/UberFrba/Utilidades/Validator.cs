@@ -74,8 +74,8 @@ namespace Utilities
         public static string EsAño(string año, string nombreCampo)
         {
             int unAño = Convert.ToInt32(año);
-            if (unAño < 1900 || unAño > 2017)
-                return "Tiene que ingresar un año válido, entre 1900 y 2017, para el campo " + nombreCampo + "\n";
+            if (unAño < 2000 )
+                return "Tiene que ingresar un año válido, mayor a 2000, para el campo " + nombreCampo + "\n";
 
             return string.Empty;
 
@@ -102,7 +102,7 @@ namespace Utilities
             DateTime fechaHoy = DateTime.Now;
             int resul = DateTime.Compare(fecha, fechaHoy);
             if (resul > 0)
-                return "No se deben ingresar viajes posteriores a la fecha y hora actual. Ingrese una fecha y hora menor a la fecha y hora de hoy, para el campo " + nombreCampo + "\n";
+                return "Ingrese una fecha y hora menor a la fecha y hora actual, para el campo " + nombreCampo + "\n";
 
             return string.Empty;
         }
