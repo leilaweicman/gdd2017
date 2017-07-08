@@ -60,12 +60,7 @@ namespace UberFrba.Abm_Cliente
             List<String> lstErrores = new List<string>();
             bool huboErrorDato = false;
 
-            if (txtFiltApellido.Text == "" && txtFiltDni.Text == "" && txtFiltNombre.Text == "")
-            {
-                lstErrores.Add("Complete algún campo de filtrado para filtrar");
-                huboErrorDato = true;
-            }
-            else if (txtFiltDni.Text != "")
+            if (txtFiltDni.Text != "")
             {
                 if (!Validator.EsNumero(txtFiltDni.Text))
                 {
