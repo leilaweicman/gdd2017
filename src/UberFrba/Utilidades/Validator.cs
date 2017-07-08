@@ -82,22 +82,31 @@ namespace Utilities
         }
 
         public static string FechaMenor(DateTime fechaInicio, DateTime fechaFin)
-        {
+        {            
             int resul = DateTime.Compare(fechaInicio, fechaFin);
-            if (DateTime.Compare(fechaInicio, fechaFin) >= 0)
+            if (resul >= 0)
+                return "La fecha de inicio debe ser menor a la fecha de fin " + "\n";
+
+            string fechaI = fechaInicio.ToString("yyyy-MM-dd HH:mm:ss");
+            string fechaF = fechaFin.ToString("yyyy-MM-dd HH:mm:ss");
+
+            bool result = fechaI.Equals(fechaF, StringComparison.Ordinal);
+            if (result)
                 return "La fecha de inicio debe ser menor a la fecha de fin " + "\n";
 
             return string.Empty;
-
         }
 
-        //public static string ValidarFechaVencimiento(string fecha, string nombreCampo, DateTime fechaHoy)
-        //{
-        //    DateTime unaFecha = Convert.ToDateTime(fecha);
-        //    if (unaFecha < fechaHoy)
-        //        return "Tiene que ingresar una fecha válida, para el campo " + nombreCampo + "\n";
-        //    return string.Empty;
-        //}
+        public static string FechaMenorOIgualAFechaActual(DateTime fecha, string nombreCampo)
+        {
+            DateTime fechaHoy = DateTime.Now;
+            int resul = DateTime.Compare(fecha, fechaHoy);
+            if (resul > 0)
+                return "No se deben ingresar viajes posteriores a la fecha y hora actual. Ingrese una fecha y hora menor a la fecha y hora de hoy, para el campo " + nombreCampo + "\n";
+
+            return string.Empty;
+        }
+
 
         public static string ValidarCantidadMenor(string cant, int otraCant, string nombreCampo)
         {

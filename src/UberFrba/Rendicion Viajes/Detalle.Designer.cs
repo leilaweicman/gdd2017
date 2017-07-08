@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBoxReg = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.dgvRendicionesDetalle = new System.Windows.Forms.DataGridView();
             this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,7 +38,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConfirmarRendicion = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBoxReg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendicionesDetalle)).BeginInit();
             this.SuspendLayout();
@@ -50,12 +50,22 @@
             this.groupBoxReg.Controls.Add(this.label2);
             this.groupBoxReg.Controls.Add(this.btnConfirmarRendicion);
             this.groupBoxReg.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBoxReg.Location = new System.Drawing.Point(33, 44);
+            this.groupBoxReg.Location = new System.Drawing.Point(33, 30);
             this.groupBoxReg.Name = "groupBoxReg";
-            this.groupBoxReg.Size = new System.Drawing.Size(774, 434);
+            this.groupBoxReg.Size = new System.Drawing.Size(623, 417);
             this.groupBoxReg.TabIndex = 38;
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Detalle";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(447, 339);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(141, 51);
+            this.btnCancelar.TabIndex = 44;
+            this.btnCancelar.Text = "Cancelar Rendicion";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // dgvRendicionesDetalle
             // 
@@ -122,29 +132,20 @@
             // 
             this.btnConfirmarRendicion.Location = new System.Drawing.Point(295, 339);
             this.btnConfirmarRendicion.Name = "btnConfirmarRendicion";
-            this.btnConfirmarRendicion.Size = new System.Drawing.Size(141, 67);
+            this.btnConfirmarRendicion.Size = new System.Drawing.Size(141, 51);
             this.btnConfirmarRendicion.TabIndex = 33;
             this.btnConfirmarRendicion.Text = "Confirmar Rendicion";
             this.btnConfirmarRendicion.UseVisualStyleBackColor = true;
             this.btnConfirmarRendicion.Click += new System.EventHandler(this.btnConfirmarRendicion_Click);
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(447, 339);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(141, 67);
-            this.btnCancelar.TabIndex = 44;
-            this.btnCancelar.Text = "Cancelar Rendicion";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // Detalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 490);
+            this.ClientSize = new System.Drawing.Size(675, 463);
             this.Controls.Add(this.groupBoxReg);
             this.Name = "Detalle";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalle";
             this.groupBoxReg.ResumeLayout(false);
             this.groupBoxReg.PerformLayout();

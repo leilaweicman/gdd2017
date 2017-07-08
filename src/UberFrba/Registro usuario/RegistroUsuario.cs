@@ -68,12 +68,9 @@ namespace UberFrba.Registro_usuario
 
             if (editing)
             {
-                gpbAgregarRol.Visible = true;
                 chkHabilitado.Visible = true;
                 gpbTipoUsuario.Enabled = false;
-
-                cargarOtrosRoles();
-
+                
                 if (tipoUsuario == 3)//es cliente
                 {
                     chkCliente.Checked = true;
@@ -189,7 +186,7 @@ namespace UberFrba.Registro_usuario
             else
             {
 
-                Usuario usuarioNuevo = crearNuevoUsuario(ref esCliente, ref esChofer);
+                Usuario usuarioNuevo = crearNuevoUsuario(ref esChofer, ref esCliente);
 
                 errorYaExiste = verificarExistencia(ref lstErroresExistencia, usuarioNuevo);
                 
@@ -222,25 +219,9 @@ namespace UberFrba.Registro_usuario
                                 SQLHelper.ExecuteNonQuery("PR_editarChofer", CommandType.StoredProcedure, parameterList);
                             }
 
-                            if(cmbRolExtra.SelectedIndex != 0)
-                            {
-                                Rol nuevoRol = new Rol();
-                                nuevoRol.Id_Rol = int.Parse(cmbRolExtra.SelectedValue.ToString());
-                                if (nuevoRol.Id_Rol == 2)
-                                {
-                                    SQLHelper.ExecuteNonQuery("PR_altaChofer", CommandType.StoredProcedure, parameterList);
-                                }
-                                else if(nuevoRol.Id_Rol ==1)
-                                {
-                                    SQLHelper.ExecuteNonQuery("PR_altaCliente", CommandType.StoredProcedure, parameterList);
-                                }
-
-                            }
                             MessageBox.Show("El usuario se ha modificado");
-
+                                                      
                             
-
-
                             if (ejecutaAdmin)
                             {
                                 if (tipoUsuario == 3)
@@ -549,37 +530,6 @@ namespace UberFrba.Registro_usuario
             return huboErrorDato;
         }
 
-        private void cargarOtrosRoles()
-        {
-            try
-            {
-                //Obtengo los choferes y los muestro en el combobox.
-                DataSet ds = Rol.obtenerRolesExtra(userAEditar.Rol.Id_Rol);
-                if (ds.Tables[0].Rows.Count != 0)
-                {
-                    //Uso el manager de dropdowns para cargar el comboBox con los cliente
-                    DropDownListManager.CargarCombo(cmbRolExtra, ds.Tables[0], "IDRol", "Nombre", true, "");
-                }
-            }
-            catch (ErrorConsultaException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cmbRolExtra_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(int.Parse(cmbRolExtra.SelectedValue.ToString()) == 1)
-            {
-                if (!txtCP.Enabled)
-                {
-                    txtCP.Enabled = true;
-                }
-            }
-        }
+       
     }
 }

@@ -151,6 +151,7 @@
             this.Controls.Add(this.grpRol);
             this.Controls.Add(this.grpLogIn);
             this.Name = "LogIn";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogIn";
             this.Load += new System.EventHandler(this.LogIn_Load);
             this.grpLogIn.ResumeLayout(false);

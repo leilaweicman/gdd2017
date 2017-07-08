@@ -66,9 +66,9 @@
             this.groupBoxReg.Controls.Add(this.btnSiguiente);
             this.groupBoxReg.Controls.Add(this.label1);
             this.groupBoxReg.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBoxReg.Location = new System.Drawing.Point(24, 44);
+            this.groupBoxReg.Location = new System.Drawing.Point(24, 28);
             this.groupBoxReg.Name = "groupBoxReg";
-            this.groupBoxReg.Size = new System.Drawing.Size(525, 299);
+            this.groupBoxReg.Size = new System.Drawing.Size(525, 315);
             this.groupBoxReg.TabIndex = 37;
             this.groupBoxReg.TabStop = false;
             this.groupBoxReg.Text = "Registro";
@@ -76,7 +76,7 @@
             // 
             // txtPorcentaje
             // 
-            this.txtPorcentaje.Location = new System.Drawing.Point(132, 217);
+            this.txtPorcentaje.Location = new System.Drawing.Point(132, 211);
             this.txtPorcentaje.Name = "txtPorcentaje";
             this.txtPorcentaje.Size = new System.Drawing.Size(166, 27);
             this.txtPorcentaje.TabIndex = 42;
@@ -86,7 +86,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label4.Location = new System.Drawing.Point(32, 227);
+            this.label4.Location = new System.Drawing.Point(32, 221);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 17);
             this.label4.TabIndex = 41;
@@ -94,7 +94,7 @@
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Location = new System.Drawing.Point(132, 59);
+            this.dtpFecha.Location = new System.Drawing.Point(132, 47);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(200, 27);
             this.dtpFecha.TabIndex = 40;
@@ -103,7 +103,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label2.Location = new System.Drawing.Point(32, 67);
+            this.label2.Location = new System.Drawing.Point(32, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 39;
@@ -113,7 +113,7 @@
             // 
             this.cmbTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTurno.FormattingEnabled = true;
-            this.cmbTurno.Location = new System.Drawing.Point(132, 178);
+            this.cmbTurno.Location = new System.Drawing.Point(132, 156);
             this.cmbTurno.Name = "cmbTurno";
             this.cmbTurno.Size = new System.Drawing.Size(166, 26);
             this.cmbTurno.TabIndex = 38;
@@ -122,7 +122,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label3.Location = new System.Drawing.Point(32, 187);
+            this.label3.Location = new System.Drawing.Point(32, 165);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 17);
             this.label3.TabIndex = 37;
@@ -132,14 +132,14 @@
             // 
             this.cmbChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChofer.FormattingEnabled = true;
-            this.cmbChofer.Location = new System.Drawing.Point(132, 124);
+            this.cmbChofer.Location = new System.Drawing.Point(132, 101);
             this.cmbChofer.Name = "cmbChofer";
             this.cmbChofer.Size = new System.Drawing.Size(166, 26);
             this.cmbChofer.TabIndex = 34;
             // 
             // btnSiguiente
             // 
-            this.btnSiguiente.Location = new System.Drawing.Point(362, 239);
+            this.btnSiguiente.Location = new System.Drawing.Point(362, 262);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(141, 35);
             this.btnSiguiente.TabIndex = 33;
@@ -151,7 +151,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 10F);
-            this.label1.Location = new System.Drawing.Point(32, 129);
+            this.label1.Location = new System.Drawing.Point(32, 106);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 17);
             this.label1.TabIndex = 0;
@@ -161,11 +161,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 426);
+            this.ClientSize = new System.Drawing.Size(573, 420);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBoxReg);
             this.Name = "Registro";
-            this.Text = "Registro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "RegistroRendicion";
             this.Load += new System.EventHandler(this.Registro_Load);
             this.groupBoxReg.ResumeLayout(false);
             this.groupBoxReg.PerformLayout();

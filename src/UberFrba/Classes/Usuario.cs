@@ -250,6 +250,25 @@ namespace Classes
             return false;
         }
 
+        public void traerCodPostUsuario()
+        {
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+            parameterList.Add(new SqlParameter("@idUsuario", this.Id_Usuario));
+
+            DataSet ds = SQLHelper.ExecuteDataSet("PR_traerCodPostalCliente", CommandType.StoredProcedure, parameterList);
+            parameterList.Clear();
+            if (ds.Tables[0].Rows.Count == 1)
+            {
+                DataRow dr = ds.Tables[0].Rows[0];
+                this.CodPost = Convert.ToInt32(dr["codPostal"]);
+
+            }
+            else
+            {
+                this.CodPost = -1;
+            }
+        }
+
         public override void DataRowToObject(DataRow dr)
         {
             // Esto es tal cual lo devuelve el stored de la DB

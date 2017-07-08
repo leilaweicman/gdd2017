@@ -102,6 +102,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblIniciarSesion);
             this.Name = "Inicial";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicial";
             this.Load += new System.EventHandler(this.Inicial_Load);
             this.ResumeLayout(false);

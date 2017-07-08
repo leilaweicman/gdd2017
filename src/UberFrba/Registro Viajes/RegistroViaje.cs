@@ -177,7 +177,7 @@ namespace UberFrba.Registro_Viajes
         {
             try
             {
-                //Obtengo los choferes y los muestro en el combobox.
+                //Obtengo los choferes habilitados y que tengan autos habilitados, y los muestro en el combobox.
                 DataSet ds = Usuario.ObtenerChoferesHabilitadosConAuto();
                 if (ds.Tables[0].Rows.Count != 0)
                 {
@@ -227,7 +227,6 @@ namespace UberFrba.Registro_Viajes
             //valido campos ingresados
             if (ValidarCampos())
             {
-
                 //los campos son validos, valido que no exista el viaje y lo registro
               
                 Viaje unNuevoViaje = new Viaje();
@@ -342,6 +341,8 @@ namespace UberFrba.Registro_Viajes
         {
             string strErrores = "";
             strErrores = Validator.FechaMenor(dtpFechaInicio.Value, dtpFechaFin.Value);
+            strErrores += Validator.FechaMenorOIgualAFechaActual(dtpFechaInicio.Value, "Fecha Inicio");
+            strErrores += Validator.FechaMenorOIgualAFechaActual(dtpFechaFin.Value, "Fecha Fin");
             strErrores += Validator.SoloNumerosODecimales(txtKilometros.Text, "Kilometros");
             strErrores += Validator.MayorACero(txtKilometros.Text, "Kilometros");
             strErrores += Validator.ValidarNulo(cmbChofer.Text, "Chofer");
