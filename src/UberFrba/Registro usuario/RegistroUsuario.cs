@@ -17,7 +17,7 @@ namespace UberFrba.Registro_usuario
 {
     public partial class RegistroUsuario : Form
     {
-        Usuario userAEditar;
+        Usuario userAEditar = new Usuario();
         bool editing = false;
         int tipoUsuario = 0;
         bool ejecutaAdmin;
@@ -31,7 +31,41 @@ namespace UberFrba.Registro_usuario
 
         public RegistroUsuario(Usuario usuario, bool ejecutaAdmin)
         {
-            userAEditar = usuario;
+            if (ejecutaAdmin)
+            {
+                userAEditar = usuario;
+            }
+            else 
+            {
+                List<SqlParameter> parameterList = new List<SqlParameter>();
+                parameterList.Add(new SqlParameter("@idUsuario", usuario.Id_Usuario));
+
+                DataSet ds = new DataSet();
+
+                userAEditar.Rol = new Rol();
+                                
+                if (usuario.Rol.Id_Rol == 2)
+                {
+                    ds = SQLHelper.ExecuteDataSet("PR_traerChoferes", CommandType.StoredProcedure, parameterList);
+                    userAEditar.Rol.Id_Rol = 2;    
+                }
+                else if(usuario.Rol.Id_Rol==3)
+                {
+                    ds = SQLHelper.ExecuteDataSet("PR_traerClientes", CommandType.StoredProcedure, parameterList);
+                    userAEditar.Rol.Id_Rol = 3;
+                }
+
+                if (ds.Tables[0].Rows.Count == 1)
+                {
+                    DataRow row = ds.Tables[0].Rows[0];
+                    userAEditar.DataRowToObject(row);                    
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio un error cargando los datos del usuario");
+                }
+            }
+
             editing = true;
             tipoUsuario = usuario.Rol.Id_Rol;
             this.ejecutaAdmin = ejecutaAdmin;
@@ -93,6 +127,10 @@ namespace UberFrba.Registro_usuario
                 if (userAEditar.Habilitado == true)
                 {
                     chkHabilitado.Checked = true;
+                }
+                else
+                {
+                    chkHabilitado.Checked = false;
                 }
                 if (userAEditar.Piso == -1)
                 {
@@ -205,8 +243,10 @@ namespace UberFrba.Registro_usuario
                             #region if editing
                             if (chkHabilitado.Checked) {
                                 parameterList.Add(new SqlParameter("@habilitado", 1));
+                                //userAEditar.Habilitado = true;
                             } else {
                                 parameterList.Add(new SqlParameter("@habilitado", 0));
+                                //userAEditar.Habilitado = false;
                             }
                             parameterList.Add(new SqlParameter("@idUsuario", userAEditar.Id_Usuario));
                             if (tipoUsuario == 3)
@@ -220,8 +260,9 @@ namespace UberFrba.Registro_usuario
                             }
 
                             MessageBox.Show("El usuario se ha modificado");
-                                                      
-                            
+
+                            userAEditar = usuarioNuevo;
+
                             if (ejecutaAdmin)
                             {
                                 if (tipoUsuario == 3)
@@ -421,6 +462,18 @@ namespace UberFrba.Registro_usuario
             {
                 nuevoUsuario.CodPost = -1;
             }
+            if (chkHabilitado.Enabled)
+            {
+                if (chkHabilitado.Checked == true)
+                {
+                    nuevoUsuario.Habilitado = true;
+                }
+                else
+                {
+                    nuevoUsuario.Habilitado = false;
+                }
+            }
+                    
             return nuevoUsuario;
         }
 
@@ -467,7 +520,7 @@ namespace UberFrba.Registro_usuario
                 }
                 if (txtContrasenia.Text != txtConfContrasenia.Text)
                 {
-                    lstErroresCampos.Add("Las constraseñas no coinciden.\n");
+                    lstErroresCampos.Add("Las contraseñas no coinciden.\n");
                     huboErrorDato = true;
                 }
                 if (!Validator.EsNumero(txtDni.Text))

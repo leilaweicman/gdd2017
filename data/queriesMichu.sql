@@ -57,7 +57,7 @@ DROP PROCEDURE [GIRLPOWER].[PR_traerClientes]
 GO
 
 CREATE PROCEDURE [GIRLPOWER].[PR_traerClientes] 
-(@dni numeric(18,0)=null, @nombre varchar(255)=null, @apellido varchar(255)=null)
+(@dni numeric(18,0)=null, @nombre varchar(255)=null, @apellido varchar(255)=null, @idUsuario int = null)
 AS
 BEGIN
 	BEGIN TRY
@@ -65,8 +65,8 @@ BEGIN
 		u.Mail, u.Nombre, u.Piso, u.Telefono, u.Username, c.CodPostal, ru.Habilitado, c.CodPostal  FROM [GIRLPOWER].[Usuario] u 
 		JOIN [GIRLPOWER].[Cliente] c ON u.IDUsuario = c.IDUsuario
 		JOIN [GIRLPOWER].RolPorUsuario ru ON ru.IDUsuario = u.IDUsuario 
-		WHERE ru.IDRol =3 AND (@dni=0 OR u.dni=@dni) AND (@nombre='' OR u.Nombre = @nombre) 
-		AND (@apellido='' OR u.Apellido = @apellido)		
+		WHERE ru.IDRol =3 AND (ISNULL(@dni,0)=0 OR u.dni=@dni) AND (ISNULL(@nombre,'')='' OR u.Nombre = @nombre) 
+		AND (ISNULL(@apellido,'')='' OR u.Apellido = @apellido) AND (ISNULL(@idUsuario,0)=0 OR u.IDUsuario = @idUsuario)
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error cargando los clientes', 16, 217)
@@ -80,15 +80,15 @@ DROP PROCEDURE [GIRLPOWER].[PR_traerChoferes]
 GO
 
 CREATE PROCEDURE [GIRLPOWER].[PR_traerChoferes] 
-(@dni numeric(18,0)=null, @nombre varchar(255)=null, @apellido varchar(255)=null)
+(@dni numeric(18,0)=0, @nombre varchar(255)='', @apellido varchar(255)='', @idUsuario int = 0)
 AS
 BEGIN
 	BEGIN TRY
 		SELECT u.IDUsuario, u.Apellido, u.ContraseniaEncriptada, u.Depto, u.Direccion, u.DNI, u.FechaNacimiento, u.Localidad,
 		u.Mail, u.Nombre, u.Piso, u.Telefono, u.Username, ru.Habilitado /*as [RolHabilit]*/ FROM [GIRLPOWER].[Usuario] u 
 		JOIN [GIRLPOWER].RolPorUsuario ru ON ru.IDUsuario = u.IDUsuario 
-		WHERE ru.IDRol=2 AND (@dni=0 OR u.dni=@dni) AND (@nombre='' OR u.Nombre = @nombre) 
-		AND (@apellido='' OR u.Apellido = @apellido)
+		WHERE ru.IDRol=2 AND (ISNULL(@dni,0)=0 OR u.dni=@dni) AND (ISNULL(@nombre,'')='' OR u.Nombre = @nombre) 
+		AND (ISNULL(@apellido,'')='' OR u.Apellido = @apellido) AND (ISNULL(@idUsuario,0)=0 OR u.IDUsuario = @idUsuario)
 	END TRY
 	BEGIN CATCH
 		RAISERROR('Hubo un error cargando los choferes', 16, 217)
@@ -96,6 +96,10 @@ BEGIN
 	END CATCH
 END
 GO
+
+exec girlpower.PR_traerChoferes null, null, null, null
+--banca el id este es chofer y cliente soy kpa
+exec girlpower.PR_traerClientes 0, null, null,92
 
 IF OBJECT_ID ('GIRLPOWER.PR_verifExisteUsuario', 'P') IS NOT NULL
 DROP PROCEDURE [GIRLPOWER].[PR_verifExisteUsuario]

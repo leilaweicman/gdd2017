@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utilities;
 
 namespace UberFrba.Abm_Chofer
 {
@@ -70,7 +71,35 @@ namespace UberFrba.Abm_Chofer
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            cargarChoferes();           
+            List<String> lstErrores = new List<string>();
+            bool huboErrorDato = false;
+
+            if (txtFiltApellido.Text == "" && txtFiltDni.Text == "" && txtFiltNombre.Text == "")
+            {
+                lstErrores.Add("Complete algún campo de filtrado para filtrar");
+                huboErrorDato = true;
+            }
+            else if (txtFiltDni.Text != "")
+            {
+                if (!Validator.EsNumero(txtFiltDni.Text))
+                {
+                    lstErrores.Add("El dni debe ser numérico");
+                    huboErrorDato = true;
+                }
+                else if (int.Parse(txtFiltDni.Text) <= 0)
+                {
+                    lstErrores.Add("El dni debe ser mayor a cero");
+                    huboErrorDato = true;
+                }
+            }
+            if (huboErrorDato)
+            {
+                Validator.mostrarErrores(lstErrores, "");
+            }
+            else 
+            {
+                cargarChoferes();
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
