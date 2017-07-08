@@ -102,7 +102,7 @@ namespace Utilities
             DateTime fechaHoy = DateTime.Now;
             int resul = DateTime.Compare(fecha, fechaHoy);
             if (resul > 0)
-                return "No se deben ingresar viajes posteriores a la fecha y hora actual. Ingrese una fecha y hora menor a la fecha y hora de hoy, para el campo " + nombreCampo + "\n";
+                return "Ingrese una fecha y hora menor a la fecha y hora actual, para el campo " + nombreCampo + "\n";
 
             return string.Empty;
         }
