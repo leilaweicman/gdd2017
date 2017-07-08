@@ -74,8 +74,8 @@ namespace Utilities
         public static string EsAño(string año, string nombreCampo)
         {
             int unAño = Convert.ToInt32(año);
-            if (unAño < 1900 || unAño > 2017)
-                return "Tiene que ingresar un año válido, entre 1900 y 2017, para el campo " + nombreCampo + "\n";
+            if (unAño < 2000 )
+                return "Tiene que ingresar un año válido, mayor a 2000, para el campo " + nombreCampo + "\n";
 
             return string.Empty;
 
