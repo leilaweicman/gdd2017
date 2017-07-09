@@ -170,6 +170,18 @@ namespace UberFrba.Abm_Automovil
             cmbModelo.DisplayMember = "Name";
             cmbModelo.ValueMember = "Value";
         }
+        private bool tieneAuto(int id)
+        {
+            string query = "EXEC  [GIRLPOWER].PR_TieneAutoHabilitado " + this.cmbChofer.SelectedValue + "," +id;
+            var aux = SQLHelper.ExecuteQuery(query);
+            int tiene = 0;
+            while (aux.Read())
+            {
+                if (!object.Equals(aux["TieneAuto"], DBNull.Value))
+                    tiene = int.Parse(aux["TieneAuto"].ToString());
+            }
+            return tiene == 1 ? true : false;
+        }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             int idChofer;
@@ -200,7 +212,9 @@ namespace UberFrba.Abm_Automovil
             {
                 MessageBox.Show("Debe ingresar al menos un turno");
             }
-            else
+            else if(tieneAuto(idAutomovil)){
+                MessageBox.Show("El chofer ya tiene un auto activo");
+            }else
             {
                 idChofer = int.Parse(cmbChofer.SelectedValue.ToString());
                 idMarca = int.Parse(cmbMarca.SelectedValue.ToString());

@@ -136,9 +136,14 @@ namespace UberFrba.Rendicion_Viajes
                     lstErrores.Add("La fecha debe estar entre 1/1/1753 y 12/12/9999.\n");
                     huboErrorDato = true;
                 }
-                if (fecha >= DateTime.Now.Date)
+          /*      if (fecha >= DateTime.Now.Date)
                 {
                     lstErrores.Add("La fecha debe ser anterior a la del dia de hoy.\n");
+                    huboErrorDato = true;
+                }*/
+                if (int.Parse(txtPorcentaje.Text) > 100)
+                {
+                    lstErrores.Add("El porcentaje debe estar entre 0 y 100.\n");
                     huboErrorDato = true;
                 }
                 if(huboErrorDato){
