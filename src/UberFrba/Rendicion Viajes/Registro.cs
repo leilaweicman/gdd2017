@@ -126,11 +126,31 @@ namespace UberFrba.Rendicion_Viajes
             if (this.txtPorcentaje.Text != "" && this.dtpFecha.Value.ToString("yyyy-MM-dd") != "")
             {  
                 error = Validator.MayorACero(txtPorcentaje.Text, "Porcentaje");
-                if(error!="")
+                if (error != "")
                 {
                     lstErrores.Add(error);
                     huboErrorDato = true;
                 }
+                else
+                {
+                    int num;
+                    bool resul = Int32.TryParse(txtPorcentaje.Text, out num);
+                    if (resul)
+                    {
+                        if (int.Parse(txtPorcentaje.Text) > 100)
+                        {
+                            lstErrores.Add("El porcentaje debe estar entre 0 y 100.\n");
+                            huboErrorDato = true;
+                        }
+                    }
+                    else
+                    {
+                        lstErrores.Add("El porcentaje debe estar entre 0 y 100.\n");
+                        huboErrorDato = true;
+                    }                 
+
+                }
+                
                 if (fecha.CompareTo(fechaMinSql) < 0 || fecha.CompareTo(fechaMaxSql) > 0)
                 {
                     lstErrores.Add("La fecha debe estar entre 1/1/1753 y 12/12/9999.\n");
@@ -140,12 +160,14 @@ namespace UberFrba.Rendicion_Viajes
                 {
                     lstErrores.Add("La fecha debe ser anterior a la del dia de hoy.\n");
                     huboErrorDato = true;
-                }*/
+                }
+
                 if (int.Parse(txtPorcentaje.Text) > 100)
                 {
                     lstErrores.Add("El porcentaje debe estar entre 0 y 100.\n");
                     huboErrorDato = true;
-                }
+                }*/
+
                 if(huboErrorDato){
                     Validator.mostrarErrores(lstErrores, "");    
                 }

@@ -1,3 +1,39 @@
+ERRORES
+
+1. Permite registrar dos viajes distintos a la misma hora para el mismo cliente con distintos choferes
+
+2. Si yo como clienta o chofer me inhabilito, me sigue permitiendo registrar viajes
+
+3. Me registro como chófer, quiero registrar un viaje y no me deja porque no tengo auto. Pero tampoco me deja agregarme un automovil. Agregar funcionalidad de registrar auto al chofer?
+
+4. Un chófer puede ver y generar la rendición de otros choferes
+
+5. Si agrego un rol no tengo como agregarselo a un usuario
+
+6. Campos numéricos de registro si da overflow muestra error pero no el correcto
+
+7. Campo porcentaje en registro rendición rompe por overflow. Si pongo porcentaje de 200 me tira un número con menos.
+
+8. Qué habíamos quedado al final con lo de rendir un turno no habilitado?
+
+9. Deberíamos hacer que sí ya hay una rendición oara ese día, no te deje registrar más viajes ese día porque no te va a dejar rendirlo después porque ya existe rendicion en ese día para ese chófer en ese turno
+
+10. La estadística de choferes con viaje más largo trae uno por persona? AGREGAR A LA ESTRATEGIA QUE SON 5 PERSONAS DISTINTAS
+
+11. Detalle factura muestra ID auto e id turno en vez de descripción
+
+12. Factura podría tener un combo que te tire los meses para facturar en vez de pedir fecha inicio y fecha fin de la factura
+
+13. Los cmb deberían estar ordenados por value (que las queries devuelvan con order by) porque si no es un lío buscar
+
+14. Me deja rendirle a un chófer en un turno que no está, debería mostrar en el cmb los turnos solo del chofer
+
+15. Abm chóferes y abm clientes rompen si se ingresan letras en el filtro de dni
+
+16. Me deja que un chófer tenga mas de 1 automovil activo
+
+
+
 cosas que vi:
 
 - el abm automovil deberia traer solo los choferes que tengan auto, o si no tiene y se selecciona, message box diciendo que no tiene auto 

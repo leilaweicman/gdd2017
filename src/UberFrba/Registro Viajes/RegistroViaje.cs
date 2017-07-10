@@ -76,7 +76,7 @@ namespace UberFrba.Registro_Viajes
                     dtpFechaInicio.Enabled = false;
                     btnRegistrar.Enabled = false;
 
-                    MessageBox.Show("Debe tener automovil para regisrtar su viaje.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe tener automovil para regisrtar su viaje. Contacte con el administrador para asignarle uno.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                    
                 }
         }
