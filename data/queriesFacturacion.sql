@@ -6,7 +6,12 @@ CREATE PROCEDURE [GIRLPOWER].[PR_traerViajesFacturaDetalle]
 (@idCliente int, @fechaInicio datetime, @fechaFin datetime)
 AS --tengo que validar en la aplicacion que no exista una factura en este mes
 BEGIN
-	SELECT * FROM GIRLPOWER.viaje WHERE IDCliente=@idCliente AND CAST(FechaFin as date) >= CAST(@fechaInicio as date) 
+	SELECT v.*, u.Nombre, a.Patente, t.Descripcion FROM GIRLPOWER.viaje v 
+	JOIN GIRLPOWER.chofer c ON c.IDChofer = v.IDChofer
+	JOIN GIRLPOWER.Usuario u ON u.IDUsuario = c.IDUsuario
+	JOIN GIRLPOWER.Automovil a ON a.IDAutomovil = v.IDAutomovil
+	JOIN GIRLPOWER.Turno t ON t.IDTurno = v.IDTurno	
+	WHERE IDCliente=@idCliente AND CAST(FechaFin as date) >= CAST(@fechaInicio as date) 
 	AND CAST(FechaFin as date) <= CAST(@fechaFin as date)
 END
 GO

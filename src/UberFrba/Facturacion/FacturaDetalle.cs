@@ -53,6 +53,11 @@ namespace UberFrba.Facturacion
 
         private void cargarViajes()
         {
+            string nombreChofer;
+            string patenteAuto;
+            string descripTurno;
+
+
             dgvViajes.Rows.Clear();
 
             List<SqlParameter> parameterList = new List<SqlParameter>();
@@ -67,8 +72,11 @@ namespace UberFrba.Facturacion
             {
                 Viaje viaje = new Viaje();
                 viaje.DataRowToObject(row);
+                nombreChofer = row["Nombre"].ToString();
+                patenteAuto = row["Patente"].ToString();
+                descripTurno = row["Descripcion"].ToString();
 
-                dgvViajes.Rows.Add(viaje.Id_Viaje, viaje.Id_Chofer, viaje.Id_Automovil, viaje.Id_Turno, viaje.FechaYHoraInicio,
+                dgvViajes.Rows.Add(viaje.Id_Viaje, nombreChofer, patenteAuto, descripTurno, viaje.FechaYHoraInicio,
                     viaje.FechaYHoraFin, viaje.CantKilometros, viaje.Precio);
                 dgvViajes.Sort(dgvViajes.Columns[2], ListSortDirection.Ascending);
 
