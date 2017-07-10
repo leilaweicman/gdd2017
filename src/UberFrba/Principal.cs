@@ -166,15 +166,7 @@ namespace UberFrba
 
         private void datosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*int numero;
-            if (usuario.Rol.Id_Rol == 2 ) 
-            {
-                numero=2;
-            } else {
-                numero = 1;
-            }*/
-
-            Registro_usuario.RegistroUsuario registro = new Registro_usuario.RegistroUsuario(usuario, false);
+            Registro_usuario.RegistroUsuario registro = new Registro_usuario.RegistroUsuario(usuario, this);
             registro.Show();
 
         }

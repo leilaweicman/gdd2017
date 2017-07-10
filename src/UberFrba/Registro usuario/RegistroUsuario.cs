@@ -20,55 +20,60 @@ namespace UberFrba.Registro_usuario
         Usuario userAEditar = new Usuario();
         bool editing = false;
         int tipoUsuario = 0;
-        bool ejecutaAdmin;
+        bool ejecutaAdmin= false;
         bool altaConRol = false;
         int rolAlta;
+        Principal frmPrincipal;
 
         public RegistroUsuario()
         {
             InitializeComponent();
         }
 
-        public RegistroUsuario(Usuario usuario, bool ejecutaAdmin)
+        public RegistroUsuario(Usuario usuario, Principal frmPrincipal)
         {
-            if (ejecutaAdmin)
+            List<SqlParameter> parameterList = new List<SqlParameter>();
+            parameterList.Add(new SqlParameter("@idUsuario", usuario.Id_Usuario));
+
+            DataSet ds = new DataSet();
+
+            userAEditar.Rol = new Rol();
+
+            if (usuario.Rol.Id_Rol == 2)
             {
-                userAEditar = usuario;
+                ds = SQLHelper.ExecuteDataSet("PR_traerChoferes", CommandType.StoredProcedure, parameterList);
+                userAEditar.Rol.Id_Rol = 2;
             }
-            else 
+            else if (usuario.Rol.Id_Rol == 3)
             {
-                List<SqlParameter> parameterList = new List<SqlParameter>();
-                parameterList.Add(new SqlParameter("@idUsuario", usuario.Id_Usuario));
+                ds = SQLHelper.ExecuteDataSet("PR_traerClientes", CommandType.StoredProcedure, parameterList);
+                userAEditar.Rol.Id_Rol = 3;
+            }
 
-                DataSet ds = new DataSet();
-
-                userAEditar.Rol = new Rol();
-                                
-                if (usuario.Rol.Id_Rol == 2)
-                {
-                    ds = SQLHelper.ExecuteDataSet("PR_traerChoferes", CommandType.StoredProcedure, parameterList);
-                    userAEditar.Rol.Id_Rol = 2;    
-                }
-                else if(usuario.Rol.Id_Rol==3)
-                {
-                    ds = SQLHelper.ExecuteDataSet("PR_traerClientes", CommandType.StoredProcedure, parameterList);
-                    userAEditar.Rol.Id_Rol = 3;
-                }
-
-                if (ds.Tables[0].Rows.Count == 1)
-                {
-                    DataRow row = ds.Tables[0].Rows[0];
-                    userAEditar.DataRowToObject(row);                    
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrio un error cargando los datos del usuario");
-                }
+            if (ds.Tables[0].Rows.Count == 1)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                userAEditar.DataRowToObject(row);
+            }
+            else
+            {
+                MessageBox.Show("Ocurrio un error cargando los datos del usuario");
             }
 
             editing = true;
             tipoUsuario = usuario.Rol.Id_Rol;
-            this.ejecutaAdmin = ejecutaAdmin;
+
+            this.frmPrincipal = frmPrincipal;
+
+            InitializeComponent();
+        }
+
+        public RegistroUsuario(Usuario usuario)
+        {
+            userAEditar = usuario;            
+            editing = true;
+            tipoUsuario = usuario.Rol.Id_Rol;
+            ejecutaAdmin = true;
             InitializeComponent();
         }
 
@@ -241,46 +246,74 @@ namespace UberFrba.Registro_usuario
                         if (editing)
                         {
                             #region if editing
-                            if (chkHabilitado.Checked) {
-                                parameterList.Add(new SqlParameter("@habilitado", 1));
-                                //userAEditar.Habilitado = true;
-                            } else {
-                                parameterList.Add(new SqlParameter("@habilitado", 0));
-                                //userAEditar.Habilitado = false;
-                            }
-                            parameterList.Add(new SqlParameter("@idUsuario", userAEditar.Id_Usuario));
-                            if (tipoUsuario == 3)
+
+                            bool continuar = true;
+                            
+                            if (!chkHabilitado.Checked && !ejecutaAdmin)
                             {
-                                parameterList.Add(new SqlParameter("@codPost", usuarioNuevo.CodPost));
-                                SQLHelper.ExecuteNonQuery("PR_editarCliente", CommandType.StoredProcedure, parameterList);
-                            }
-                            else if (tipoUsuario == 2)
-                            {
-                                SQLHelper.ExecuteNonQuery("PR_editarChofer", CommandType.StoredProcedure, parameterList);
+                                DialogResult dr = MessageBox.Show("Si se inhabilita saldrá automáticamente del sistema y tendrá que contactar al administrador para volver a ingresar. ¿Desea continuar?",
+                                    "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if(dr == DialogResult.No){
+                                    continuar = false;
+                                    chkHabilitado.Checked = true;
+                                }
                             }
 
-                            MessageBox.Show("El usuario se ha modificado");
-
-                            userAEditar = usuarioNuevo;
-
-                            if (ejecutaAdmin)
+                            if (continuar)
                             {
+                                if (chkHabilitado.Checked)
+                                {
+                                    parameterList.Add(new SqlParameter("@habilitado", 1));
+                                }
+                                else
+                                {
+                                    parameterList.Add(new SqlParameter("@habilitado", 0));
+                                }
+
+                                parameterList.Add(new SqlParameter("@idUsuario", userAEditar.Id_Usuario));
                                 if (tipoUsuario == 3)
                                 {
-                                    UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
-                                    this.Hide();
-                                    abmCliente.Show();
+                                    parameterList.Add(new SqlParameter("@codPost", usuarioNuevo.CodPost));
+                                    SQLHelper.ExecuteNonQuery("PR_editarCliente", CommandType.StoredProcedure, parameterList);
                                 }
                                 else if (tipoUsuario == 2)
                                 {
-                                    UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
-                                    this.Hide();
-                                    abmChofer.Show();
+                                    SQLHelper.ExecuteNonQuery("PR_editarChofer", CommandType.StoredProcedure, parameterList);
                                 }
-                            }
-                            else
-                            {
-                                this.Hide();
+
+                                MessageBox.Show("El usuario se ha modificado");
+
+                                userAEditar = usuarioNuevo;
+
+                                if (ejecutaAdmin)
+                                {
+                                    if (tipoUsuario == 3)
+                                    {
+                                        UberFrba.Abm_Cliente.AbmCliente abmCliente = new Abm_Cliente.AbmCliente();
+                                        this.Hide();
+                                        abmCliente.Show();
+                                    }
+                                    else if (tipoUsuario == 2)
+                                    {
+                                        UberFrba.Abm_Chofer.AbmChofer abmChofer = new Abm_Chofer.AbmChofer();
+                                        this.Hide();
+                                        abmChofer.Show();
+                                    }
+                                }
+                                else
+                                {
+                                    if (usuarioNuevo.Habilitado)
+                                    {
+                                        this.Hide();
+                                    }
+                                    else
+                                    {
+                                        Inicial frmInicial = new Inicial();
+                                        frmPrincipal.Close();
+                                        frmInicial.Show();
+                                        this.Close();
+                                    }
+                                }
                             }
                             #endregion
                         }
@@ -310,14 +343,11 @@ namespace UberFrba.Registro_usuario
                             }
                             else
                             {
-                                Inicial inicialForm = new Inicial();
+                                Inicial inicialForm = new Inicial();                                                                
                                 this.Hide();
                                 inicialForm.Show();
                             }
                         }
-
-
-
                     }
                     catch (Exception ex)
                     {

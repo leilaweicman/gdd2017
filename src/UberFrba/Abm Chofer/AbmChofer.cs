@@ -115,7 +115,7 @@ namespace UberFrba.Abm_Chofer
 
                 Usuario userSeleccionado = choferes[idChofer];
 
-                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, true);// 2 es chofer
+                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado);
 
                 this.Hide();
                 

@@ -43,7 +43,7 @@ namespace UberFrba.Abm_Cliente
 
                 Usuario userSeleccionado = clientes[idCliente];
 
-                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado, true);//3 es cliente
+                UberFrba.Registro_usuario.RegistroUsuario registrarForm = new Registro_usuario.RegistroUsuario(userSeleccionado);
 
                 this.Hide();
                 
