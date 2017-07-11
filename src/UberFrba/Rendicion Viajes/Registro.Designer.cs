@@ -77,6 +77,7 @@
             // txtPorcentaje
             // 
             this.txtPorcentaje.Location = new System.Drawing.Point(132, 211);
+            this.txtPorcentaje.MaxLength = 3;
             this.txtPorcentaje.Name = "txtPorcentaje";
             this.txtPorcentaje.Size = new System.Drawing.Size(166, 27);
             this.txtPorcentaje.TabIndex = 42;

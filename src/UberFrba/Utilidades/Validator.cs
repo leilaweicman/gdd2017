@@ -149,7 +149,7 @@ namespace Utilities
             catch (System.FormatException)
             {
                 return
-                    "El campo " + nombreCampo + " no es decimal\n";
+                    "El campo " + nombreCampo + " no es numérico\n";
             }
             catch (System.ArgumentNullException)
             {
@@ -157,18 +157,7 @@ namespace Utilities
                     "El campo " + nombreCampo + " no puede ser vacio\n";
             }
             
-        }
-
-        public static string validarNuloEnListaDeCheckbox(CheckedListBox lstRubros, string nombreListado)
-        {
-            string strError = "";
-            if (lstRubros.CheckedItems.Count == 0)
-            {
-                strError += "El " + nombreListado + " debe tener seleccionado al menos un elemento. \n";
-            }
-            return strError;
-
-        }
+        }    
 
 
         public static void mostrarErrores(List<String> lstErroresCampos, string textoError)

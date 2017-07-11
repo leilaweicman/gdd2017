@@ -135,6 +135,7 @@
             // txtKilometros
             // 
             this.txtKilometros.Location = new System.Drawing.Point(19, 251);
+            this.txtKilometros.MaxLength = 16;
             this.txtKilometros.Name = "txtKilometros";
             this.txtKilometros.Size = new System.Drawing.Size(173, 27);
             this.txtKilometros.TabIndex = 52;
@@ -203,6 +204,7 @@
             // 
             // txtAutomovil
             // 
+            this.txtAutomovil.Enabled = false;
             this.txtAutomovil.Location = new System.Drawing.Point(19, 116);
             this.txtAutomovil.Name = "txtAutomovil";
             this.txtAutomovil.Size = new System.Drawing.Size(173, 27);

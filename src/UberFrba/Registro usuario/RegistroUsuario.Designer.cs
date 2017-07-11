@@ -197,7 +197,7 @@
             this.label10.Font = new System.Drawing.Font("Verdana", 10F);
             this.label10.Location = new System.Drawing.Point(592, 268);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 17);
+            this.label10.Size = new System.Drawing.Size(41, 17);
             this.label10.TabIndex = 38;
             this.label10.Text = "C. P.";
             // 
@@ -300,7 +300,7 @@
             // 
             this.txtDni.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtDni.Location = new System.Drawing.Point(176, 75);
-            this.txtDni.MaxLength = 10;
+            this.txtDni.MaxLength = 8;
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(154, 24);
             this.txtDni.TabIndex = 5;
@@ -367,7 +367,7 @@
             this.label3.Font = new System.Drawing.Font("Verdana", 10F);
             this.label3.Location = new System.Drawing.Point(10, 219);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.Size = new System.Drawing.Size(68, 17);
             this.label3.TabIndex = 26;
             this.label3.Text = "Teléfono";
             // 
@@ -375,6 +375,7 @@
             // 
             this.txtTel.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtTel.Location = new System.Drawing.Point(176, 216);
+            this.txtTel.MaxLength = 8;
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(154, 24);
             this.txtTel.TabIndex = 11;

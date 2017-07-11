@@ -82,6 +82,7 @@
             // 
             this.txtValorKilometro.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtValorKilometro.Location = new System.Drawing.Point(209, 203);
+            this.txtValorKilometro.MaxLength = 8;
             this.txtValorKilometro.Name = "txtValorKilometro";
             this.txtValorKilometro.Size = new System.Drawing.Size(82, 24);
             this.txtValorKilometro.TabIndex = 42;
@@ -90,6 +91,7 @@
             // 
             this.txtPrecioBase.Font = new System.Drawing.Font("Verdana", 10F);
             this.txtPrecioBase.Location = new System.Drawing.Point(209, 164);
+            this.txtPrecioBase.MaxLength = 8;
             this.txtPrecioBase.Name = "txtPrecioBase";
             this.txtPrecioBase.Size = new System.Drawing.Size(82, 24);
             this.txtPrecioBase.TabIndex = 41;
@@ -168,7 +170,7 @@
             this.label3.Font = new System.Drawing.Font("Verdana", 10F);
             this.label3.Location = new System.Drawing.Point(10, 206);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 17);
+            this.label3.Size = new System.Drawing.Size(114, 17);
             this.label3.TabIndex = 26;
             this.label3.Text = "Valor kilometro";
             // 
