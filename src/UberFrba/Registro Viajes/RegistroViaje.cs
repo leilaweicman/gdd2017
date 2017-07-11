@@ -267,7 +267,7 @@ namespace UberFrba.Registro_Viajes
                 }
                 else
                 {
-                    MessageBox.Show("Ya existe un viaje dentro de ese rango horario para ese chofer, turno y cliente. Por favor, ingrese los datos correctamente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ya existe un viaje dentro de ese rango horario para ese chofer, turno y/o cliente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                
             }
