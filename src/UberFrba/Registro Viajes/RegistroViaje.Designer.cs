@@ -135,7 +135,7 @@
             // txtKilometros
             // 
             this.txtKilometros.Location = new System.Drawing.Point(19, 251);
-            this.txtKilometros.MaxLength = 16;
+            this.txtKilometros.MaxLength = 8;
             this.txtKilometros.Name = "txtKilometros";
             this.txtKilometros.Size = new System.Drawing.Size(173, 27);
             this.txtKilometros.TabIndex = 52;
