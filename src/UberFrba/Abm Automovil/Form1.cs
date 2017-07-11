@@ -26,7 +26,18 @@ namespace UberFrba.Abm_Automovil
         {
 
         }
-
+        private bool tieneAuto(int idAutomovil , int idChofer)
+        {
+            string query = "EXEC  [GIRLPOWER].PR_TieneAutoHabilitado " + idChofer + "," + idAutomovil;
+            var aux = SQLHelper.ExecuteQuery(query);
+            int tiene = 0;
+            while (aux.Read())
+            {
+                if (!object.Equals(aux["TieneAuto"], DBNull.Value))
+                    tiene = int.Parse(aux["TieneAuto"].ToString());
+            }
+            return tiene == 1 ? true : false;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             CargarCombos();
@@ -168,16 +179,22 @@ namespace UberFrba.Abm_Automovil
             {
                 DataGridViewRow row = this.dgvAutomoviles.SelectedRows[0];
                 var id = row.Cells["IDAutomovil"].Value.ToString();
-                  var Habilitado =bool.Parse(row.Cells["Habilitado"].Value.ToString());
-                Automovil auto = new Automovil();
-                auto.Deshabilitar(int.Parse(id));
-              
-                if(Habilitado)
-                    MessageBox.Show("El automovil se ha deshabilitado correctamente");
-                else
-                    MessageBox.Show("El automovil se ha habilitado correctamente");
+                var Habilitado = bool.Parse(row.Cells["Habilitado"].Value.ToString());
 
-                CargarAuomoviles();
+                if (tieneAuto(int.Parse(id), 0) && !Habilitado)
+                    MessageBox.Show("No se puede habilitar ya que el chofer ya tiene un auto activo");
+                else
+                {
+                    Automovil auto = new Automovil();
+                    auto.Deshabilitar(int.Parse(id));
+
+                    if (Habilitado)
+                        MessageBox.Show("El automovil se ha deshabilitado correctamente");
+                    else
+                        MessageBox.Show("El automovil se ha habilitado correctamente");
+
+                    CargarAuomoviles();
+                }
             }
         }
 
